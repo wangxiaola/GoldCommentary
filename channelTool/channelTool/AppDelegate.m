@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "UserInfo.h"
+#import "IQKeyboardManager.h"
 
 @interface AppDelegate ()
 
@@ -17,10 +19,48 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    // 设置键盘
+    [self initSDK];
+    // 提取用户信息
+    UserInfo *info = [UserInfo account];
+    // 判断用户是否登录过
+    NSString *boardName = info.phone.length == 0 ?@"login":@"main";
+    // 选择加载storboard
+    UIStoryboard *board = [UIStoryboard storyboardWithName:boardName bundle:nil];
+    
+    UIViewController *viewController = [board instantiateInitialViewController];
+    
+    @try {
+        
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        self.window.rootViewController = viewController;
+        self.window.backgroundColor = [UIColor grayColor];
+        [self.window makeKeyAndVisible];
+        
+    } @catch (NSException *exception) {
+        
+        NSLog(@"控制器创建失败。。。");
+        exit(0);
+    }
+    
     return YES;
 }
 
+-(void)initSDK
+{
+    // 设置键盘监听管理
+    IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager];
+    [keyboardManager setEnable:YES];
+    [keyboardManager setKeyboardDistanceFromTextField:0];
+    [keyboardManager setEnableAutoToolbar:YES];
+    [keyboardManager setToolbarManageBehaviour:IQAutoToolbarBySubviews];
+    [keyboardManager setPlaceholderFont:[UIFont systemFontOfSize:14]];
+    [keyboardManager setShouldResignOnTouchOutside:YES];
+    [keyboardManager setToolbarTintColor:[UIColor colorWithRed:247/255.0 green:160/255.0 blue:44/255.0 alpha:1]];
+    //设置为文字
+    [keyboardManager setToolbarDoneBarButtonItemText:@"完成"];
 
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

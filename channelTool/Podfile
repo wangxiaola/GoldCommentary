@@ -1,0 +1,16 @@
+platform:ios, '8.0'
+use_frameworks!
+
+target 'channelTool' do
+
+pod 'Masonry'
+pod 'AFNetworking', '~> 3.0'
+pod 'MJExtension'
+pod 'SDWebImage'
+pod 'SVProgressHUD'
+pod 'MJRefresh'
+pod 'DZNEmptyDataSet'
+pod 'IQKeyboardManager' #iOS8 and later
+pod 'TZImagePickerController'
+
+end
