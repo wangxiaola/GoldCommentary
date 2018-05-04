@@ -24,7 +24,7 @@
     // 提取用户信息
     UserInfo *info = [UserInfo account];
     // 判断用户是否登录过
-    NSString *boardName = info.phone.length == 0 ?@"login":@"main";
+    NSString *boardName = info.phone.length != 0 ?@"login":@"main";
     // 选择加载storboard
     UIStoryboard *board = [UIStoryboard storyboardWithName:boardName bundle:nil];
     
@@ -34,7 +34,7 @@
         
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         self.window.rootViewController = viewController;
-        self.window.backgroundColor = [UIColor grayColor];
+        self.window.backgroundColor = [UIColor whiteColor];
         [self.window makeKeyAndVisible];
         
     } @catch (NSException *exception) {

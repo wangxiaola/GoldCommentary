@@ -8,10 +8,11 @@
 
 #import "MJDIYBackFooter.h"
 #import "WCPublic.h"
+#import "Lottie.h"
 
 @interface MJDIYBackFooter()
 
-@property (nonatomic, weak) UIImageView *logo;
+@property (nonatomic, weak) LOTAnimationView *logo;
 @property (nonatomic, weak) UILabel *label;
 
 @end
@@ -26,9 +27,11 @@
     // 设置控件的高度
     self.mj_h = 50;
     
-    UIImageView *logo = [[UIImageView alloc] init];
-    logo.image = [UIImage imageNamed:@"loading_logo"];
+    LOTAnimationView *logo = [LOTAnimationView animationNamed:@"sun_burst_weather_icon"];
+    logo.frame = CGRectMake(_SCREEN_WIDTH/2-30, 300, 60, 60);
+    logo.loopAnimation = YES;
     [self addSubview:logo];
+    
     self.logo = logo;
     
     UILabel *label = [[UILabel alloc] init];
@@ -45,12 +48,12 @@
     [super placeSubviews];
     
     
-    self.logo.mj_w = 15;
-    self.logo.mj_h = 16;
-    self.logo.mj_x = self.mj_w / 2 - self.logo.mj_w - 28;
-    self.logo.mj_y = self.mj_h / 2 - self.logo.mj_h / 2;
+    self.logo.mj_w = 60;
+    self.logo.mj_h = 60;
+    self.logo.mj_x = self.mj_w / 2 - self.logo.mj_w ;
+    self.logo.mj_y = 0;
     
-    self.label.mj_x = self.logo.mj_x + self.logo.mj_w + 6;
+    self.label.mj_x = self.logo.mj_x + self.logo.mj_w + 4;
     self.label.mj_y = 0;
     self.label.mj_h = self.mj_h;
     self.label.mj_w = self.mj_w - self.logo.mj_x - self.logo.mj_w;
@@ -84,15 +87,22 @@
 {
     MJRefreshCheckState;
     
+    
     switch (state) {
+            
         case MJRefreshStateIdle:
             self.label.text = @"上拉加载更多";
+
             break;
         case MJRefreshStatePulling:
             self.label.text = @"松开立即刷新";
             break;
         case MJRefreshStateRefreshing:
             self.label.text = @"加载中...";
+            //从进度A播放到进度B
+            [self.logo playFromProgress:0 toProgress:1 withCompletion:^(BOOL animationFinished) {
+                
+            }];
             break;
         case MJRefreshStateNoMoreData:
             self.label.text = @"全部加载完毕";
@@ -106,12 +116,12 @@
 - (void)setPullingPercent:(CGFloat)pullingPercent
 {
     [super setPullingPercent:pullingPercent];
-    // 1.0 0.5 0.0
-    // 0.5 0.0 0.5
-    CGFloat red = 51-pullingPercent*50;
-    CGFloat green = 202-pullingPercent*100;
-    CGFloat blue = 171-pullingPercent*100;
-    self.label.textColor = [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1.0];
+    
+    //直接播放到指定进度
+    [self.logo playToProgress:pullingPercent withCompletion:^(BOOL animationFinished) {
+        
+    }];
+
 
 }
 

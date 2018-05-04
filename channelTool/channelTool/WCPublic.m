@@ -13,4 +13,8 @@ NSString *const POST_URL = @"";
 
 NSString *const IMAGE_URL = @"";
 
+NSString *const Verification_phone = @"Verification_phone";
+
+NSString *const Verification_code = @"Verification_code";
+
 

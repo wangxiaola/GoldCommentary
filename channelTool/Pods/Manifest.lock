@@ -16,6 +16,7 @@ PODS:
     - AFNetworking/NSURLSession
   - DZNEmptyDataSet (1.8.1)
   - IQKeyboardManager (5.0.6)
+  - lottie-ios (2.1.5)
   - Masonry (1.1.0)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.15.1)
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - DZNEmptyDataSet
   - IQKeyboardManager
+  - lottie-ios
   - Masonry
   - MJExtension
   - MJRefresh
@@ -40,6 +42,7 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   IQKeyboardManager: 077b7f691dfa9d69db9cff66f2bed68ebfc02d9b
+  lottie-ios: 836cdbba92f62f3c6a00e37a4ce485321fe317cf
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: 5f8552bc25ca8751c010f621c1098dbdaacbccd6
@@ -47,6 +50,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
   TZImagePickerController: 276dc7c0cc70da9ee354046474b405d87ef81c89
 
-PODFILE CHECKSUM: 489107b67b4b8c01469f3bd40e3572c3dabe1e7d
+PODFILE CHECKSUM: d82cb6a906cad3c9340d71b62df72a7fb4914715
 
 COCOAPODS: 1.4.0.beta.2

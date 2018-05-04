@@ -12,5 +12,6 @@ pod 'MJRefresh'
 pod 'DZNEmptyDataSet'
 pod 'IQKeyboardManager' #iOS8 and later
 pod 'TZImagePickerController'
+pod 'lottie-ios'
 
 end

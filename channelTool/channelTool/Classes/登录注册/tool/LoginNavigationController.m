@@ -28,14 +28,16 @@
     [self.view addGestureRecognizer:pan];
     // 禁止使用系统自带的滑动手势
     self.interactivePopGestureRecognizer.enabled = NO;
+
+    
 }
 + (void)initialize
 {
     UINavigationBar *bar = [UINavigationBar appearance];
-    [bar setBarTintColor:[UIColor whiteColor]];
-    [bar setTintColor:[UIColor whiteColor]];
-    bar.barStyle = UIBarStyleBlack;
     
+    bar.barStyle = UIBarStyleBlack;
+    bar.translucent = YES;
+    bar.tintColor = [UIColor whiteColor];
 }
 #pragma mark  --UIViewController--
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated

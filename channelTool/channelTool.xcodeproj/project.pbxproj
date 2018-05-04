@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3B216AE0209AA66D0040EE93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216ADF209AA66D0040EE93 /* AppDelegate.m */; };
 		3B216AE8209AA66D0040EE93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B216AE7209AA66D0040EE93 /* Assets.xcassets */; };
-		3B216AEB209AA66D0040EE93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B216AE9209AA66D0040EE93 /* LaunchScreen.storyboard */; };
 		3B216AEE209AA66D0040EE93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216AED209AA66D0040EE93 /* main.m */; };
 		3B216AFC209AAE220040EE93 /* ZKUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216AF6209AAE220040EE93 /* ZKUtil.m */; };
 		3B216AFD209AAE220040EE93 /* ZKPostHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216AF9209AAE220040EE93 /* ZKPostHttp.m */; };
@@ -50,6 +49,18 @@
 		3B216B86209AFA530040EE93 /* WCRetrieveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B85209AFA530040EE93 /* WCRetrieveViewController.m */; };
 		3B216B89209AFA940040EE93 /* WCResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B88209AFA940040EE93 /* WCResetPasswordViewController.m */; };
 		3B216B8C209B01DB0040EE93 /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B216B8B209B01DB0040EE93 /* main.storyboard */; };
+		3BA73DF9209C06D900B88891 /* TBCountdownSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73DF8209C06D900B88891 /* TBCountdownSingle.m */; };
+		3BA73DFC209C309F00B88891 /* WCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73DFB209C309F00B88891 /* WCHomeViewController.m */; };
+		3BA73E08209C451100B88891 /* LSBaseNavItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73DFF209C451100B88891 /* LSBaseNavItem.m */; };
+		3BA73E09209C451100B88891 /* LSBasePageTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73E01209C451100B88891 /* LSBasePageTabbar.m */; };
+		3BA73E0A209C451100B88891 /* LSSlidePageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73E03209C451100B88891 /* LSSlidePageScrollView.m */; };
+		3BA73E0B209C451100B88891 /* LSSlidePageScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73E05209C451100B88891 /* LSSlidePageScrollViewController.m */; };
+		3BA73E0C209C451100B88891 /* UIScrollView+LSSlidePageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73E07209C451100B88891 /* UIScrollView+LSSlidePageScrollView.m */; };
+		3BA73E0E209C511B00B88891 /* sun_burst_weather_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA73E0D209C511B00B88891 /* sun_burst_weather_icon.json */; };
+		3BA73E11209C54E500B88891 /* TBBaseClassTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73E0F209C54E500B88891 /* TBBaseClassTableViewController.m */; };
+		3BA73E14209C554500B88891 /* TBBaseClassViewMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73E12209C554400B88891 /* TBBaseClassViewMode.m */; };
+		3BA73E17209C56AC00B88891 /* WCMyScenicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73E16209C56AC00B88891 /* WCMyScenicViewController.m */; };
+		3BA73E1A209C572B00B88891 /* WCMyNarratorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73E19209C572B00B88891 /* WCMyNarratorViewController.m */; };
 		56B6C53E4D091EA293C517A5 /* Pods_channelTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF32DF5B5674C73EA5E12B20 /* Pods_channelTool.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +69,6 @@
 		3B216ADE209AA66D0040EE93 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3B216ADF209AA66D0040EE93 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3B216AE7209AA66D0040EE93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3B216AEA209AA66D0040EE93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B216AEC209AA66D0040EE93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B216AED209AA66D0040EE93 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3B216AF6209AAE220040EE93 /* ZKUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKUtil.m; sourceTree = "<group>"; };
@@ -138,6 +148,29 @@
 		3B216B87209AFA940040EE93 /* WCResetPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCResetPasswordViewController.h; sourceTree = "<group>"; };
 		3B216B88209AFA940040EE93 /* WCResetPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCResetPasswordViewController.m; sourceTree = "<group>"; };
 		3B216B8B209B01DB0040EE93 /* main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
+		3BA73DF7209C06D800B88891 /* TBCountdownSingle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCountdownSingle.h; sourceTree = "<group>"; };
+		3BA73DF8209C06D900B88891 /* TBCountdownSingle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCountdownSingle.m; sourceTree = "<group>"; };
+		3BA73DFA209C309F00B88891 /* WCHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCHomeViewController.h; sourceTree = "<group>"; };
+		3BA73DFB209C309F00B88891 /* WCHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCHomeViewController.m; sourceTree = "<group>"; };
+		3BA73DFE209C451100B88891 /* LSBaseNavItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSBaseNavItem.h; sourceTree = "<group>"; };
+		3BA73DFF209C451100B88891 /* LSBaseNavItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSBaseNavItem.m; sourceTree = "<group>"; };
+		3BA73E00209C451100B88891 /* LSBasePageTabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSBasePageTabbar.h; sourceTree = "<group>"; };
+		3BA73E01209C451100B88891 /* LSBasePageTabbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSBasePageTabbar.m; sourceTree = "<group>"; };
+		3BA73E02209C451100B88891 /* LSSlidePageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSlidePageScrollView.h; sourceTree = "<group>"; };
+		3BA73E03209C451100B88891 /* LSSlidePageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSSlidePageScrollView.m; sourceTree = "<group>"; };
+		3BA73E04209C451100B88891 /* LSSlidePageScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSlidePageScrollViewController.h; sourceTree = "<group>"; };
+		3BA73E05209C451100B88891 /* LSSlidePageScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSSlidePageScrollViewController.m; sourceTree = "<group>"; };
+		3BA73E06209C451100B88891 /* UIScrollView+LSSlidePageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LSSlidePageScrollView.h"; sourceTree = "<group>"; };
+		3BA73E07209C451100B88891 /* UIScrollView+LSSlidePageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+LSSlidePageScrollView.m"; sourceTree = "<group>"; };
+		3BA73E0D209C511B00B88891 /* sun_burst_weather_icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun_burst_weather_icon.json; sourceTree = "<group>"; };
+		3BA73E0F209C54E500B88891 /* TBBaseClassTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBBaseClassTableViewController.m; sourceTree = "<group>"; };
+		3BA73E10209C54E500B88891 /* TBBaseClassTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBBaseClassTableViewController.h; sourceTree = "<group>"; };
+		3BA73E12209C554400B88891 /* TBBaseClassViewMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBBaseClassViewMode.m; sourceTree = "<group>"; };
+		3BA73E13209C554500B88891 /* TBBaseClassViewMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBBaseClassViewMode.h; sourceTree = "<group>"; };
+		3BA73E15209C56AC00B88891 /* WCMyScenicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMyScenicViewController.h; sourceTree = "<group>"; };
+		3BA73E16209C56AC00B88891 /* WCMyScenicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMyScenicViewController.m; sourceTree = "<group>"; };
+		3BA73E18209C572B00B88891 /* WCMyNarratorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMyNarratorViewController.h; sourceTree = "<group>"; };
+		3BA73E19209C572B00B88891 /* WCMyNarratorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMyNarratorViewController.m; sourceTree = "<group>"; };
 		538CB4AF673C51FA46D9D600 /* Pods-channelTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-channelTool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-channelTool/Pods-channelTool.debug.xcconfig"; sourceTree = "<group>"; };
 		AAA397FC239E040063511990 /* Pods-channelTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-channelTool.release.xcconfig"; path = "Pods/Target Support Files/Pods-channelTool/Pods-channelTool.release.xcconfig"; sourceTree = "<group>"; };
 		AF32DF5B5674C73EA5E12B20 /* Pods_channelTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_channelTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,6 +217,7 @@
 		3B216ADD209AA66D0040EE93 /* channelTool */ = {
 			isa = PBXGroup;
 			children = (
+				3BA73E0D209C511B00B88891 /* sun_burst_weather_icon.json */,
 				3B216B6A209ABA9F0040EE93 /* Classes */,
 				3B216B4D209AAE9C0040EE93 /* Base */,
 				3B216AF4209AAD480040EE93 /* Toolkit */,
@@ -192,7 +226,6 @@
 				3B216B65209AB0AD0040EE93 /* WCPublic.h */,
 				3B216B64209AB0AD0040EE93 /* WCPublic.m */,
 				3B216AE7209AA66D0040EE93 /* Assets.xcassets */,
-				3B216AE9209AA66D0040EE93 /* LaunchScreen.storyboard */,
 				3B216AEC209AA66D0040EE93 /* Info.plist */,
 				3B216AED209AA66D0040EE93 /* main.m */,
 			);
@@ -202,6 +235,7 @@
 		3B216AF4209AAD480040EE93 /* Toolkit */ = {
 			isa = PBXGroup;
 			children = (
+				3BA73DFD209C451100B88891 /* LSSlidePageScrollView */,
 				3B216B5A209AAF210040EE93 /* 输入提示框 */,
 				3B216B19209AAE880040EE93 /* Category */,
 				3B216B15209AAE7A0040EE93 /* DZNEmptyDataSet */,
@@ -303,6 +337,10 @@
 				3B216B4E209AAED30040EE93 /* TBBaseTableViewController.m */,
 				3B216B53209AAED30040EE93 /* TBBaseViewController.h */,
 				3B216B50209AAED30040EE93 /* TBBaseViewController.m */,
+				3BA73E10209C54E500B88891 /* TBBaseClassTableViewController.h */,
+				3BA73E0F209C54E500B88891 /* TBBaseClassTableViewController.m */,
+				3BA73E13209C554500B88891 /* TBBaseClassViewMode.h */,
+				3BA73E12209C554400B88891 /* TBBaseClassViewMode.m */,
 				3B216B51209AAED30040EE93 /* ZKNavigationController.h */,
 				3B216B4F209AAED30040EE93 /* ZKNavigationController.m */,
 				3B216B54209AAED30040EE93 /* ZKTextField.h */,
@@ -397,6 +435,8 @@
 		3B216B73209ADC820040EE93 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				3BA73DF7209C06D800B88891 /* TBCountdownSingle.h */,
+				3BA73DF8209C06D900B88891 /* TBCountdownSingle.m */,
 				3B216B7B209AF5A90040EE93 /* LoginNavigationController.h */,
 				3B216B7C209AF5A90040EE93 /* LoginNavigationController.m */,
 			);
@@ -413,6 +453,10 @@
 		3B216B75209ADCCE0040EE93 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				3BA73E15209C56AC00B88891 /* WCMyScenicViewController.h */,
+				3BA73E16209C56AC00B88891 /* WCMyScenicViewController.m */,
+				3BA73E18209C572B00B88891 /* WCMyNarratorViewController.h */,
+				3BA73E19209C572B00B88891 /* WCMyNarratorViewController.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -427,6 +471,8 @@
 		3B216B79209ADCCE0040EE93 /* viewControl */ = {
 			isa = PBXGroup;
 			children = (
+				3BA73DFA209C309F00B88891 /* WCHomeViewController.h */,
+				3BA73DFB209C309F00B88891 /* WCHomeViewController.m */,
 			);
 			path = viewControl;
 			sourceTree = "<group>";
@@ -437,6 +483,23 @@
 				3B216B8B209B01DB0040EE93 /* main.storyboard */,
 			);
 			path = storyboardNIB;
+			sourceTree = "<group>";
+		};
+		3BA73DFD209C451100B88891 /* LSSlidePageScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				3BA73DFE209C451100B88891 /* LSBaseNavItem.h */,
+				3BA73DFF209C451100B88891 /* LSBaseNavItem.m */,
+				3BA73E00209C451100B88891 /* LSBasePageTabbar.h */,
+				3BA73E01209C451100B88891 /* LSBasePageTabbar.m */,
+				3BA73E02209C451100B88891 /* LSSlidePageScrollView.h */,
+				3BA73E03209C451100B88891 /* LSSlidePageScrollView.m */,
+				3BA73E04209C451100B88891 /* LSSlidePageScrollViewController.h */,
+				3BA73E05209C451100B88891 /* LSSlidePageScrollViewController.m */,
+				3BA73E06209C451100B88891 /* UIScrollView+LSSlidePageScrollView.h */,
+				3BA73E07209C451100B88891 /* UIScrollView+LSSlidePageScrollView.m */,
+			);
+			path = LSSlidePageScrollView;
 			sourceTree = "<group>";
 		};
 		9A7FAA8E17DD60B691851BA0 /* Pods */ = {
@@ -509,10 +572,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B216AEB209AA66D0040EE93 /* LaunchScreen.storyboard in Resources */,
 				3B216AE8209AA66D0040EE93 /* Assets.xcassets in Resources */,
 				3B216B6F209ADC050040EE93 /* login.storyboard in Resources */,
 				3B216B8C209B01DB0040EE93 /* main.storyboard in Resources */,
+				3BA73E0E209C511B00B88891 /* sun_burst_weather_icon.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +631,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -580,6 +644,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TZImagePickerController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -600,12 +665,14 @@
 				3B216B86209AFA530040EE93 /* WCRetrieveViewController.m in Sources */,
 				3B216B43209AAE880040EE93 /* UIImage+CircleImage.m in Sources */,
 				3B216B83209AFA2C0040EE93 /* WCRegistrationViewController.m in Sources */,
+				3BA73E14209C554500B88891 /* TBBaseClassViewMode.m in Sources */,
 				3B216B7D209AF5A90040EE93 /* LoginNavigationController.m in Sources */,
 				3B216B59209AAED30040EE93 /* ZKTextField.m in Sources */,
 				3B216AFE209AAE220040EE93 /* HUD.m in Sources */,
 				3B216B3D209AAE880040EE93 /* NSObject+MJExtension.m in Sources */,
 				3B216B56209AAED30040EE93 /* TBBaseTableViewController.m in Sources */,
 				3B216B46209AAE880040EE93 /* UIImageView+ZKWebCache.m in Sources */,
+				3BA73E0C209C451100B88891 /* UIScrollView+LSSlidePageScrollView.m in Sources */,
 				3B216AEE209AA66D0040EE93 /* main.m in Sources */,
 				3B216B4A209AAE880040EE93 /* UIView+UIScreenDisplaying.m in Sources */,
 				3B216AE0209AA66D0040EE93 /* AppDelegate.m in Sources */,
@@ -614,14 +681,18 @@
 				3B216B3C209AAE880040EE93 /* NSDictionary+FixedParams.m in Sources */,
 				3B216B40209AAE880040EE93 /* NSString+Regex.m in Sources */,
 				3B216B3F209AAE880040EE93 /* NSString+MD5Addition.m in Sources */,
+				3BA73E1A209C572B00B88891 /* WCMyNarratorViewController.m in Sources */,
+				3BA73E11209C54E500B88891 /* TBBaseClassTableViewController.m in Sources */,
 				3B216B69209AB2220040EE93 /* UserInfo.m in Sources */,
 				3B216B45209AAE880040EE93 /* UIImage+Thumbnail.m in Sources */,
 				3B216B4C209AAE880040EE93 /* UIWebView+TS_JavaScriptContext.m in Sources */,
 				3B216AFD209AAE220040EE93 /* ZKPostHttp.m in Sources */,
 				3B216B48209AAE880040EE93 /* UITextField+banEdit.m in Sources */,
+				3BA73DFC209C309F00B88891 /* WCHomeViewController.m in Sources */,
 				3B216B49209AAE880040EE93 /* UIView+Frame.m in Sources */,
 				3B216B66209AB0AD0040EE93 /* WCPublic.m in Sources */,
 				3B216AFC209AAE220040EE93 /* ZKUtil.m in Sources */,
+				3BA73E0B209C451100B88891 /* LSSlidePageScrollViewController.m in Sources */,
 				3B216B3E209AAE880040EE93 /* NSString+Extension.m in Sources */,
 				3B216B4B209AAE880040EE93 /* UIViewController+Prompt.m in Sources */,
 				3B216B60209AAF210040EE93 /* TBSaveSuccessTipsView.m in Sources */,
@@ -629,24 +700,18 @@
 				3B216B57209AAED30040EE93 /* ZKNavigationController.m in Sources */,
 				3B216B02209AAE430040EE93 /* UIView+MJAlertView.m in Sources */,
 				3B216B0A209AAE4C0040EE93 /* MJDIYHeader.m in Sources */,
+				3BA73E0A209C451100B88891 /* LSSlidePageScrollView.m in Sources */,
 				3B216B18209AAE7A0040EE93 /* UIScrollView+EmptyDataSet.m in Sources */,
+				3BA73E09209C451100B88891 /* LSBasePageTabbar.m in Sources */,
 				3B216B89209AFA940040EE93 /* WCResetPasswordViewController.m in Sources */,
 				3B216B09209AAE4C0040EE93 /* MJDIYBackFooter.m in Sources */,
+				3BA73E08209C451100B88891 /* LSBaseNavItem.m in Sources */,
+				3BA73DF9209C06D900B88891 /* TBCountdownSingle.m in Sources */,
+				3BA73E17209C56AC00B88891 /* WCMyScenicViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		3B216AE9209AA66D0040EE93 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3B216AEA209AA66D0040EE93 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3B216AEF209AA66D0040EE93 /* Debug */ = {
@@ -758,6 +823,7 @@
 			baseConfigurationReference = 538CB4AF673C51FA46D9D600 /* Pods-channelTool.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YC78659G27;
 				INFOPLIST_FILE = channelTool/Info.plist;
@@ -765,7 +831,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.daqsoft.ios.add.channelTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -774,6 +840,7 @@
 			baseConfigurationReference = AAA397FC239E040063511990 /* Pods-channelTool.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YC78659G27;
 				INFOPLIST_FILE = channelTool/Info.plist;
@@ -781,7 +848,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.daqsoft.ios.add.channelTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

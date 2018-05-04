@@ -24,6 +24,9 @@
 FOUNDATION_EXPORT NSString *const POST_URL;
 FOUNDATION_EXPORT NSString *const IMAGE_URL;
 
+FOUNDATION_EXPORT NSString *const Verification_code;// 验证码保存
+FOUNDATION_EXPORT NSString *const Verification_phone;// 验证手机号保存
+
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
 #define iOS11_0Later ([UIDevice currentDevice].systemVersion.floatValue >= 11.0f)

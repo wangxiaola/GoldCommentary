@@ -16,6 +16,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0Jo-zD-yKj">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <connections>
                         <segue destination="I1H-Wr-ZcH" kind="relationship" relationship="rootViewController" id="2lJ-qf-JOZ"/>
@@ -28,7 +29,7 @@
         <!--账号登录-->
         <scene sceneID="ccW-bA-01b">
             <objects>
-                <viewController storyboardIdentifier="loginMain" title="账号登录" id="I1H-Wr-ZcH" customClass="WCLoginMainViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WCLoginMainViewControllerID" title="账号登录" id="I1H-Wr-ZcH" customClass="WCLoginMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xu0-WF-a5c"/>
                         <viewControllerLayoutGuide type="bottom" id="MO7-XY-gS8"/>
@@ -53,7 +54,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="send"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入登录密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NOa-Kx-qDQ">
                                         <rect key="frame" x="24" y="51" width="327" height="50"/>
@@ -62,7 +63,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="send" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="done" secureTextEntry="YES"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbj-7T-53J">
                                         <rect key="frame" x="24" y="50" width="327" height="1"/>
@@ -180,7 +181,7 @@
         <!--Registration View Controller-->
         <scene sceneID="3Ix-HF-aeg">
             <objects>
-                <viewController storyboardIdentifier="registered" id="JcH-wY-hWq" customClass="WCRegistrationViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WCRegistrationViewControllerID" id="JcH-wY-hWq" customClass="WCRegistrationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qzi-d6-cAk"/>
                         <viewControllerLayoutGuide type="bottom" id="b1h-1J-Hpb"/>
@@ -205,7 +206,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="send"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s2h-1s-nNW">
                                         <rect key="frame" x="24" y="51" width="237" height="50"/>
@@ -214,7 +215,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="send"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请设置登录密码（6-12位）" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vrN-oi-TrO">
                                         <rect key="frame" x="24" y="102" width="327" height="50"/>
@@ -223,7 +224,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="send" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="done" secureTextEntry="YES"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y0I-f9-Ph6">
                                         <rect key="frame" x="24" y="50" width="327" height="1"/>
@@ -357,7 +358,7 @@
         <!--Retrieve View Controller-->
         <scene sceneID="jwh-Ys-KHt">
             <objects>
-                <viewController storyboardIdentifier="retrieve" id="TcU-As-Kip" customClass="WCRetrieveViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WCRetrieveViewControllerID" id="TcU-As-Kip" customClass="WCRetrieveViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bS9-dY-l2c"/>
                         <viewControllerLayoutGuide type="bottom" id="tFQ-pe-Ng9"/>
@@ -382,7 +383,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="send"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Va-BL-q3d">
                                         <rect key="frame" x="24" y="50" width="327" height="1"/>
@@ -447,7 +448,7 @@
         <!--Reset Password View Controller-->
         <scene sceneID="Xdr-lj-ldJ">
             <objects>
-                <viewController storyboardIdentifier="setPassword" id="4La-pE-B9T" customClass="WCResetPasswordViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WCResetPasswordViewControllerID" id="4La-pE-B9T" customClass="WCResetPasswordViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WO6-Er-Y7n"/>
                         <viewControllerLayoutGuide type="bottom" id="PC8-Dz-vx3"/>
@@ -472,7 +473,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="send"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请重置登录密码（6-12位）" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3TX-2P-8Hs">
                                         <rect key="frame" x="24" y="51" width="327" height="50"/>
@@ -481,7 +482,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" spellCheckingType="yes" keyboardType="numberPad" returnKeyType="send" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" spellCheckingType="yes" keyboardType="numberPad" returnKeyType="done" secureTextEntry="YES"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bws-po-C5U">
                                         <rect key="frame" x="24" y="50" width="327" height="1"/>

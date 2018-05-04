@@ -9,7 +9,7 @@
 #import "WCLoginMainViewController.h"
 #import "AppDelegate.h"
 
-@interface WCLoginMainViewController ()
+@interface WCLoginMainViewController ()<UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *phoneField;
 
@@ -22,7 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    self.passwordField.delegate = self;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 
 #pragma mark  ----fun tool----
@@ -46,6 +47,7 @@
 // 开始登录
 - (IBAction)loginSender:(UIButton *)sender {
     
+    [self.view endEditing:YES];
     if (self.phoneField.text.length == 0) {
         
         [self shakeAnimationForView:self.phoneField markString:@"请输入手机号码"];
@@ -60,29 +62,29 @@
         [self shakeAnimationForView:self.passwordField markString:@"请输入登录密码"];
         return;
     }
+    NSInteger number = self.passwordField.text.length;
+    if (number>12 || number<6) {
+        
+        [self shakeAnimationForView:self.passwordField markString:@"登录密码为6-12位"];
+        return;
+    }
     [self requestLogin];
 }
 // 注册
 - (IBAction)registeredSender:(UIButton *)sender {
-    
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        
-        [self performSegueWithIdentifier:@"registered" sender:nil];
-    }];
+    [self.view endEditing:YES];
+    [self performSegueWithIdentifier:@"registered" sender:nil];
     
 }
 // 找回密码
 - (IBAction)forgotPasswordSender:(UIButton *)sender {
-    
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        
-        [self performSegueWithIdentifier:@"retrieve" sender:nil];
-    }];
+    [self.view endEditing:YES];
+    [self performSegueWithIdentifier:@"retrieve" sender:nil];
     
 }
 // 取消
 - (IBAction)goHomeController:(UIBarButtonItem *)sender {
-
+    
     UIWindow *window = APPDELEGATE.window;
     
     [UIView animateWithDuration:1.0f animations:^{
@@ -104,6 +106,26 @@
     } failure:^(NSError * _Nonnull error) {
         hudShowError(@"网络异常！");
     }];
+}
+
+#pragma mark  ----UITextFieldDelegate----
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if ([string isEqualToString:@"\n"]||[string isEqualToString:@""] || string.length == 0)
+    { //按下return
+        [textField resignFirstResponder];
+        return YES;
+    }
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    if (toBeString.length > 12) {
+        [textField resignFirstResponder];
+        textField.text = [toBeString substringToIndex:12];
+        [self shakeAnimationForView:self.passwordField markString:@"密码字数不能超过12个"];
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {
