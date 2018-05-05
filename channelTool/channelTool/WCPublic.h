@@ -34,7 +34,7 @@ FOUNDATION_EXPORT NSString *const Verification_phone;// 验证手机号保存
 #define NAVIGATION_COLOR [UIColor colorWithRed:247/255.0 green:160/255.0 blue:44/255.0 alpha:1]
 #define BODER_COLOR [UIColor colorWithRed:223/255.0 green:224/255.0 blue:225/255.0 alpha:1]
 // 列表浅灰色背景
-#define BACKLIST_COLOR RGB(244, 244, 244)
+#define BACKLIST_COLOR RGB(245, 245, 245)
 
 // RGB颜色转换（16进制->10进制）
 #define UIColorFromRGB(rgbValue,alphaValue)\

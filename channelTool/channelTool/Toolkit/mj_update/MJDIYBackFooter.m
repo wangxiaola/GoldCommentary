@@ -99,10 +99,7 @@
             break;
         case MJRefreshStateRefreshing:
             self.label.text = @"加载中...";
-            //从进度A播放到进度B
-            [self.logo playFromProgress:0 toProgress:1 withCompletion:^(BOOL animationFinished) {
-                
-            }];
+
             break;
         case MJRefreshStateNoMoreData:
             self.label.text = @"全部加载完毕";
@@ -117,9 +114,10 @@
 {
     [super setPullingPercent:pullingPercent];
     
-    //直接播放到指定进度
+    pullingPercent = pullingPercent < 1? :1;
+//    //直接播放到指定进度
     [self.logo playToProgress:pullingPercent withCompletion:^(BOOL animationFinished) {
-        
+
     }];
 
 
