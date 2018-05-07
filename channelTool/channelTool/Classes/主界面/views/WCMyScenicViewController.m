@@ -7,6 +7,7 @@
 //
 
 #import "WCMyScenicViewController.h"
+#import "WCAuthenticationPopupsView.h"
 #import "WCMyScenicTableViewCell.h"
 #import "WCMyScenicMode.h"
 
@@ -56,7 +57,7 @@
 #pragma mark  ----景区添加----
 - (void)addScenicClick
 {
-    
+    [WCAuthenticationPopupsView show];
 }
 #pragma mark  ----默认图位置----
 - (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView;

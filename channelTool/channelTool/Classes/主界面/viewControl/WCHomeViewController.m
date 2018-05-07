@@ -7,6 +7,7 @@
 //
 
 #import "WCHomeViewController.h"
+#import "WCPersonalViewController.h"
 #import "WCMyScenicViewController.h"
 #import "WCMyNarratorViewController.h"
 #import "UIButton+ImageTitleStyle.h"
@@ -29,6 +30,8 @@
 //视图将要出现
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
 }
 //视图已经出现
@@ -135,6 +138,9 @@
 #pragma mark  ----点击事件----
 //我的
 - (IBAction)leftButtonClick:(UIButton *)sender {
+    
+    WCPersonalViewController *personalVC = [[WCPersonalViewController alloc] init];
+    [self.navigationController pushViewController:personalVC animated:YES];
 }
 //收入明细
 - (IBAction)rightButtonClick:(UIButton *)sender {

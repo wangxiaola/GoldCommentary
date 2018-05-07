@@ -16,11 +16,18 @@
 @property (nonatomic, weak) IBOutlet UITextField *passwordField;
 
 @property (weak, nonatomic) IBOutlet UIButton *verificationButton;
-
+// 验证码
+@property (nonatomic, copy) NSString *verificationString;
 
 @end
 
 @implementation WCResetPasswordViewController
+//视图将要出现
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

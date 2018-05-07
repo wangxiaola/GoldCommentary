@@ -24,7 +24,6 @@ PODS:
     - SDWebImage/Core (= 4.2.2)
   - SDWebImage/Core (4.2.2)
   - SVProgressHUD (2.2.2)
-  - TZImagePickerController (1.9.6)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
@@ -36,7 +35,6 @@ DEPENDENCIES:
   - MJRefresh
   - SDWebImage
   - SVProgressHUD
-  - TZImagePickerController
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -48,8 +46,7 @@ SPEC CHECKSUMS:
   MJRefresh: 5f8552bc25ca8751c010f621c1098dbdaacbccd6
   SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
-  TZImagePickerController: 276dc7c0cc70da9ee354046474b405d87ef81c89
 
-PODFILE CHECKSUM: d82cb6a906cad3c9340d71b62df72a7fb4914715
+PODFILE CHECKSUM: 0a02b885961127d46fbc690accb523ef1a2d2af7
 
 COCOAPODS: 1.4.0.beta.2

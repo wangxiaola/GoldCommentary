@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "UserInfo.h"
 #import "IQKeyboardManager.h"
-
+#import "HUD.h"
 @interface AppDelegate ()
 
 @end
@@ -59,6 +59,8 @@
     [keyboardManager setToolbarTintColor:[UIColor colorWithRed:247/255.0 green:160/255.0 blue:44/255.0 alpha:1]];
     //设置为文字
     [keyboardManager setToolbarDoneBarButtonItemText:@"完成"];
+    // 设置hud
+    hudConfig();
 
 }
 - (void)applicationWillResignActive:(UIApplication *)application {

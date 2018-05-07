@@ -73,7 +73,6 @@ NSString *const WCMyNarratorTableViewCellID = @"WCMyNarratorTableViewCellID";
             if (isAddTag == YES) {
                 [self addLabelText:str labelRect:rect];
             }
-            
         }
         // 计算标签高度
         mode.cellHeight = buttonY + 20;

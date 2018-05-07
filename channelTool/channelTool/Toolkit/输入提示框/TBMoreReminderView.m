@@ -37,7 +37,7 @@
         UILabel *updataLabel = [[UILabel alloc] init];
         updataLabel.text = @"温馨提示";
         updataLabel.textColor = [UIColor whiteColor];
-        updataLabel.font = [UIFont systemFontOfSize:18 weight:0.2];
+        updataLabel.font = [UIFont boldSystemFontOfSize:18];
         [promptBackView addSubview:updataLabel];
         
         UILabel *promptLabel = [[UILabel alloc] init];
