@@ -80,6 +80,14 @@
 		3B216B86209AFA530040EE93 /* WCRetrieveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B85209AFA530040EE93 /* WCRetrieveViewController.m */; };
 		3B216B89209AFA940040EE93 /* WCResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B88209AFA940040EE93 /* WCResetPasswordViewController.m */; };
 		3B216B8C209B01DB0040EE93 /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B216B8B209B01DB0040EE93 /* main.storyboard */; };
+		3B6BB83220A299D40013AE6B /* WCBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BB83120A299D40013AE6B /* WCBillViewController.m */; };
+		3B6BB83520A2A6080013AE6B /* WCERecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BB83420A2A6080013AE6B /* WCERecordTableViewCell.m */; };
+		3B6BB83820A2A62B0013AE6B /* WCWRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BB83720A2A62B0013AE6B /* WCWRecordTableViewCell.m */; };
+		3B6BB83B20A2C8140013AE6B /* WCERecordMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BB83A20A2C8140013AE6B /* WCERecordMode.m */; };
+		3B6BB83E20A2C8240013AE6B /* WCWRecordMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BB83D20A2C8240013AE6B /* WCWRecordMode.m */; };
+		3B6BB84520A2D6BD0013AE6B /* WCERecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B6BB84320A2D6BD0013AE6B /* WCERecordTableViewCell.xib */; };
+		3B6BB84620A2D6BD0013AE6B /* WCWRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B6BB84420A2D6BD0013AE6B /* WCWRecordTableViewCell.xib */; };
+		3B6BB84E20A2ECF60013AE6B /* WCUploadPromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BB84D20A2ECF60013AE6B /* WCUploadPromptView.m */; };
 		3B6CBD23209FEB9900784BBF /* WCAuthenticationPopupsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CBD22209FEB9900784BBF /* WCAuthenticationPopupsView.m */; };
 		3B6CBD26209FF8DC00784BBF /* WCPersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CBD25209FF8DC00784BBF /* WCPersonalViewController.m */; };
 		3B6CBD29209FF8FB00784BBF /* WCPersonalHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CBD28209FF8FB00784BBF /* WCPersonalHeaderView.m */; };
@@ -90,6 +98,15 @@
 		3B7239EC209D9253006FAB15 /* WCMyNarratorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7239EA209D9253006FAB15 /* WCMyNarratorTableViewCell.m */; };
 		3B7239ED209D9253006FAB15 /* WCMyNarratorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B7239EB209D9253006FAB15 /* WCMyNarratorTableViewCell.xib */; };
 		3B7239F0209D9269006FAB15 /* WCMyNarratorMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7239EF209D9269006FAB15 /* WCMyNarratorMode.m */; };
+		3B985B0E20A153F10083E1F2 /* WCBasisInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B985B0D20A153F10083E1F2 /* WCBasisInfoViewController.m */; };
+		3B985B1420A19BBC0083E1F2 /* TBCityChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B985B1220A19BBB0083E1F2 /* TBCityChooseView.m */; };
+		3B985B2E20A19D990083E1F2 /* Cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B985B2220A19D990083E1F2 /* Cities.json */; };
+		3B985B2F20A19D990083E1F2 /* AddressItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B985B2520A19D990083E1F2 /* AddressItem.m */; };
+		3B985B3020A19D990083E1F2 /* AddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B985B2820A19D990083E1F2 /* AddressTableViewCell.m */; };
+		3B985B3120A19D990083E1F2 /* AddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B985B2920A19D990083E1F2 /* AddressTableViewCell.xib */; };
+		3B985B3220A19D990083E1F2 /* AddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B985B2B20A19D990083E1F2 /* AddressView.m */; };
+		3B985B3320A19D990083E1F2 /* ChooseLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B985B2D20A19D990083E1F2 /* ChooseLocationView.m */; };
+		3B985B3620A19DCC0083E1F2 /* CitiesDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B985B3520A19DCC0083E1F2 /* CitiesDataTool.m */; };
 		3BA73DF9209C06D900B88891 /* TBCountdownSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73DF8209C06D900B88891 /* TBCountdownSingle.m */; };
 		3BA73DFC209C309F00B88891 /* WCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73DFB209C309F00B88891 /* WCHomeViewController.m */; };
 		3BA73E08209C451100B88891 /* LSBaseNavItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73DFF209C451100B88891 /* LSBaseNavItem.m */; };
@@ -248,6 +265,20 @@
 		3B216B87209AFA940040EE93 /* WCResetPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCResetPasswordViewController.h; sourceTree = "<group>"; };
 		3B216B88209AFA940040EE93 /* WCResetPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCResetPasswordViewController.m; sourceTree = "<group>"; };
 		3B216B8B209B01DB0040EE93 /* main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
+		3B6BB83020A299D40013AE6B /* WCBillViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCBillViewController.h; sourceTree = "<group>"; };
+		3B6BB83120A299D40013AE6B /* WCBillViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCBillViewController.m; sourceTree = "<group>"; };
+		3B6BB83320A2A6080013AE6B /* WCERecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCERecordTableViewCell.h; sourceTree = "<group>"; };
+		3B6BB83420A2A6080013AE6B /* WCERecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCERecordTableViewCell.m; sourceTree = "<group>"; };
+		3B6BB83620A2A62B0013AE6B /* WCWRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCWRecordTableViewCell.h; sourceTree = "<group>"; };
+		3B6BB83720A2A62B0013AE6B /* WCWRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCWRecordTableViewCell.m; sourceTree = "<group>"; };
+		3B6BB83920A2C8140013AE6B /* WCERecordMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCERecordMode.h; sourceTree = "<group>"; };
+		3B6BB83A20A2C8140013AE6B /* WCERecordMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCERecordMode.m; sourceTree = "<group>"; };
+		3B6BB83C20A2C8240013AE6B /* WCWRecordMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCWRecordMode.h; sourceTree = "<group>"; };
+		3B6BB83D20A2C8240013AE6B /* WCWRecordMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCWRecordMode.m; sourceTree = "<group>"; };
+		3B6BB84320A2D6BD0013AE6B /* WCERecordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WCERecordTableViewCell.xib; sourceTree = "<group>"; };
+		3B6BB84420A2D6BD0013AE6B /* WCWRecordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WCWRecordTableViewCell.xib; sourceTree = "<group>"; };
+		3B6BB84C20A2ECF60013AE6B /* WCUploadPromptView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCUploadPromptView.h; sourceTree = "<group>"; };
+		3B6BB84D20A2ECF60013AE6B /* WCUploadPromptView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCUploadPromptView.m; sourceTree = "<group>"; };
 		3B6CBD21209FEB9900784BBF /* WCAuthenticationPopupsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAuthenticationPopupsView.h; sourceTree = "<group>"; };
 		3B6CBD22209FEB9900784BBF /* WCAuthenticationPopupsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAuthenticationPopupsView.m; sourceTree = "<group>"; };
 		3B6CBD24209FF8DC00784BBF /* WCPersonalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPersonalViewController.h; sourceTree = "<group>"; };
@@ -265,6 +296,22 @@
 		3B7239EB209D9253006FAB15 /* WCMyNarratorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCMyNarratorTableViewCell.xib; sourceTree = "<group>"; };
 		3B7239EE209D9269006FAB15 /* WCMyNarratorMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMyNarratorMode.h; sourceTree = "<group>"; };
 		3B7239EF209D9269006FAB15 /* WCMyNarratorMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMyNarratorMode.m; sourceTree = "<group>"; };
+		3B985B0C20A153F10083E1F2 /* WCBasisInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCBasisInfoViewController.h; sourceTree = "<group>"; };
+		3B985B0D20A153F10083E1F2 /* WCBasisInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCBasisInfoViewController.m; sourceTree = "<group>"; };
+		3B985B1220A19BBB0083E1F2 /* TBCityChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCityChooseView.m; sourceTree = "<group>"; };
+		3B985B1320A19BBC0083E1F2 /* TBCityChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCityChooseView.h; sourceTree = "<group>"; };
+		3B985B2220A19D990083E1F2 /* Cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cities.json; sourceTree = "<group>"; };
+		3B985B2420A19D990083E1F2 /* AddressItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressItem.h; sourceTree = "<group>"; };
+		3B985B2520A19D990083E1F2 /* AddressItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressItem.m; sourceTree = "<group>"; };
+		3B985B2720A19D990083E1F2 /* AddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressTableViewCell.h; sourceTree = "<group>"; };
+		3B985B2820A19D990083E1F2 /* AddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressTableViewCell.m; sourceTree = "<group>"; };
+		3B985B2920A19D990083E1F2 /* AddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressTableViewCell.xib; sourceTree = "<group>"; };
+		3B985B2A20A19D990083E1F2 /* AddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressView.h; sourceTree = "<group>"; };
+		3B985B2B20A19D990083E1F2 /* AddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressView.m; sourceTree = "<group>"; };
+		3B985B2C20A19D990083E1F2 /* ChooseLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseLocationView.h; sourceTree = "<group>"; };
+		3B985B2D20A19D990083E1F2 /* ChooseLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseLocationView.m; sourceTree = "<group>"; };
+		3B985B3420A19DCC0083E1F2 /* CitiesDataTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitiesDataTool.h; sourceTree = "<group>"; };
+		3B985B3520A19DCC0083E1F2 /* CitiesDataTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitiesDataTool.m; sourceTree = "<group>"; };
 		3BA73DF7209C06D800B88891 /* TBCountdownSingle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCountdownSingle.h; sourceTree = "<group>"; };
 		3BA73DF8209C06D900B88891 /* TBCountdownSingle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCountdownSingle.m; sourceTree = "<group>"; };
 		3BA73DFA209C309F00B88891 /* WCHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCHomeViewController.h; sourceTree = "<group>"; };
@@ -631,10 +678,15 @@
 		3B216B74209ADCCE0040EE93 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				3B985B2120A19D990083E1F2 /* ChooseLocation */,
 				3B1A06B220A03E61005CC21C /* TBChoosePhotosTool.h */,
 				3B1A06B320A03E61005CC21C /* TBChoosePhotosTool.m */,
 				3B1A06AA20A02D19005CC21C /* ClearCacheTool.h */,
 				3B1A06A920A02D19005CC21C /* ClearCacheTool.m */,
+				3B985B3420A19DCC0083E1F2 /* CitiesDataTool.h */,
+				3B985B3520A19DCC0083E1F2 /* CitiesDataTool.m */,
+				3B6BB84C20A2ECF60013AE6B /* WCUploadPromptView.h */,
+				3B6BB84D20A2ECF60013AE6B /* WCUploadPromptView.m */,
 			);
 			path = tool;
 			sourceTree = "<group>";
@@ -662,6 +714,10 @@
 				3B7239E1209D7C7B006FAB15 /* WCMyScenicMode.m */,
 				3B7239EE209D9269006FAB15 /* WCMyNarratorMode.h */,
 				3B7239EF209D9269006FAB15 /* WCMyNarratorMode.m */,
+				3B6BB83920A2C8140013AE6B /* WCERecordMode.h */,
+				3B6BB83A20A2C8140013AE6B /* WCERecordMode.m */,
+				3B6BB83C20A2C8240013AE6B /* WCWRecordMode.h */,
+				3B6BB83D20A2C8240013AE6B /* WCWRecordMode.m */,
 			);
 			path = mode;
 			sourceTree = "<group>";
@@ -671,12 +727,7 @@
 			children = (
 				3BA73DFA209C309F00B88891 /* WCHomeViewController.h */,
 				3BA73DFB209C309F00B88891 /* WCHomeViewController.m */,
-				3B6CBD24209FF8DC00784BBF /* WCPersonalViewController.h */,
-				3B6CBD25209FF8DC00784BBF /* WCPersonalViewController.m */,
-				3B1A06AC20A033EC005CC21C /* WCFeedbackViewController.h */,
-				3B1A06AD20A033EC005CC21C /* WCFeedbackViewController.m */,
-				3B1A06AF20A03688005CC21C /* WCInfoModifyViewController.h */,
-				3B1A06B020A03688005CC21C /* WCInfoModifyViewController.m */,
+				3B985B0B20A148730083E1F2 /* 我的 */,
 			);
 			path = viewControl;
 			sourceTree = "<group>";
@@ -698,8 +749,66 @@
 				3B7239E9209D9253006FAB15 /* WCMyNarratorTableViewCell.h */,
 				3B7239EA209D9253006FAB15 /* WCMyNarratorTableViewCell.m */,
 				3B7239EB209D9253006FAB15 /* WCMyNarratorTableViewCell.xib */,
+				3B6BB83320A2A6080013AE6B /* WCERecordTableViewCell.h */,
+				3B6BB83420A2A6080013AE6B /* WCERecordTableViewCell.m */,
+				3B6BB84320A2D6BD0013AE6B /* WCERecordTableViewCell.xib */,
+				3B6BB83620A2A62B0013AE6B /* WCWRecordTableViewCell.h */,
+				3B6BB83720A2A62B0013AE6B /* WCWRecordTableViewCell.m */,
+				3B6BB84420A2D6BD0013AE6B /* WCWRecordTableViewCell.xib */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		3B985B0B20A148730083E1F2 /* 我的 */ = {
+			isa = PBXGroup;
+			children = (
+				3B6CBD24209FF8DC00784BBF /* WCPersonalViewController.h */,
+				3B6CBD25209FF8DC00784BBF /* WCPersonalViewController.m */,
+				3B1A06AC20A033EC005CC21C /* WCFeedbackViewController.h */,
+				3B1A06AD20A033EC005CC21C /* WCFeedbackViewController.m */,
+				3B1A06AF20A03688005CC21C /* WCInfoModifyViewController.h */,
+				3B1A06B020A03688005CC21C /* WCInfoModifyViewController.m */,
+				3B985B0C20A153F10083E1F2 /* WCBasisInfoViewController.h */,
+				3B985B0D20A153F10083E1F2 /* WCBasisInfoViewController.m */,
+				3B6BB83020A299D40013AE6B /* WCBillViewController.h */,
+				3B6BB83120A299D40013AE6B /* WCBillViewController.m */,
+			);
+			path = "我的";
+			sourceTree = "<group>";
+		};
+		3B985B2120A19D990083E1F2 /* ChooseLocation */ = {
+			isa = PBXGroup;
+			children = (
+				3B985B2220A19D990083E1F2 /* Cities.json */,
+				3B985B2320A19D990083E1F2 /* Model */,
+				3B985B2620A19D990083E1F2 /* View */,
+			);
+			path = ChooseLocation;
+			sourceTree = "<group>";
+		};
+		3B985B2320A19D990083E1F2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B985B2420A19D990083E1F2 /* AddressItem.h */,
+				3B985B2520A19D990083E1F2 /* AddressItem.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B985B2620A19D990083E1F2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B985B1320A19BBC0083E1F2 /* TBCityChooseView.h */,
+				3B985B1220A19BBB0083E1F2 /* TBCityChooseView.m */,
+				3B985B2720A19D990083E1F2 /* AddressTableViewCell.h */,
+				3B985B2820A19D990083E1F2 /* AddressTableViewCell.m */,
+				3B985B2920A19D990083E1F2 /* AddressTableViewCell.xib */,
+				3B985B2A20A19D990083E1F2 /* AddressView.h */,
+				3B985B2B20A19D990083E1F2 /* AddressView.m */,
+				3B985B2C20A19D990083E1F2 /* ChooseLocationView.h */,
+				3B985B2D20A19D990083E1F2 /* ChooseLocationView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		3BA73DFD209C451100B88891 /* LSSlidePageScrollView */ = {
@@ -789,6 +898,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B6BB84620A2D6BD0013AE6B /* WCWRecordTableViewCell.xib in Resources */,
 				3B216AE8209AA66D0040EE93 /* Assets.xcassets in Resources */,
 				3B1A06CD20A03F3B005CC21C /* MBProgressHUD.bundle in Resources */,
 				3B216B6F209ADC050040EE93 /* login.storyboard in Resources */,
@@ -796,8 +906,11 @@
 				3B216B8C209B01DB0040EE93 /* main.storyboard in Resources */,
 				3BA73E0E209C511B00B88891 /* sun_burst_weather_icon.json in Resources */,
 				3B6CBD2B209FF90A00784BBF /* WCPersonalHeaderView.xib in Resources */,
+				3B6BB84520A2D6BD0013AE6B /* WCERecordTableViewCell.xib in Resources */,
 				3B1A078420A05B18005CC21C /* TZImagePickerController.bundle in Resources */,
+				3B985B2E20A19D990083E1F2 /* Cities.json in Resources */,
 				3B7239ED209D9253006FAB15 /* WCMyNarratorTableViewCell.xib in Resources */,
+				3B985B3120A19D990083E1F2 /* AddressTableViewCell.xib in Resources */,
 				3B7239E8209D7CAC006FAB15 /* WCMyScenicTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -847,6 +960,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-channelTool/Pods-channelTool-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
@@ -859,6 +973,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
@@ -881,6 +996,7 @@
 			files = (
 				3B1A077E20A05B18005CC21C /* NSBundle+TZImagePicker.m in Sources */,
 				3B216B47209AAE880040EE93 /* UIStoryboard+Initialize.m in Sources */,
+				3B6BB83E20A2C8240013AE6B /* WCWRecordMode.m in Sources */,
 				3B1A06D520A03F3B005CC21C /* MJPhotoView.m in Sources */,
 				3B1A06D620A03F3B005CC21C /* SDWebImageManager+MJ.m in Sources */,
 				3B216B80209AF9F40040EE93 /* WCLoginMainViewController.m in Sources */,
@@ -894,6 +1010,7 @@
 				3B1A078620A05B18005CC21C /* TZLocationManager.m in Sources */,
 				3BA73E14209C554500B88891 /* TBBaseClassViewMode.m in Sources */,
 				3B1A078920A05B18005CC21C /* TZPhotoPreviewController.m in Sources */,
+				3B6BB83820A2A62B0013AE6B /* WCWRecordTableViewCell.m in Sources */,
 				3B216B7D209AF5A90040EE93 /* LoginNavigationController.m in Sources */,
 				3B216B59209AAED30040EE93 /* ZKTextField.m in Sources */,
 				3B6CBD26209FF8DC00784BBF /* WCPersonalViewController.m in Sources */,
@@ -904,13 +1021,17 @@
 				3B1A06CE20A03F3B005CC21C /* MBProgressHUD.m in Sources */,
 				3B1A077F20A05B18005CC21C /* TZAssetCell.m in Sources */,
 				3B216B3D209AAE880040EE93 /* NSObject+MJExtension.m in Sources */,
+				3B985B3320A19D990083E1F2 /* ChooseLocationView.m in Sources */,
 				3B6CBD29209FF8FB00784BBF /* WCPersonalHeaderView.m in Sources */,
+				3B6BB84E20A2ECF60013AE6B /* WCUploadPromptView.m in Sources */,
 				3B216B56209AAED30040EE93 /* TBBaseTableViewController.m in Sources */,
+				3B985B3020A19D990083E1F2 /* AddressTableViewCell.m in Sources */,
 				3B216B46209AAE880040EE93 /* UIImageView+ZKWebCache.m in Sources */,
 				3BA73E0C209C451100B88891 /* UIScrollView+LSSlidePageScrollView.m in Sources */,
 				3B216AEE209AA66D0040EE93 /* main.m in Sources */,
 				3B216B4A209AAE880040EE93 /* UIView+UIScreenDisplaying.m in Sources */,
 				3B216AE0209AA66D0040EE93 /* AppDelegate.m in Sources */,
+				3B985B3220A19D990083E1F2 /* AddressView.m in Sources */,
 				3B1A078720A05B18005CC21C /* TZPhotoPickerController.m in Sources */,
 				3B216B5F209AAF210040EE93 /* TBMoreReminderView.m in Sources */,
 				3B216B44209AAE880040EE93 /* UIImage+Strenching.m in Sources */,
@@ -919,6 +1040,7 @@
 				3B6CBD23209FEB9900784BBF /* WCAuthenticationPopupsView.m in Sources */,
 				3B216B3F209AAE880040EE93 /* NSString+MD5Addition.m in Sources */,
 				3B1A06CC20A03F3B005CC21C /* MBProgressHUD+Add.m in Sources */,
+				3B985B0E20A153F10083E1F2 /* WCBasisInfoViewController.m in Sources */,
 				3BA73E1A209C572B00B88891 /* WCMyNarratorViewController.m in Sources */,
 				3BA73E11209C54E500B88891 /* TBBaseClassTableViewController.m in Sources */,
 				3B216B69209AB2220040EE93 /* UserInfo.m in Sources */,
@@ -934,6 +1056,7 @@
 				3B1A06D320A03F3B005CC21C /* MJPhotoProgressView.m in Sources */,
 				3B1A078120A05B18005CC21C /* TZGifPhotoPreviewController.m in Sources */,
 				3B7239E2209D7C7B006FAB15 /* WCMyScenicMode.m in Sources */,
+				3B6BB83520A2A6080013AE6B /* WCERecordTableViewCell.m in Sources */,
 				3B216B66209AB0AD0040EE93 /* WCPublic.m in Sources */,
 				3B1A078320A05B18005CC21C /* TZImageManager.m in Sources */,
 				3B216AFC209AAE220040EE93 /* ZKUtil.m in Sources */,
@@ -948,20 +1071,25 @@
 				3B7239E7209D7CAC006FAB15 /* WCMyScenicTableViewCell.m in Sources */,
 				3B216B57209AAED30040EE93 /* ZKNavigationController.m in Sources */,
 				3B1A078520A05B18005CC21C /* TZImagePickerController.m in Sources */,
+				3B6BB83220A299D40013AE6B /* WCBillViewController.m in Sources */,
 				3B216B02209AAE430040EE93 /* UIView+MJAlertView.m in Sources */,
+				3B6BB83B20A2C8140013AE6B /* WCERecordMode.m in Sources */,
 				3B216B0A209AAE4C0040EE93 /* MJDIYHeader.m in Sources */,
 				3BA73E0A209C451100B88891 /* LSSlidePageScrollView.m in Sources */,
+				3B985B3620A19DCC0083E1F2 /* CitiesDataTool.m in Sources */,
 				3B216B18209AAE7A0040EE93 /* UIScrollView+EmptyDataSet.m in Sources */,
 				3BA73E09209C451100B88891 /* LSBasePageTabbar.m in Sources */,
 				3B1A06AB20A02D19005CC21C /* ClearCacheTool.m in Sources */,
 				3B216B89209AFA940040EE93 /* WCResetPasswordViewController.m in Sources */,
 				3B216B09209AAE4C0040EE93 /* MJDIYBackFooter.m in Sources */,
 				3B7239F0209D9269006FAB15 /* WCMyNarratorMode.m in Sources */,
+				3B985B1420A19BBC0083E1F2 /* TBCityChooseView.m in Sources */,
 				3B7239EC209D9253006FAB15 /* WCMyNarratorTableViewCell.m in Sources */,
 				3BA73E08209C451100B88891 /* LSBaseNavItem.m in Sources */,
 				3B1A078220A05B18005CC21C /* TZImageCropManager.m in Sources */,
 				3B1A06B420A03E61005CC21C /* TBChoosePhotosTool.m in Sources */,
 				3BA73DF9209C06D900B88891 /* TBCountdownSingle.m in Sources */,
+				3B985B2F20A19D990083E1F2 /* AddressItem.m in Sources */,
 				3BA73E17209C56AC00B88891 /* WCMyScenicViewController.m in Sources */,
 				3B1A06D720A03F3B005CC21C /* UIImageView+MJWebCache.m in Sources */,
 			);

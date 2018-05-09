@@ -111,7 +111,7 @@
 #pragma mark  ----UITextFieldDelegate----
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
-    if ([string isEqualToString:@"\n"]||[string isEqualToString:@""] || string.length == 0)
+    if ([string isEqualToString:@"\n"])
     { //按下return
         [textField resignFirstResponder];
         return YES;

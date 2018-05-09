@@ -38,8 +38,7 @@
     attrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
     attrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:18];
     [bar setTitleTextAttributes:attrs];
-    [bar setTintColor:[UIColor whiteColor]];
-    
+    [bar setTintColor:NAVIGATION_COLOR];
     bar.barStyle = UIBarStyleBlack;
 
 }

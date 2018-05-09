@@ -10,13 +10,10 @@
 #import "WCPersonalViewController.h"
 #import "WCMyScenicViewController.h"
 #import "WCMyNarratorViewController.h"
-#import "UIButton+ImageTitleStyle.h"
 #import "LSBasePageTabbar.h"
-
+#import "CitiesDataTool.h"
 @interface WCHomeViewController ()<UIScrollViewDelegate,LSBasePageTabbarDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *leftButton;
-@property (weak, nonatomic) IBOutlet UIButton *rightButton;
 @property (weak, nonatomic) IBOutlet UIImageView *bannerImageView;//横幅
 @property (weak, nonatomic) IBOutlet UILabel *earningsLabel;//收益
 @property (weak, nonatomic) IBOutlet UILabel *withdrawalAmountLabel;//提现金额
@@ -53,15 +50,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setUIviews];
+    [self setBaseData];
     
 }
 #pragma mark  ----视图设置----
 - (void)setUIviews
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    // 设置按钮显示样式
-    [self.leftButton setButtonImageTitleStyle:(ButtonImageTitleStyleCenterDown) padding:3];
-    [self.rightButton setButtonImageTitleStyle:(ButtonImageTitleStyleCenterDown) padding:3];
     
     CGFloat topHeight = CGRectGetHeight(self.bannerImageView.frame);
     // 添加选择块
@@ -120,7 +115,13 @@
     }];
     
 }
-
+// 设置基础数据
+- (void)setBaseData
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[CitiesDataTool sharedManager] requestGetData];
+    });
+}
 #pragma mark  ----LSBasePageTabbarDelegate----
 - (void)basePageTabbar:(id<LSBasePageTabbarProtocol>)tabbar clickedPageTabbarAtIndex:(NSInteger)index;
 {
@@ -144,6 +145,12 @@
 }
 //收入明细
 - (IBAction)rightButtonClick:(UIButton *)sender {
+    
+    // 加载storboard
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
+    
+    UIViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCBillViewControllerID"];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 //  提现
 - (IBAction)withdrawalClick:(UIButton *)sender {

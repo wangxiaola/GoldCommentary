@@ -107,6 +107,5 @@
         
         [self removeFromSuperview];
     }];
-    
 }
 @end
