@@ -29,7 +29,6 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
 }
 //视图已经出现
 - (void)viewDidAppear:(BOOL)animated{

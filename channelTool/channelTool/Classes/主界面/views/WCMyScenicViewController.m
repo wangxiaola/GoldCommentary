@@ -57,7 +57,13 @@
 #pragma mark  ----景区添加----
 - (void)addScenicClick
 {
-    [WCAuthenticationPopupsView show];
+//    [WCAuthenticationPopupsView show];
+    
+    // 加载storboard
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
+    
+    UIViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCCreateScenicViewControllerID"];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 #pragma mark  ----默认图位置----
 - (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView;
@@ -87,7 +93,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    return UITableViewAutomaticDimension;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

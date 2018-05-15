@@ -24,4 +24,5 @@
  */
 + (void)showPromptString:(NSString *)msg isSuccessful:(BOOL)successful clickButton:(void(^)(void))clickEnd;
 - (void)changeLineSpaceForLabel:(UILabel *)label WithSpace:(float)space;
+
 @end

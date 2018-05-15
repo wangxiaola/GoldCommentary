@@ -10,7 +10,7 @@
 #import "FMDB.h"
 #import "AddressItem.h"
 
-static NSString * const dbName = @"location.db";
+static NSString * const dbName = @"wc.sqlite";
 static NSString * const locationTabbleName = @"locationTabble";
 
 @interface CitiesDataTool ()

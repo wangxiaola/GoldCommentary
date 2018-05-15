@@ -1,0 +1,12 @@
+.content{
+  height: 22px;
+
+  background-color: black;
+}
+.content_name{
+
+font-size: 14;
+color: white;
+display: flex;
+flex: 1;
+}
