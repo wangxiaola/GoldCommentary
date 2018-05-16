@@ -12,19 +12,19 @@
 #import "TBTemplateResourceCollectionViewCell.h"
 #import "TBChoosePhotosTool.h"
 #import "YBPopupMenu.h"
-#import "WSDatePickerView.h"
+#import "XMRTimePiker.h"
 #import "UIButton+ImageTitleStyle.h"
 #import <IQKeyboardManager/IQTextView.h>
 
-@interface WCCreateScenicViewController ()<UITextViewDelegate,YBPopupMenuDelegate,UICollectionViewDataSource,UICollectionViewDelegate,TBChoosePhotosToolDelegate>
+@interface WCCreateScenicViewController ()<UITextViewDelegate,YBPopupMenuDelegate,UICollectionViewDataSource,UICollectionViewDelegate,TBChoosePhotosToolDelegate,XMRTimePikerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *scenicNameField;
 @property (weak, nonatomic) IBOutlet UITextField *adderssField;
-@property (weak, nonatomic) IBOutlet UITextField *ticketsField;
-@property (weak, nonatomic) IBOutlet IQTextView *infoTextView;
-@property (weak, nonatomic) IBOutlet UITextField *visitingTimeField;
-@property (weak, nonatomic) IBOutlet UITextField *headNameField;
-@property (weak, nonatomic) IBOutlet UITextField *headPhoneField;
+@property (weak, nonatomic) IBOutlet UITextField *ticketsField;//门票
+@property (weak, nonatomic) IBOutlet IQTextView *infoTextView;//简介
+@property (weak, nonatomic) IBOutlet UITextField *visitingTimeField;//游览时长
+@property (weak, nonatomic) IBOutlet UITextField *headNameField;//负责人姓名
+@property (weak, nonatomic) IBOutlet UITextField *headPhoneField;//负责人电话
 
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 
@@ -40,6 +40,8 @@
 @property (strong, nonatomic) NSMutableArray *imageArray;
 // 最大选择数
 @property (assign, nonatomic) NSInteger maxRow;
+
+@property (nonatomic, copy) NSString *levelString;//等级
 @end
 
 @implementation WCCreateScenicViewController
@@ -101,6 +103,32 @@
     self.photoCollectionView.collectionViewLayout = flowlayout;
     
 }
+/**
+ 添加震动动画
+ 
+ @param view 要动画的视图
+ @param mark 提示
+ */
+- (void)shakeAnimationForView:(UIView *)view markString:(NSString *)mark
+{
+    if (view) {
+        [ZKUtil shakeAnimationForView:view];
+    }
+    if (mark) {
+        [UIView addMJNotifierWithText:mark dismissAutomatically:YES];
+    }
+}
+#pragma mark  ----数据上传----
+- (void)postScenicData
+{
+    
+    [[ZKPostHttp shareInstance] POST:@"" params:@{} success:^(id  _Nonnull responseObject) {
+        
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
+#pragma mark  ----点击事件----
 - (IBAction)selectPhotos:(UIButton *)sender {
     [self.view endEditing:YES];
     
@@ -129,15 +157,57 @@
 - (IBAction)selectTime:(UIButton *)sender {
     [self.view endEditing:YES];
 
-    WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowHourMinute CompleteBlock:^(NSDate *selectDate) {
-        
-        NSString *date = [selectDate stringWithFormat:@"HH:mm"];
-        [sender setTitle:date forState:UIControlStateNormal];
-        
-    }];
-    datepicker.doneButtonColor = NAVIGATION_COLOR;
-    datepicker.dateLabelColor = NAVIGATION_COLOR;
-    [datepicker show];
+    NSArray * star_arr = [self.startButton.titleLabel.text componentsSeparatedByString:@":"];
+    NSArray * end_arr = [self.endButton.titleLabel.text componentsSeparatedByString:@":"];
+
+    XMRTimePiker *timeView = [[XMRTimePiker alloc] init];
+    timeView.delegate = self;
+    [timeView SetOldShowTimeOneLeft:star_arr[0] andOneRight:star_arr[1] andTowLeft:end_arr[0] andTowRight:end_arr[1]];
+    [timeView showTime];
+}
+// 上传创建
+- (IBAction)updataData:(UIButton *)sender {
+    
+    if (self.scenicNameField.text.length == 0) {
+        [self shakeAnimationForView:self.scenicNameField.superview markString:@"请填写景区名称"];
+        return;
+    }
+    if (self.adderssField.text.length == 0) {
+        [self shakeAnimationForView:self.adderssField.superview markString:@"请填现位置信息"];
+        return;
+    }
+    
+    if (self.ticketsField.text.length == 0) {
+        [self shakeAnimationForView:self.ticketsField.superview markString:@"请填写门票价格"];
+        return;
+    }
+    
+    if (self.infoTextView.text.length == 0) {
+        [self shakeAnimationForView:self.infoTextView.superview markString:@"请填简介"];
+        return;
+    }
+    
+    if (self.visitingTimeField.text.length == 0) {
+        [self shakeAnimationForView:self.visitingTimeField.superview markString:@"请填写游览时长"];
+        return;
+    }
+    
+    if (self.headNameField.text.length == 0) {
+        [self shakeAnimationForView:self.headNameField.superview markString:@"请填写负责人姓名"];
+        return;
+    }
+    
+    if (self.headPhoneField.text.length == 0) {
+        [self shakeAnimationForView:self.headPhoneField.superview markString:@"请填写负责人电话"];
+        return;
+    }
+    [self postScenicData];
+}
+#pragma mark  ----XMRTimePikerDelegate----
+-(void)XMSelectTimesViewSetOneLeft:(NSString *)oneLeft andOneRight:(NSString *)oneRight andTowLeft:(NSString *)towLeft andTowRight:(NSString *)towRight{
+    
+    [self.endButton setTitle:[NSString stringWithFormat:@"%@:%@",towLeft,towRight] forState:UIControlStateNormal];
+    [self.startButton setTitle:[NSString stringWithFormat:@"%@:%@",oneLeft,oneRight] forState:UIControlStateNormal];
 }
 #pragma mark  ----UITextViewDelegate----
 - (void)textViewDidChange:(UITextView *)textView
@@ -164,6 +234,7 @@
         
         levelName = [NSString stringWithFormat:@"%ldA",5-index];
     }
+    self.levelString = levelName;
     [self.levelButton setTitle:levelName forState:UIControlStateNormal];
     [self.levelButton setButtonImageTitleStyle:(ButtonImageTitleStyleRightLeft) padding:4];
 }

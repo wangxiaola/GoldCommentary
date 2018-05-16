@@ -8,7 +8,7 @@
 
 #import "WCRecordTimeSelectView.h"
 #import "WCPublic.h"
-#import "WSDatePickerView.h"
+#import "TZDatePickerView.h"
 
 @implementation WCRecordTimeSelectView
 {
@@ -77,17 +77,16 @@
 - (void)timeSelectClick
 {
     TBWeakSelf
-    WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonth CompleteBlock:^(NSDate *selectDate) {
-        
-        NSString *date = [selectDate stringWithFormat:@"yyyy-MM"];
- 
+    
+    TZDatePickerView *pickerView = [[TZDatePickerView alloc] init];
+    [pickerView show];
+    [pickerView setGotoSrceenOrderBlock:^(NSString *state, NSString *end) {
+       
+        NSString *date = [NSString stringWithFormat:@"%@至%@",state,end];
         if (weakSelf.timeSelectEnd) {
             weakSelf.timeSelectEnd(date);
         }
-        
     }];
-    datepicker.doneButtonColor = NAVIGATION_COLOR;
-    datepicker.dateLabelColor = NAVIGATION_COLOR;
-    [datepicker show];
+    
 }
 @end

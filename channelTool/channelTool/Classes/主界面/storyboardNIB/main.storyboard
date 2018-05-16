@@ -748,6 +748,9 @@
                                                 <integer key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="updataData:" destination="qHA-n6-M8q" eventType="touchUpInside" id="L9j-WK-IUd"/>
+                                        </connections>
                                     </button>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZjD-Sh-zRh">
                                         <rect key="frame" x="0.0" y="10" width="367" height="559"/>
