@@ -112,6 +112,8 @@
 		3B7C899520AAB860000E2F55 /* WCCreateScenicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C899420AAB860000E2F55 /* WCCreateScenicTableViewCell.m */; };
 		3B7C899C20AAE03B000E2F55 /* YBPopupMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C899B20AAE03B000E2F55 /* YBPopupMenu.m */; };
 		3B7C899F20AAE762000E2F55 /* TBTemplateResourceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C899E20AAE762000E2F55 /* TBTemplateResourceCollectionViewCell.m */; };
+		3B941E9620ABD6290021B320 /* WCPositioningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B941E9520ABD6290021B320 /* WCPositioningViewController.m */; };
+		3B941E9820ABD63F0021B320 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B941E9720ABD63F0021B320 /* MapKit.framework */; };
 		3B985B0E20A153F10083E1F2 /* WCBasisInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B985B0D20A153F10083E1F2 /* WCBasisInfoViewController.m */; };
 		3B985B1420A19BBC0083E1F2 /* TBCityChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B985B1220A19BBB0083E1F2 /* TBCityChooseView.m */; };
 		3B985B2E20A19D990083E1F2 /* Cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B985B2220A19D990083E1F2 /* Cities.json */; };
@@ -337,6 +339,9 @@
 		3B7C899B20AAE03B000E2F55 /* YBPopupMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBPopupMenu.m; sourceTree = "<group>"; };
 		3B7C899D20AAE762000E2F55 /* TBTemplateResourceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBTemplateResourceCollectionViewCell.h; sourceTree = "<group>"; };
 		3B7C899E20AAE762000E2F55 /* TBTemplateResourceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBTemplateResourceCollectionViewCell.m; sourceTree = "<group>"; };
+		3B941E9420ABD6290021B320 /* WCPositioningViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPositioningViewController.h; sourceTree = "<group>"; };
+		3B941E9520ABD6290021B320 /* WCPositioningViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCPositioningViewController.m; sourceTree = "<group>"; };
+		3B941E9720ABD63F0021B320 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3B985B0C20A153F10083E1F2 /* WCBasisInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCBasisInfoViewController.h; sourceTree = "<group>"; };
 		3B985B0D20A153F10083E1F2 /* WCBasisInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCBasisInfoViewController.m; sourceTree = "<group>"; };
 		3B985B1220A19BBB0083E1F2 /* TBCityChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCityChooseView.m; sourceTree = "<group>"; };
@@ -386,6 +391,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B941E9820ABD63F0021B320 /* MapKit.framework in Frameworks */,
 				56B6C53E4D091EA293C517A5 /* Pods_channelTool.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +402,7 @@
 		14E9E242C104B564FE8C5335 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B941E9720ABD63F0021B320 /* MapKit.framework */,
 				AF32DF5B5674C73EA5E12B20 /* Pods_channelTool.framework */,
 			);
 			name = Frameworks;
@@ -846,6 +853,8 @@
 			children = (
 				3B7C899020AAB607000E2F55 /* WCCreateScenicViewController.h */,
 				3B7C899120AAB607000E2F55 /* WCCreateScenicViewController.m */,
+				3B941E9420ABD6290021B320 /* WCPositioningViewController.h */,
+				3B941E9520ABD6290021B320 /* WCPositioningViewController.m */,
 			);
 			path = "景区";
 			sourceTree = "<group>";
@@ -972,6 +981,11 @@
 					3B216ADA209AA66D0040EE93 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1115,6 +1129,7 @@
 				3B6BB83820A2A62B0013AE6B /* WCWRecordTableViewCell.m in Sources */,
 				3B216B7D209AF5A90040EE93 /* LoginNavigationController.m in Sources */,
 				3B216B59209AAED30040EE93 /* ZKTextField.m in Sources */,
+				3B941E9620ABD6290021B320 /* WCPositioningViewController.m in Sources */,
 				3B6CBD26209FF8DC00784BBF /* WCPersonalViewController.m in Sources */,
 				3B216AFE209AAE220040EE93 /* HUD.m in Sources */,
 				3B1A06D220A03F3B005CC21C /* MJPhotoLoadingView.m in Sources */,

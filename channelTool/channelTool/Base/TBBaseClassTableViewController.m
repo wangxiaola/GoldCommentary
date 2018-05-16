@@ -68,6 +68,7 @@
     }
     self.page = 1;
     [self.view addSubview:self.tableView];
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _SCREEN_WIDTH, 10)];
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;

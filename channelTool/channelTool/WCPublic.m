@@ -17,4 +17,5 @@ NSString *const Verification_phone = @"Verification_phone";
 
 NSString *const Verification_code = @"Verification_code";
 
+NSString *const MAP_KEY = @"DLsl8WMFTr0ZpOOBg0AGzNTyZQU1RU4c";
 

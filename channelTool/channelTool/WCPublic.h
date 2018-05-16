@@ -27,6 +27,22 @@ FOUNDATION_EXPORT NSString *const IMAGE_URL;
 FOUNDATION_EXPORT NSString *const Verification_code;// 验证码保存
 FOUNDATION_EXPORT NSString *const Verification_phone;// 验证手机号保存
 
+FOUNDATION_EXPORT NSString *const MAP_KEY;
+
+/**
+ *  微信
+ *
+ */
+#define weixinID @"wx071c2201ad28845c"
+#define weixinSecret @"e96c5edc5384dba650fd0378411f104a"
+
+/**
+ *  腾讯QQ
+ *
+ */
+#define QQ_ID @"1106910442"
+#define QQ_KEY @"uYmGLv0io0tf1Gm5"
+
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
 #define iOS11_0Later ([UIDevice currentDevice].systemVersion.floatValue >= 11.0f)

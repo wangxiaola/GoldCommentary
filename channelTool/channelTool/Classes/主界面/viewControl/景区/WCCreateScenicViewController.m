@@ -7,6 +7,7 @@
 //
 
 #import "WCCreateScenicViewController.h"
+#import "WCPositioningViewController.h"
 #import "TBMoreReminderView.h"
 #import "TBTemplateResourceCollectionViewCell.h"
 #import "TBChoosePhotosTool.h"
@@ -122,6 +123,8 @@
 }
 - (IBAction)goMapView:(UIButton *)sender {
     [self.view endEditing:YES];
+    WCPositioningViewController *mapView = [[WCPositioningViewController alloc] init];
+    [self.navigationController pushViewController:mapView animated:YES];
 }
 - (IBAction)selectTime:(UIButton *)sender {
     [self.view endEditing:YES];

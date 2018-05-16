@@ -13,4 +13,6 @@ pod 'DZNEmptyDataSet'
 pod 'IQKeyboardManager' #iOS8 and later
 pod 'lottie-ios'
 pod 'FMDB'
+pod 'WechatOpenSDK'
+pod 'BaiduMapKit'
 end
