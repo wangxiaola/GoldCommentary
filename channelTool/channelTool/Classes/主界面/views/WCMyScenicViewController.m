@@ -8,6 +8,8 @@
 
 #import "WCMyScenicViewController.h"
 #import "WCAuthenticationPopupsView.h"
+#import "WCCreateScenicViewController.h"
+#import "WCAddScenicViewController.h"
 #import "WCMyScenicTableViewCell.h"
 #import "WCMyScenicMode.h"
 
@@ -62,8 +64,13 @@
     // 加载storboard
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
     
-    UIViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCCreateScenicViewControllerID"];
+    WCCreateScenicViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCCreateScenicViewControllerID"];
     [self.navigationController pushViewController:viewController animated:YES];
+    TBWeakSelf
+    [viewController setRefreshTableView:^{
+        
+        [weakSelf.tableView.mj_header beginRefreshing];
+    }];
 }
 #pragma mark  ----默认图位置----
 - (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView;
@@ -90,6 +97,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    WCAddScenicViewController *vc = [[WCAddScenicViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

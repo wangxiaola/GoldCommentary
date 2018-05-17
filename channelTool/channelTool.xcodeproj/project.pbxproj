@@ -39,6 +39,21 @@
 		3B1A078B20A05B18005CC21C /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A077B20A05B18005CC21C /* TZVideoPlayerController.m */; };
 		3B1A078C20A05B18005CC21C /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A077D20A05B18005CC21C /* UIView+Layout.m */; };
 		3B1E25C520AD27B7006110C2 /* WCPositioningMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1E25C420AD27B7006110C2 /* WCPositioningMode.m */; };
+		3B1E25C820AD5227006110C2 /* WCAddScenicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1E25C720AD5227006110C2 /* WCAddScenicViewController.m */; };
+		3B1E25CB20AD5585006110C2 /* WCAddScenicMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1E25CA20AD5585006110C2 /* WCAddScenicMode.m */; };
+		3B1E25CF20AD57C2006110C2 /* WCAddScenicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1E25CD20AD57C2006110C2 /* WCAddScenicCollectionViewCell.m */; };
+		3B1E25D020AD57C2006110C2 /* WCAddScenicCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1E25CE20AD57C2006110C2 /* WCAddScenicCollectionViewCell.xib */; };
+		3B1E25D420AD5AC1006110C2 /* WCAddScenicHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1E25D220AD5AC1006110C2 /* WCAddScenicHeaderView.m */; };
+		3B1E25D520AD5AC1006110C2 /* WCAddScenicHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1E25D320AD5AC1006110C2 /* WCAddScenicHeaderView.xib */; };
+		3B1E25D820AD713D006110C2 /* WCAddAttractionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1E25D720AD713D006110C2 /* WCAddAttractionsViewController.m */; };
+		3B1E25E120AD77FC006110C2 /* backgroundStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1E25DB20AD77FB006110C2 /* backgroundStar.png */; };
+		3B1E25E220AD77FC006110C2 /* backgroundStar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1E25DC20AD77FB006110C2 /* backgroundStar@2x.png */; };
+		3B1E25E320AD77FC006110C2 /* foregroundStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1E25DD20AD77FB006110C2 /* foregroundStar.png */; };
+		3B1E25E420AD77FC006110C2 /* foregroundStar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1E25DE20AD77FB006110C2 /* foregroundStar@2x.png */; };
+		3B1E25E520AD77FC006110C2 /* TQStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1E25E020AD77FB006110C2 /* TQStarRatingView.m */; };
+		3B1E25E920AD8650006110C2 /* WCAddScenicFootorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1E25E720AD8650006110C2 /* WCAddScenicFootorView.m */; };
+		3B1E25F120AD8EAB006110C2 /* WCAddScenicFootorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1E25F020AD8EAB006110C2 /* WCAddScenicFootorView.xib */; };
+		3B1E25F420AD9097006110C2 /* WCMoreAttractionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1E25F320AD9097006110C2 /* WCMoreAttractionsViewController.m */; };
 		3B216AE0209AA66D0040EE93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216ADF209AA66D0040EE93 /* AppDelegate.m */; };
 		3B216AE8209AA66D0040EE93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B216AE7209AA66D0040EE93 /* Assets.xcassets */; };
 		3B216AEE209AA66D0040EE93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216AED209AA66D0040EE93 /* main.m */; };
@@ -216,6 +231,29 @@
 		3B1A077D20A05B18005CC21C /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
 		3B1E25C320AD27B7006110C2 /* WCPositioningMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPositioningMode.h; sourceTree = "<group>"; };
 		3B1E25C420AD27B7006110C2 /* WCPositioningMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCPositioningMode.m; sourceTree = "<group>"; };
+		3B1E25C620AD5227006110C2 /* WCAddScenicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAddScenicViewController.h; sourceTree = "<group>"; };
+		3B1E25C720AD5227006110C2 /* WCAddScenicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAddScenicViewController.m; sourceTree = "<group>"; };
+		3B1E25C920AD5585006110C2 /* WCAddScenicMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAddScenicMode.h; sourceTree = "<group>"; };
+		3B1E25CA20AD5585006110C2 /* WCAddScenicMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAddScenicMode.m; sourceTree = "<group>"; };
+		3B1E25CC20AD57C2006110C2 /* WCAddScenicCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAddScenicCollectionViewCell.h; sourceTree = "<group>"; };
+		3B1E25CD20AD57C2006110C2 /* WCAddScenicCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAddScenicCollectionViewCell.m; sourceTree = "<group>"; };
+		3B1E25CE20AD57C2006110C2 /* WCAddScenicCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCAddScenicCollectionViewCell.xib; sourceTree = "<group>"; };
+		3B1E25D120AD5AC1006110C2 /* WCAddScenicHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAddScenicHeaderView.h; sourceTree = "<group>"; };
+		3B1E25D220AD5AC1006110C2 /* WCAddScenicHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAddScenicHeaderView.m; sourceTree = "<group>"; };
+		3B1E25D320AD5AC1006110C2 /* WCAddScenicHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCAddScenicHeaderView.xib; sourceTree = "<group>"; };
+		3B1E25D620AD713D006110C2 /* WCAddAttractionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAddAttractionsViewController.h; sourceTree = "<group>"; };
+		3B1E25D720AD713D006110C2 /* WCAddAttractionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAddAttractionsViewController.m; sourceTree = "<group>"; };
+		3B1E25DB20AD77FB006110C2 /* backgroundStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundStar.png; sourceTree = "<group>"; };
+		3B1E25DC20AD77FB006110C2 /* backgroundStar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundStar@2x.png"; sourceTree = "<group>"; };
+		3B1E25DD20AD77FB006110C2 /* foregroundStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foregroundStar.png; sourceTree = "<group>"; };
+		3B1E25DE20AD77FB006110C2 /* foregroundStar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "foregroundStar@2x.png"; sourceTree = "<group>"; };
+		3B1E25DF20AD77FB006110C2 /* TQStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQStarRatingView.h; sourceTree = "<group>"; };
+		3B1E25E020AD77FB006110C2 /* TQStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQStarRatingView.m; sourceTree = "<group>"; };
+		3B1E25E620AD8650006110C2 /* WCAddScenicFootorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAddScenicFootorView.h; sourceTree = "<group>"; };
+		3B1E25E720AD8650006110C2 /* WCAddScenicFootorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAddScenicFootorView.m; sourceTree = "<group>"; };
+		3B1E25F020AD8EAB006110C2 /* WCAddScenicFootorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WCAddScenicFootorView.xib; sourceTree = "<group>"; };
+		3B1E25F220AD9097006110C2 /* WCMoreAttractionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMoreAttractionsViewController.h; sourceTree = "<group>"; };
+		3B1E25F320AD9097006110C2 /* WCMoreAttractionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMoreAttractionsViewController.m; sourceTree = "<group>"; };
 		3B216ADB209AA66D0040EE93 /* channelTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = channelTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B216ADE209AA66D0040EE93 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3B216ADF209AA66D0040EE93 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -536,6 +574,27 @@
 			path = TZImagePickerController;
 			sourceTree = "<group>";
 		};
+		3B1E25D920AD77FB006110C2 /* TQStarRating */ = {
+			isa = PBXGroup;
+			children = (
+				3B1E25DA20AD77FB006110C2 /* Image */,
+				3B1E25DF20AD77FB006110C2 /* TQStarRatingView.h */,
+				3B1E25E020AD77FB006110C2 /* TQStarRatingView.m */,
+			);
+			path = TQStarRating;
+			sourceTree = "<group>";
+		};
+		3B1E25DA20AD77FB006110C2 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				3B1E25DB20AD77FB006110C2 /* backgroundStar.png */,
+				3B1E25DC20AD77FB006110C2 /* backgroundStar@2x.png */,
+				3B1E25DD20AD77FB006110C2 /* foregroundStar.png */,
+				3B1E25DE20AD77FB006110C2 /* foregroundStar@2x.png */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		3B216AD2209AA66C0040EE93 = {
 			isa = PBXGroup;
 			children = (
@@ -576,6 +635,7 @@
 		3B216AF4209AAD480040EE93 /* Toolkit */ = {
 			isa = PBXGroup;
 			children = (
+				3B1E25D920AD77FB006110C2 /* TQStarRating */,
 				3B7C899920AAE03B000E2F55 /* YBPopupMenu */,
 				3B7C898520AA7B0F000E2F55 /* FMDBTool */,
 				3B1A076020A05B18005CC21C /* TZImagePickerController */,
@@ -843,6 +903,8 @@
 				3B6BB83D20A2C8240013AE6B /* WCWRecordMode.m */,
 				3B1E25C320AD27B7006110C2 /* WCPositioningMode.h */,
 				3B1E25C420AD27B7006110C2 /* WCPositioningMode.m */,
+				3B1E25C920AD5585006110C2 /* WCAddScenicMode.h */,
+				3B1E25CA20AD5585006110C2 /* WCAddScenicMode.m */,
 			);
 			path = mode;
 			sourceTree = "<group>";
@@ -885,6 +947,15 @@
 				3B6BB84420A2D6BD0013AE6B /* WCWRecordTableViewCell.xib */,
 				3B7C899320AAB860000E2F55 /* WCCreateScenicTableViewCell.h */,
 				3B7C899420AAB860000E2F55 /* WCCreateScenicTableViewCell.m */,
+				3B1E25CC20AD57C2006110C2 /* WCAddScenicCollectionViewCell.h */,
+				3B1E25CD20AD57C2006110C2 /* WCAddScenicCollectionViewCell.m */,
+				3B1E25CE20AD57C2006110C2 /* WCAddScenicCollectionViewCell.xib */,
+				3B1E25D120AD5AC1006110C2 /* WCAddScenicHeaderView.h */,
+				3B1E25D220AD5AC1006110C2 /* WCAddScenicHeaderView.m */,
+				3B1E25D320AD5AC1006110C2 /* WCAddScenicHeaderView.xib */,
+				3B1E25E620AD8650006110C2 /* WCAddScenicFootorView.h */,
+				3B1E25E720AD8650006110C2 /* WCAddScenicFootorView.m */,
+				3B1E25F020AD8EAB006110C2 /* WCAddScenicFootorView.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -909,6 +980,12 @@
 				3B7C899120AAB607000E2F55 /* WCCreateScenicViewController.m */,
 				3B941E9420ABD6290021B320 /* WCPositioningViewController.h */,
 				3B941E9520ABD6290021B320 /* WCPositioningViewController.m */,
+				3B1E25C620AD5227006110C2 /* WCAddScenicViewController.h */,
+				3B1E25C720AD5227006110C2 /* WCAddScenicViewController.m */,
+				3B1E25D620AD713D006110C2 /* WCAddAttractionsViewController.h */,
+				3B1E25D720AD713D006110C2 /* WCAddAttractionsViewController.m */,
+				3B1E25F220AD9097006110C2 /* WCMoreAttractionsViewController.h */,
+				3B1E25F320AD9097006110C2 /* WCMoreAttractionsViewController.m */,
 			);
 			path = "景区";
 			sourceTree = "<group>";
@@ -1079,18 +1156,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B6BB84620A2D6BD0013AE6B /* WCWRecordTableViewCell.xib in Resources */,
+				3B1E25E420AD77FC006110C2 /* foregroundStar@2x.png in Resources */,
+				3B1E25E320AD77FC006110C2 /* foregroundStar.png in Resources */,
 				3B216AE8209AA66D0040EE93 /* Assets.xcassets in Resources */,
 				3B1A06CD20A03F3B005CC21C /* MBProgressHUD.bundle in Resources */,
 				3B216B6F209ADC050040EE93 /* login.storyboard in Resources */,
+				3B1E25D020AD57C2006110C2 /* WCAddScenicCollectionViewCell.xib in Resources */,
 				3B1A06D020A03F3B005CC21C /* MJPhotoBrowser.bundle in Resources */,
 				3B216B8C209B01DB0040EE93 /* main.storyboard in Resources */,
+				3B1E25E120AD77FC006110C2 /* backgroundStar.png in Resources */,
 				3BA73E0E209C511B00B88891 /* sun_burst_weather_icon.json in Resources */,
 				3B6CBD2B209FF90A00784BBF /* WCPersonalHeaderView.xib in Resources */,
 				3B6BB84520A2D6BD0013AE6B /* WCERecordTableViewCell.xib in Resources */,
+				3B1E25F120AD8EAB006110C2 /* WCAddScenicFootorView.xib in Resources */,
 				3B941E9E20AC1A310021B320 /* TZDatePickerView.xib in Resources */,
 				3B1A078420A05B18005CC21C /* TZImagePickerController.bundle in Resources */,
 				3B985B2E20A19D990083E1F2 /* Cities.json in Resources */,
 				3B7239ED209D9253006FAB15 /* WCMyNarratorTableViewCell.xib in Resources */,
+				3B1E25D520AD5AC1006110C2 /* WCAddScenicHeaderView.xib in Resources */,
+				3B1E25E220AD77FC006110C2 /* backgroundStar@2x.png in Resources */,
 				3B941EC320AC33E80021B320 /* mapapi.bundle in Resources */,
 				3B985B3120A19D990083E1F2 /* AddressTableViewCell.xib in Resources */,
 				3B7239E8209D7CAC006FAB15 /* WCMyScenicTableViewCell.xib in Resources */,
@@ -1187,12 +1271,14 @@
 				3B216B42209AAE880040EE93 /* UIButton+ImageTitleStyle.m in Sources */,
 				3B7C899520AAB860000E2F55 /* WCCreateScenicTableViewCell.m in Sources */,
 				3B216B86209AFA530040EE93 /* WCRetrieveViewController.m in Sources */,
+				3B1E25CB20AD5585006110C2 /* WCAddScenicMode.m in Sources */,
 				3B1A078C20A05B18005CC21C /* UIView+Layout.m in Sources */,
 				3B1A06CF20A03F3B005CC21C /* MJPhoto.m in Sources */,
 				3B216B43209AAE880040EE93 /* UIImage+CircleImage.m in Sources */,
 				3B216B83209AFA2C0040EE93 /* WCRegistrationViewController.m in Sources */,
 				3B1A078620A05B18005CC21C /* TZLocationManager.m in Sources */,
 				3BA73E14209C554500B88891 /* TBBaseClassViewMode.m in Sources */,
+				3B1E25D420AD5AC1006110C2 /* WCAddScenicHeaderView.m in Sources */,
 				3B1A078920A05B18005CC21C /* TZPhotoPreviewController.m in Sources */,
 				3B941E9D20AC1A310021B320 /* TZDatePickerView.m in Sources */,
 				3B6BB83820A2A62B0013AE6B /* WCWRecordTableViewCell.m in Sources */,
@@ -1214,6 +1300,7 @@
 				3B6BB84E20A2ECF60013AE6B /* WCUploadPromptView.m in Sources */,
 				3B216B56209AAED30040EE93 /* TBBaseTableViewController.m in Sources */,
 				3B985B3020A19D990083E1F2 /* AddressTableViewCell.m in Sources */,
+				3B1E25F420AD9097006110C2 /* WCMoreAttractionsViewController.m in Sources */,
 				3B216B46209AAE880040EE93 /* UIImageView+ZKWebCache.m in Sources */,
 				3BA73E0C209C451100B88891 /* UIScrollView+LSSlidePageScrollView.m in Sources */,
 				3B216AEE209AA66D0040EE93 /* main.m in Sources */,
@@ -1226,6 +1313,7 @@
 				3B216B3C209AAE880040EE93 /* NSDictionary+FixedParams.m in Sources */,
 				3B216B40209AAE880040EE93 /* NSString+Regex.m in Sources */,
 				3B6CBD23209FEB9900784BBF /* WCAuthenticationPopupsView.m in Sources */,
+				3B1E25D820AD713D006110C2 /* WCAddAttractionsViewController.m in Sources */,
 				3B216B3F209AAE880040EE93 /* NSString+MD5Addition.m in Sources */,
 				3B1A06CC20A03F3B005CC21C /* MBProgressHUD+Add.m in Sources */,
 				3B985B0E20A153F10083E1F2 /* WCBasisInfoViewController.m in Sources */,
@@ -1244,8 +1332,10 @@
 				3B1A078820A05B18005CC21C /* TZPhotoPreviewCell.m in Sources */,
 				3B1A078B20A05B18005CC21C /* TZVideoPlayerController.m in Sources */,
 				3B1A06D320A03F3B005CC21C /* MJPhotoProgressView.m in Sources */,
+				3B1E25CF20AD57C2006110C2 /* WCAddScenicCollectionViewCell.m in Sources */,
 				3B1A078120A05B18005CC21C /* TZGifPhotoPreviewController.m in Sources */,
 				3B7C898B20AA7CBE000E2F55 /* WCAttractionsMode.m in Sources */,
+				3B1E25E520AD77FC006110C2 /* TQStarRatingView.m in Sources */,
 				3B7C898E20AA7CDD000E2F55 /* WCSiteMode.m in Sources */,
 				3B7239E2209D7C7B006FAB15 /* WCMyScenicMode.m in Sources */,
 				3B6BB83520A2A6080013AE6B /* WCERecordTableViewCell.m in Sources */,
@@ -1257,6 +1347,7 @@
 				3B216B4B209AAE880040EE93 /* UIViewController+Prompt.m in Sources */,
 				3B216B60209AAF210040EE93 /* TBSaveSuccessTipsView.m in Sources */,
 				3B7C899F20AAE762000E2F55 /* TBTemplateResourceCollectionViewCell.m in Sources */,
+				3B1E25E920AD8650006110C2 /* WCAddScenicFootorView.m in Sources */,
 				3B216B41209AAE880040EE93 /* UIBarButtonItem+Custom.m in Sources */,
 				3B3D48D420A97BC800E6CC2C /* WCERecordViewController.m in Sources */,
 				3B1A078A20A05B18005CC21C /* TZProgressView.m in Sources */,
@@ -1267,6 +1358,7 @@
 				3B1A078520A05B18005CC21C /* TZImagePickerController.m in Sources */,
 				3B6BB83220A299D40013AE6B /* WCBillViewController.m in Sources */,
 				3B216B02209AAE430040EE93 /* UIView+MJAlertView.m in Sources */,
+				3B1E25C820AD5227006110C2 /* WCAddScenicViewController.m in Sources */,
 				3B6BB83B20A2C8140013AE6B /* WCERecordMode.m in Sources */,
 				3B216B0A209AAE4C0040EE93 /* MJDIYHeader.m in Sources */,
 				3BA73E0A209C451100B88891 /* LSSlidePageScrollView.m in Sources */,

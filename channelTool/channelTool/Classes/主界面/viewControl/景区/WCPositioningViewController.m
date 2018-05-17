@@ -46,8 +46,6 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"精准定位";
     self.view.backgroundColor = [UIColor whiteColor];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.navigationController.navigationBar.translucent = NO;
     
     [self createMapView];
     [self setLocService];

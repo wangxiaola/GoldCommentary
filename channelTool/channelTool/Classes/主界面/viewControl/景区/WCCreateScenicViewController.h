@@ -13,4 +13,8 @@
  */
 @interface WCCreateScenicViewController : TBBaseViewController
 
+/**
+ 开始刷新列表
+ */
+@property (nonatomic, copy) void(^refreshTableView)(void);
 @end

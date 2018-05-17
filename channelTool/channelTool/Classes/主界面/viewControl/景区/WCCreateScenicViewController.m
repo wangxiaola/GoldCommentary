@@ -162,6 +162,11 @@
     } failure:^(NSError * _Nonnull error) {
         
     }];
+    
+
+//    if (self.refreshTableView) {
+//        self.refreshTableView();
+//    }
 }
 #pragma mark  ----点击事件----
 - (IBAction)selectPhotos:(UIButton *)sender {
@@ -213,6 +218,11 @@
     
     if (self.scenicNameField.text.length == 0) {
         [self shakeAnimationForView:self.scenicNameField.superview markString:@"请填写景区名称"];
+        return;
+    }
+    if (self.imageArray.count == 0) {
+        
+        [self shakeAnimationForView:self.scenicNameField.superview markString:@"请至少上传一张图片"];
         return;
     }
     if (self.adderssField.text.length == 0) {

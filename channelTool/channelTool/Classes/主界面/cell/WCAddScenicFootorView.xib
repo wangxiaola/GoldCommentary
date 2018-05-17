@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="WCAddScenicFootorView">
+            <rect key="frame" x="0.0" y="0.0" width="357" height="38"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5RY-lF-AxC">
+                    <rect key="frame" x="0.0" y="0.0" width="357" height="38"/>
+                    <state key="normal" image="moreAttractions"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="puz-US-KPf">
+                    <rect key="frame" x="0.0" y="37.5" width="357" height="0.5"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.59999999999999998" id="6EJ-zt-ski"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="puz-US-KPf" secondAttribute="bottom" id="3ua-Pw-rVz"/>
+                <constraint firstAttribute="trailing" secondItem="puz-US-KPf" secondAttribute="trailing" id="4tS-0p-uah"/>
+                <constraint firstItem="puz-US-KPf" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="CUJ-eX-Q9p"/>
+                <constraint firstAttribute="trailing" secondItem="5RY-lF-AxC" secondAttribute="trailing" id="TKO-ww-Xn6"/>
+                <constraint firstAttribute="bottom" secondItem="5RY-lF-AxC" secondAttribute="bottom" id="WfR-KU-BGe"/>
+                <constraint firstItem="5RY-lF-AxC" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="c34-gM-q4X"/>
+                <constraint firstItem="5RY-lF-AxC" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="s1i-OS-0Uq"/>
+            </constraints>
+            <connections>
+                <outlet property="moreButton" destination="5RY-lF-AxC" id="lfg-iE-oWP"/>
+            </connections>
+            <point key="canvasLocation" x="43.5" y="46"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="moreAttractions" width="25" height="25"/>
+    </resources>
+</document>
