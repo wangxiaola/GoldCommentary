@@ -13,10 +13,14 @@
 #import "TBChoosePhotosTool.h"
 #import "YBPopupMenu.h"
 #import "XMRTimePiker.h"
+#import "WCGeoCodeSearch.h"
+#import "WCPositioningMode.h"
+#import "LoginNavigationController.h"
 #import "UIButton+ImageTitleStyle.h"
 #import <IQKeyboardManager/IQTextView.h>
+#import <BaiduMapAPI_Location/BMKLocationService.h>
 
-@interface WCCreateScenicViewController ()<UITextViewDelegate,YBPopupMenuDelegate,UICollectionViewDataSource,UICollectionViewDelegate,TBChoosePhotosToolDelegate,XMRTimePikerDelegate>
+@interface WCCreateScenicViewController ()<UITextViewDelegate,YBPopupMenuDelegate,UICollectionViewDataSource,UICollectionViewDelegate,TBChoosePhotosToolDelegate,XMRTimePikerDelegate,BMKLocationServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *scenicNameField;
 @property (weak, nonatomic) IBOutlet UITextField *adderssField;
@@ -42,6 +46,13 @@
 @property (assign, nonatomic) NSInteger maxRow;
 
 @property (nonatomic, copy) NSString *levelString;//等级
+
+@property (nonatomic, strong) BMKLocationService *locService;
+
+@property (nonatomic, strong) WCGeoCodeSearch *godeSearch;
+
+@property (nonatomic, strong) WCPositioningMode *locationMode;
+
 @end
 
 @implementation WCCreateScenicViewController
@@ -57,6 +68,7 @@
     self.navigationItem.title = @"创建景区";
     self.view.backgroundColor = RGB(241, 241, 241);
     [self setUpView];
+    [self setLocService];
     
 }
 #pragma mark ---初始化视图----
@@ -94,13 +106,25 @@
     flowlayout.minimumInteritemSpacing = 9;
     flowlayout.minimumLineSpacing = 9;
     flowlayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-
+    
     self.photoCollectionView.dataSource = self;
     self.photoCollectionView.delegate = self;
     self.photoCollectionView.bounces = NO;
     self.photoCollectionView.scrollEnabled = NO;
     [self.photoCollectionView registerClass:[TBTemplateResourceCollectionViewCell class] forCellWithReuseIdentifier:TBTemplateResourceCollectionViewCellID];
     self.photoCollectionView.collectionViewLayout = flowlayout;
+    
+}
+- (void)setLocService
+{
+    //初始化BMKLocationService
+    
+    self.godeSearch = [[WCGeoCodeSearch alloc] init];
+    
+    _locService = [[BMKLocationService alloc]init];
+    _locService.delegate = self;
+    //启动LocationService
+    [_locService startUserLocationService];
     
 }
 /**
@@ -118,6 +142,17 @@
         [UIView addMJNotifierWithText:mark dismissAutomatically:YES];
     }
 }
+
+/**
+ 更新位置信息
+
+ @param mode 数据
+ */
+- (void)updateAddressLabelData:(WCPositioningMode *)mode
+{
+    self.locationMode = mode;
+    self.adderssField.text = mode.adderss;
+}
 #pragma mark  ----数据上传----
 - (void)postScenicData
 {
@@ -133,7 +168,7 @@
     [self.view endEditing:YES];
     
     if (self.imageArray.count == self.maxRow) {
-      
+        
         [UIView addMJNotifierWithText:@"请先删除一些照片" dismissAutomatically:YES];
         return;
     }
@@ -142,7 +177,7 @@
 - (IBAction)selectLevel:(UIButton *)sender {
     
     [self.view endEditing:YES];
-
+    
     YBPopupMenu *popupMenu = [YBPopupMenu showRelyOnView:sender titles:@[@"5A",@"4A",@"3A",@"其它星级"] icons:nil menuWidth:100 delegate:self];
     popupMenu.offset = 5;
     popupMenu.fontSize = 13;
@@ -151,15 +186,23 @@
 }
 - (IBAction)goMapView:(UIButton *)sender {
     [self.view endEditing:YES];
+    
     WCPositioningViewController *mapView = [[WCPositioningViewController alloc] init];
-    [self.navigationController pushViewController:mapView animated:YES];
+    LoginNavigationController *nav = [[LoginNavigationController alloc] initWithRootViewController:mapView];
+    
+    [self presentViewController:nav animated:NO completion:nil];
+    MJWeakSelf
+    [mapView setSearchResults:^(WCPositioningMode *mode) {
+        
+      [weakSelf updateAddressLabelData:mode];
+    }];
 }
 - (IBAction)selectTime:(UIButton *)sender {
     [self.view endEditing:YES];
-
+    
     NSArray * star_arr = [self.startButton.titleLabel.text componentsSeparatedByString:@":"];
     NSArray * end_arr = [self.endButton.titleLabel.text componentsSeparatedByString:@":"];
-
+    
     XMRTimePiker *timeView = [[XMRTimePiker alloc] init];
     timeView.delegate = self;
     [timeView SetOldShowTimeOneLeft:star_arr[0] andOneRight:star_arr[1] andTowLeft:end_arr[0] andTowRight:end_arr[1]];
@@ -228,7 +271,7 @@
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu;
 {
     /*** 字段赋值 ***/
- 
+    
     NSString *levelName = @"其它星级   ";
     if (index < 3) {
         
@@ -249,14 +292,14 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-
-     return self.imageArray.count;
+    
+    return self.imageArray.count;
 }
 - (TBTemplateResourceCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     TBTemplateResourceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:TBTemplateResourceCollectionViewCellID forIndexPath:indexPath];
     
-     [cell valueCellImage:self.imageArray[indexPath.row] showDelete:YES index:indexPath.row];
+    [cell valueCellImage:self.imageArray[indexPath.row] showDelete:YES index:indexPath.row];
     TBWeakSelf
     [cell setDeleteCell:^(NSInteger row)
      {
@@ -313,6 +356,23 @@
     self.photoCollectionHeight.constant = constant;
     
 }
+#pragma mark  ----BMKLocationServiceDelegate----
+/**
+ *用户位置更新后，会调用此函数
+ *@param userLocation 新的用户位置
+ */
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation;
+{
+    if (userLocation.location !=nil) {
+        CLLocationCoordinate2D coordinate = userLocation.location.coordinate;
+        MJWeakSelf
+        [_godeSearch searchAddressLatitude:coordinate.latitude longitude:coordinate.longitude searchResults:^(WCPositioningMode *mode) {
+         
+            [weakSelf updateAddressLabelData:mode];
+        }];
+        [_locService stopUserLocationService];
+    }
+}
 #pragma mark  ----懒加载----
 - (NSMutableArray *)imageArray
 {
@@ -328,13 +388,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

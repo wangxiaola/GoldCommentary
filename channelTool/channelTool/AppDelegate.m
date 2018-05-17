@@ -7,13 +7,13 @@
 //
 
 #import "AppDelegate.h"
-#import "UserInfo.h"
+#import "WCPublic.h"
 #import "IQKeyboardManager.h"
-#import "HUD.h"
+
 @interface AppDelegate ()
 
 @end
-
+BMKMapManager* _mapManager;
 @implementation AppDelegate
 
 
@@ -61,7 +61,41 @@
     [keyboardManager setToolbarDoneBarButtonItemText:@"完成"];
     // 设置hud
     hudConfig();
+    
+    // 要使用百度地图，请先启动BaiduMapManager
+    _mapManager = [[BMKMapManager alloc]init];
 
+    if ([BMKMapManager setCoordinateTypeUsedInBaiduMapSDK:BMK_COORDTYPE_BD09LL]) {
+        NSLog(@"经纬度类型设置成功");
+    } else {
+        NSLog(@"经纬度类型设置失败");
+    }
+    BOOL ret = [_mapManager start:MAP_KEY generalDelegate:self];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+    
+
+}
+- (void)onGetNetworkState:(int)iError
+{
+    if (0 == iError) {
+        NSLog(@"联网成功");
+    }
+    else{
+        NSLog(@"onGetNetworkState %d",iError);
+    }
+    
+}
+
+- (void)onGetPermissionState:(int)iError
+{
+    if (0 == iError) {
+        NSLog(@"授权成功");
+    }
+    else {
+        NSLog(@"onGetPermissionState %d",iError);
+    }
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

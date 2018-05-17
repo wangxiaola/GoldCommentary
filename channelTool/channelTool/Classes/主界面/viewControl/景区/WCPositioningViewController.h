@@ -7,10 +7,18 @@
 //
 
 #import "TBBaseViewController.h"
+@class WCPositioningMode;
 
 /**
  定位
  */
 @interface WCPositioningViewController : TBBaseViewController
 
+/**
+ 搜索结果
+ */
+@property (nonatomic, copy) void(^searchResults)(WCPositioningMode *mode);
+
 @end
+
+

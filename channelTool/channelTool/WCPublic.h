@@ -36,12 +36,7 @@ FOUNDATION_EXPORT NSString *const MAP_KEY;
 #define weixinID @"wx071c2201ad28845c"
 #define weixinSecret @"e96c5edc5384dba650fd0378411f104a"
 
-/**
- *  腾讯QQ
- *
- */
-#define QQ_ID @"1106910442"
-#define QQ_KEY @"uYmGLv0io0tf1Gm5"
+
 
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
