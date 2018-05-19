@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 
 
-NSString *const POST_URL = @"";
+NSString *const POST_URL = @"http://172.16.12.25:8085/service.csw";
 
-NSString *const IMAGE_URL = @"";
+NSString *const POST_IMAGE_URL = @"http://172.16.12.25:8085/service.csw";
+
+NSString *const IMAGE_URL = @"http://172.16.12.25:8085/";
 
 NSString *const Verification_phone = @"Verification_phone";
 

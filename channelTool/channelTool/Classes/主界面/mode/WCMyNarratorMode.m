@@ -9,5 +9,8 @@
 #import "WCMyNarratorMode.h"
 
 @implementation WCMyNarratorMode
-
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"ID": @"id"};
+}
 @end

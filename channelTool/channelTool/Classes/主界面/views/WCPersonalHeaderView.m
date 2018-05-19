@@ -31,12 +31,11 @@
         [view.editorButton setTitle:@"完成" forState:UIControlStateNormal];
         view.nameLabel.text = @"点击修改头像";
         
-        view.headerImageView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] initWithTarget:view action:@selector(headerClick)];
-        [view.headerImageView addGestureRecognizer:ges];
-        
     }
     
+    view.headerImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] initWithTarget:view action:@selector(headerClick)];
+    [view.headerImageView addGestureRecognizer:ges];
     
     return view;
 }

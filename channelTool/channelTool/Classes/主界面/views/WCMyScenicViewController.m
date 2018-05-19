@@ -28,7 +28,9 @@
 {
     [super initData];
     self.modeClass = [WCMyScenicMode class];
-//    self.parameter[@"rows"] = @"20";
+    self.parameter[@"rows"] = @"20";
+    self.parameter[@"interfaceId"] = @"296";
+    self.parameter[@"id"] = [UserInfo account].userID;
     
 }
 #pragma mark ---初始化视图----
@@ -81,7 +83,7 @@
 #pragma mark  ----UITableViewDataSource && UITableViewDelegate----
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 10;
+    return self.roots.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

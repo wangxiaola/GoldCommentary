@@ -14,7 +14,7 @@
 + (instancetype)params
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"format"]  = @"json";
+
     params[@"AppId"]  = @"2zPhtu3ittzt";
     params[@"AppKey"]  = @"e22eb607c64b4df5a676ffc1274300a3";
     params[@"TimeStamp"]  = [ZKUtil timeStamp];

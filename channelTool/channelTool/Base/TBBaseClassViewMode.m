@@ -7,7 +7,7 @@
 //
 
 #import "TBBaseClassViewMode.h"
-#import "ZKPostHttp.h"
+#import "WCPublic.h"
 
 @interface TBBaseClassViewMode()
 
@@ -24,8 +24,9 @@
 {
     __weak typeof(self) weakSelf = self;
     
-    [[ZKPostHttp shareInstance] POST:@"" params:parameter success:^(id  _Nonnull responseObject) {
+    [[ZKPostHttp shareInstance] POST:POST_URL params:parameter success:^(id  _Nonnull responseObject) {
         
+        MMLog(@"%@",responseObject);
         NSString *errcode = [responseObject valueForKey:@"errcode"];
         if ([errcode isEqualToString:@"00000"])
         {
@@ -41,7 +42,8 @@
         {
             if ([weakSelf.delegate respondsToSelector:@selector(postError:)])
             {
-                [weakSelf.delegate postError:@"数据异常！"];
+                NSString *errmsg = [responseObject valueForKey:@"errmsg"];
+                [weakSelf.delegate postError:[errmsg isEqual:[NSNull null]]?@"数据异常":errmsg];
             }
         }
     } failure:^(NSError * _Nonnull error) {

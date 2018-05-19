@@ -23,7 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.passwordField.delegate = self;
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    self.title = @"账号登录";
 }
 
 #pragma mark  ----fun tool----
@@ -99,15 +99,44 @@
 {
     [self.view endEditing:YES];
     
+    NSDictionary *dic = @{@"interfaceId":@"291",@"phone":self.phoneField.text,@"pwd":self.passwordField.text.md5String};
+    
     hudShowLoading(@"正在登录");
-    [[ZKPostHttp shareInstance] POST:@"" params:@{} success:^(id  _Nonnull responseObject) {
+    [[ZKPostHttp shareInstance] POST:POST_URL params:dic success:^(id  _Nonnull responseObject) {
         
-        hudDismiss();
+        NSString *errcode = [responseObject valueForKey:@"errcode"];
+        if ([errcode isEqualToString:@"00000"]) {
+            
+            [self registeredSuccessfullyData:[responseObject valueForKey:@"data"]];
+        }
+        else
+        {
+            [UIView addMJNotifierWithText:[responseObject valueForKey:@"errmsg"] dismissAutomatically:YES];
+            hudDismiss();
+        }
     } failure:^(NSError * _Nonnull error) {
         hudShowError(@"网络异常！");
     }];
 }
-
+/**
+ 登录成功
+ 
+ @param data 数据
+ */
+- (void)registeredSuccessfullyData:(NSDictionary *)data
+{
+    if ([data isKindOfClass:[NSDictionary class]]) {
+        hudShowSuccess(@"登录成功");
+        UserInfo *info = [UserInfo mj_objectWithKeyValues:data];
+        [UserInfo saveAccount:info];
+        // 加载storboard
+        UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
+        
+        UIViewController *viewController = [board instantiateInitialViewController];
+        
+        [APPDELEGATE window].rootViewController = viewController;
+    }
+}
 #pragma mark  ----UITextFieldDelegate----
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     

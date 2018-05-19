@@ -22,6 +22,7 @@
 #import "UIView+MJAlertView.h"
 
 FOUNDATION_EXPORT NSString *const POST_URL;
+FOUNDATION_EXPORT NSString *const POST_IMAGE_URL;
 FOUNDATION_EXPORT NSString *const IMAGE_URL;
 
 FOUNDATION_EXPORT NSString *const Verification_code;// 验证码保存

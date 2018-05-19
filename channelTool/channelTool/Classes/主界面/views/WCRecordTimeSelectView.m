@@ -82,9 +82,8 @@
     [pickerView show];
     [pickerView setGotoSrceenOrderBlock:^(NSString *state, NSString *end) {
        
-        NSString *date = [NSString stringWithFormat:@"%@至%@",state,end];
         if (weakSelf.timeSelectEnd) {
-            weakSelf.timeSelectEnd(date);
+            weakSelf.timeSelectEnd(state,end);
         }
     }];
     

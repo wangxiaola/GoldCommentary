@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class UserCertification;
 
 @interface UserInfo : NSObject
 
@@ -14,11 +15,27 @@
 @property (nonatomic, copy, nullable) NSString *userID;
 @property (nonatomic, copy, nullable) NSString *name;
 @property (nonatomic, copy, nullable) NSString *phone;
-@property (nonatomic, copy, nullable) NSString *type;
-@property (nonatomic, copy, nullable) NSString *code;
+
+/**
+ 认证信息
+ */
+@property (nonatomic, strong) UserCertification *certification;
 
 
 + (nonnull UserInfo *)account;
 
 + (void)saveAccount:(nullable UserInfo *)account;
+@end
+
+@interface  UserCertification :NSObject
+
+@property (nonatomic, copy, nullable) NSString *address;
+@property (nonatomic, copy, nullable) NSString *birth;
+@property (nonatomic, copy, nullable) NSString *ID;
+@property (nonatomic, copy, nullable) NSString *info;
+@property (nonatomic, copy, nullable) NSString *ispass;
+@property (nonatomic, copy, nullable) NSString *nickname;
+@property (nonatomic, copy, nullable) NSString *role;
+@property (nonatomic, copy, nullable) NSString *sex;
+
 @end

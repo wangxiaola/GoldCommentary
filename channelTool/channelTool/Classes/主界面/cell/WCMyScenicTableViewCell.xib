@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="360" height="131.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_banner" translatesAutoresizingMaskIntoConstraints="NO" id="2UC-LK-exi">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_banner" translatesAutoresizingMaskIntoConstraints="NO" id="2UC-LK-exi">
                         <rect key="frame" x="6" y="6" width="120" height="80"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="80" id="Ndm-kJ-Y2E"/>
@@ -72,7 +72,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dg5-Fa-SAA">
                                 <rect key="frame" x="300" y="8" width="50" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="C0x-SK-giq"/>
                                     <constraint firstAttribute="width" constant="50" id="Wob-O4-aZQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -100,7 +99,9 @@
                             <constraint firstAttribute="trailing" secondItem="Dg5-Fa-SAA" secondAttribute="trailing" constant="10" id="ACh-YA-xHE"/>
                             <constraint firstItem="Dg5-Fa-SAA" firstAttribute="centerY" secondItem="cfD-Hz-tiQ" secondAttribute="centerY" id="AFI-Q9-b71"/>
                             <constraint firstItem="Dg5-Fa-SAA" firstAttribute="leading" secondItem="e3j-q2-jf8" secondAttribute="trailing" constant="10" id="MmI-LU-bct"/>
-                            <constraint firstAttribute="height" constant="40" id="WyL-gC-KYV"/>
+                            <constraint firstAttribute="bottom" secondItem="e3j-q2-jf8" secondAttribute="bottom" constant="8" id="Qc2-ox-bBj"/>
+                            <constraint firstAttribute="height" priority="750" constant="40" id="WyL-gC-KYV"/>
+                            <constraint firstItem="e3j-q2-jf8" firstAttribute="top" secondItem="cfD-Hz-tiQ" secondAttribute="top" constant="8" id="bqm-Hw-Lcc"/>
                             <constraint firstItem="e3j-q2-jf8" firstAttribute="centerY" secondItem="Dg5-Fa-SAA" secondAttribute="centerY" id="ddX-Mx-nGb"/>
                             <constraint firstItem="e3j-q2-jf8" firstAttribute="height" secondItem="Dg5-Fa-SAA" secondAttribute="height" id="mHJ-go-oZN"/>
                         </constraints>

@@ -21,6 +21,6 @@
 /**
  时间回调
  */
-@property (nonatomic, copy) void(^timeSelectEnd)(NSString *time);
+@property (nonatomic, copy) void(^timeSelectEnd)(NSString *state, NSString *end);
 
 @end

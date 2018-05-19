@@ -51,4 +51,9 @@ void hudDismiss()
     [SVProgressHUD dismiss];
 }
 
+void hudShopWUploadProgress(CGFloat progress, NSString *msg)
+{
+    
+    [SVProgressHUD showProgress:progress  status:msg];
+}
 

@@ -32,11 +32,15 @@ typedef NS_ENUM(NSInteger, PhotoType) {
 @property (nonatomic, strong) UIImage *headerImage;
 @property (nonatomic, strong) UIImage *emblemImage;
 
+@property (nonatomic, copy) NSString *headerImageURL;
+@property (nonatomic, copy) NSString *emblemImageURL;
+
 @property (nonatomic, strong) TBChoosePhotosTool *photosTool;
 // 选择的照片类型
 @property (nonatomic) PhotoType photoType;
 // 城市ID
 @property (nonatomic, copy) NSString *cityCode;
+
 @end
 
 @implementation WCBasisInfoViewController
@@ -50,8 +54,7 @@ typedef NS_ENUM(NSInteger, PhotoType) {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"实名认证";
-    [self requestUserInfo];
-    
+
 }
 #pragma mark  ----点击事件----
 //选择地区
@@ -77,11 +80,6 @@ typedef NS_ENUM(NSInteger, PhotoType) {
 //提交审核
 - (IBAction)submitAudit:(UIButton *)sender {
     
-    TBWeakSelf
-    NSString *msg = @"申请提交成功\n我们会在2个工作日内给您回复";
-   [WCUploadPromptView showPromptString:msg isSuccessful:YES clickButton:^{
-        [weakSelf.navigationController popViewControllerAnimated:YES];
-    }];
     if (self.nameTextField.text.length == 0) {
         [self shakeAnimationForView:self.nameTextField markString:@"请填写真实姓名"];
         return;
@@ -90,7 +88,7 @@ typedef NS_ENUM(NSInteger, PhotoType) {
         [self shakeAnimationForView:self.idCardTextField markString:@"请填写身份证号码"];
         return;
     }
-    if ([ZKUtil checkIsIdentityCard:self.idCardTextField.text]) {
+    if (![ZKUtil checkIsIdentityCard:self.idCardTextField.text]) {
         [self shakeAnimationForView:self.idCardTextField markString:@"身份证号码填写有误"];
         return;
     }
@@ -134,33 +132,107 @@ typedef NS_ENUM(NSInteger, PhotoType) {
         [UIView addMJNotifierWithText:mark dismissAutomatically:YES];
     }
 }
+
 #pragma mark  ----数据请求----
-/**
- 请求用户信息
- */
-- (void)requestUserInfo
-{
-    UserInfo *info = [UserInfo account];
-    
-    if (info.userID) {
-        
-        [[ZKPostHttp shareInstance] POST:@"" params:@{} success:^(id  _Nonnull responseObject) {
-            
-        } failure:^(NSError * _Nonnull error) {
-            
-        }];
-    }
-}
 
 /**
  提交信息
  */
 - (void)postUserInfo
 {
-    [[ZKPostHttp shareInstance] POST:@"" params:@{} success:^(id  _Nonnull responseObject) {
+    hudShopWUploadProgress(0.0, @"正在上传图片");
+    
+   dispatch_group_t group = dispatch_group_create();
+    
+    // 上传封面
+    TBWeakSelf
+    dispatch_group_enter(group);
+    [self uploadImage:self.headerImage success:^(NSString *url) {
+        
+        weakSelf.headerImageURL = url;
+         dispatch_group_leave(group);
+         hudShopWUploadProgress(0.3, @"正在上传图片");
+    }];
+    // 上传背面
+    dispatch_group_enter(group);
+    [self uploadImage:self.emblemImage success:^(NSString *url) {
+        
+        weakSelf.emblemImageURL = url;
+        dispatch_group_leave(group);
+         hudShopWUploadProgress(0.6, @"正在上传图片");
+    }];
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        
+        if (weakSelf.headerImageURL.length > 0 && weakSelf.emblemImageURL.length > 0) {
+            
+            [weakSelf submitCertificationList];
+        }
+        else
+        {
+            hudShowError(@"身份证图片上传失败");
+        }
+    });
+}
+
+/**
+ 提交认证信息
+ */
+- (void)submitCertificationList
+{
+    hudShopWUploadProgress(0.8, @"正在提交信息");
+    
+    NSDictionary *dic = @{@"id":[UserInfo account].userID,
+                          @"name":self.nameTextField.text,
+                          @"idcard":self.idCardTextField.text,
+                          @"region":self.cityCode,
+                          @"idcardimgf":self.headerImageURL,
+                          @"idcardimgb":self.emblemImageURL,
+                          @"interfaceId":@"294"};
+    
+    TBWeakSelf
+    [[ZKPostHttp shareInstance] POST:POST_URL params:dic success:^(id  _Nonnull responseObject) {
+       
+        if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
+            
+            hudDismiss();
+            
+            NSString *msg = @"申请提交成功\n我们会在2个工作日内给您回复";
+            [WCUploadPromptView showPromptString:msg isSuccessful:YES clickButton:^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }];
+    
+        }
+        else
+        {
+            [WCUploadPromptView showPromptString:[responseObject valueForKey:@"errmsg"] isSuccessful:NO clickButton:^{
+            }];
+        }
+        hudDismiss();
         
     } failure:^(NSError * _Nonnull error) {
+        hudShowError(@"认证失败，请查看网络连接");
+    }];
+}
+/**
+ 上传图片
+
+ @param image 图片
+ @param urlRes 结果
+ */
+- (void)uploadImage:(UIImage *)image success:(void(^)(NSString *url))urlRes
+{
+
+    [ZKPostHttp uploadImage:POST_IMAGE_URL Data:UIImageJPEGRepresentation(_headerImage, 0.7) success:^(id  _Nonnull responseObj) {
+       NSDictionary *data = [responseObj valueForKey:@"data"];
+        if (urlRes) {
+            urlRes([data valueForKey:@"url"]);
+        }
+    } failure:^(NSError * _Nonnull error) {
         
+        if (urlRes) {
+            urlRes(@"");
+        }
     }];
 }
 #pragma mark  ----TBChoosePhotosToolDelegate----

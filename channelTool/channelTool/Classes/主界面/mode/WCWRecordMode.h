@@ -10,4 +10,9 @@
 
 @interface WCWRecordMode : NSObject
 
+@property (nonatomic, copy) NSString *ID;
+@property (nonatomic, copy) NSString *price;
+@property (nonatomic, copy) NSString *rtime;
+@property (nonatomic, copy) NSString *state;
+
 @end

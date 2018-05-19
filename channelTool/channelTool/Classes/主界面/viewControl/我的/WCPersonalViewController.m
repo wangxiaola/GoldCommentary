@@ -12,7 +12,7 @@
 #import "WCPersonalHeaderView.h"
 #import "TBMoreReminderView.h"
 #import "ClearCacheTool.h"
-
+#import "TBChoosePhotosTool.h"
 @interface WCPersonalViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -21,6 +21,7 @@
 
 @property (nonatomic, strong) WCPersonalHeaderView *headerView;
 
+@property (nonatomic, strong) TBChoosePhotosTool *imageTool;
 @end
 
 @implementation WCPersonalViewController
@@ -41,6 +42,13 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+     UserInfo *info = [UserInfo account];
+    if (info) {
+        
+        [ZKUtil downloadImage:self.headerView.headerImageView imageUrl:info.headimg duImageName:@"header_default"];
+        self.headerView.nameLabel.text = info.name;
+    }
 }
 
 - (void)viewDidLoad {
@@ -48,6 +56,7 @@
     // Do any additional setup after loading the view.
     [self addData];
     [self createViews];
+    [self verifyCertification];
 }
 #pragma mark  ----添加数据----
 - (void)addData
@@ -59,7 +68,39 @@
                       @{@"name":@"清理缓存",@"image":@"user_ cache"},],
                     @[@{@"name":@"设置密码",@"image":@"user_password"},
                       @{@"name":@"退出账号",@"image":@"user_ account"},],nil];
+    
+    self.imageTool = [[TBChoosePhotosTool alloc] init];
 }
+
+/**
+ 验证实名认证
+ */
+- (void)verifyCertification
+{
+    UserInfo *info = [UserInfo account];
+    
+    if (info.userID.length == 0 && info.certification) {
+        
+        return;
+    }
+
+    NSDictionary *dic = @{@"interfaceId":@"295",
+                          @"id":info.userID};
+    MJWeakSelf
+    [[ZKPostHttp shareInstance] POST:POST_URL params:dic success:^(id  _Nonnull responseObject) {
+        
+        if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
+            
+            UserCertification *cer = [UserCertification mj_objectWithKeyValues:[responseObject valueForKey:@"data"]];
+            info.certification = cer;
+            [UserInfo saveAccount:info];
+            [weakSelf.tableView reloadData];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
 #pragma mark  ----视图创建----
 - (void)createViews
 {
@@ -77,6 +118,11 @@
         [weakSelf.navigationController pushViewController:[[NSClassFromString(@"WCInfoModifyViewController") alloc] init] animated:YES];
     }];
     
+    [self.headerView setUpdataHeaderPortrait:^{
+        
+        [weakSelf showHeaderPortrait];
+    }];
+    
     [self.view addSubview:self.tableView];
     self.tableView.frame = CGRectMake(0, CGRectGetHeight(self.headerView.frame), _SCREEN_WIDTH, _SCREEN_HEIGHT-CGRectGetHeight(self.headerView.frame));
     if (@available(iOS 11.0, *)) {
@@ -86,6 +132,13 @@
     }
     [self.tableView reloadData];
     
+}
+- (void)showHeaderPortrait
+{
+    if ([UserInfo account].headimg) {
+        
+        [self.imageTool showPreviewPhotosArray:@[self.headerView.headerImageView.image] baseView:self.headerView.headerImageView selected:0];
+    }
 }
 #pragma mark - Table view data source
 
@@ -136,6 +189,11 @@
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fM",size];
     }
     
+    if ([indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:0]] ) {
+        
+        NSString *cer = [UserInfo account].certification.ID;
+        cell.detailTextLabel.text = cer?@"已认证":@"未认证";
+    }
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -151,9 +209,17 @@
     
     if ([key isEqualToString:@"实名认证"])
     {
-        UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
-        WCBasisInfoViewController *basisInfoVC = [board instantiateViewControllerWithIdentifier:@"WCBasisInfoViewControllerID"];
-        [self.navigationController pushViewController:basisInfoVC animated:YES];
+        if ([UserInfo account].userID) {
+        
+            UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
+            WCBasisInfoViewController *basisInfoVC = [board instantiateViewControllerWithIdentifier:@"WCBasisInfoViewControllerID"];
+            [self.navigationController pushViewController:basisInfoVC animated:YES];
+        }
+        else
+        {
+            [UIView addMJNotifierWithText:@"请先登录" dismissAutomatically:YES];
+        }
+
         
     }
     else if ([key isEqualToString:@"新手攻略"])
@@ -232,7 +298,10 @@
         [APPDELEGATE window].rootViewController = viewController;
     });
 }
-
+- (void)dealloc
+{
+    self.imageTool = nil;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

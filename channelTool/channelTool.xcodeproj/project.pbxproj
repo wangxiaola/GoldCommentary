@@ -90,7 +90,6 @@
 		3B216B66209AB0AD0040EE93 /* WCPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B64209AB0AD0040EE93 /* WCPublic.m */; };
 		3B216B69209AB2220040EE93 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B67209AB2210040EE93 /* UserInfo.m */; };
 		3B216B6F209ADC050040EE93 /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B216B6E209ADC050040EE93 /* login.storyboard */; };
-		3B216B7D209AF5A90040EE93 /* LoginNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B7C209AF5A90040EE93 /* LoginNavigationController.m */; };
 		3B216B80209AF9F40040EE93 /* WCLoginMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B7F209AF9F40040EE93 /* WCLoginMainViewController.m */; };
 		3B216B83209AFA2C0040EE93 /* WCRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B82209AFA2C0040EE93 /* WCRegistrationViewController.m */; };
 		3B216B86209AFA530040EE93 /* WCRetrieveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B85209AFA530040EE93 /* WCRetrieveViewController.m */; };
@@ -111,6 +110,10 @@
 		3B6CBD26209FF8DC00784BBF /* WCPersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CBD25209FF8DC00784BBF /* WCPersonalViewController.m */; };
 		3B6CBD29209FF8FB00784BBF /* WCPersonalHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CBD28209FF8FB00784BBF /* WCPersonalHeaderView.m */; };
 		3B6CBD2B209FF90A00784BBF /* WCPersonalHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B6CBD2A209FF90A00784BBF /* WCPersonalHeaderView.xib */; };
+		3B70CFD020B007BC00E4D72D /* WCMyIncomeMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B70CFCF20B007BC00E4D72D /* WCMyIncomeMode.m */; };
+		3B70DC5E20AEA40B001EDF2B /* LoginNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B70DC5C20AEA40A001EDF2B /* LoginNavigationController.m */; };
+		3B70DC6120AEB8DC001EDF2B /* TBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B70DC6020AEB8DC001EDF2B /* TBWebViewController.m */; };
+		3B70DC6420AEB920001EDF2B /* TBHtmlShareTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B70DC6220AEB920001EDF2B /* TBHtmlShareTool.m */; };
 		3B7239E2209D7C7B006FAB15 /* WCMyScenicMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7239E1209D7C7B006FAB15 /* WCMyScenicMode.m */; };
 		3B7239E7209D7CAC006FAB15 /* WCMyScenicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7239E5209D7CAC006FAB15 /* WCMyScenicTableViewCell.m */; };
 		3B7239E8209D7CAC006FAB15 /* WCMyScenicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B7239E6209D7CAC006FAB15 /* WCMyScenicTableViewCell.xib */; };
@@ -326,8 +329,6 @@
 		3B216B67209AB2210040EE93 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		3B216B68209AB2220040EE93 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		3B216B6E209ADC050040EE93 /* login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
-		3B216B7B209AF5A90040EE93 /* LoginNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginNavigationController.h; sourceTree = "<group>"; };
-		3B216B7C209AF5A90040EE93 /* LoginNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginNavigationController.m; sourceTree = "<group>"; };
 		3B216B7E209AF9F40040EE93 /* WCLoginMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCLoginMainViewController.h; sourceTree = "<group>"; };
 		3B216B7F209AF9F40040EE93 /* WCLoginMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCLoginMainViewController.m; sourceTree = "<group>"; };
 		3B216B81209AFA2C0040EE93 /* WCRegistrationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCRegistrationViewController.h; sourceTree = "<group>"; };
@@ -364,6 +365,14 @@
 		3B6CBD27209FF8FB00784BBF /* WCPersonalHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPersonalHeaderView.h; sourceTree = "<group>"; };
 		3B6CBD28209FF8FB00784BBF /* WCPersonalHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCPersonalHeaderView.m; sourceTree = "<group>"; };
 		3B6CBD2A209FF90A00784BBF /* WCPersonalHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCPersonalHeaderView.xib; sourceTree = "<group>"; };
+		3B70CFCE20B007BC00E4D72D /* WCMyIncomeMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMyIncomeMode.h; sourceTree = "<group>"; };
+		3B70CFCF20B007BC00E4D72D /* WCMyIncomeMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMyIncomeMode.m; sourceTree = "<group>"; };
+		3B70DC5C20AEA40A001EDF2B /* LoginNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginNavigationController.m; sourceTree = "<group>"; };
+		3B70DC5D20AEA40A001EDF2B /* LoginNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginNavigationController.h; sourceTree = "<group>"; };
+		3B70DC5F20AEB8DC001EDF2B /* TBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBWebViewController.h; sourceTree = "<group>"; };
+		3B70DC6020AEB8DC001EDF2B /* TBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBWebViewController.m; sourceTree = "<group>"; };
+		3B70DC6220AEB920001EDF2B /* TBHtmlShareTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBHtmlShareTool.m; sourceTree = "<group>"; };
+		3B70DC6320AEB920001EDF2B /* TBHtmlShareTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBHtmlShareTool.h; sourceTree = "<group>"; };
 		3B7239E0209D7C7B006FAB15 /* WCMyScenicMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMyScenicMode.h; sourceTree = "<group>"; };
 		3B7239E1209D7C7B006FAB15 /* WCMyScenicMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMyScenicMode.m; sourceTree = "<group>"; };
 		3B7239E4209D7CAC006FAB15 /* WCMyScenicTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMyScenicTableViewCell.h; sourceTree = "<group>"; };
@@ -447,7 +456,7 @@
 		3BA73E0D209C511B00B88891 /* sun_burst_weather_icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun_burst_weather_icon.json; sourceTree = "<group>"; };
 		3BA73E0F209C54E500B88891 /* TBBaseClassTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBBaseClassTableViewController.m; sourceTree = "<group>"; };
 		3BA73E10209C54E500B88891 /* TBBaseClassTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBBaseClassTableViewController.h; sourceTree = "<group>"; };
-		3BA73E12209C554400B88891 /* TBBaseClassViewMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBBaseClassViewMode.m; sourceTree = "<group>"; };
+		3BA73E12209C554400B88891 /* TBBaseClassViewMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBBaseClassViewMode.m; sourceTree = "<group>"; wrapsLines = 0; };
 		3BA73E13209C554500B88891 /* TBBaseClassViewMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBBaseClassViewMode.h; sourceTree = "<group>"; };
 		3BA73E15209C56AC00B88891 /* WCMyScenicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMyScenicViewController.h; sourceTree = "<group>"; };
 		3BA73E16209C56AC00B88891 /* WCMyScenicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMyScenicViewController.m; sourceTree = "<group>"; };
@@ -834,6 +843,8 @@
 				3B216B85209AFA530040EE93 /* WCRetrieveViewController.m */,
 				3B216B87209AFA940040EE93 /* WCResetPasswordViewController.h */,
 				3B216B88209AFA940040EE93 /* WCResetPasswordViewController.m */,
+				3B70DC5F20AEB8DC001EDF2B /* TBWebViewController.h */,
+				3B70DC6020AEB8DC001EDF2B /* TBWebViewController.m */,
 			);
 			path = viewControl;
 			sourceTree = "<group>";
@@ -841,10 +852,10 @@
 		3B216B73209ADC820040EE93 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				3B70DC5D20AEA40A001EDF2B /* LoginNavigationController.h */,
+				3B70DC5C20AEA40A001EDF2B /* LoginNavigationController.m */,
 				3BA73DF7209C06D800B88891 /* TBCountdownSingle.h */,
 				3BA73DF8209C06D900B88891 /* TBCountdownSingle.m */,
-				3B216B7B209AF5A90040EE93 /* LoginNavigationController.h */,
-				3B216B7C209AF5A90040EE93 /* LoginNavigationController.m */,
 			);
 			path = tool;
 			sourceTree = "<group>";
@@ -864,6 +875,8 @@
 				3B6BB84D20A2ECF60013AE6B /* WCUploadPromptView.m */,
 				3B941EC620AC38F40021B320 /* WCGeoCodeSearch.h */,
 				3B941EC720AC38F40021B320 /* WCGeoCodeSearch.m */,
+				3B70DC6320AEB920001EDF2B /* TBHtmlShareTool.h */,
+				3B70DC6220AEB920001EDF2B /* TBHtmlShareTool.m */,
 			);
 			path = tool;
 			sourceTree = "<group>";
@@ -905,6 +918,8 @@
 				3B1E25C420AD27B7006110C2 /* WCPositioningMode.m */,
 				3B1E25C920AD5585006110C2 /* WCAddScenicMode.h */,
 				3B1E25CA20AD5585006110C2 /* WCAddScenicMode.m */,
+				3B70CFCE20B007BC00E4D72D /* WCMyIncomeMode.h */,
+				3B70CFCF20B007BC00E4D72D /* WCMyIncomeMode.m */,
 			);
 			path = mode;
 			sourceTree = "<group>";
@@ -1263,6 +1278,7 @@
 				3B941EA120AC1B050021B320 /* XMRTimePiker.m in Sources */,
 				3B1A077E20A05B18005CC21C /* NSBundle+TZImagePicker.m in Sources */,
 				3B216B47209AAE880040EE93 /* UIStoryboard+Initialize.m in Sources */,
+				3B70DC5E20AEA40B001EDF2B /* LoginNavigationController.m in Sources */,
 				3B6BB83E20A2C8240013AE6B /* WCWRecordMode.m in Sources */,
 				3B1A06D520A03F3B005CC21C /* MJPhotoView.m in Sources */,
 				3B1A06D620A03F3B005CC21C /* SDWebImageManager+MJ.m in Sources */,
@@ -1276,13 +1292,13 @@
 				3B1A06CF20A03F3B005CC21C /* MJPhoto.m in Sources */,
 				3B216B43209AAE880040EE93 /* UIImage+CircleImage.m in Sources */,
 				3B216B83209AFA2C0040EE93 /* WCRegistrationViewController.m in Sources */,
+				3B70DC6420AEB920001EDF2B /* TBHtmlShareTool.m in Sources */,
 				3B1A078620A05B18005CC21C /* TZLocationManager.m in Sources */,
 				3BA73E14209C554500B88891 /* TBBaseClassViewMode.m in Sources */,
 				3B1E25D420AD5AC1006110C2 /* WCAddScenicHeaderView.m in Sources */,
 				3B1A078920A05B18005CC21C /* TZPhotoPreviewController.m in Sources */,
 				3B941E9D20AC1A310021B320 /* TZDatePickerView.m in Sources */,
 				3B6BB83820A2A62B0013AE6B /* WCWRecordTableViewCell.m in Sources */,
-				3B216B7D209AF5A90040EE93 /* LoginNavigationController.m in Sources */,
 				3B216B59209AAED30040EE93 /* ZKTextField.m in Sources */,
 				3B941E9620ABD6290021B320 /* WCPositioningViewController.m in Sources */,
 				3B6CBD26209FF8DC00784BBF /* WCPersonalViewController.m in Sources */,
@@ -1353,10 +1369,12 @@
 				3B1A078A20A05B18005CC21C /* TZProgressView.m in Sources */,
 				3B1A06B120A03688005CC21C /* WCInfoModifyViewController.m in Sources */,
 				3B1A078020A05B18005CC21C /* TZAssetModel.m in Sources */,
+				3B70DC6120AEB8DC001EDF2B /* TBWebViewController.m in Sources */,
 				3B7239E7209D7CAC006FAB15 /* WCMyScenicTableViewCell.m in Sources */,
 				3B216B57209AAED30040EE93 /* ZKNavigationController.m in Sources */,
 				3B1A078520A05B18005CC21C /* TZImagePickerController.m in Sources */,
 				3B6BB83220A299D40013AE6B /* WCBillViewController.m in Sources */,
+				3B70CFD020B007BC00E4D72D /* WCMyIncomeMode.m in Sources */,
 				3B216B02209AAE430040EE93 /* UIView+MJAlertView.m in Sources */,
 				3B1E25C820AD5227006110C2 /* WCAddScenicViewController.m in Sources */,
 				3B6BB83B20A2C8140013AE6B /* WCERecordMode.m in Sources */,

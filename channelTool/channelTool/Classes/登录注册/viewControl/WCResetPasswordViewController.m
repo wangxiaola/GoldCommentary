@@ -34,6 +34,7 @@
     // Do any additional setup after loading the view.
     self.verificationButton.layer.cornerRadius = 6;
     self.passwordField.delegate = self;
+    self.navigationItem.title = @"重置密码";
     
     // 判断是否已经获取了验证码
     int num = [TBCountdownSingle sharedInstance].setPasswordTimeNumber;
@@ -112,23 +113,51 @@
 {
     [self.view endEditing:YES];
     
-    hudShowLoading(@"正在请求");
-    [[ZKPostHttp shareInstance] POST:@"" params:@{} success:^(id  _Nonnull responseObject) {
+    hudShowLoading(@"正在获取验证码");
+    [[ZKPostHttp shareInstance] POST:POST_URL params:@{@"phone":self.phone,@"interfaceId":@"290"} success:^(id  _Nonnull responseObject) {
         
+        NSString *errcode = [responseObject valueForKey:@"errcode"];
+        if ([errcode isEqualToString:@"00000"]) {
+            
+            self.verificationString = [responseObject valueForKey:@"data"];
+            [UIView addMJNotifierWithText:@"验证码获取成功" dismissAutomatically:YES];
+            [ZKUtil cacheUserValue:self.verificationString key:Verification_code];
+        }
+        else
+        {
+            [UIView addMJNotifierWithText:[responseObject valueForKey:@"errmsg"] dismissAutomatically:YES];
+            
+        }
         hudDismiss();
+        [self startTheDate:60];
+        
     } failure:^(NSError * _Nonnull error) {
         hudShowError(@"网络异常！");
     }];
-    [self startTheDate:60];
-    //   [ZKUtil cacheUserValue:self.verificationString key:Verification_code];
+
 }
 //重置密码
 - (void)resetPassword
 {
     hudShowLoading(@"正在重置");
-    [[ZKPostHttp shareInstance] POST:@"" params:@{} success:^(id  _Nonnull responseObject) {
+    
+    NSDictionary *dic = @{@"interfaceId":@"292",@"phone":self.phone,@"code":self.verificationString,@"pwd":self.passwordField.text.md5String};
+    TBWeakSelf
+    [[ZKPostHttp shareInstance] POST:POST_URL params:dic success:^(id  _Nonnull responseObject) {
         
-        hudDismiss();
+        NSString *errcode = [responseObject valueForKey:@"errcode"];
+        if ([errcode isEqualToString:@"00000"]) {
+            
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            weakSelf.verificationString = [responseObject valueForKey:@"data"];
+            hudShowSuccess(@"密码重置成功");
+        }
+        else
+        {
+            [UIView addMJNotifierWithText:[responseObject valueForKey:@"errmsg"] dismissAutomatically:YES];
+            hudDismiss();
+        }
+        
     } failure:^(NSError * _Nonnull error) {
         hudShowError(@"网络异常！");
     }];

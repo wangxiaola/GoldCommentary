@@ -21,10 +21,12 @@ BMKMapManager* _mapManager;
     // Override point for customization after application launch.
     // 设置键盘
     [self initSDK];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     // 提取用户信息
     UserInfo *info = [UserInfo account];
     // 判断用户是否登录过
-    NSString *boardName = info.phone.length != 0 ?@"login":@"main";
+    NSString *boardName = info.phone.length == 0 ?@"login":@"main";
     // 选择加载storboard
     UIStoryboard *board = [UIStoryboard storyboardWithName:boardName bundle:nil];
     

@@ -153,6 +153,7 @@
 - (void)postError:(NSString *)error;
 {
     hudDismiss();
+    [UIView addMJNotifierWithText:error dismissAutomatically:YES];
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
 }

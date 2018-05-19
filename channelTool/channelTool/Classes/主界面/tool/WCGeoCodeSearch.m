@@ -81,7 +81,7 @@
         
 //        address = [NSString stringWithFormat:@"%@%@%@",result.addressDetail.city,result.addressDetail.district,[result.sematicDescription componentsSeparatedByString:@","].lastObject];
         address = result.address;
-        cityID  = result.cityCode;
+        cityID  = result.addressDetail.adCode;
     }
     else {
         [UIView  addMJNotifierWithText:@"抱歉，未找到结果" dismissAutomatically:YES];

@@ -118,7 +118,13 @@
     
     self.manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"application/json",@"text/json",@"text/javascript",@"text/html", nil];
     
-    [self.manager POST:urlString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:params];
+    dic[@"TimeStamp"] = [ZKUtil timeStamp];
+    dic[@"AppId"] = @"2zPhtu3ittzt";
+    dic[@"AppKey"] = @"e22eb607c64b4df5a676ffc1274300a3";
+    
+    MMLog(@"\n请求地址: %@\n请求参数 = \n%@\n",urlString,dic);
+    [self.manager POST:urlString parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success) {
             success(responseObject);
         }
@@ -160,39 +166,158 @@
 }
 
 
-// 上传
-- (void)uploadWithURL:(NSString *)urlString
-               params:(NSDictionary *)params
-             fileData:(NSData *)filedata
-                 name:(NSString *)name
-             fileName:(NSString *)filename
-             mimeType:(NSString *) mimeType
-             progress:(void (^)(NSProgress *uploadProgress))uploadProgressBlock
-              success:(void (^)(id responseObject))success
-              failure:(void (^)(NSError *error))failure {
++ (void)uploadImage:(NSString *)url Data:(id)imag success:(void(^)(id responseObj))success failure:(void(^)(NSError *error))failure;
+{
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    //设置接受的类型
+    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    //设置请求超时
+    sessionManager.requestSerializer.timeoutInterval = 10;
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [sessionManager.requestSerializer setValue:@"image/jpg" forHTTPHeaderField:@"Content-Type"];
     
-    [manager POST:urlString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    NSDictionary *params = @{@"TimeStamp":[ZKUtil timeStamp],
+                             @"AppId":@"2zPhtu3ittzt",
+                             @"AppKey":@"e22eb607c64b4df5a676ffc1274300a3",
+                             @"interfaceId":@"293"};
+    
+    MMLog(@"\n请求地址: %@\n请求参数 = \n%@\n",url,params);
+    
+    [sessionManager POST:[NSString stringWithFormat:@"%@",POST_URL] parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
-        [formData appendPartWithFileData:filedata name:name fileName:filename mimeType:mimeType];
+        //添加要上传的文件，此处为图片
+        [formData appendPartWithFileData:imag name:@"Filedata" fileName:@".png" mimeType:@"image/jpeg）"];
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-        if (uploadProgressBlock) {
-            uploadProgressBlock(uploadProgress);
-        }
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (success) {
-            success(responseObject);
-        }
         
+        id response = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        
+        if (success) {
+            
+            success(response);
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {
             failure(error);
         }
     }];
+    
+    
 }
+
++ (void)uploadImageArrayWithImages:(NSArray<NSData *> *)images success:(void (^)(NSDictionary *obj))success failure:(void (^)(NSError *error))failure;
+{
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    //设置接受的类型
+    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    //设置请求超时
+    sessionManager.requestSerializer.timeoutInterval = 10;
+    
+    [sessionManager.requestSerializer setValue:@"image/jpg" forHTTPHeaderField:@"Content-Type"];
+    
+    NSString *httpStr = POST_IMAGE_URL;
+    
+    NSDictionary *params = @{@"TimeStamp":[ZKUtil timeStamp],
+                             @"AppId":@"2zPhtu3ittzt",
+                             @"AppKey":@"e22eb607c64b4df5a676ffc1274300a3",
+                             @"interfaceId":@"293"};
+    MMLog(@"\n请求地址: %@\n请求参数 = \n%@\n",httpStr,params);
+    
+    [sessionManager POST:httpStr parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData)
+     {
+         [images enumerateObjectsUsingBlock:^(NSData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+             //upfiles 是参数名 根据项目修改
+             [formData appendPartWithFileData:obj name:@"Filedata" fileName:[NSString stringWithFormat:@"%.0f.jpg", [[NSDate date] timeIntervalSince1970]] mimeType:@"image/jpg"];
+         }];
+     } progress:^(NSProgress * _Nonnull uploadProgress) {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+         if (success) {
+             success(responseObject);
+         }
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         if (failure) {
+             failure(error);
+         }
+     }];
+}
+
+
++ (void)scPpostImage:(NSString *)url dataArray:(NSData *)mediaDatas type:(NSInteger)type success:(void(^)(id responseObj, NSInteger dataType))success failure:(void(^)(NSError *error, NSInteger dataType))failure;
+{
+    
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    //设置接受的类型
+    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    //设置请求超时
+    sessionManager.requestSerializer.timeoutInterval = 10;
+    
+    [sessionManager.requestSerializer setValue:@"image/jpg" forHTTPHeaderField:@"Content-Type"];
+    
+    if (type == 2)
+    {
+        sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    }
+    
+    NSDictionary *params = @{@"TimeStamp":[ZKUtil timeStamp],
+                             @"AppId":@"2zPhtu3ittzt",
+                             @"AppKey":@"e22eb607c64b4df5a676ffc1274300a3",
+                             @"interfaceId":@"293"};
+    
+    MMLog(@"\n请求地址: %@\n请求参数 = \n%@\n",url,params);
+    
+    [sessionManager POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        if (type == 0)
+        {
+            //                添加要上传的文件，此处为图片
+            [formData appendPartWithFileData:mediaDatas name:@"Filedata" fileName:@".png" mimeType:@"image/jpeg"];
+            
+        }
+        else if(type == 1)
+        {        // 视频
+            [formData appendPartWithFileData:mediaDatas name:@"Filedata" fileName:@"video.mp4" mimeType:@"video/quicktime"];
+            
+        }
+        else if (type == 2)
+        {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init]; formatter.dateFormat = @"yyyyMMddHHmmss";
+            NSString *str = [formatter stringFromDate:[NSDate date]]; //fileName这里取当前时间戳  voice
+            NSString *fileName = [NSString stringWithFormat:@"%@.mp3", str];
+            [formData appendPartWithFileData:mediaDatas name:@"Filedata" fileName:fileName mimeType:@"wav/mp3/wmr"];
+            
+        }
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        id response = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        
+        if (success) {
+            
+            success(response,type);
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         //取消所有的网络请求
+         [sessionManager.operationQueue cancelAllOperations];
+         
+         if (failure) {
+             failure(error,type);
+             
+         }
+     }];
+    
+}
+
 
 // 启动任务
 - (void)resumeTask {

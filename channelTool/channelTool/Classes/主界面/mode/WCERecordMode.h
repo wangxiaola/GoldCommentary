@@ -10,4 +10,10 @@
 
 @interface WCERecordMode : NSObject
 
+@property (nonatomic, copy) NSString *headimg;
+@property (nonatomic, copy) NSString *ID;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *paymoney;
+@property (nonatomic, copy) NSString *paytime;
+@property (nonatomic, copy) NSString *username;
 @end

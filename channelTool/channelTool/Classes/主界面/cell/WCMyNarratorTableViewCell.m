@@ -21,17 +21,21 @@ NSString *const WCMyNarratorTableViewCellID = @"WCMyNarratorTableViewCellID";
     __weak IBOutlet UIButton *moreButton;
     __weak IBOutlet NSLayoutConstraint *bottomHeight;
     WCMyNarratorMode *_mode;
-    
+    NSMutableArray *titeArray;
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    titeArray = [NSMutableArray arrayWithCapacity:1];
 }
 // 更新cell数据
 - (void)updataCellData:(WCMyNarratorMode *)mode;
 {
     _mode = mode;
-    
+    [titeArray removeAllObjects];
+    [ZKUtil downloadImage:headerImageView imageUrl:mode.headimg duImageName:@"header_default"];
+    nameLabel.text = mode.name;
+    stateLabel.text = [NSString stringWithFormat:@"%@人购买  讲解音频：%@个",mode.buynum,mode.voicenum];
     // 先删除所有的子视图
     [bottomView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
@@ -41,9 +45,24 @@ NSString *const WCMyNarratorTableViewCellID = @"WCMyNarratorTableViewCellID";
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        // 耗时的操作
-        NSArray *titeArray = @[@"额吉娃娃",@"我的胃口",@"地偶家",@"入口为",@"日记上",@"搜",@"成为哦哦就",@"侧欧",@"创建诶哦就",@"额鹅鹅鹅",@"都未接",@"地产好",@"11",@"i111c1",@"安吉斯是"];
+        if (mode.forLabels.count == 0) {
+       
+            for (NSDictionary *dic in mode.label) {
+                
+                [titeArray addObject:dic[@"name"]];
+            }
+            mode.forLabels = titeArray.copy;
         
+        }
+        
+        if (mode.forLabels.count == 0) {
+            
+            bottomHeight.constant = 0.01;
+        }
+        else
+        {
+            
+        }
         CGFloat buttonX = 0;
         CGFloat buttonY = 0;
         CGFloat buttonLin = 4;
@@ -52,7 +71,7 @@ NSString *const WCMyNarratorTableViewCellID = @"WCMyNarratorTableViewCellID";
         UIFont *font = [UIFont systemFontOfSize:12];
         for (int i = 0; i<titeArray.count; i++) {
             
-            NSString *str = titeArray[i];
+            NSString *str = mode.forLabels[i];
             
             CGFloat strWidth = [ZKUtil contentLabelSize:CGSizeMake(MAXFLOAT, 20) labelFont:font labelText:str].width + 10;
             

@@ -38,15 +38,15 @@
                         <action selector="editorClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="TUf-X5-LlT"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_default" translatesAutoresizingMaskIntoConstraints="NO" id="YV0-gH-OQB">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_default" translatesAutoresizingMaskIntoConstraints="NO" id="YV0-gH-OQB">
                     <rect key="frame" x="115" y="45" width="90" height="90"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="90" id="2d5-eQ-Y4y"/>
                         <constraint firstAttribute="height" constant="90" id="Ri4-u1-kE1"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还未实名认证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTE-0J-se8">
-                    <rect key="frame" x="111" y="141" width="98" height="33"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTE-0J-se8">
+                    <rect key="frame" x="143.5" y="141" width="33" height="33"/>
                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>

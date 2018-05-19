@@ -9,12 +9,13 @@
 #import "WCInfoModifyViewController.h"
 #import "WCPersonalHeaderView.h"
 #import "TBChoosePhotosTool.h"
-
+#import "WCUploadPromptView.h"
 @interface WCInfoModifyViewController ()<UITextFieldDelegate,TBChoosePhotosToolDelegate>
 
 @property (nonatomic, strong) WCPersonalHeaderView *headerView;
 @property (nonatomic, strong) TBChoosePhotosTool *photosTool;
 @property (nonatomic, strong) UIImage *headerImage;
+@property (nonatomic, strong) UITextField *nickNameField;
 @end
 
 @implementation WCInfoModifyViewController
@@ -32,6 +33,9 @@
     self.headerView = [WCPersonalHeaderView loadNibViewStyle:PersonalHeaderViewStyleEditor];
     [self.view addSubview:self.headerView];
     
+    self.photosTool = [[TBChoosePhotosTool alloc] init];
+    self.photosTool.delegate = self;
+    
     UIView *contenView = [[UIView alloc] init];
     contenView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:contenView];
@@ -42,20 +46,27 @@
     nickNameLabel.font = [UIFont systemFontOfSize:14];
     [contenView addSubview:nickNameLabel];
     
-    UITextField *nickNameField = [[UITextField alloc] init];
-    nickNameField.placeholder = @"请输入新的昵称";
-    nickNameField.textAlignment = NSTextAlignmentLeft;
-    nickNameField.borderStyle = UITextBorderStyleNone;
-    nickNameField.textColor = [UIColor blackColor];
-    nickNameField.font = [UIFont systemFontOfSize:14];
-    nickNameField.returnKeyType = UIReturnKeyDone;
-    nickNameField.keyboardType = UIKeyboardTypeDefault;
-    nickNameField.delegate = self;
-    [contenView addSubview:nickNameField];
+    self.nickNameField = [[UITextField alloc] init];
+    self.nickNameField.placeholder = @"请输入新的昵称";
+    self.nickNameField.textAlignment = NSTextAlignmentLeft;
+    self.nickNameField.borderStyle = UITextBorderStyleNone;
+    self.nickNameField.textColor = [UIColor blackColor];
+    self.nickNameField.font = [UIFont systemFontOfSize:14];
+    self.nickNameField.returnKeyType = UIReturnKeyDone;
+    self.nickNameField.keyboardType = UIKeyboardTypeDefault;
+    self.nickNameField.delegate = self;
+    [contenView addSubview:self.nickNameField];
     
     UIView *linView = [[UIView alloc] init];
     linView.backgroundColor = BODER_COLOR;
     [contenView addSubview:linView];
+    
+    // 赋值
+    UserInfo *info = [UserInfo account];
+    if (info) {
+        
+        [ZKUtil downloadImage:self.headerView.headerImageView imageUrl:info.headimg duImageName:@"header_default"];
+    }
     
     TBWeakSelf
     [self.headerView setGoBack:^{
@@ -84,7 +95,7 @@
         make.top.equalTo(contenView.mas_top).offset(20);
     }];
     
-    [nickNameField mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.nickNameField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(nickNameLabel.mas_right);
         make.centerY.equalTo(nickNameLabel.mas_centerY);
         make.height.equalTo(nickNameLabel.mas_height);
@@ -92,21 +103,78 @@
     }];
     
     [linView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(nickNameField);
-        make.top.equalTo(nickNameField.mas_bottom);
+        make.left.right.equalTo(weakSelf.nickNameField);
+        make.top.equalTo(weakSelf.nickNameField.mas_bottom);
         make.height.equalTo(@0.5);
     }];
 }
 #pragma mark  ----事件处理----
 - (void)complete
 {
+    if (_headerImage == nil && self.nickNameField.text.length == 0) {
+        
+        [UIView addMJNotifierWithText:@"没有可修改的信息" dismissAutomatically:YES];
+        return;
+    }
+    
+     hudShowLoading(@"正在提交信息");
+    if (_headerImage) {
+       
+        TBWeakSelf
+        [ZKPostHttp uploadImage:POST_IMAGE_URL Data:UIImageJPEGRepresentation(_headerImage, 0.7) success:^(id  _Nonnull responseObj) {
+           
+            NSString *errcode = [responseObj valueForKey:@"errcode"];
+            if ([errcode isEqualToString:@"00000"]) {
+                
+                NSDictionary *data = [responseObj valueForKey:@"data"];
+                
+             [weakSelf uploadImageUrl:[data valueForKey:@"url"] nickName:self.nickNameField.text];
+            }
+            else{
+                [UIView addMJNotifierWithText:[responseObj valueForKey:@"errmsg"] dismissAutomatically:YES];
+                hudDismiss();
+            }
+        } failure:^(NSError * _Nonnull error) {
+            
+            hudShowError(@"网络异常，请稍后再试!");
+        }];
+    }
+    else
+    {
+        [self uploadImageUrl:nil nickName:self.nickNameField.text];
+    }
+   
+    
+}
+
+/**
+ 信息提交
+
+ @param url 图片url
+ @param nickName 昵称
+ */
+- (void)uploadImageUrl:(NSString *)url nickName:(NSString *)nickName
+{
+    UserInfo *info = [UserInfo account];
+    
+    if (url) {
+        info.headimg = url;
+    }
+    if (nickName) {
+        info.name = nickName;
+    }
+    [UserInfo saveAccount:info];
+    
+    
+    hudDismiss();
+    TBWeakSelf
+    [WCUploadPromptView showPromptString:@"信息修改成功" isSuccessful:YES clickButton:^{
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    }];
     
 }
 - (void)updataHeaderPortrait
 {
-    self.photosTool = nil;
-    self.photosTool = [[TBChoosePhotosTool alloc] init];
-    self.photosTool.delegate = self;
     [self.photosTool showHeadToChooseViewController:nil];
     
 }

@@ -26,7 +26,18 @@
 {
     [super initData];
     self.modeClass = [WCWRecordMode class];
-    //    self.parameter[@"rows"] = @"20";
+
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd";
+    NSString *newTime = [formatter stringFromDate:date];
+    NSString *endTime = [newTime stringByReplacingCharactersInRange:NSMakeRange(newTime.length-2, 2) withString:@"01"];
+    
+    self.parameter[@"rows"] = @"20";
+    self.parameter[@"interfaceId"] = @"300";
+    self.parameter[@"sdate"] = endTime;
+    self.parameter[@"edate"] = newTime;
+    self.parameter[@"id"] = [UserInfo account].userID;
     
 }
 #pragma mark ---初始化视图----
@@ -40,29 +51,27 @@
     self.timeView = [[WCRecordTimeSelectView alloc] initWithFrame:CGRectMake(0, 0, _SCREEN_WIDTH, 44)];
     self.tableView.tableHeaderView = self.timeView;
     TBWeakSelf
-    [self.timeView setTimeSelectEnd:^(NSString *time) {
+    [self.timeView setTimeSelectEnd:^(NSString *state, NSString *end) {
         
-        [weakSelf.timeView updateAmount:@"提现：￥222.33" time:time];
+        weakSelf.parameter[@"sdate"] = state;
+        weakSelf.parameter[@"edate"] = end;
+        [weakSelf.tableView.mj_header beginRefreshing];
+        
     }];
-    NSDate *date = [NSDate date];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy-MM";
-    NSString *newTime = [formatter stringFromDate:date];
-    [self.timeView updateAmount:@"收入：￥222.33" time:newTime];
+
+    [self.timeView updateAmount:@"提现：￥00.00" time:[NSString stringWithFormat:@"%@至%@",self.parameter[@"sdate"],self.parameter[@"edate"]]];
 }
 
 /**
- 更新时间参数 重新请求
+ 原生数据
  
- @param time 时间
+ @param dictionary 数据
  */
-- (void)updataTime:(NSString *)time
+- (void)originalData:(NSDictionary *)dictionary;
 {
-    if (time.length > 0) {
-        
-        self.parameter[@"time"] = time;
-        [self.tableView.mj_header beginRefreshing];
-    }
+    NSString *numbaer = [[dictionary valueForKey:@"data"] valueForKey:@"number"];
+    NSString *srString = [NSString stringWithFormat:@"提现：￥%@",numbaer? :@"0.00"];
+    [self.timeView updateAmount:srString time:[NSString stringWithFormat:@"%@至%@",self.parameter[@"sdate"],self.parameter[@"edate"]]];
 }
 #pragma mark  ----UITableViewDataSource && UITableViewDelegate----
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -71,15 +80,15 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 11;
+    return self.roots.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WCWRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:WCWRecordTableViewCellID];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (self.roots.count > indexPath.section) {
-        [cell updataCellMode:self.roots[indexPath.section]];
+    if (self.roots.count > indexPath.row) {
+        [cell updataCellMode:self.roots[indexPath.row]];
     }
     return cell;
     

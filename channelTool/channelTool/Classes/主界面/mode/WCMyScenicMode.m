@@ -9,5 +9,8 @@
 #import "WCMyScenicMode.h"
 
 @implementation WCMyScenicMode
-
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"ID": @"id"};
+}
 @end

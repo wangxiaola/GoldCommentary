@@ -19,14 +19,20 @@
     [super viewDidLoad];
 
 }
+
 + (void)initialize
 {
     UINavigationBar *bar = [UINavigationBar appearance];
-    
+    [bar setBarTintColor:[UIColor colorWithRed:247/255.0 green:160/255.0 blue:44/255.0 alpha:1]];
+    NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
+    attrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
+    attrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:18];
+    [bar setTitleTextAttributes:attrs];
+    [bar setTintColor:[UIColor colorWithRed:247/255.0 green:160/255.0 blue:44/255.0 alpha:1]];
     bar.barStyle = UIBarStyleBlack;
-    bar.translucent = YES;
-    bar.tintColor = [UIColor colorWithRed:247/255.0 green:160/255.0 blue:44/255.0 alpha:1];
+    
 }
+
 #pragma mark  --UIViewController--
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
@@ -36,7 +42,7 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setTitle:@"返回" forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont  boldSystemFontOfSize:16];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
         CGSize titleSize = [@"返回" sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:button.titleLabel.font.fontName size:button.titleLabel.font.pointSize]}];
         titleSize.height = 24;

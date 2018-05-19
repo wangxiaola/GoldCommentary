@@ -31,3 +31,15 @@ MJCodingImplementation
 }
 
 @end
+
+
+@implementation  UserCertification
+MJCodingImplementation
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"ID": @"id"};
+}
+
+@end
+

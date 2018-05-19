@@ -10,6 +10,7 @@
 NSString *const WCWRecordTableViewCellID = @"WCWRecordTableViewCellID";
 @implementation WCWRecordTableViewCell
 {
+    __weak IBOutlet UILabel *stateLabel;
     __weak IBOutlet UILabel *timeLabel;
     __weak IBOutlet UILabel *amountLabel;
     
@@ -21,6 +22,9 @@ NSString *const WCWRecordTableViewCellID = @"WCWRecordTableViewCellID";
 - (void)updataCellMode:(WCWRecordMode *)mode;
 {
     
+    stateLabel.text = mode.state.integerValue == 1?@"提现成功":@"提现中";
+    timeLabel.text = mode.rtime;
+    amountLabel.text = [NSString stringWithFormat:@"+%@元",mode.price];;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

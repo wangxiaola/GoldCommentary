@@ -26,9 +26,9 @@
     [super initData];
     self.modeClass = [WCMyNarratorMode class];
     
-    for (int i = 0; i<10; i++) {
-        [self.roots addObject:[WCMyNarratorMode new]];
-    }
+    self.parameter[@"rows"] = @"20";
+    self.parameter[@"interfaceId"] = @"297";
+    self.parameter[@"id"] = [UserInfo account].userID;
 }
 #pragma mark ---初始化视图----
 - (void)setUpView

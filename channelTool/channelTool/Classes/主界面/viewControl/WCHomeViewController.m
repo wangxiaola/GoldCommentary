@@ -10,8 +10,11 @@
 #import "WCPersonalViewController.h"
 #import "WCMyScenicViewController.h"
 #import "WCMyNarratorViewController.h"
+#import "WCBillViewController.h"
 #import "LSBasePageTabbar.h"
 #import "CitiesDataTool.h"
+#import "WCMyIncomeMode.h"
+
 @interface WCHomeViewController ()<UIScrollViewDelegate,LSBasePageTabbarDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *bannerImageView;//横幅
@@ -21,6 +24,10 @@
 @property (nonatomic, strong) LSTitlePageTabbar *titlePageTabBar;
 
 @property (nonatomic, strong) UIScrollView *bottomContenView;
+/**
+ 收益数据
+ */
+@property (nonatomic, strong) WCMyIncomeMode *incomeMode;
 @end
 
 @implementation WCHomeViewController
@@ -55,7 +62,6 @@
 #pragma mark  ----视图设置----
 - (void)setUIviews
 {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     
     CGFloat topHeight = CGRectGetHeight(self.bannerImageView.frame);
     // 添加选择块
@@ -120,6 +126,26 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [[CitiesDataTool sharedManager] requestGetData];
     });
+    TBWeakSelf
+    [[ZKPostHttp shareInstance] POST:POST_URL params:@{@"id":[UserInfo account].userID,@"interfaceId":@"298"} success:^(id  _Nonnull responseObject) {
+        
+        if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
+            
+            weakSelf.incomeMode = [WCMyIncomeMode mj_objectWithKeyValues:[responseObject valueForKey:@"data"]];
+            weakSelf.earningsLabel.text = weakSelf.incomeMode.last? :@"0.00";
+            NSString *txString = [NSString stringWithFormat:@"可提现：%@元",weakSelf.incomeMode.balance? :@"0.00"];
+            weakSelf.withdrawalAmountLabel.text = txString;
+            
+        }
+        else
+        {
+            [UIView addMJNotifierWithText:[responseObject valueForKey:@"errmsg"] dismissAutomatically:YES];
+        }
+        
+    } failure:^(NSError * _Nonnull error) {
+
+        [UIView addMJNotifierWithText:@"网络异常，请查看网络连接" dismissAutomatically:YES];
+    }];
 }
 #pragma mark  ----LSBasePageTabbarDelegate----
 - (void)basePageTabbar:(id<LSBasePageTabbarProtocol>)tabbar clickedPageTabbarAtIndex:(NSInteger)index;
@@ -148,11 +174,15 @@
     // 加载storboard
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
     
-    UIViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCBillViewControllerID"];
+    WCBillViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCBillViewControllerID"];
+    viewController.incomeMode = self.incomeMode;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 //  提现
 - (IBAction)withdrawalClick:(UIButton *)sender {
+    
+
+    
 }
 
 - (void)didReceiveMemoryWarning {

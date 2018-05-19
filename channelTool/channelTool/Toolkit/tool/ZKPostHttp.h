@@ -70,19 +70,35 @@ NS_ASSUME_NONNULL_BEGIN
                       complete:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler;
 
 
-/*
- * 上传
+/**
+ *  上传单张图片
  *
+ *  @param url     请求路径
+ *  @param imag    请求imageData
+ *  @param success 请求成功后的回调
+ *  @param failure 请求失败后的回调
  */
-- (void)uploadWithURL:(NSString *)urlString
-       params:(NSDictionary *)params
-       fileData:(NSData *)filedata
-       name:(NSString *)name
-       fileName:(NSString *)filename
-       mimeType:(NSString *) mimeType
-       progress:(void (^)(NSProgress *uploadProgress))uploadProgressBlock
-       success:(void (^)(id responseObject))success
-       failure:(void (^)(NSError *error))failure;
++ (void)uploadImage:(NSString *)url Data:(id)imag success:(void(^)(id responseObj))success failure:(void(^)(NSError *error))failure;
+
+/**
+ 上传多张图片
+ 
+ @param images 图片二进制数组
+ @param success 成功回调Block
+ @param failure 失败回调Block
+ */
++ (void)uploadImageArrayWithImages:(NSArray<NSData *> *)images success:(void (^)(NSDictionary *obj))success failure:(void (^)(NSError *error))failure;
+
+/**
+ *  多类型上传文件
+ *
+ *  @param url        请求路径
+ *  @param mediaDatas 数据 （图片：UIImage  视频和音频都穿NSdata）
+ *  @param type       0图片  1视频  2音频
+ *  @param success    请求成功后的回调
+ *  @param failure    请求失败后的回调
+ */
++ (void)scPpostImage:(NSString *)url dataArray:(NSData *)mediaDatas type:(NSInteger)type success:(void(^)(id responseObj, NSInteger dataType))success failure:(void(^)(NSError *error, NSInteger dataType))failure;
 
 /*****************************  get、post相关  ***************************/
 

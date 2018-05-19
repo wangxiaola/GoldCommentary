@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 void hudConfig(void);
 void hudShowLoading(NSString *msg);
@@ -15,4 +16,4 @@ void hudShowError(NSString *msg);
 void hudShowFailure(void);
 void hudDismiss(void);
 void hudShowInfo(NSString *msg);
-
+void hudShopWUploadProgress(CGFloat progress, NSString *msg);

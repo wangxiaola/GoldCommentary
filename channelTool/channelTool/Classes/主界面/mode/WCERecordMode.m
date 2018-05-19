@@ -9,5 +9,8 @@
 #import "WCERecordMode.h"
 
 @implementation WCERecordMode
-
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"ID": @"id"};
+}
 @end

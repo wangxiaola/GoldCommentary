@@ -10,8 +10,7 @@
 #import "WCERecordViewController.h"
 #import "WCWRecordViewController.h"
 #import "LSBasePageTabbar.h"
-
-
+#import "WCMyIncomeMode.h"
 
 @interface WCBillViewController ()<UIScrollViewDelegate,LSBasePageTabbarDelegate>
 
@@ -28,7 +27,6 @@
 @property (nonatomic, strong) UIScrollView *bottomContenView;
 
 
-
 @end
 
 @implementation WCBillViewController
@@ -41,7 +39,9 @@
 #pragma mark  ----设置视图属性----
 - (void)setUIViews
 {
-
+    self.earningsLabel.text = self.incomeMode.earnings? :@"0.00";
+    self.chuZhangLabel.text = [NSString stringWithFormat:@"%@元",self.incomeMode.record? :@"0.00"];
+    self.notCZLabel.text = [NSString stringWithFormat:@"%@元",self.incomeMode.balance? :@"0.00"];
 
     CGFloat topHeight = CGRectGetHeight(self.headerImageView.frame);
     // 添加选择块

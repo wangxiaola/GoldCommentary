@@ -7,6 +7,7 @@
 //
 
 #import "WCERecordTableViewCell.h"
+#import "ZKUtil.h"
 NSString *const WCERecordTableViewCellID = @"WCERecordTableViewCellID";
 @implementation WCERecordTableViewCell
 {
@@ -22,7 +23,11 @@ NSString *const WCERecordTableViewCellID = @"WCERecordTableViewCellID";
 }
 - (void)updataCellMode:(WCERecordMode *)mode;
 {
-    
+    [ZKUtil downloadImage:headerImageView imageUrl:mode.headimg duImageName:@"header_default"];
+    nameLabel.text = mode.username;
+    titleLabel.text = mode.name;
+    amountLabel.text = [NSString stringWithFormat:@"+%@元",mode.paymoney];
+    timeLabel.text = mode.paytime;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

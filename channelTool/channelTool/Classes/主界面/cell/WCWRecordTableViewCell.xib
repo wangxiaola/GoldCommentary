@@ -50,6 +50,7 @@
             <color key="backgroundColor" red="0.98812824489999995" green="0.98829704519999995" blue="0.98811751599999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="amountLabel" destination="5Um-XR-WE7" id="zHK-uy-nKk"/>
+                <outlet property="stateLabel" destination="TMA-F1-1K0" id="jjK-kP-CgW"/>
                 <outlet property="timeLabel" destination="fZs-Ha-BnB" id="77Z-rH-5fT"/>
             </connections>
             <point key="canvasLocation" x="10.5" y="-142"/>
