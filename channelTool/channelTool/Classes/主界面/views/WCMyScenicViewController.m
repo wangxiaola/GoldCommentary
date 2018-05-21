@@ -61,12 +61,29 @@
 #pragma mark  ----景区添加----
 - (void)addScenicClick
 {
-//    [WCAuthenticationPopupsView show];
-    
+    UserInfo *info = [UserInfo account];
+    if (info.certification.ID.length == 0) {
+       [WCAuthenticationPopupsView show];
+        return;
+    }
     // 加载storboard
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
     
     WCCreateScenicViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCCreateScenicViewControllerID"];
+    [self.navigationController pushViewController:viewController animated:YES];
+    TBWeakSelf
+    [viewController setRefreshTableView:^{
+        
+        [weakSelf.tableView.mj_header beginRefreshing];
+    }];
+}
+- (void)editorSecnicInfo:(WCMyScenicMode *)mode
+{
+    // 加载storboard
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
+    
+    WCCreateScenicViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCCreateScenicViewControllerID"];
+    viewController.ID = mode.ID;
     [self.navigationController pushViewController:viewController animated:YES];
     TBWeakSelf
     [viewController setRefreshTableView:^{
@@ -93,6 +110,11 @@
     if (self.roots.count > indexPath.section) {
         [cell updataCellData:self.roots[indexPath.section]];
     }
+    TBWeakSelf
+    [cell setEditorSecnicInfo:^(WCMyScenicMode *mode) {
+        
+        [weakSelf editorSecnicInfo:mode];
+    }];
     return cell;
     
 }
@@ -101,7 +123,14 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     WCAddScenicViewController *vc = [[WCAddScenicViewController alloc] init];
+    WCMyScenicMode *mode = self.roots[indexPath.section];
+    vc.scenicID = mode.ID;
     [self.navigationController pushViewController:vc animated:YES];
+    TBWeakSelf
+    [vc setRefreshTableView:^{
+        
+        [weakSelf.tableView.mj_header beginRefreshing];
+    }];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

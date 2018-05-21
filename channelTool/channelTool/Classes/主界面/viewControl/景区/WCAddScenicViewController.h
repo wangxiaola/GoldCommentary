@@ -9,10 +9,15 @@
 #import "TBBaseViewController.h"
 
 /**
- 添加景点
+ 添加旅游路线
  */
 @interface WCAddScenicViewController : TBBaseViewController
 
 @property (nonatomic, strong) NSString *scenicID;
+
+/**
+ 开始刷新列表
+ */
+@property (nonatomic, copy) void(^refreshTableView)(void);
 
 @end

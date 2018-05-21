@@ -14,6 +14,10 @@
 @interface WCCreateScenicViewController : TBBaseViewController
 
 /**
+ 景区ID
+ */
+@property (nonatomic, copy) NSString *ID;
+/**
  开始刷新列表
  */
 @property (nonatomic, copy) void(^refreshTableView)(void);

@@ -14,18 +14,18 @@
 
 - (void)zk_setImageWithURL:(NSString *)url
 {
-    if (![url containsString:IMAGE_URL]) {
-        url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
-    }
+//    if (![url containsString:IMAGE_URL]) {
+//        url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
+//    }
     [self sd_setImageWithURL:[NSURL URLWithString:url]];
 
 }
 
 - (void)zk_setImageWithURL:(NSString *)url placeholderImage:(UIImage *)placeholder
 {
-    if (![url containsString:IMAGE_URL]) {
-        url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
-    }
+//    if (![url containsString:IMAGE_URL]) {
+//        url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
+//    }
     [self sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:placeholder];
 }
 

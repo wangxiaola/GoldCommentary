@@ -16,4 +16,9 @@ extern NSString *const WCMyScenicTableViewCellID;
 // 更新cell数据
 - (void)updataCellData:(WCMyScenicMode *)mode;
 
+/**
+ 编辑景区信息
+ */
+@property (nonatomic, copy) void(^editorSecnicInfo)(WCMyScenicMode *mode);
+
 @end

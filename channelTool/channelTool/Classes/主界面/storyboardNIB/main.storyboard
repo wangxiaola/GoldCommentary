@@ -1252,6 +1252,7 @@
                         <outlet property="photoCollectionView" destination="BI1-hQ-tPa" id="5Gd-ni-T2T"/>
                         <outlet property="scenicNameField" destination="4Bh-rS-M2w" id="1OT-ls-rRA"/>
                         <outlet property="startButton" destination="kxo-Ue-XTW" id="QLp-Hh-44R"/>
+                        <outlet property="submButton" destination="oSa-2u-aTB" id="RKX-5t-DCv"/>
                         <outlet property="ticketsField" destination="4Oc-f7-Ggy" id="R91-2r-JYN"/>
                         <outlet property="visitingTimeField" destination="b8s-if-KLL" id="VXt-fI-4GT"/>
                     </connections>

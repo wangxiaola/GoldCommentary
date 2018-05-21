@@ -25,6 +25,9 @@
     promptView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     [[[UIApplication sharedApplication].delegate window] addSubview:promptView];
     
+    if (!msg) {
+        msg = @"数据异常";
+    }
     promptView.clickEnd = clickEnd;
     
     UIView *contentView = [[UIView alloc] init];

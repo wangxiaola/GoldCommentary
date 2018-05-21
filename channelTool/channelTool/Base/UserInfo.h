@@ -19,7 +19,7 @@
 /**
  认证信息
  */
-@property (nonatomic, strong) UserCertification *certification;
+@property (nonatomic, strong, nullable) UserCertification * certification;
 
 
 + (nonnull UserInfo *)account;

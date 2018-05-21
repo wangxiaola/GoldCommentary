@@ -181,9 +181,9 @@
         [activityView startAnimating];
         //1.获取网络资源路径(URL)
         NSString *url = image;
-        if (![url containsString:IMAGE_URL]) {
-            url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
-        }
+//        if (![url containsString:IMAGE_URL]) {
+//            url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
+//        }
         NSURL *pURL = [NSURL URLWithString:url];
         
         [[SDWebImageManager sharedManager] loadImageWithURL:pURL options:SDWebImageCacheMemoryOnly progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {

@@ -8,7 +8,7 @@
 
 #import "WCAddScenicCollectionViewCell.h"
 #import "WCAddScenicMode.h"
-
+#import "ZKUtil.h"
 NSString *const WCAddScenicCollectionViewCellID = @"WCAddScenicCollectionViewCellID";
 
 @implementation WCAddScenicCollectionViewCell
@@ -25,8 +25,9 @@ NSString *const WCAddScenicCollectionViewCellID = @"WCAddScenicCollectionViewCel
 {
  
     if (mode) {
-        
-      
+        NSString *url = [mode.allimg componentsSeparatedByString:@","].firstObject;
+        [ZKUtil downloadImage:headerImageView imageUrl:url duImageName:@"popup_ts"];
+        scenicNameLabel.text = mode.name;
     }
     else
     {

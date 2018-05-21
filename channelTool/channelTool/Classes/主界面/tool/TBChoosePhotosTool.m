@@ -65,9 +65,9 @@
         else
         {
             NSString *url = obj;
-            if (![url containsString:IMAGE_URL]) {
-                url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
-            }
+//            if (![url containsString:IMAGE_URL]) {
+//                url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
+//            }
             photo.url = [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]; // 图片路径
         }
         [self.imageArray addObject:photo];

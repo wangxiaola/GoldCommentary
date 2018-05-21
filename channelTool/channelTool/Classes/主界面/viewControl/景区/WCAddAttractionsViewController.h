@@ -7,18 +7,18 @@
 //
 
 #import "TBBaseViewController.h"
-@class WCAddScenicMode;
+@class WCAddScenicImageMode;
 
 /**
  添加景点信息
  */
 @interface WCAddAttractionsViewController : TBBaseViewController
 
-@property (nonatomic, strong) WCAddScenicMode *scenicMode;
+@property (nonatomic, strong) WCAddScenicImageMode *scenicMode;
 
 /**
  开始刷新列表
  */
-@property (nonatomic, copy) void(^refreshTableView)(void);
+@property (nonatomic, copy) void(^refreshTableView)(WCAddScenicImageMode *mode);
 
 @end

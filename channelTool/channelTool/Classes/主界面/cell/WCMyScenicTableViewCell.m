@@ -23,6 +23,8 @@ NSString *const WCMyScenicTableViewCellID = @"WCMyScenicTableViewCellID";
     __weak IBOutlet UIButton *shareButton;
     __weak IBOutlet NSLayoutConstraint *bottonViewHeight;
     
+    WCMyScenicMode *_scenicMode;
+    
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -39,18 +41,19 @@ NSString *const WCMyScenicTableViewCellID = @"WCMyScenicTableViewCellID";
 // 更新cell数据
 - (void)updataCellData:(WCMyScenicMode *)mode;
 {
-    [ZKUtil downloadImage:headerImageView imageUrl:mode.url duImageName:@"popup_ts"];
+    _scenicMode = mode;
+    [ZKUtil downloadImage:headerImageView imageUrl:mode.logo duImageName:@"popup_ts"];
     nameLabel.text = mode.name;
     scenicNumberLabel.text = [NSString stringWithFormat:@"景点数：%@个 讲解音频：%@个",mode.scenicnum,mode.voicenum];
-    earningsLabel.text = [NSString stringWithFormat:@"收益：￥%@",mode.earnings];
+    NSString *earnings = [ZKUtil isBlankString:mode.earnings] == NO?mode.earnings:@"0";
+    earningsLabel.text = [NSString stringWithFormat:@"收益：￥%@",earnings];
     audienceNumberLabel.text = [NSString stringWithFormat:@"%@",mode.listen];
-    
-    bottonViewHeight.constant = 0.01f;
     
     switch (mode.state.integerValue) {
         case 0://正在审核
             buyNumberLabel.text = @"审核中";
             buyNumberLabel.textColor = [UIColor redColor];
+              bottonViewHeight.constant = 0.01f;
             break;
         case 1://审核成功
             if (mode.buynum.integerValue == 0) {
@@ -67,16 +70,24 @@ NSString *const WCMyScenicTableViewCellID = @"WCMyScenicTableViewCellID";
         case 2://审核失败
             buyNumberLabel.text = @"审核失败";
             buyNumberLabel.textColor = [UIColor redColor];
+            bottonViewHeight.constant = 0.01f;
             break;
             
         default:
             break;
     }
+    [self layoutIfNeeded];
     
 }
 - (IBAction)bianjiButtonClick:(UIButton *)sender {
+    
+    if (self.editorSecnicInfo) {
+        self.editorSecnicInfo(_scenicMode);
+    }
 }
 - (IBAction)shareButtonClick:(UIButton *)sender {
+    
+
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

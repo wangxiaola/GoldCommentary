@@ -7,18 +7,20 @@
 //
 
 #import "WCCreateScenicViewController.h"
-#import "WCPositioningViewController.h"
+#import "LoginNavigationController.h"
+#import "TBChoosePhotosTool.h"
 #import "TBMoreReminderView.h"
 #import "TBTemplateResourceCollectionViewCell.h"
-#import "TBChoosePhotosTool.h"
-#import "YBPopupMenu.h"
-#import "XMRTimePiker.h"
+#import "UIButton+ImageTitleStyle.h"
+#import "WCCreateScenicMode.h"
 #import "WCGeoCodeSearch.h"
 #import "WCPositioningMode.h"
-#import "LoginNavigationController.h"
-#import "UIButton+ImageTitleStyle.h"
-#import <IQKeyboardManager/IQTextView.h>
+#import "WCPositioningViewController.h"
+#import "XMRTimePiker.h"
+#import "WCUploadPromptView.h"
+#import "YBPopupMenu.h"
 #import <BaiduMapAPI_Location/BMKLocationService.h>
+#import <IQKeyboardManager/IQTextView.h>
 
 @interface WCCreateScenicViewController ()<UITextViewDelegate,YBPopupMenuDelegate,UICollectionViewDataSource,UICollectionViewDelegate,TBChoosePhotosToolDelegate,XMRTimePikerDelegate,BMKLocationServiceDelegate>
 
@@ -36,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIButton *endButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *submButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoCollectionHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *infoViewHeight;
 
@@ -53,6 +56,7 @@
 
 @property (nonatomic, strong) WCPositioningMode *locationMode;
 
+@property (nonatomic, strong) WCCreateScenicMode *scenicMode;
 @end
 
 @implementation WCCreateScenicViewController
@@ -68,12 +72,22 @@
     self.navigationItem.title = @"创建景区";
     self.view.backgroundColor = RGB(241, 241, 241);
     [self setUpView];
-    [self setLocService];
     
+    if (self.ID.length > 0) {
+        
+        [self postEditorSecnicInfo];
+    }
+    else
+    {
+        [self setLocService];
+    }
 }
 #pragma mark ---初始化视图----
 - (void)setUpView
 {
+    self.godeSearch = [[WCGeoCodeSearch alloc] init];
+    self.locationMode = [[WCPositioningMode alloc] init];
+    
     self.infoTextView.scrollEnabled = NO;
     self.infoTextView.delegate = self;
     
@@ -114,12 +128,11 @@
     [self.photoCollectionView registerClass:[TBTemplateResourceCollectionViewCell class] forCellWithReuseIdentifier:TBTemplateResourceCollectionViewCellID];
     self.photoCollectionView.collectionViewLayout = flowlayout;
     
+    [self.submButton setTitle:self.ID?@"更 新 上 传":@"上 传 创 建" forState:(UIControlStateNormal)];
 }
 - (void)setLocService
 {
     //初始化BMKLocationService
-    
-    self.godeSearch = [[WCGeoCodeSearch alloc] init];
     
     _locService = [[BMKLocationService alloc]init];
     _locService.delegate = self;
@@ -145,7 +158,7 @@
 
 /**
  更新位置信息
-
+ 
  @param mode 数据
  */
 - (void)updateAddressLabelData:(WCPositioningMode *)mode
@@ -153,20 +166,161 @@
     self.locationMode = mode;
     self.adderssField.text = mode.adderss;
 }
+
+/**
+ 更新赋值
+ */
+- (void)reloadUIText
+{
+    self.scenicNameField.text = self.scenicMode.name;
+    [self.imageArray addObjectsFromArray:[self.scenicMode.allimg componentsSeparatedByString:@","]];
+    [self updataCollectionView];
+    
+    [self.levelButton setTitle:self.scenicMode.label forState:UIControlStateNormal];
+    [self.levelButton setButtonImageTitleStyle:(ButtonImageTitleStyleRightLeft) padding:4];
+    self.adderssField.text = self.scenicMode.address;
+    self.locationMode.adderss = self.scenicMode.address;
+    self.locationMode.cityID = self.scenicMode.qcode;
+    self.locationMode.latitude = self.scenicMode.lat;
+    self.locationMode.longitude = self.scenicMode.lng;
+    self.ticketsField.text = self.scenicMode.special;
+    self.infoTextView.text = self.scenicMode.info;
+    [self textViewDidChange:self.infoTextView];
+    self.visitingTimeField.text = self.scenicMode.routetime;
+    self.headNameField.text = self.scenicMode.boss;
+    self.headPhoneField.text = self.scenicMode.phone;
+}
 #pragma mark  ----数据上传----
 - (void)postScenicData
 {
+    hudShopWUploadProgress(0.1, @"正在上传图片");
     
-    [[ZKPostHttp shareInstance] POST:@"" params:@{} success:^(id  _Nonnull responseObject) {
+    dispatch_group_t group = dispatch_group_create();
+    TBWeakSelf
+    for (int i = 0; i<self.imageArray.count; i++) {
+        dispatch_group_enter(group);
+        id data = self.imageArray[i];
+        if ([data isKindOfClass:[UIImage class]]) {
+            
+            [ZKPostHttp uploadImage:POST_IMAGE_URL Data:UIImageJPEGRepresentation(data, 0.7) success:^(id  _Nonnull responseObj) {
+                
+                if ([[responseObj valueForKey:@"errcode"] isEqualToString:@"00000"]) {
+                    
+                    NSDictionary *data = [responseObj valueForKey:@"data"];
+                    NSString *url = [data valueForKey:@"url"];
+                    hudShopWUploadProgress(0.2*i, @"正在上传图片");
+                    [weakSelf.imageArray replaceObjectAtIndex:i withObject:url];
+                }
+                dispatch_group_leave(group);
+                
+            } failure:^(NSError * _Nonnull error) {
+                
+                dispatch_group_leave(group);
+            }];
+        }
+        else
+        {
+            dispatch_group_leave(group);
+            hudShopWUploadProgress(0.2*i, @"正在上传图片");
+        }
+    }
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        
+        if ([weakSelf.imageArray containsObject:[UIImage class]]) {
+            
+            hudShowError(@"景区图片上传遗漏");
+        }
+        else
+        {
+            [weakSelf submitInformation];
+        }
+    });
+    
+}
+// 景区信息提交
+- (void)submitInformation
+{
+    NSDictionary *jsonData = @{@"name":self.scenicNameField.text,
+                               @"allimg":[self.imageArray componentsJoinedByString:@","],
+                               @"label":self.levelButton.titleLabel.text,
+                               @"address":self.adderssField.text,
+                               @"lat":self.locationMode.latitude,
+                               @"lng":self.locationMode.longitude,
+                               @"qcode":self.locationMode.cityID,
+                               @"linestime":self.startButton.titleLabel.text,
+                               @"lineetime":self.endButton.titleLabel.text,
+                               @"special":self.ticketsField.text,
+                               @"info":self.infoTextView.text,
+                               @"routetime":self.visitingTimeField.text,
+                               @"boss":self.headNameField.text,
+                               @"consulttel":self.headPhoneField.text,
+                               @"phone":self.headPhoneField.text};
+    
+    NSString *shopid = self.ID?self.ID:@"";
+    NSDictionary *dic = @{@"interfaceId":@"302",
+                          @"id":[UserInfo account].userID,
+                          @"shopid":shopid,
+                          @"model":jsonData.mj_JSONString};
+    
+    
+    hudShopWUploadProgress(0.8, @"正在上传图片");
+    TBWeakSelf
+    [[ZKPostHttp shareInstance] POST:POST_URL params:dic success:^(id  _Nonnull responseObject) {
+        
+        if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
+            
+            [WCUploadPromptView showPromptString:self.ID?@"景区更新成功":@"景区创建成功" isSuccessful:NO clickButton:^{
+                
+                if (weakSelf.refreshTableView) {
+                    weakSelf.refreshTableView();
+                }
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }];
+        }
+        else
+        {
+            [WCUploadPromptView showPromptString:[responseObject valueForKey:@"errmsg"] isSuccessful:NO clickButton:^{
+            }];
+        }
+        hudDismiss();
         
     } failure:^(NSError * _Nonnull error) {
         
+        hudShowError(@"网络异常，请查看网络连接");
+        
     }];
+}
+#pragma mark  ----数据信息请求----
+- (void)postEditorSecnicInfo
+{
+    hudShowLoading(@"正在请求数据");
     
+    NSDictionary *dic = @{@"shopid":self.ID,
+                          @"id":[UserInfo account].userID,
+                          @"interfaceId":@"301"};
+    TBWeakSelf
+    [[ZKPostHttp shareInstance] POST:POST_URL params:dic success:^(id  _Nonnull responseObject) {
+        
+        if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
 
-//    if (self.refreshTableView) {
-//        self.refreshTableView();
-//    }
+            weakSelf.scenicMode = [WCCreateScenicMode mj_objectWithKeyValues:[responseObject valueForKey:@"data"]];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                
+                [weakSelf reloadUIText];
+            }];
+            hudDismiss();
+        }
+        else
+        {
+            hudShowError([responseObject valueForKey:@"errmsg"]);
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+        
+    } failure:^(NSError * _Nonnull error) {
+        hudShowError(@"网络异常,请查看网络连接");
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    }];
 }
 #pragma mark  ----点击事件----
 - (IBAction)selectPhotos:(UIButton *)sender {
@@ -199,7 +353,7 @@
     MJWeakSelf
     [mapView setSearchResults:^(WCPositioningMode *mode) {
         
-      [weakSelf updateAddressLabelData:mode];
+        [weakSelf updateAddressLabelData:mode];
     }];
 }
 - (IBAction)selectTime:(UIButton *)sender {
@@ -327,7 +481,6 @@
     TBMoreReminderView *more = [[TBMoreReminderView alloc] initShowPrompt:@"亲，是否删除当前图片?"];
     [more showHandler:^{
         [weakSelf.imageArray removeObjectAtIndex:dex];
-        [weakSelf.photoCollectionView reloadData];
         [weakSelf updataCollectionView];
     }];
     
@@ -377,7 +530,7 @@
         CLLocationCoordinate2D coordinate = userLocation.location.coordinate;
         MJWeakSelf
         [_godeSearch searchAddressLatitude:coordinate.latitude longitude:coordinate.longitude searchResults:^(WCPositioningMode *mode) {
-         
+            
             [weakSelf updateAddressLabelData:mode];
         }];
         [_locService stopUserLocationService];

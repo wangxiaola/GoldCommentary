@@ -12,8 +12,9 @@
 #import "TBChoosePhotosTool.h"
 #import "WCAddScenicMode.h"
 #import "TQStarRatingView.h"
+#import "WCUploadPromptView.h"
 #import <IQKeyboardManager/IQTextView.h>
-@interface WCAddAttractionsViewController ()<UITextViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,TBChoosePhotosToolDelegate>
+@interface WCAddAttractionsViewController ()<UITextViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,TBChoosePhotosToolDelegate,StarRatingViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *scenicNameField;
 
@@ -37,6 +38,7 @@
 @property (assign, nonatomic) NSInteger maxRow;
 @property (assign, nonatomic) CGFloat  cellWidth;
 
+@property (assign, nonatomic) CGFloat ratingNumber;//分数
 @end
 
 @implementation WCAddAttractionsViewController
@@ -47,6 +49,11 @@
     self.navigationItem.title = @"创建景点";
     self.view.backgroundColor = RGB(241, 241, 241);
     [self setUpView];
+    
+    if (self.scenicMode.ID.length > 0) {
+        
+        [self updateScenicData];
+    }
 }
 #pragma mark ---初始化视图----
 - (void)setUpView
@@ -58,8 +65,10 @@
     self.stepper.autorepeat = true;
     self.stepper.minimumValue = 1;
     
-    [self.stepper setValue:self.scenicMode.scenicArray.count+1];
+    [self.stepper setValue:self.scenicMode.rows];
     self.numberField.text = [NSString stringWithFormat:@"%g",self.stepper.value];
+    
+    self.ratingView.delegate = self;
     
     self.tool = [[TBChoosePhotosTool alloc] init];
     self.tool.delegate = self;
@@ -82,11 +91,7 @@
     self.photoCollectionView.collectionViewLayout = flowlayout;
     
 }
-- (void)setScenicMode:(WCAddScenicMode *)scenicMode
-{
-    _scenicMode = scenicMode;
-    
-}
+
 /**
  添加震动动画
  
@@ -103,19 +108,123 @@
     }
 }
 #pragma mark  ----数据上传----
-- (void)postScenicData
+// 更新景点数据
+- (void)updateScenicData
+{
+    self.scenicNameField.text = self.scenicMode.name;
+    [self.imageArray addObjectsFromArray:[self.scenicMode.allimg componentsSeparatedByString:@","]];
+    [self updataCollectionView];
+    
+    self.infoTextView.text = self.scenicMode.info;
+    [self textViewDidChange:self.infoTextView];
+    
+    self.visitTimeField.text = self.scenicMode.routetime;
+    self.numberField.text = self.scenicMode.sort;
+    [self.stepper setValue:self.scenicMode.sort.doubleValue];
+    [self.ratingView setScore:self.scenicMode.hotLevel.floatValue/5 withAnimation:YES];
+    self.ratingNumber = self.scenicMode.hotLevel.floatValue/5;
+}
+// 上传图片
+- (void)uploadPictures
 {
     
-    [[ZKPostHttp shareInstance] POST:@"" params:@{} success:^(id  _Nonnull responseObject) {
+    hudShopWUploadProgress(0.1, @"正在上传图片");
+    
+    dispatch_group_t group = dispatch_group_create();
+    TBWeakSelf
+    for (int i = 0; i<self.imageArray.count; i++) {
+        dispatch_group_enter(group);
+        id data = self.imageArray[i];
+        if ([data isKindOfClass:[UIImage class]]) {
+            
+            [ZKPostHttp uploadImage:POST_IMAGE_URL Data:UIImageJPEGRepresentation(data, 0.5) success:^(id  _Nonnull responseObj) {
+                
+                if ([[responseObj valueForKey:@"errcode"] isEqualToString:@"00000"]) {
+                    
+                    NSDictionary *data = [responseObj valueForKey:@"data"];
+                    NSString *url = [data valueForKey:@"url"];
+                    hudShopWUploadProgress(0.2*i, @"正在上传图片");
+                    [weakSelf.imageArray replaceObjectAtIndex:i withObject:url];
+                }
+                dispatch_group_leave(group);
+                
+            } failure:^(NSError * _Nonnull error) {
+                
+                dispatch_group_leave(group);
+            }];
+        }
+        else
+        {
+            dispatch_group_leave(group);
+            hudShopWUploadProgress(0.2*i, @"正在上传图片");
+        }
+    }
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        
+        if ([weakSelf.imageArray containsObject:[UIImage class]]) {
+            
+            hudShowError(@"景区图片上传遗漏");
+        }
+        else
+        {
+            weakSelf.scenicMode.allimg = [weakSelf.imageArray componentsJoinedByString:@","];
+            [weakSelf submitScenicData];
+        }
+    });
+    
+    
+}
+// 提交数据
+- (void)submitScenicData
+{
+    NSString *shopid = self.scenicMode.scenicID?self.scenicMode.scenicID:@"";
+    NSString *spotid = self.scenicMode.ID?self.scenicMode.ID:@"";
+    NSString *hotLevel = [NSString stringWithFormat:@"%.1f",(float)self.ratingNumber*5];
+    
+    NSDictionary *dic = @{@"interfaceId":@"308",
+                          @"id":[UserInfo account].userID,
+                          @"shopid":shopid,
+                          @"spotid":spotid,
+                          @"name":self.scenicNameField.text,
+                          @"info":self.infoTextView.text,
+                          @"basicVoc":@"0000",
+                          @"routetime":self.visitTimeField.text,
+                          @"hotLevel":hotLevel,
+                          @"sort":self.numberField.text,
+                          @"psort":self.scenicMode.psort,
+                          @"pname":self.scenicMode.pname,
+                          @"pinfo":self.scenicMode.scenicInfo,
+                           @"allimg":[self.imageArray componentsJoinedByString:@","],
+                          };
+    
+    hudShopWUploadProgress(0.8, @"正在上传图片");
+    TBWeakSelf
+    [[ZKPostHttp shareInstance] POST:POST_URL params:dic success:^(id  _Nonnull responseObject) {
+        
+        if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
+            
+            [WCUploadPromptView showPromptString:self.scenicMode.ID?@"景点更新成功":@"景点创建成功" isSuccessful:NO clickButton:^{
+                
+                weakSelf.scenicMode = [WCAddScenicImageMode mj_objectWithKeyValues:dic];
+                if (weakSelf.refreshTableView) {
+                    weakSelf.refreshTableView(weakSelf.scenicMode);
+                }
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }];
+        }
+        else
+        {
+            [WCUploadPromptView showPromptString:[responseObject valueForKey:@"errmsg"] isSuccessful:NO clickButton:^{
+            }];
+        }
+        hudDismiss();
         
     } failure:^(NSError * _Nonnull error) {
         
+        hudShowError(@"网络异常，请查看网络连接");
+        
     }];
-    
-    
-    //    if (self.refreshTableView) {
-    //        self.refreshTableView();
-    //    }
 }
 #pragma mark  ----点击事件----
 - (IBAction)selectPhoto:(UIButton *)sender {
@@ -130,7 +239,7 @@
 }
 - (IBAction)scenicRecording:(UIButton *)sender {
     
-    
+
 }
 - (IBAction)valueChanged:(UIStepper *)sender {
     
@@ -162,7 +271,7 @@
         [self shakeAnimationForView:self.numberField.superview markString:@"排序必须大于0"];
         return;
     }
-    [self postScenicData];
+    [self uploadPictures];
 }
 #pragma mark  ----UITextViewDelegate----
 - (void)textViewDidChange:(UITextView *)textView
@@ -188,7 +297,8 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return self.imageArray.count;
+    NSInteger rows = self.imageArray.count >3?3:self.imageArray.count;
+    return rows;
 }
 - (TBTemplateResourceCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -212,7 +322,6 @@
     TBMoreReminderView *more = [[TBMoreReminderView alloc] initShowPrompt:@"亲，是否删除当前图片?"];
     [more showHandler:^{
         [weakSelf.imageArray removeObjectAtIndex:dex];
-        [weakSelf.photoCollectionView reloadData];
         [weakSelf updataCollectionView];
     }];
     
@@ -249,6 +358,11 @@
     }
     self.photoCollectionHeight.constant = constant;
     
+}
+#pragma mark  ----StarRatingViewDelegate----
+-(void)starRatingView:(TQStarRatingView *)view score:(float)score;
+{
+    self.ratingNumber = score;
 }
 #pragma mark  ----懒加载----
 - (NSMutableArray *)imageArray

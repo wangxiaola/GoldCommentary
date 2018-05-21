@@ -6,7 +6,7 @@ target 'channelTool' do
 pod 'Masonry'
 pod 'AFNetworking', '~> 3.0'
 pod 'MJExtension'
-pod 'SDWebImage'
+pod 'SDWebImage' '~> 4.0'
 pod 'SVProgressHUD'
 pod 'MJRefresh'
 pod 'DZNEmptyDataSet'

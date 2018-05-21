@@ -222,4 +222,11 @@
  */
 + (NSString *)createRecordingSuperiorName:(NSString *)superiorName childName:(NSString *)childName;
 
+/**
+ 判断空
+
+ @param string 字符串
+ @return yes
+ */
++ (BOOL)isBlankString:(NSString *)string;
 @end

@@ -25,17 +25,17 @@
 
 + (void)downloadImage:(UIImageView *)imageView imageUrl:(NSString*)url;
 {
-    if (![url containsString:IMAGE_URL]) {
-        url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
-    }
+//    if (![url containsString:IMAGE_URL]) {
+//        url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
+//    }
     [imageView sd_setImageWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 }
 
 + (void)downloadImage:(UIImageView *)imageView imageUrl:(NSString *)url  duImageName:(NSString*)duImage;
 {
-    if (![url containsString:IMAGE_URL]) {
-        url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
-    }
+//    if (![url containsString:IMAGE_URL]) {
+//        url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
+//    }
     [imageView sd_setImageWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] placeholderImage:[UIImage imageNamed:duImage]];
 }
 
@@ -464,5 +464,17 @@
         [fileManager createDirectoryAtPath:outputURL withIntermediateDirectories:YES attributes:nil error:nil];
     }
     return outputURL;
+}
++ (BOOL)isBlankString:(NSString *)string {
+    if (string == nil || string == NULL) {
+        return YES;
+    }
+    if ([string isKindOfClass:[NSNull class]]) {
+        return YES;
+    }
+    if ([[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0) {
+        return YES;
+    }
+    return NO;
 }
 @end

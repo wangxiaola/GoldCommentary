@@ -56,7 +56,6 @@
     // Do any additional setup after loading the view.
     [self addData];
     [self createViews];
-    [self verifyCertification];
 }
 #pragma mark  ----添加数据----
 - (void)addData
@@ -70,35 +69,6 @@
                       @{@"name":@"退出账号",@"image":@"user_ account"},],nil];
     
     self.imageTool = [[TBChoosePhotosTool alloc] init];
-}
-
-/**
- 验证实名认证
- */
-- (void)verifyCertification
-{
-    UserInfo *info = [UserInfo account];
-    
-    if (info.userID.length == 0 && info.certification) {
-        
-        return;
-    }
-
-    NSDictionary *dic = @{@"interfaceId":@"295",
-                          @"id":info.userID};
-    MJWeakSelf
-    [[ZKPostHttp shareInstance] POST:POST_URL params:dic success:^(id  _Nonnull responseObject) {
-        
-        if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
-            
-            UserCertification *cer = [UserCertification mj_objectWithKeyValues:[responseObject valueForKey:@"data"]];
-            info.certification = cer;
-            [UserInfo saveAccount:info];
-            [weakSelf.tableView reloadData];
-        }
-    } failure:^(NSError * _Nonnull error) {
-        
-    }];
 }
 
 #pragma mark  ----视图创建----

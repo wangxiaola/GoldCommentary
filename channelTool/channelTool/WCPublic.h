@@ -23,7 +23,7 @@
 
 FOUNDATION_EXPORT NSString *const POST_URL;
 FOUNDATION_EXPORT NSString *const POST_IMAGE_URL;
-FOUNDATION_EXPORT NSString *const IMAGE_URL;
+//FOUNDATION_EXPORT NSString *const IMAGE_URL;
 
 FOUNDATION_EXPORT NSString *const Verification_code;// 验证码保存
 FOUNDATION_EXPORT NSString *const Verification_phone;// 验证手机号保存

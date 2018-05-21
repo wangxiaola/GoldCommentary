@@ -57,7 +57,7 @@
     // Do any additional setup after loading the view.
     [self setUIviews];
     [self setBaseData];
-    
+    [self verifyCertification];
 }
 #pragma mark  ----视图设置----
 - (void)setUIviews
@@ -120,6 +120,7 @@
     }];
     
 }
+
 // 设置基础数据
 - (void)setBaseData
 {
@@ -183,6 +184,34 @@
     
 
     
+}
+#pragma mark  ----数据请求----
+/**
+ 验证实名认证
+ */
+- (void)verifyCertification
+{
+    UserInfo *info = [UserInfo account];
+    
+    if (info.userID.length == 0 && info.certification) {
+        
+        return;
+    }
+    
+    NSDictionary *dic = @{@"interfaceId":@"295",
+                          @"id":info.userID};
+    
+    [[ZKPostHttp shareInstance] POST:POST_URL params:dic success:^(id  _Nonnull responseObject) {
+        
+        if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
+            
+            UserCertification *cer = [UserCertification mj_objectWithKeyValues:[responseObject valueForKey:@"data"]];
+            info.certification = cer;
+            [UserInfo saveAccount:info];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
