@@ -50,7 +50,7 @@
         bottomHeight = 34;
     }
     
-    self.maxRow = 3;
+    self.maxRow = 6;
     
     UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc] init];
     [flowlayout setItemSize:CGSizeMake(cellWidth, cellHeight)];
@@ -58,7 +58,7 @@
     flowlayout.minimumInteritemSpacing = 10;
     flowlayout.minimumLineSpacing = 10;
     flowlayout.sectionInset = UIEdgeInsetsMake(10, 0, 0, 10);
-
+    
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowlayout];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.dataSource = self;
@@ -68,11 +68,11 @@
     // 表格注册
     [self.collectionView registerNib:[UINib nibWithNibName:@"WCAddScenicCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:WCAddScenicCollectionViewCellID];
     
-
+    
     [self.collectionView registerNib:[UINib nibWithNibName:@"WCAddScenicFootorView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:WCAddScenicFootorViewID];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"WCAddScenicHeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:WCAddScenicHeaderViewID];
-
+    
     [self.view addSubview:self.collectionView];
     
     UIButton *saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -123,7 +123,7 @@
             hudShowError([responseObject valueForKey:@"errmsg"]);
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }
-
+        
     } failure:^(NSError * _Nonnull error) {
         
         hudShowError(@"网络异常，请查看网络连接");
@@ -141,7 +141,7 @@
     for (int i = 0; i<self.dataArray.count; i++) {
         
         WCAddScenicMode *mode = self.dataArray[i];
-       
+        
         if ((mode.name.length == 0 || mode.info.length == 0)) {
             
             if ((self.dataArray.count-1)!=i) {
@@ -157,7 +157,7 @@
             [data addObject:dic];
         }
     }
-
+    
     if (tag>0) {
         hudDismiss();
         [data removeAllObjects];
@@ -194,7 +194,7 @@
     } failure:^(NSError * _Nonnull error) {
         
         hudShowError(@"网络异常，请查看网络连接");
-
+        
     }];
     
 }
@@ -206,16 +206,16 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (self.dataArray.count > section) {
-   
+        
         WCAddScenicMode *mode = self.dataArray[section];
-        if (mode.shopspot.count == self.maxRow) {
+        if (mode.shopspot.count >= self.maxRow) {
             
             return self.maxRow;
         }
         return mode.shopspot.count+1;
     }
     return 1;
-   
+    
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -245,13 +245,13 @@
 {
     if (self.dataArray.count > section) {
         
-     WCAddScenicMode *mode = self.dataArray[section];
-        if (mode.shopspot.count == self.maxRow) {
+        WCAddScenicMode *mode = self.dataArray[section];
+        if (mode.shopspot.count >= self.maxRow) {
             
             return CGSizeMake(_SCREEN_WIDTH-20, 30);
         }
     }
-     return CGSizeMake(_SCREEN_WIDTH-20, 0.01);
+    return CGSizeMake(_SCREEN_WIDTH-20, 0.01);
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
@@ -262,7 +262,7 @@
         WCAddScenicHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:WCAddScenicHeaderViewID forIndexPath:indexPath];
         
         if (self.dataArray.count > indexPath.section) {
-             WCAddScenicMode *mode = self.dataArray[indexPath.section];
+            WCAddScenicMode *mode = self.dataArray[indexPath.section];
             
             [headerView updateHaaderViewData:mode indexSection:indexPath.section];
             [headerView setEditEnd:^(NSString *scenicName, NSString *siteName, NSInteger section) {
@@ -275,7 +275,7 @@
         {
             [headerView updateHaaderViewData:nil indexSection:indexPath.section];
         }
-       
+        
         reusableview = headerView;
     }
     else if (kind == UICollectionElementKindSectionFooter)
@@ -289,7 +289,7 @@
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-//    [self.view endEditing:YES];
+    //    [self.view endEditing:YES];
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -299,47 +299,47 @@
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
     
     WCAddAttractionsViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCAddAttractionsViewControllerID"];
-       WCAddScenicImageMode *mode;
-     if (self.dataArray.count > indexPath.section) {
-         
-         WCAddScenicMode *data = self.dataArray[indexPath.section];
-         
-         if (data.name.length == 0 || data.info.length == 0) {
-             
-             [UIView addMJNotifierWithText:@"请先完善基础信息" dismissAutomatically:YES];
-             return;
-         }
-         if (data.shopspot.count > indexPath.row) {
-             mode = data.shopspot[indexPath.row];
-         }
-         else
-         {
-           mode = [[WCAddScenicImageMode alloc] init];
-         }
-         mode.scenicID = self.scenicID? :@"";
-         mode.pname = data.name? :@"";
-         mode.scenicInfo = data.info? :@"";
-         
-         mode.rows = indexPath.row+1;
-         mode.psort = [NSString stringWithFormat:@"%ld",indexPath.section+1];
-         viewController.scenicMode = mode;
-         [self.navigationController pushViewController:viewController animated:YES];
-         
-     }
+    WCAddScenicImageMode *mode;
+    if (self.dataArray.count > indexPath.section) {
+        
+        WCAddScenicMode *data = self.dataArray[indexPath.section];
+        
+        if (data.name.length == 0 || data.info.length == 0) {
+            
+            [UIView addMJNotifierWithText:@"请先完善站点介绍" dismissAutomatically:YES];
+            return;
+        }
+        if (data.shopspot.count > indexPath.row) {
+            mode = data.shopspot[indexPath.row];
+        }
+        else
+        {
+            mode = [[WCAddScenicImageMode alloc] init];
+        }
+        mode.scenicID = self.scenicID? :@"";
+        mode.pname = data.name? :@"";
+        mode.scenicInfo = data.info? :@"";
+        
+        mode.rows = indexPath.row+1;
+        mode.psort = [NSString stringWithFormat:@"%ld",indexPath.section+1];
+        viewController.scenicMode = mode;
+        [self.navigationController pushViewController:viewController animated:YES];
+        
+    }
     TBWeakSelf
     [viewController setRefreshTableView:^(WCAddScenicImageMode *mode) {
         
-       WCAddScenicMode *data = [weakSelf.dataArray objectAtIndex:indexPath.section];
+        WCAddScenicMode *data = [weakSelf.dataArray objectAtIndex:indexPath.section];
         
         if (data.shopspot.count > indexPath.row) {
-        
+            
             [data.shopspot replaceObjectAtIndex:indexPath.row withObject:mode];
         }
         else
         {
             [data.shopspot addObject:mode];
         }
-
+        
         if (indexPath.section == weakSelf.dataArray.count-1) {
             
             [weakSelf.dataArray addObject:[[WCAddScenicMode alloc] init]];
@@ -347,7 +347,7 @@
         }
         else
         {
-          [weakSelf.collectionView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+            [weakSelf.collectionView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
         }
     }];
 }
@@ -361,7 +361,7 @@
         return;
     }
     WCMoreAttractionsViewController *vc = [[WCMoreAttractionsViewController alloc] init];
-
+    
     vc.sort = [NSString stringWithFormat:@"%ld",sender.tag+1];
     vc.shopid = self.scenicID;
     vc.name = mode.name;
@@ -378,19 +378,20 @@
     }];
     
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

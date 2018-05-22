@@ -12,9 +12,10 @@
 #import "WCAddScenicViewController.h"
 #import "WCMyScenicTableViewCell.h"
 #import "WCMyScenicMode.h"
-
+#import <WXApi.h>
 @interface WCMyScenicViewController ()
-
+// 是否有微信app
+@property (nonatomic, assign) BOOL isWxApp;
 @end
 
 @implementation WCMyScenicViewController
@@ -22,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.isWxApp = [WXApi isWXAppInstalled];
 }
 #pragma mark ---参数配置---
 - (void)initData
@@ -63,7 +65,7 @@
 {
     UserInfo *info = [UserInfo account];
     if (info.certification.ID.length == 0) {
-       [WCAuthenticationPopupsView show];
+        [WCAuthenticationPopupsView show];
         return;
     }
     // 加载storboard
@@ -108,7 +110,7 @@
     WCMyScenicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:WCMyScenicTableViewCellID];
     
     if (self.roots.count > indexPath.section) {
-        [cell updataCellData:self.roots[indexPath.section]];
+        [cell updataCellData:self.roots[indexPath.section] isWXAppInstalled:self.isWxApp];
     }
     TBWeakSelf
     [cell setEditorSecnicInfo:^(WCMyScenicMode *mode) {
@@ -121,16 +123,25 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    WCAddScenicViewController *vc = [[WCAddScenicViewController alloc] init];
+  //    0审核中 1成功 2未通过
     WCMyScenicMode *mode = self.roots[indexPath.section];
-    vc.scenicID = mode.ID;
-    [self.navigationController pushViewController:vc animated:YES];
-    TBWeakSelf
-    [vc setRefreshTableView:^{
+    
+    if (mode.state.integerValue == 1) {
+        WCAddScenicViewController *vc = [[WCAddScenicViewController alloc] init];
         
-        [weakSelf.tableView.mj_header beginRefreshing];
-    }];
+        vc.scenicID = mode.ID;
+        [self.navigationController pushViewController:vc animated:YES];
+        TBWeakSelf
+        [vc setRefreshTableView:^{
+            
+            [weakSelf.tableView.mj_header beginRefreshing];
+        }];
+    }
+    else
+    {
+        [UIView addMJNotifierWithText:@"该景区暂未审核通过" dismissAutomatically:YES];
+    }
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -142,13 +153,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

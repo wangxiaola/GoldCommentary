@@ -77,7 +77,6 @@
     MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
     browser.currentPhotoIndex = num; // 弹出相册时显示的第一张图片是？
     browser.photos = self.imageArray; // 设置所有的图片
-    browser.isDelete = YES;
     [browser show];
 }
 #pragma mark  ----创建----

@@ -9,8 +9,9 @@
 #import "AppDelegate.h"
 #import "WCPublic.h"
 #import "IQKeyboardManager.h"
+#import <WXApi.h>
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 BMKMapManager* _mapManager;
@@ -77,6 +78,8 @@ BMKMapManager* _mapManager;
         NSLog(@"manager start failed!");
     }
     
+    // 微信注册
+    [WXApi registerApp:weixinID enableMTA:NO];
 
 }
 - (void)onGetNetworkState:(int)iError
@@ -120,10 +123,37 @@ BMKMapManager* _mapManager;
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
-
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+    return [WXApi handleOpenURL:url delegate:self];
+}
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+#pragma mark  ----WXApiDelegate----
+/*! @brief 收到一个来自微信的请求，第三方应用程序处理完后调用sendResp向微信发送结果
+ *
+ * 收到一个来自微信的请求，异步处理完成后必须调用sendResp发送处理结果给微信。
+ * 可能收到的请求有GetMessageFromWXReq、ShowMessageFromWXReq等。
+ */
+-(void) onReq:(BaseReq*)req;
 
+{
+    
+}
+
+/*! @brief 发送一个sendReq后，收到微信的回应
+ *
+ * 收到一个来自微信的处理结果。调用一次sendReq后会收到onResp。
+ * 可能收到的处理结果有SendMessageToWXResp、SendAuthResp等。
+ */
+-(void) onResp:(BaseResp*)resp;
+{
+    
+}
 @end

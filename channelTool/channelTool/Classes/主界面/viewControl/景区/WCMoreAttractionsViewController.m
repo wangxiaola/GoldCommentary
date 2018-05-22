@@ -21,6 +21,7 @@
 @property (nonatomic, strong) TBBaseClassViewMode *viewMode;
 
 @property (nonatomic, assign) NSInteger page;
+@property (nonatomic, assign) NSInteger total;
 @end
 
 @implementation WCMoreAttractionsViewController
@@ -46,7 +47,7 @@
     
     if (self.dataArray.count >2 && self.refreshTableView) {
         
-        self.refreshTableView([self.dataArray objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)]]);
+        self.refreshTableView(self.dataArray);
     }
 }
 - (void)viewDidLoad {
@@ -174,8 +175,8 @@
 - (void)originalData:(NSDictionary *)dictionary;
 {
     NSDictionary *data = [dictionary valueForKey:@"data"];
-    NSInteger total = [[data valueForKey:@"total"] integerValue];
-    self.numberScenicLabel.text = [NSString stringWithFormat:@"(共有%ld个景点)",total];
+    self.total = [[data valueForKey:@"total"] integerValue];
+    self.numberScenicLabel.text = [NSString stringWithFormat:@"(共有%ld个景点)",self.total];
 }
 /**
  请求结束
@@ -222,7 +223,6 @@
     [self.collectionView.mj_footer endRefreshing];
     [self.collectionView.mj_footer endRefreshingWithNoMoreData];
 }
-
 /**
  主线程刷新
  */
@@ -256,7 +256,7 @@
     
     return cell;
 }
-
+// 添加景点或编辑景点
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // 加载storboard
@@ -284,7 +284,7 @@
     
     TBWeakSelf
     [viewController setRefreshTableView:^(WCAddScenicImageMode *mode) {
-
+        
         if (weakSelf.dataArray.count > indexPath.row) {
             
             [weakSelf.dataArray replaceObjectAtIndex:indexPath.row withObject:mode];
@@ -292,6 +292,7 @@
         else
         {
             [weakSelf.dataArray addObject:mode];
+            weakSelf.numberScenicLabel.text = [NSString stringWithFormat:@"(共有%ld个景点)",self.total+1];
         }
         
         [weakSelf.collectionView reloadData];

@@ -8,7 +8,9 @@
 
 #import "WCMyScenicTableViewCell.h"
 #import "WCMyScenicMode.h"
+#import "TBHtmlShareTool.h"
 #import "WCPublic.h"
+
 NSString *const WCMyScenicTableViewCellID = @"WCMyScenicTableViewCellID";
 
 @implementation WCMyScenicTableViewCell
@@ -23,6 +25,7 @@ NSString *const WCMyScenicTableViewCellID = @"WCMyScenicTableViewCellID";
     __weak IBOutlet UIButton *shareButton;
     __weak IBOutlet NSLayoutConstraint *bottonViewHeight;
     
+    __weak IBOutlet NSLayoutConstraint *shareButtonWidth;
     WCMyScenicMode *_scenicMode;
     
 }
@@ -36,11 +39,13 @@ NSString *const WCMyScenicTableViewCellID = @"WCMyScenicTableViewCellID";
     shareButton.layer.cornerRadius = 6;
     shareButton.layer.borderColor = [UIColor colorWithRed:247/255.0 green:160/255.0 blue:44/255.0 alpha:1].CGColor;
     shareButton.layer.borderWidth = 1;
-
 }
 // 更新cell数据
-- (void)updataCellData:(WCMyScenicMode *)mode;
+- (void)updataCellData:(WCMyScenicMode *)mode isWXAppInstalled:(BOOL)wxApp;
 {
+    
+    shareButtonWidth.constant = wxApp?60.0f:0.01f;
+    
     _scenicMode = mode;
     [ZKUtil downloadImage:headerImageView imageUrl:mode.logo duImageName:@"popup_ts"];
     nameLabel.text = mode.name;
@@ -87,7 +92,9 @@ NSString *const WCMyScenicTableViewCellID = @"WCMyScenicTableViewCellID";
 }
 - (IBAction)shareButtonClick:(UIButton *)sender {
     
-
+    TBHtmlShareTool *shareTool = [[TBHtmlShareTool alloc] init];
+    [shareTool showWXTitle:_scenicMode.name deacription:scenicNumberLabel.text image:headerImageView.image webpageUrl:@""];
+    
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

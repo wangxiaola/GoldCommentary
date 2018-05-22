@@ -13,4 +13,6 @@
  */
 @interface WCInfoModifyViewController : TBBaseViewController
 
+@property (nonatomic, copy) void(^updateHeaderImageView)(void);
+
 @end

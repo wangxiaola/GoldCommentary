@@ -169,6 +169,9 @@
     hudDismiss();
     TBWeakSelf
     [WCUploadPromptView showPromptString:@"信息修改成功" isSuccessful:YES clickButton:^{
+        if (weakSelf.updateHeaderImageView) {
+            weakSelf.updateHeaderImageView();
+        }
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     

@@ -174,7 +174,7 @@
     
     if ([image isKindOfClass:[UIImage class]])
     {
-        _image = image;
+        _image = [image imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
     }
     else
     {

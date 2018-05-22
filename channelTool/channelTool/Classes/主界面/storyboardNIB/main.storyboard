@@ -983,7 +983,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.94461703299999999" green="0.95660001039999998" blue="0.97728425259999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1053,7 +1053,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.94461703299999999" green="0.95660001039999998" blue="0.97728425259999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1347,7 +1347,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dbK-6I-9yV" customClass="IQTextView">
-                                                <rect key="frame" x="53" y="6" width="228" height="33"/>
+                                                <rect key="frame" x="53" y="6" width="272" height="33"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" priority="750" constant="33" id="yGr-Hy-Cmn"/>
                                                 </constraints>
@@ -1358,9 +1358,9 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91E-ra-sOO">
-                                                <rect key="frame" x="291" y="0.0" width="44" height="44"/>
+                                                <rect key="frame" x="335" y="0.0" width="0.0" height="44"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="44" id="TfR-9i-v9E"/>
+                                                    <constraint firstAttribute="width" constant="0.10000000000000001" id="TfR-9i-v9E"/>
                                                     <constraint firstAttribute="height" constant="44" id="bJm-3f-fXM"/>
                                                 </constraints>
                                                 <state key="normal" image="scenicRecording"/>
@@ -1402,7 +1402,7 @@
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" red="0.94461703299999999" green="0.95660001039999998" blue="0.97728425259999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

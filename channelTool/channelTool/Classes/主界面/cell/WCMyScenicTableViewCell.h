@@ -14,7 +14,7 @@ extern NSString *const WCMyScenicTableViewCellID;
 
 @interface WCMyScenicTableViewCell : UITableViewCell
 // 更新cell数据
-- (void)updataCellData:(WCMyScenicMode *)mode;
+- (void)updataCellData:(WCMyScenicMode *)mode isWXAppInstalled:(BOOL)wxApp;
 
 /**
  编辑景区信息

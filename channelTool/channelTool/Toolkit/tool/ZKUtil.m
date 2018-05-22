@@ -28,7 +28,8 @@
 //    if (![url containsString:IMAGE_URL]) {
 //        url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
 //    }
-    [imageView sd_setImageWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+
+    [imageView sd_setImageWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] placeholderImage:[UIImage imageNamed:@"popup_ts"] options:SDWebImageRetryFailed|SDWebImageHighPriority];
 }
 
 + (void)downloadImage:(UIImageView *)imageView imageUrl:(NSString *)url  duImageName:(NSString*)duImage;
@@ -36,7 +37,14 @@
 //    if (![url containsString:IMAGE_URL]) {
 //        url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
 //    }
-    [imageView sd_setImageWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] placeholderImage:[UIImage imageNamed:duImage]];
+
+//    [imageView sd_setImageWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+//
+//        if (image == nil || error) {
+//            imageView.image = [UIImage imageNamed:duImage];
+//        }
+//    }];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] placeholderImage:[UIImage imageNamed:duImage] options:SDWebImageRetryFailed|SDWebImageHighPriority];
 }
 
 + (void)cacheUserValue:(NSString *)value key:(NSString *)key;

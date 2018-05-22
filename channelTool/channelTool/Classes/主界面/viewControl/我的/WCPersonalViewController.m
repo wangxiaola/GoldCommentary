@@ -9,6 +9,7 @@
 #import "WCPersonalViewController.h"
 #import "WCResetPasswordViewController.h"
 #import "WCBasisInfoViewController.h"
+#import "WCInfoModifyViewController.h"
 #import "WCPersonalHeaderView.h"
 #import "TBMoreReminderView.h"
 #import "ClearCacheTool.h"
@@ -42,13 +43,6 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
-     UserInfo *info = [UserInfo account];
-    if (info) {
-        
-        [ZKUtil downloadImage:self.headerView.headerImageView imageUrl:info.headimg duImageName:@"header_default"];
-        self.headerView.nameLabel.text = info.name;
-    }
 }
 
 - (void)viewDidLoad {
@@ -85,7 +79,11 @@
     }];
     [self.headerView setEditor:^{
         // 个人信息修改
-        [weakSelf.navigationController pushViewController:[[NSClassFromString(@"WCInfoModifyViewController") alloc] init] animated:YES];
+        WCInfoModifyViewController *vc = [[WCInfoModifyViewController alloc] init];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+        [vc setUpdateHeaderImageView:^{
+            [weakSelf setHeaderImageView];
+        }];
     }];
     
     [self.headerView setUpdataHeaderPortrait:^{
@@ -101,6 +99,7 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     [self.tableView reloadData];
+    [self setHeaderImageView];
     
 }
 - (void)showHeaderPortrait
@@ -108,6 +107,15 @@
     if ([UserInfo account].headimg) {
         
         [self.imageTool showPreviewPhotosArray:@[self.headerView.headerImageView.image] baseView:self.headerView.headerImageView selected:0];
+    }
+}
+- (void)setHeaderImageView
+{
+    UserInfo *info = [UserInfo account];
+    if (info) {
+        
+        [ZKUtil downloadImage:self.headerView.headerImageView imageUrl:info.headimg duImageName:@"header_default"];
+        self.headerView.nameLabel.text = info.name;
     }
 }
 #pragma mark - Table view data source

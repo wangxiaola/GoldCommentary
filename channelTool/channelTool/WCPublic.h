@@ -34,8 +34,8 @@ FOUNDATION_EXPORT NSString *const MAP_KEY;
  *  微信
  *
  */
-#define weixinID @"wx071c2201ad28845c"
-#define weixinSecret @"e96c5edc5384dba650fd0378411f104a"
+#define weixinID @"wx95001a7d3df30b66"
+#define weixinSecret @"551a035b369e740ef3a9aa8e40f293b4"
 
 
 

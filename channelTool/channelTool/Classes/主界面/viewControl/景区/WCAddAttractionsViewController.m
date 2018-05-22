@@ -75,6 +75,7 @@
     self.cellWidth = (_SCREEN_WIDTH- 10*8)/3;
     
     self.maxRow = 3;
+    self.ratingNumber = 1;
     
     UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc] init];
     [flowlayout setItemSize:CGSizeMake(self.cellWidth, self.cellWidth)];
