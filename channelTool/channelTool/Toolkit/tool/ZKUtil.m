@@ -38,13 +38,8 @@
 //        url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
 //    }
 
-//    [imageView sd_setImageWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-//
-//        if (image == nil || error) {
-//            imageView.image = [UIImage imageNamed:duImage];
-//        }
-//    }];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] placeholderImage:[UIImage imageNamed:duImage] options:SDWebImageRetryFailed|SDWebImageHighPriority];
+
+    [imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:duImage] options:SDWebImageRetryFailed|SDWebImageHighPriority];
 }
 
 + (void)cacheUserValue:(NSString *)value key:(NSString *)key;

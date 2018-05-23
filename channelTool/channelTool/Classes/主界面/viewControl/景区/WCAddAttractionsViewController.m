@@ -183,6 +183,8 @@
     NSString *spotid = self.scenicMode.ID?self.scenicMode.ID:@"";
     NSString *hotLevel = [NSString stringWithFormat:@"%.1f",(float)self.ratingNumber*5];
     
+    NSString *routetime = self.visitTimeField.text? :@"";
+    
     NSDictionary *dic = @{@"interfaceId":@"308",
                           @"id":[UserInfo account].userID,
                           @"shopid":shopid,
@@ -190,7 +192,7 @@
                           @"name":self.scenicNameField.text,
                           @"info":self.infoTextView.text,
                           @"basicVoc":@"0000",
-                          @"routetime":self.visitTimeField.text,
+                          @"routetime":routetime,
                           @"hotLevel":hotLevel,
                           @"sort":self.numberField.text,
                           @"psort":self.scenicMode.psort,
@@ -260,10 +262,6 @@
     }
     if (self.infoTextView.text.length == 0) {
         [self shakeAnimationForView:self.infoTextView.superview markString:@"请填简介"];
-        return;
-    }
-    if (self.visitTimeField.text.length == 0) {
-        [self shakeAnimationForView:self.visitTimeField.superview markString:@"请填写游览时长"];
         return;
     }
     

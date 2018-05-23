@@ -23,7 +23,6 @@ NSString *const WCAddScenicCollectionViewCellID = @"WCAddScenicCollectionViewCel
 }
 - (void)updataCellUI:(WCAddScenicImageMode *)mode;
 {
- 
     if (mode) {
         NSString *url = [mode.allimg componentsSeparatedByString:@","].firstObject;
         [ZKUtil downloadImage:headerImageView imageUrl:url duImageName:@"popup_ts"];

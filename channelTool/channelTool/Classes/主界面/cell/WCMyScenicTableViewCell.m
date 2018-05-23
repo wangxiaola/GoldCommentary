@@ -8,8 +8,7 @@
 
 #import "WCMyScenicTableViewCell.h"
 #import "WCMyScenicMode.h"
-#import "TBHtmlShareTool.h"
-#import "WCPublic.h"
+#import "ZKUtil.h"
 
 NSString *const WCMyScenicTableViewCellID = @"WCMyScenicTableViewCellID";
 
@@ -21,35 +20,21 @@ NSString *const WCMyScenicTableViewCellID = @"WCMyScenicTableViewCellID";
     __weak IBOutlet UILabel *earningsLabel;//收益
     __weak IBOutlet UILabel *audienceNumberLabel;//观众
     __weak IBOutlet UILabel *buyNumberLabel;// 购买状态 0审核中 1成功 2未通过
-    __weak IBOutlet UIButton *bianjiButton;
-    __weak IBOutlet UIButton *shareButton;
-    __weak IBOutlet NSLayoutConstraint *bottonViewHeight;
-    
-    __weak IBOutlet NSLayoutConstraint *shareButtonWidth;
+    __weak IBOutlet UIButton *moreButton;
     WCMyScenicMode *_scenicMode;
     
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    bianjiButton.layer.cornerRadius = 6;
-    bianjiButton.layer.borderColor = [UIColor colorWithRed:247/255.0 green:160/255.0 blue:44/255.0 alpha:1].CGColor;
-    bianjiButton.layer.borderWidth = 1;
-    
-    shareButton.layer.cornerRadius = 6;
-    shareButton.layer.borderColor = [UIColor colorWithRed:247/255.0 green:160/255.0 blue:44/255.0 alpha:1].CGColor;
-    shareButton.layer.borderWidth = 1;
 }
 // 更新cell数据
-- (void)updataCellData:(WCMyScenicMode *)mode isWXAppInstalled:(BOOL)wxApp;
+- (void)updataCellData:(WCMyScenicMode *)mode
 {
-    
-    shareButtonWidth.constant = wxApp?60.0f:0.01f;
-    
     _scenicMode = mode;
     [ZKUtil downloadImage:headerImageView imageUrl:mode.logo duImageName:@"popup_ts"];
     nameLabel.text = mode.name;
-    scenicNumberLabel.text = [NSString stringWithFormat:@"景点数：%@个 讲解音频：%@个",mode.scenicnum,mode.voicenum];
+    scenicNumberLabel.text = [NSString stringWithFormat:@"景点数:%@个 讲解音频:%@个",mode.scenicnum,mode.voicenum];
     NSString *earnings = [ZKUtil isBlankString:mode.earnings] == NO?mode.earnings:@"0";
     earningsLabel.text = [NSString stringWithFormat:@"收益：￥%@",earnings];
     audienceNumberLabel.text = [NSString stringWithFormat:@"%@",mode.listen];
@@ -58,42 +43,35 @@ NSString *const WCMyScenicTableViewCellID = @"WCMyScenicTableViewCellID";
         case 0://正在审核
             buyNumberLabel.text = @"审核中";
             buyNumberLabel.textColor = [UIColor redColor];
-              bottonViewHeight.constant = 0.01f;
+            moreButton.hidden = YES;
             break;
         case 1://审核成功
             if (mode.buynum.integerValue == 0) {
                 buyNumberLabel.text = @"创建成功";
-                buyNumberLabel.textColor = RGB(83, 130, 0);
+                buyNumberLabel.textColor = [UIColor colorWithRed:83/255.0 green:130/255.0 blue:0/255.0 alpha:1];
             }
             else
             {
                 buyNumberLabel.text = [NSString stringWithFormat:@"%@人购买",mode.buynum];
-                buyNumberLabel.textColor = RGB(83, 130, 0);
+                buyNumberLabel.textColor = [UIColor colorWithRed:83/255.0 green:130/255.0 blue:0/255.0 alpha:1];
             }
-            bottonViewHeight.constant = 40.0f;
+                       moreButton.hidden = NO;
             break;
         case 2://审核失败
             buyNumberLabel.text = @"审核失败";
             buyNumberLabel.textColor = [UIColor redColor];
-            bottonViewHeight.constant = 0.01f;
+                       moreButton.hidden = YES;
             break;
             
         default:
             break;
     }
-    [self layoutIfNeeded];
-    
 }
-- (IBAction)bianjiButtonClick:(UIButton *)sender {
-    
-    if (self.editorSecnicInfo) {
-        self.editorSecnicInfo(_scenicMode);
-    }
-}
+
 - (IBAction)shareButtonClick:(UIButton *)sender {
     
-    TBHtmlShareTool *shareTool = [[TBHtmlShareTool alloc] init];
-    [shareTool showWXTitle:_scenicMode.name deacription:scenicNumberLabel.text image:headerImageView.image webpageUrl:@""];
+//    TBHtmlShareTool *shareTool = [[TBHtmlShareTool alloc] init];
+//    [shareTool showWXTitle:_scenicMode.name deacription:scenicNumberLabel.text image:headerImageView.image webpageUrl:@""];
     
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

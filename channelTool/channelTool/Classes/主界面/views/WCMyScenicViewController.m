@@ -110,13 +110,8 @@
     WCMyScenicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:WCMyScenicTableViewCellID];
     
     if (self.roots.count > indexPath.section) {
-        [cell updataCellData:self.roots[indexPath.section] isWXAppInstalled:self.isWxApp];
+        [cell updataCellData:self.roots[indexPath.section]];
     }
-    TBWeakSelf
-    [cell setEditorSecnicInfo:^(WCMyScenicMode *mode) {
-        
-        [weakSelf editorSecnicInfo:mode];
-    }];
     return cell;
     
 }

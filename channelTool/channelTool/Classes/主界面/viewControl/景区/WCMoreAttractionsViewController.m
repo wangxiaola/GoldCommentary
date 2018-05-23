@@ -93,7 +93,7 @@
     [flowlayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     flowlayout.minimumInteritemSpacing = 10;
     flowlayout.minimumLineSpacing = 10;
-    flowlayout.sectionInset = UIEdgeInsetsMake(10, 0, 0, 10);
+    flowlayout.sectionInset = UIEdgeInsetsMake(10, 0, 0, 0);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowlayout];
     self.collectionView.backgroundColor = [UIColor whiteColor];

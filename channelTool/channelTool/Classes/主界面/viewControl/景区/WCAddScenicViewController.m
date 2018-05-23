@@ -41,7 +41,7 @@
 #pragma mark ---初始化视图----
 - (void)setUpView
 {
-    CGFloat cellWidth = (_SCREEN_WIDTH-21-10*3)/4;
+    CGFloat cellWidth = (_SCREEN_WIDTH-20-10*3)/4;
     CGFloat cellHeight = cellWidth+30;
     
     CGFloat bottomHeight = 20;
@@ -50,14 +50,14 @@
         bottomHeight = 34;
     }
     
-    self.maxRow = 6;
+    self.maxRow = 8;
     
     UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc] init];
     [flowlayout setItemSize:CGSizeMake(cellWidth, cellHeight)];
     [flowlayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     flowlayout.minimumInteritemSpacing = 10;
     flowlayout.minimumLineSpacing = 10;
-    flowlayout.sectionInset = UIEdgeInsetsMake(10, 0, 0, 10);
+    flowlayout.sectionInset = UIEdgeInsetsMake(10, 0, 0, 0);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowlayout];
     self.collectionView.backgroundColor = [UIColor whiteColor];

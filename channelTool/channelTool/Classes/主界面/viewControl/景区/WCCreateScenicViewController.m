@@ -379,8 +379,9 @@
         [self shakeAnimationForView:self.scenicNameField.superview markString:@"请至少上传一张图片"];
         return;
     }
-    if (self.adderssField.text.length == 0) {
-        [self shakeAnimationForView:self.adderssField.superview markString:@"请填现位置信息"];
+    if (self.adderssField.text.length == 0 ||self.locationMode.latitude.length == 0 || self.locationMode.longitude.length == 0) {
+        [self shakeAnimationForView:self.adderssField.superview markString:@"请先获取准确的位置信息"];
+        [_locService startUserLocationService];
         return;
     }
     
