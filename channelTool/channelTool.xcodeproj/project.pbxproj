@@ -123,9 +123,10 @@
 		3B7C899520AAB860000E2F55 /* WCCreateScenicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C899420AAB860000E2F55 /* WCCreateScenicTableViewCell.m */; };
 		3B7C899C20AAE03B000E2F55 /* YBPopupMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C899B20AAE03B000E2F55 /* YBPopupMenu.m */; };
 		3B7C899F20AAE762000E2F55 /* TBTemplateResourceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C899E20AAE762000E2F55 /* TBTemplateResourceCollectionViewCell.m */; };
+		3B8B1B6420B65E3B00DBF6D9 /* WCBillingDateSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B1B6320B65E3B00DBF6D9 /* WCBillingDateSelectionView.m */; };
+		3B8B1B6620B65E5A00DBF6D9 /* WCBillingDateSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B1B6520B65E5A00DBF6D9 /* WCBillingDateSelectionView.xib */; };
+		3B8B1B6920B6AD4700DBF6D9 /* WCDataTimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B1B6820B6AD4700DBF6D9 /* WCDataTimeTool.m */; };
 		3B941E9620ABD6290021B320 /* WCPositioningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B941E9520ABD6290021B320 /* WCPositioningViewController.m */; };
-		3B941E9D20AC1A310021B320 /* TZDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B941E9B20AC1A310021B320 /* TZDatePickerView.m */; };
-		3B941E9E20AC1A310021B320 /* TZDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B941E9C20AC1A310021B320 /* TZDatePickerView.xib */; };
 		3B941EA120AC1B050021B320 /* XMRTimePiker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B941EA020AC1B050021B320 /* XMRTimePiker.m */; };
 		3B941EA320AC312B0021B320 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B941EA220AC312B0021B320 /* CoreLocation.framework */; };
 		3B941EA520AC31310021B320 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B941EA420AC31310021B320 /* QuartzCore.framework */; };
@@ -387,12 +388,14 @@
 		3B7C899B20AAE03B000E2F55 /* YBPopupMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBPopupMenu.m; sourceTree = "<group>"; };
 		3B7C899D20AAE762000E2F55 /* TBTemplateResourceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBTemplateResourceCollectionViewCell.h; sourceTree = "<group>"; };
 		3B7C899E20AAE762000E2F55 /* TBTemplateResourceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBTemplateResourceCollectionViewCell.m; sourceTree = "<group>"; };
+		3B8B1B6220B65E3B00DBF6D9 /* WCBillingDateSelectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCBillingDateSelectionView.h; sourceTree = "<group>"; };
+		3B8B1B6320B65E3B00DBF6D9 /* WCBillingDateSelectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCBillingDateSelectionView.m; sourceTree = "<group>"; };
+		3B8B1B6520B65E5A00DBF6D9 /* WCBillingDateSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCBillingDateSelectionView.xib; sourceTree = "<group>"; };
+		3B8B1B6720B6AD4700DBF6D9 /* WCDataTimeTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDataTimeTool.h; sourceTree = "<group>"; };
+		3B8B1B6820B6AD4700DBF6D9 /* WCDataTimeTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCDataTimeTool.m; sourceTree = "<group>"; };
 		3B941E9420ABD6290021B320 /* WCPositioningViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPositioningViewController.h; sourceTree = "<group>"; };
 		3B941E9520ABD6290021B320 /* WCPositioningViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCPositioningViewController.m; sourceTree = "<group>"; };
 		3B941E9720ABD63F0021B320 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		3B941E9A20AC1A310021B320 /* TZDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZDatePickerView.h; sourceTree = "<group>"; };
-		3B941E9B20AC1A310021B320 /* TZDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZDatePickerView.m; sourceTree = "<group>"; };
-		3B941E9C20AC1A310021B320 /* TZDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TZDatePickerView.xib; sourceTree = "<group>"; };
 		3B941E9F20AC1B040021B320 /* XMRTimePiker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMRTimePiker.h; sourceTree = "<group>"; };
 		3B941EA020AC1B050021B320 /* XMRTimePiker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMRTimePiker.m; sourceTree = "<group>"; };
 		3B941EA220AC312B0021B320 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -752,8 +755,6 @@
 			isa = PBXGroup;
 			children = (
 				3B216B72209ADC6E0040EE93 /* viewControl */,
-				3B216B71209ADC670040EE93 /* views */,
-				3B216B70209ADC5D0040EE93 /* mode */,
 				3B216B73209ADC820040EE93 /* tool */,
 				3B216B6D209ADBDC0040EE93 /* storyboardNIB */,
 			);
@@ -779,20 +780,6 @@
 				3B216B6E209ADC050040EE93 /* login.storyboard */,
 			);
 			path = storyboardNIB;
-			sourceTree = "<group>";
-		};
-		3B216B70209ADC5D0040EE93 /* mode */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = mode;
-			sourceTree = "<group>";
-		};
-		3B216B71209ADC670040EE93 /* views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = views;
 			sourceTree = "<group>";
 		};
 		3B216B72209ADC6E0040EE93 /* viewControl */ = {
@@ -862,6 +849,11 @@
 				3B3D48D620A97BDA00E6CC2C /* WCWRecordViewController.m */,
 				3B3D48D820A9810600E6CC2C /* WCRecordTimeSelectView.h */,
 				3B3D48D920A9810600E6CC2C /* WCRecordTimeSelectView.m */,
+				3B8B1B6220B65E3B00DBF6D9 /* WCBillingDateSelectionView.h */,
+				3B8B1B6320B65E3B00DBF6D9 /* WCBillingDateSelectionView.m */,
+				3B8B1B6520B65E5A00DBF6D9 /* WCBillingDateSelectionView.xib */,
+				3B8B1B6720B6AD4700DBF6D9 /* WCDataTimeTool.h */,
+				3B8B1B6820B6AD4700DBF6D9 /* WCDataTimeTool.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1006,9 +998,6 @@
 			children = (
 				3B941E9F20AC1B040021B320 /* XMRTimePiker.h */,
 				3B941EA020AC1B050021B320 /* XMRTimePiker.m */,
-				3B941E9A20AC1A310021B320 /* TZDatePickerView.h */,
-				3B941E9B20AC1A310021B320 /* TZDatePickerView.m */,
-				3B941E9C20AC1A310021B320 /* TZDatePickerView.xib */,
 			);
 			path = TZDatePicker;
 			sourceTree = "<group>";
@@ -1170,7 +1159,7 @@
 				3B6CBD2B209FF90A00784BBF /* WCPersonalHeaderView.xib in Resources */,
 				3B6BB84520A2D6BD0013AE6B /* WCERecordTableViewCell.xib in Resources */,
 				3B1E25F120AD8EAB006110C2 /* WCAddScenicFootorView.xib in Resources */,
-				3B941E9E20AC1A310021B320 /* TZDatePickerView.xib in Resources */,
+				3B8B1B6620B65E5A00DBF6D9 /* WCBillingDateSelectionView.xib in Resources */,
 				3B1A078420A05B18005CC21C /* TZImagePickerController.bundle in Resources */,
 				3B985B2E20A19D990083E1F2 /* Cities.json in Resources */,
 				3B7239ED209D9253006FAB15 /* WCMyNarratorTableViewCell.xib in Resources */,
@@ -1280,7 +1269,6 @@
 				3BA73E14209C554500B88891 /* TBBaseClassViewMode.m in Sources */,
 				3B1E25D420AD5AC1006110C2 /* WCAddScenicHeaderView.m in Sources */,
 				3B1A078920A05B18005CC21C /* TZPhotoPreviewController.m in Sources */,
-				3B941E9D20AC1A310021B320 /* TZDatePickerView.m in Sources */,
 				3B6BB83820A2A62B0013AE6B /* WCWRecordTableViewCell.m in Sources */,
 				3B216B59209AAED30040EE93 /* ZKTextField.m in Sources */,
 				3B941E9620ABD6290021B320 /* WCPositioningViewController.m in Sources */,
@@ -1333,6 +1321,7 @@
 				3B7C898B20AA7CBE000E2F55 /* WCAttractionsMode.m in Sources */,
 				3B1E25E520AD77FC006110C2 /* TQStarRatingView.m in Sources */,
 				3B7C898E20AA7CDD000E2F55 /* WCSiteMode.m in Sources */,
+				3B8B1B6920B6AD4700DBF6D9 /* WCDataTimeTool.m in Sources */,
 				3B7239E2209D7C7B006FAB15 /* WCMyScenicMode.m in Sources */,
 				3B6BB83520A2A6080013AE6B /* WCERecordTableViewCell.m in Sources */,
 				3B216B66209AB0AD0040EE93 /* WCPublic.m in Sources */,
@@ -1383,6 +1372,7 @@
 				3BA73DF9209C06D900B88891 /* TBCountdownSingle.m in Sources */,
 				3B985B2F20A19D990083E1F2 /* AddressItem.m in Sources */,
 				3BA73E17209C56AC00B88891 /* WCMyScenicViewController.m in Sources */,
+				3B8B1B6420B65E3B00DBF6D9 /* WCBillingDateSelectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

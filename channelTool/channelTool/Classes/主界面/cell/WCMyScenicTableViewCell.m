@@ -68,12 +68,7 @@ NSString *const WCMyScenicTableViewCellID = @"WCMyScenicTableViewCellID";
     }
 }
 
-- (IBAction)shareButtonClick:(UIButton *)sender {
-    
-//    TBHtmlShareTool *shareTool = [[TBHtmlShareTool alloc] init];
-//    [shareTool showWXTitle:_scenicMode.name deacription:scenicNumberLabel.text image:headerImageView.image webpageUrl:@""];
-    
-}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     

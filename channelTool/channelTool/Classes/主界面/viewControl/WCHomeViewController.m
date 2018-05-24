@@ -98,7 +98,7 @@
     self.bottomContenView.showsVerticalScrollIndicator = NO;
     self.bottomContenView.pagingEnabled = YES;
     [self.view addSubview:self.bottomContenView];
-
+    
     // 加载我的景区
     WCMyScenicViewController *scenicVC = [[WCMyScenicViewController alloc] init];
     [self addChildViewController:scenicVC];
@@ -144,7 +144,7 @@
         }
         
     } failure:^(NSError * _Nonnull error) {
-
+        
         [UIView addMJNotifierWithText:@"网络异常，请查看网络连接" dismissAutomatically:YES];
     }];
 }
@@ -166,23 +166,31 @@
 //我的
 - (IBAction)leftButtonClick:(UIButton *)sender {
     
-    WCPersonalViewController *personalVC = [[WCPersonalViewController alloc] init];
-    [self.navigationController pushViewController:personalVC animated:YES];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        WCPersonalViewController *personalVC = [[WCPersonalViewController alloc] init];
+        [self.navigationController pushViewController:personalVC animated:YES];
+    }];
+    
 }
 //收入明细
 - (IBAction)rightButtonClick:(UIButton *)sender {
     
     // 加载storboard
-    UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
+        
+        WCBillViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCBillViewControllerID"];
+        viewController.incomeMode = self.incomeMode;
+        [self.navigationController pushViewController:viewController animated:YES];
+    }];
     
-    WCBillViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCBillViewControllerID"];
-    viewController.incomeMode = self.incomeMode;
-    [self.navigationController pushViewController:viewController animated:YES];
 }
 //  提现
 - (IBAction)withdrawalClick:(UIButton *)sender {
     
-
+    
     
 }
 #pragma mark  ----数据请求----

@@ -8,7 +8,7 @@
 
 #import "WCUploadPromptView.h"
 #import <Masonry/Masonry.h>
-
+#import "ZKUtil.h"
 @implementation WCUploadPromptView
 
 /**
@@ -25,7 +25,7 @@
     promptView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     [[[UIApplication sharedApplication].delegate window] addSubview:promptView];
     
-    if (!msg) {
+    if ([ZKUtil isBlankString:msg]) {
         msg = @"数据异常";
     }
     promptView.clickEnd = clickEnd;

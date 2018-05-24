@@ -38,7 +38,6 @@
 //        url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
 //    }
 
-
     [imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:duImage] options:SDWebImageRetryFailed|SDWebImageHighPriority];
 }
 

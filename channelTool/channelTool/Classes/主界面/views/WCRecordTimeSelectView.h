@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WCBillingDateSelectionView.h"
 
-@interface WCRecordTimeSelectView : UIView
+@interface WCRecordTimeSelectView : UIView<BillingDateSelectionDelegate>
 
 /**
  更新状态

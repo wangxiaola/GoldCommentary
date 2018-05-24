@@ -48,21 +48,31 @@
     });
     
 }
-+ (CGFloat)obtainCacheSize;
++ (void)obtainCacheSize:(void(^)(CGFloat cacheSize))cacheSize;
 {
-    NSString *path1 = NSTemporaryDirectory();
-    NSString *path2 = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject;
-    NSString *path3 = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
-    NSString *path4 = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).lastObject;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *path1 = NSTemporaryDirectory();
+        NSString *path2 = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject;
+        NSString *path3 = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
+        NSString *path4 = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).lastObject;
+        
+        CGFloat size1 = [self folderSizeAtPath:path1];
+        CGFloat size2 = [self folderSizeAtPath:path2];
+        CGFloat size3 = [self folderSizeAtPath:path3];
+        CGFloat size4 = [self folderSizeAtPath:path4];
+        MMLog(@"还剩的缓存 = %.2f",size3);
+        CGFloat size = size1+size2+size4;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (cacheSize) {
+                cacheSize(size);
+            }
+        });
+    });
     
-    CGFloat size1 = [self folderSizeAtPath:path1];
-    CGFloat size2 = [self folderSizeAtPath:path2];
-    CGFloat size3 = [self folderSizeAtPath:path3];
-    CGFloat size4 = [self folderSizeAtPath:path4];
-    MMLog(@"还剩的缓存 = %.2f",size3);
-    CGFloat size = size1+size2+size4;
-     
-    return size;
+   
+
 }
 // 计算目录大小
 + (CGFloat)folderSizeAtPath:(NSString *)path{

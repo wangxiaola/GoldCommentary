@@ -10,12 +10,12 @@
 #import "WCAuthenticationPopupsView.h"
 #import "WCCreateScenicViewController.h"
 #import "WCAddScenicViewController.h"
+#import "TBHtmlShareTool.h"
 #import "WCMyScenicTableViewCell.h"
 #import "WCMyScenicMode.h"
-#import <WXApi.h>
-@interface WCMyScenicViewController ()
-// 是否有微信app
-@property (nonatomic, assign) BOOL isWxApp;
+
+@interface WCMyScenicViewController ()<TBHtmlShareToolDelegate>
+
 @end
 
 @implementation WCMyScenicViewController
@@ -23,7 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.isWxApp = [WXApi isWXAppInstalled];
 }
 #pragma mark ---参数配置---
 - (void)initData
@@ -79,20 +78,7 @@
         [weakSelf.tableView.mj_header beginRefreshing];
     }];
 }
-- (void)editorSecnicInfo:(WCMyScenicMode *)mode
-{
-    // 加载storboard
-    UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
-    
-    WCCreateScenicViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCCreateScenicViewControllerID"];
-    viewController.ID = mode.ID;
-    [self.navigationController pushViewController:viewController animated:YES];
-    TBWeakSelf
-    [viewController setRefreshTableView:^{
-        
-        [weakSelf.tableView.mj_header beginRefreshing];
-    }];
-}
+
 #pragma mark  ----默认图位置----
 - (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView;
 {
@@ -112,25 +98,20 @@
     if (self.roots.count > indexPath.section) {
         [cell updataCellData:self.roots[indexPath.section]];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-  //    0审核中 1成功 2未通过
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    //    0审核中 1成功 2未通过
     WCMyScenicMode *mode = self.roots[indexPath.section];
     
     if (mode.state.integerValue == 1) {
-        WCAddScenicViewController *vc = [[WCAddScenicViewController alloc] init];
         
-        vc.scenicID = mode.ID;
-        [self.navigationController pushViewController:vc animated:YES];
-        TBWeakSelf
-        [vc setRefreshTableView:^{
-            
-            [weakSelf.tableView.mj_header beginRefreshing];
-        }];
+        TBHtmlShareTool *toolView = [[TBHtmlShareTool alloc] init];
+        [toolView showScenicToolViewData:mode delegate:self];
     }
     else
     {
@@ -141,6 +122,43 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return UITableViewAutomaticDimension;
+}
+#pragma mark  ----TBHtmlShareToolDelegate----
+/**
+ 创建站点
+ 
+ @param mode 数据
+ */
+- (void)createTheSiteData:(WCMyScenicMode *)mode;
+{
+    WCAddScenicViewController *vc = [[WCAddScenicViewController alloc] init];
+    
+    vc.scenicID = mode.ID;
+    [self.navigationController pushViewController:vc animated:YES];
+    TBWeakSelf
+    [vc setRefreshTableView:^{
+        
+        [weakSelf.tableView.mj_header beginRefreshing];
+    }];
+}
+/**
+ 编辑景区信息
+ 
+ @param mode 数据
+ */
+- (void)editTheScenicInfoData:(WCMyScenicMode *)mode;
+{
+    // 加载storboard
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
+    
+    WCCreateScenicViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCCreateScenicViewControllerID"];
+    viewController.ID = mode.ID;
+    [self.navigationController pushViewController:viewController animated:YES];
+    TBWeakSelf
+    [viewController setRefreshTableView:^{
+        
+        [weakSelf.tableView.mj_header beginRefreshing];
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -21,9 +21,9 @@
 /**
  获取缓存大小
 
- @return 大小
+ @param cacheSize 缓存
  */
-+ (CGFloat)obtainCacheSize;
++ (void)obtainCacheSize:(void(^)(CGFloat cacheSize))cacheSize;
 
 // 根据路径删除文件
 + (void)cleanCaches:(NSString *)path isDeleteVideo:(BOOL)deleteVideo;

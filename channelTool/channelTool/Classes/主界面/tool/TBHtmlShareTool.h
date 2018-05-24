@@ -7,17 +7,38 @@
 //
 
 #import <UIKit/UIKit.h>
+@class WCMyScenicMode;
+
+@protocol TBHtmlShareToolDelegate <NSObject>
+@optional
+
+/**
+ 创建站点
+
+ @param mode 数据
+ */
+- (void)createTheSiteData:(WCMyScenicMode *)mode;
+
+/**
+ 编辑景区信息
+
+ @param mode 数据
+ */
+- (void)editTheScenicInfoData:(WCMyScenicMode *)mode;
+
+@end
+
 
 @interface TBHtmlShareTool : UIView
 
-/**
- 分享到微信
+@property (nonatomic, weak) id<TBHtmlShareToolDelegate>delegate;
 
- @param title 标题
- @param info 内容
- @param image 图片
- @param webUrl 网页链接
+/**
+ 弹出景区工具
+
+ @param mode 模型
  */
-- (void)showWXTitle:(NSString *)title deacription:(NSString *)info image:(id)image webpageUrl:(NSString *)webUrl;
+- (void)showScenicToolViewData:(WCMyScenicMode *)mode delegate:(id<TBHtmlShareToolDelegate>) delegate;
 
 @end
+

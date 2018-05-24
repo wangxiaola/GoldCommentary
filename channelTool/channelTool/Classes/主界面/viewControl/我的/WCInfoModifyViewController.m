@@ -66,6 +66,7 @@
     if (info) {
         
         [ZKUtil downloadImage:self.headerView.headerImageView imageUrl:info.headimg duImageName:@"header_default"];
+        self.nickNameField.text = info.name;
     }
     
     TBWeakSelf
@@ -111,24 +112,24 @@
 #pragma mark  ----事件处理----
 - (void)complete
 {
-    if (_headerImage == nil && self.nickNameField.text.length == 0) {
+    if (self.nickNameField.text.length == 0) {
         
-        [UIView addMJNotifierWithText:@"没有可修改的信息" dismissAutomatically:YES];
+        [UIView addMJNotifierWithText:@"请输入昵称!" dismissAutomatically:YES];
         return;
     }
     
-     hudShowLoading(@"正在提交信息");
+    hudShowLoading(@"正在提交信息");
     if (_headerImage) {
-       
+        
         TBWeakSelf
         [ZKPostHttp uploadImage:POST_IMAGE_URL Data:UIImageJPEGRepresentation(_headerImage, 0.7) success:^(id  _Nonnull responseObj) {
-           
+            
             NSString *errcode = [responseObj valueForKey:@"errcode"];
             if ([errcode isEqualToString:@"00000"]) {
                 
                 NSDictionary *data = [responseObj valueForKey:@"data"];
                 
-             [weakSelf uploadImageUrl:[data valueForKey:@"url"] nickName:self.nickNameField.text];
+                [weakSelf uploadImageUrl:[data valueForKey:@"url"] nickName:self.nickNameField.text];
             }
             else{
                 [UIView addMJNotifierWithText:[responseObj valueForKey:@"errmsg"] dismissAutomatically:YES];
@@ -141,15 +142,14 @@
     }
     else
     {
-        [self uploadImageUrl:nil nickName:self.nickNameField.text];
+        [self uploadImageUrl:[UserInfo account].headimg nickName:self.nickNameField.text];
     }
-   
     
 }
 
 /**
  信息提交
-
+ 
  @param url 图片url
  @param nickName 昵称
  */
@@ -157,24 +157,41 @@
 {
     UserInfo *info = [UserInfo account];
     
-    if (url) {
-        info.headimg = url;
-    }
-    if (nickName) {
-        info.name = nickName;
-    }
-    [UserInfo saveAccount:info];
+    NSDictionary *dic = @{@"interfaceId":@"311",
+                          @"id":info.userID,
+                          @"name":nickName? :@"",
+                          @"headimg":url? :@""};
     
-    
-    hudDismiss();
-    TBWeakSelf
-    [WCUploadPromptView showPromptString:@"信息修改成功" isSuccessful:YES clickButton:^{
-        if (weakSelf.updateHeaderImageView) {
-            weakSelf.updateHeaderImageView();
+    [[ZKPostHttp shareInstance] POST:POST_URL params:dic success:^(id  _Nonnull responseObject) {
+        
+        hudDismiss();
+        if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
+            
+            if (url) {
+                info.headimg = url;
+            }
+            if (nickName) {
+                info.name = nickName;
+            }
+            [UserInfo saveAccount:info];
+            TBWeakSelf
+            [WCUploadPromptView showPromptString:@"信息修改成功" isSuccessful:YES clickButton:^{
+                if (weakSelf.updateHeaderImageView) {
+                    weakSelf.updateHeaderImageView();
+                }
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }];
         }
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+        else
+        {
+            [WCUploadPromptView showPromptString:[responseObject valueForKey:@"errmsg"] isSuccessful:NO clickButton:^{
+                
+            }];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        
+        hudShowError(@"网络异常");
     }];
-    
 }
 - (void)updataHeaderPortrait
 {
@@ -205,7 +222,7 @@
 {
     UIImage *image = images.firstObject;
     if ([image isKindOfClass:[UIImage class]]) {
-      
+        
         self.headerImage = image;
         self.headerView.headerImageView.image = image;
     }

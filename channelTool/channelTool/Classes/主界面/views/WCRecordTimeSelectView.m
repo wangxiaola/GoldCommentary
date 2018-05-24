@@ -8,7 +8,6 @@
 
 #import "WCRecordTimeSelectView.h"
 #import "WCPublic.h"
-#import "TZDatePickerView.h"
 
 @implementation WCRecordTimeSelectView
 {
@@ -76,16 +75,25 @@
 }
 - (void)timeSelectClick
 {
-    TBWeakSelf
+    WCBillingDateSelectionView *view = [[WCBillingDateSelectionView alloc] init];
+    view.delegate = self;
+    view.maximumDate = [NSDate new];
+    view.defaultSelectDate = [NSDate new];
+    [view showDateView];
     
-    TZDatePickerView *pickerView = [[TZDatePickerView alloc] init];
-    [pickerView show];
-    [pickerView setGotoSrceenOrderBlock:^(NSString *state, NSString *end) {
-       
-        if (weakSelf.timeSelectEnd) {
-            weakSelf.timeSelectEnd(state,end);
-        }
-    }];
-    
+}
+#pragma mark  ----BillingDateSelectionDelegate----
+/**
+ 时间确定回调
+ 
+ @param startTime 开始时间
+ @param endTime 结束时间
+ @param type 时间样式
+ */
+- (void)pickViewCallBackStartTime:(NSString *)startTime toEndTime:(NSString *)endTime timeType:(DateSelectionType)type;
+{
+    if (self.timeSelectEnd) {
+        self.timeSelectEnd(startTime, endTime);
+    }
 }
 @end

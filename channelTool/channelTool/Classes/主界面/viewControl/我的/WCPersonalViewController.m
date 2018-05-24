@@ -14,6 +14,8 @@
 #import "TBMoreReminderView.h"
 #import "ClearCacheTool.h"
 #import "TBChoosePhotosTool.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
 @interface WCPersonalViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -73,7 +75,7 @@
     
     TBWeakSelf
     [self.headerView setGoBack:^{
-       
+        
         [weakSelf.navigationController popViewControllerAnimated:YES];
         
     }];
@@ -106,7 +108,7 @@
 {
     if ([UserInfo account].headimg) {
         
-        [self.imageTool showPreviewPhotosArray:@[self.headerView.headerImageView.image] baseView:self.headerView.headerImageView selected:0];
+        [self.imageTool showPreviewPhotosArray:@[[UserInfo account].headimg] baseView:self.headerView.headerImageView selected:0];
     }
 }
 - (void)setHeaderImageView
@@ -115,6 +117,7 @@
     if (info) {
         
         [ZKUtil downloadImage:self.headerView.headerImageView imageUrl:info.headimg duImageName:@"header_default"];
+        
         self.headerView.nameLabel.text = info.name;
     }
 }
@@ -161,10 +164,13 @@
     cell.imageView.image = [UIImage imageNamed:[dic valueForKey:@"image"]];
     cell.textLabel.text = [dic valueForKey:@"name"];
     cell.detailTextLabel.text = @"";
+    
     if ([indexPath isEqual:[NSIndexPath indexPathForRow:3 inSection:0]]) {
         // 缓存大小
-        CGFloat size = [ClearCacheTool obtainCacheSize];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fM",size];
+        [ClearCacheTool obtainCacheSize:^(CGFloat cacheSize) {
+            
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fM",cacheSize];
+        }];
     }
     
     if ([indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:0]] ) {
@@ -188,7 +194,7 @@
     if ([key isEqualToString:@"实名认证"])
     {
         if ([UserInfo account].userID) {
-        
+            
             UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
             WCBasisInfoViewController *basisInfoVC = [board instantiateViewControllerWithIdentifier:@"WCBasisInfoViewControllerID"];
             [self.navigationController pushViewController:basisInfoVC animated:YES];
@@ -197,12 +203,12 @@
         {
             [UIView addMJNotifierWithText:@"请先登录" dismissAutomatically:YES];
         }
-
+        
         
     }
     else if ([key isEqualToString:@"新手攻略"])
     {
-
+        
     }
     else if ([key isEqualToString:@"意见反馈"])
     {
@@ -235,8 +241,10 @@
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
     if (cell) {
-        CGFloat size = [ClearCacheTool obtainCacheSize];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fM",size];
+        [ClearCacheTool obtainCacheSize:^(CGFloat cacheSize) {
+            
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fM",cacheSize];
+        }];
     }
 }
 #pragma mark --- 退出登录---
@@ -252,9 +260,9 @@
 // 数据清理
 - (void)dataCleaning
 {
-   
+    
 #pragma mark  ----注销APP别名----
-  
+    
     [UserInfo saveAccount:[UserInfo new]];
     
     [ClearCacheTool clearActionSuccessful:^{
@@ -267,7 +275,7 @@
 {
     hudDismiss();
     dispatch_async(dispatch_get_main_queue(), ^{
-
+        
         // 加载storboard
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"login" bundle:nil];
         
@@ -286,13 +294,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

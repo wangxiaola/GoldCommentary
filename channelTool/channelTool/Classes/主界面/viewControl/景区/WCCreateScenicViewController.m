@@ -112,7 +112,7 @@
     self.tool.delegate = self;
     self.cellWidth = (_SCREEN_WIDTH- 10*8)/3;
     
-    self.maxRow = 3;
+    self.maxRow = 9;
     
     UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc] init];
     [flowlayout setItemSize:CGSizeMake(self.cellWidth, self.cellWidth)];
@@ -303,8 +303,10 @@
     [[ZKPostHttp shareInstance] POST:POST_URL params:dic success:^(id  _Nonnull responseObject) {
         
         if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
-
-            weakSelf.scenicMode = [WCCreateScenicMode mj_objectWithKeyValues:[responseObject valueForKey:@"data"]];
+            
+            NSDictionary *data = [[responseObject valueForKey:@"data"] mj_JSONObject];
+            
+            weakSelf.scenicMode = [WCCreateScenicMode mj_objectWithKeyValues:[data valueForKey:@"shop"]];
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 
                 [weakSelf reloadUIText];
@@ -513,9 +515,15 @@
  */
 - (void)updataCollectionViewHeight
 {
-    CGFloat  constant  = 0.01f;
-    if (self.imageArray.count > 0) {
-        constant  = 20+self.cellWidth;
+    CGFloat number = 0;
+    CGFloat  constant = 0.01;
+    
+    NSInteger h = self.imageArray.count/3;
+    NSInteger s = (self.imageArray.count-3*h)>0?1:0;
+    number = h+s;
+    
+    if (number > 0) {
+        constant  = 10+(self.cellWidth+10)*number;
     }
     self.photoCollectionHeight.constant = constant;
     
