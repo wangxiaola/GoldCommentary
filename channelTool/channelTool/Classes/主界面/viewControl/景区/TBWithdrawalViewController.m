@@ -124,11 +124,12 @@
     
     NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     
-    [self modifyWithdrawalButtonState:toBeString.length > 0];
     if (![ZKUtil ismoney:toBeString] && toBeString.length>0)
     {
         return NO;
     }
+    //  判断按钮显示状态
+    [self modifyWithdrawalButtonState:toBeString.length > 0];
     BOOL beyond = toBeString.doubleValue > self.money.doubleValue;
     [self modifyWithdrawalButtonIsBeyond:beyond];
     
