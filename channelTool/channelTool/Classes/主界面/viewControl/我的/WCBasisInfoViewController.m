@@ -54,6 +54,7 @@ typedef NS_ENUM(NSInteger, PhotoType) {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"实名认证";
+    self.view.backgroundColor = BACKLIST_COLOR;
 
 }
 #pragma mark  ----点击事件----

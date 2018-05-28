@@ -10,6 +10,7 @@
 #import "WCResetPasswordViewController.h"
 #import "WCBasisInfoViewController.h"
 #import "WCInfoModifyViewController.h"
+#import "WCAddBankViewController.h"
 #import "WCPersonalHeaderView.h"
 #import "TBMoreReminderView.h"
 #import "ClearCacheTool.h"
@@ -45,6 +46,11 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    if (_tableView) {
+        
+        [_tableView reloadData];
+    }
 }
 
 - (void)viewDidLoad {
@@ -58,6 +64,7 @@
 {
     _lefInfoData = [NSArray arrayWithObjects:
                     @[@{@"name":@"实名认证",@"image":@"user_personal"},
+                      @{@"name":@"收款银行",@"image":@"user_bank"},
                       @{@"name":@"新手攻略",@"image":@"user_ strategy"},
                       @{@"name":@"意见反馈",@"image":@"user_opinion"},
                       @{@"name":@"清理缓存",@"image":@"user_ cache"},],
@@ -165,7 +172,7 @@
     cell.textLabel.text = [dic valueForKey:@"name"];
     cell.detailTextLabel.text = @"";
     
-    if ([indexPath isEqual:[NSIndexPath indexPathForRow:3 inSection:0]]) {
+    if ([indexPath isEqual:[NSIndexPath indexPathForRow:4 inSection:0]]) {
         // 缓存大小
         [ClearCacheTool obtainCacheSize:^(CGFloat cacheSize) {
             
@@ -177,6 +184,17 @@
         
         NSString *cer = [UserInfo account].certification.ID;
         cell.detailTextLabel.text = cer?@"已认证":@"未认证";
+    }
+    if ([indexPath isEqual:[NSIndexPath indexPathForRow:1 inSection:0]] ) {
+        
+        UserBankInfo *infoBank = [UserInfo account].bankInfo;
+        NSInteger bank = 0;
+        if (infoBank) {
+            
+            bank = infoBank.isbank;
+        }
+        NSString *bankInfo = bank == 1?@"已绑定":@"未绑定";
+        cell.detailTextLabel.text = bankInfo;
     }
     return cell;
 }
@@ -204,6 +222,13 @@
             [UIView addMJNotifierWithText:@"请先登录" dismissAutomatically:YES];
         }
         
+        
+    }
+    else if ([key isEqualToString:@"收款银行"]){
+        
+        UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
+        WCAddBankViewController *bankVC = [board instantiateViewControllerWithIdentifier:@"WCAddBankViewControllerID"];
+        [self.navigationController pushViewController:bankVC animated:YES];
         
     }
     else if ([key isEqualToString:@"新手攻略"])
@@ -239,7 +264,7 @@
  */
 - (void)updateClearSize
 {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
     if (cell) {
         [ClearCacheTool obtainCacheSize:^(CGFloat cacheSize) {
             

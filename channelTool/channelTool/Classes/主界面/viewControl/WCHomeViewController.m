@@ -11,10 +11,11 @@
 #import "WCMyScenicViewController.h"
 #import "WCMyNarratorViewController.h"
 #import "WCBillViewController.h"
+#import "TBWithdrawalViewController.h"
 #import "LSBasePageTabbar.h"
 #import "CitiesDataTool.h"
 #import "WCMyIncomeMode.h"
-
+#import "TBMoreReminderView.h"
 @interface WCHomeViewController ()<UIScrollViewDelegate,LSBasePageTabbarDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *bannerImageView;//横幅
@@ -57,7 +58,7 @@
     // Do any additional setup after loading the view.
     [self setUIviews];
     [self setBaseData];
-    [self verifyCertification];
+    [self requestUserData];
 }
 #pragma mark  ----视图设置----
 - (void)setUIviews
@@ -147,6 +148,8 @@
         
         [UIView addMJNotifierWithText:@"网络异常，请查看网络连接" dismissAutomatically:YES];
     }];
+    
+    
 }
 #pragma mark  ----LSBasePageTabbarDelegate----
 - (void)basePageTabbar:(id<LSBasePageTabbarProtocol>)tabbar clickedPageTabbarAtIndex:(NSInteger)index;
@@ -190,36 +193,83 @@
 //  提现
 - (IBAction)withdrawalClick:(UIButton *)sender {
     
-    
+    if ([UserInfo account].bankInfo.isbank == 1) {
+
+        if (self.incomeMode.balance.doubleValue == 0) {
+            
+            [UIView addMJNotifierWithText:@"余额为0不能提现" dismissAutomatically:YES];
+            return;
+        }
+        UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
+        
+        TBWithdrawalViewController *viewController = [board instantiateViewControllerWithIdentifier:@"TBWithdrawalViewControllerID"];
+        viewController.money = self.incomeMode.balance;
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+    else
+    {
+        TBMoreReminderView *moreView = [[TBMoreReminderView alloc] initShowPrompt:@"亲，您暂未绑定收款账号，现在去绑定银行卡吗？"];
+        [moreView showHandler:^{
+         
+            UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
+            UIViewController *bankVC = [board instantiateViewControllerWithIdentifier:@"WCAddBankViewControllerID"];
+            [self.navigationController pushViewController:bankVC animated:YES];
+        }];
+    }
     
 }
 #pragma mark  ----数据请求----
 /**
- 验证实名认证
+ 请求用户基本信息
  */
-- (void)verifyCertification
+- (void)requestUserData
 {
     UserInfo *info = [UserInfo account];
     
-    if (info.userID.length == 0 && info.certification) {
-        
-        return;
-    }
+    dispatch_group_t group = dispatch_group_create();
     
-    NSDictionary *dic = @{@"interfaceId":@"295",
+    //验证实名认证
+    dispatch_group_enter(group);
+    
+    NSDictionary *dicCard = @{@"interfaceId":@"295",
                           @"id":info.userID};
     
-    [[ZKPostHttp shareInstance] POST:POST_URL params:dic success:^(id  _Nonnull responseObject) {
+    [[ZKPostHttp shareInstance] POST:POST_URL params:dicCard success:^(id  _Nonnull responseObject) {
         
         if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
             
             UserCertification *cer = [UserCertification mj_objectWithKeyValues:[responseObject valueForKey:@"data"]];
             info.certification = cer;
-            [UserInfo saveAccount:info];
+            dispatch_group_leave(group);
         }
     } failure:^(NSError * _Nonnull error) {
         
+        dispatch_group_leave(group);
     }];
+    
+    // 银行信息
+    dispatch_group_enter(group);
+    
+    NSDictionary *dicBank = @{@"interfaceId":@"312",
+                          @"id":info.userID};
+    
+    [[ZKPostHttp shareInstance] POST:POST_URL params:dicBank success:^(id  _Nonnull responseObject) {
+        
+        if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
+            
+            UserBankInfo *bankInfo = [UserBankInfo mj_objectWithKeyValues:[responseObject valueForKey:@"data"]];
+            info.bankInfo = bankInfo;
+            dispatch_group_leave(group);
+        }
+    } failure:^(NSError * _Nonnull error) {
+        
+        dispatch_group_leave(group);
+    }];
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        
+        [UserInfo saveAccount:info];
+    });
 }
 
 - (void)didReceiveMemoryWarning {

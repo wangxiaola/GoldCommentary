@@ -31,7 +31,7 @@
         promptBackView.backgroundColor = NAVIGATION_COLOR;
         [contentView addSubview:promptBackView];
         
-        UIImageView *promptImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ReminderImage"]];
+        UIImageView *promptImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"more_prompt"]];
         [promptBackView addSubview:promptImageView];
         
         UILabel *updataLabel = [[UILabel alloc] init];
@@ -46,6 +46,9 @@
         promptLabel.numberOfLines = 0;
         promptLabel.text = prompt;
         [contentView addSubview:promptLabel];
+        
+        // 修改行间距
+        [ZKUtil changeLineSpaceForLabel:promptLabel WithSpace:6];
         
         UIView *footView = [[UIView alloc] init];
         footView.backgroundColor = [UIColor groupTableViewBackgroundColor];

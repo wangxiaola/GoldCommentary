@@ -34,23 +34,32 @@
     _scenicMode = mode;
     
     //1.获取网络资源路径(URL)
-    NSURL *pURL = [NSURL URLWithString:mode.logo];
-    [activityView startAnimating];
+    if (mode.logo.length > 0) {
+        
+        NSURL *pURL = [NSURL URLWithString:mode.logo];
+        
+        [activityView startAnimating];
+        
+        [[SDWebImageManager sharedManager] loadImageWithURL:pURL options:SDWebImageCacheMemoryOnly progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+            
+        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+            
+            [activityView stopAnimating];
+            if (finished)
+            {
+                _image = [image imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
+            }else
+            {
+                _image = [[UIImage imageNamed:@"popup_ts"] imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
+            }
+            
+        }];
+    }
+    else
+    {
+        _image = [[UIImage imageNamed:@"popup_ts"] imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
+    }
     
-    [[SDWebImageManager sharedManager] loadImageWithURL:pURL options:SDWebImageCacheMemoryOnly progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-        
-    } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-        
-        [activityView stopAnimating];
-        if (finished)
-        {
-            _image = [image imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
-        }else
-        {
-            _image = [[UIImage imageNamed:@"popup_ts"] imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
-        }
-        
-    }];
     
     self.alpha = 1;
     [[APPDELEGATE window] addSubview:self];
@@ -190,9 +199,11 @@
 //分享到朋友圈  分享到空间
 - (void)shareType:(NSInteger)type
 {
+    
     if (!_image) {
         
         [UIView addMJNotifierWithText:@"图片处理中,请稍等！" dismissAutomatically:YES];
+        
         return;
     }
     WXMediaMessage *message = [WXMediaMessage message];

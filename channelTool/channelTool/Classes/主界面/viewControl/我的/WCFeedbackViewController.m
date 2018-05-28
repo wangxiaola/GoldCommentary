@@ -7,11 +7,11 @@
 //
 
 #import "WCFeedbackViewController.h"
+#import "WCUploadPromptView.h"
 #import "IQTextView.h"
 
 @interface WCFeedbackViewController ()
 @property (nonatomic, strong) UIButton *commitBtn;
-@property (nonatomic, strong) NSMutableDictionary *params;
 @property (nonatomic, strong) IQTextView *textView;
 @end
 
@@ -30,19 +30,6 @@
     }
     return _textView;
 }
-- (NSMutableDictionary *)params
-{
-    if (!_params) {
-        _params = [NSMutableDictionary params];
-        [_params setValue:@"188" forKey:@"interfaceId"];
-        [_params setValue:@"user" forKey:@"cfrom"];
-        [_params setValue:@"" forKey:@"info"];
-        [_params setValue:[UserInfo account].userID forKey:@"did"];
-        
-    }
-    return _params;
-}
-
 // 提交按钮
 
 - (UIButton *)commitBtn
@@ -147,17 +134,27 @@
     
     if (self.textView.text.length == 0)
     {
-        hudShowError(@"请填写意见反馈信息");
+        [UIView addMJNotifierWithText:@"请填写意见反馈信息" dismissAutomatically:YES];
         return ;
     }
-    [self.params setValue:self.textView.text forKey:@"info"];
+   
+    hudShowLoading(@"正在提交反馈");
+    NSDictionary *params = @{@"interfaceId":@"314",
+                             @"id":[UserInfo account].userID,
+                             @"title":self.textView.text};
+    
     MJWeakSelf
-    [[ZKPostHttp shareInstance] POST:@"" params:self.params success:^(id  _Nonnull responseObject) {
+    [[ZKPostHttp shareInstance] POST:POST_URL params:params success:^(id  _Nonnull responseObject) {
+        hudDismiss();
         if ([responseObject[@"errcode"] isEqual:@"00000"]) {
-            hudShowSuccess(responseObject[@"errmsg"]);
-            [weakSelf.navigationController popViewControllerAnimated:YES];
+            
+            [WCUploadPromptView showPromptString:@"反馈成功，谢谢您的宝贵意见。" isSuccessful:YES clickButton:^{
+                
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }];
+
         } else {
-            hudShowError(responseObject[@"errmsg"]);
+            [WCUploadPromptView showPromptString:responseObject[@"errmsg"] isSuccessful:NO clickButton:nil];
         }
     } failure:^(NSError * _Nonnull error) {
         hudShowError(@"意见反馈提交失败");

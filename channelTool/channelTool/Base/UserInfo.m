@@ -43,3 +43,12 @@ MJCodingImplementation
 
 @end
 
+@implementation  UserBankInfo
+MJCodingImplementation
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"ID": @"id"};
+}
+
+@end

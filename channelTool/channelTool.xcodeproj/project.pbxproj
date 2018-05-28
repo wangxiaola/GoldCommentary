@@ -55,7 +55,6 @@
 		3B216B3C209AAE880040EE93 /* NSDictionary+FixedParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B1B209AAE880040EE93 /* NSDictionary+FixedParams.m */; };
 		3B216B3D209AAE880040EE93 /* NSObject+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B1D209AAE880040EE93 /* NSObject+MJExtension.m */; };
 		3B216B3E209AAE880040EE93 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B1F209AAE880040EE93 /* NSString+Extension.m */; };
-		3B216B3F209AAE880040EE93 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B21209AAE880040EE93 /* NSString+MD5Addition.m */; };
 		3B216B40209AAE880040EE93 /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B23209AAE880040EE93 /* NSString+Regex.m */; };
 		3B216B41209AAE880040EE93 /* UIBarButtonItem+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B25209AAE880040EE93 /* UIBarButtonItem+Custom.m */; };
 		3B216B42209AAE880040EE93 /* UIButton+ImageTitleStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216B27209AAE880040EE93 /* UIButton+ImageTitleStyle.m */; };
@@ -154,6 +153,7 @@
 		3B985B3220A19D990083E1F2 /* AddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B985B2B20A19D990083E1F2 /* AddressView.m */; };
 		3B985B3320A19D990083E1F2 /* ChooseLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B985B2D20A19D990083E1F2 /* ChooseLocationView.m */; };
 		3B985B3620A19DCC0083E1F2 /* CitiesDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B985B3520A19DCC0083E1F2 /* CitiesDataTool.m */; };
+		3B9ECCE520BBF021003AB7FC /* TBWithdrawalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9ECCE420BBF021003AB7FC /* TBWithdrawalViewController.m */; };
 		3BA73DF9209C06D900B88891 /* TBCountdownSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73DF8209C06D900B88891 /* TBCountdownSingle.m */; };
 		3BA73DFC209C309F00B88891 /* WCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73DFB209C309F00B88891 /* WCHomeViewController.m */; };
 		3BA73E08209C451100B88891 /* LSBaseNavItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73DFF209C451100B88891 /* LSBaseNavItem.m */; };
@@ -167,6 +167,7 @@
 		3BA73E17209C56AC00B88891 /* WCMyScenicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73E16209C56AC00B88891 /* WCMyScenicViewController.m */; };
 		3BA73E1A209C572B00B88891 /* WCMyNarratorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73E19209C572B00B88891 /* WCMyNarratorViewController.m */; };
 		3BAC85C820B11E0000792A26 /* WCCreateScenicMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAC85C720B11E0000792A26 /* WCCreateScenicMode.m */; };
+		3BDD07CF20B90B5300D605C8 /* WCAddBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDD07CE20B90B5300D605C8 /* WCAddBankViewController.m */; };
 		56B6C53E4D091EA293C517A5 /* Pods_channelTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF32DF5B5674C73EA5E12B20 /* Pods_channelTool.framework */; };
 /* End PBXBuildFile section */
 
@@ -260,8 +261,6 @@
 		3B216B1D209AAE880040EE93 /* NSObject+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJExtension.m"; sourceTree = "<group>"; };
 		3B216B1E209AAE880040EE93 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		3B216B1F209AAE880040EE93 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
-		3B216B20209AAE880040EE93 /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
-		3B216B21209AAE880040EE93 /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		3B216B22209AAE880040EE93 /* NSString+Regex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Regex.h"; sourceTree = "<group>"; };
 		3B216B23209AAE880040EE93 /* NSString+Regex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Regex.m"; sourceTree = "<group>"; };
 		3B216B24209AAE880040EE93 /* UIBarButtonItem+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Custom.h"; sourceTree = "<group>"; };
@@ -432,6 +431,8 @@
 		3B985B2D20A19D990083E1F2 /* ChooseLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseLocationView.m; sourceTree = "<group>"; };
 		3B985B3420A19DCC0083E1F2 /* CitiesDataTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitiesDataTool.h; sourceTree = "<group>"; };
 		3B985B3520A19DCC0083E1F2 /* CitiesDataTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitiesDataTool.m; sourceTree = "<group>"; };
+		3B9ECCE320BBF021003AB7FC /* TBWithdrawalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBWithdrawalViewController.h; sourceTree = "<group>"; };
+		3B9ECCE420BBF021003AB7FC /* TBWithdrawalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TBWithdrawalViewController.m; sourceTree = "<group>"; };
 		3BA73DF7209C06D800B88891 /* TBCountdownSingle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCountdownSingle.h; sourceTree = "<group>"; };
 		3BA73DF8209C06D900B88891 /* TBCountdownSingle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCountdownSingle.m; sourceTree = "<group>"; };
 		3BA73DFA209C309F00B88891 /* WCHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCHomeViewController.h; sourceTree = "<group>"; };
@@ -457,6 +458,8 @@
 		3BA73E19209C572B00B88891 /* WCMyNarratorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMyNarratorViewController.m; sourceTree = "<group>"; };
 		3BAC85C620B11E0000792A26 /* WCCreateScenicMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCreateScenicMode.h; sourceTree = "<group>"; };
 		3BAC85C720B11E0000792A26 /* WCCreateScenicMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCreateScenicMode.m; sourceTree = "<group>"; };
+		3BDD07CD20B90B5300D605C8 /* WCAddBankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAddBankViewController.h; sourceTree = "<group>"; };
+		3BDD07CE20B90B5300D605C8 /* WCAddBankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAddBankViewController.m; sourceTree = "<group>"; };
 		538CB4AF673C51FA46D9D600 /* Pods-channelTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-channelTool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-channelTool/Pods-channelTool.debug.xcconfig"; sourceTree = "<group>"; };
 		AAA397FC239E040063511990 /* Pods-channelTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-channelTool.release.xcconfig"; path = "Pods/Target Support Files/Pods-channelTool/Pods-channelTool.release.xcconfig"; sourceTree = "<group>"; };
 		AF32DF5B5674C73EA5E12B20 /* Pods_channelTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_channelTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -678,8 +681,6 @@
 				3B216B1D209AAE880040EE93 /* NSObject+MJExtension.m */,
 				3B216B1E209AAE880040EE93 /* NSString+Extension.h */,
 				3B216B1F209AAE880040EE93 /* NSString+Extension.m */,
-				3B216B20209AAE880040EE93 /* NSString+MD5Addition.h */,
-				3B216B21209AAE880040EE93 /* NSString+MD5Addition.m */,
 				3B216B22209AAE880040EE93 /* NSString+Regex.h */,
 				3B216B23209AAE880040EE93 /* NSString+Regex.m */,
 				3B216B24209AAE880040EE93 /* UIBarButtonItem+Custom.h */,
@@ -980,6 +981,8 @@
 				3B1E25D720AD713D006110C2 /* WCAddAttractionsViewController.m */,
 				3B1E25F220AD9097006110C2 /* WCMoreAttractionsViewController.h */,
 				3B1E25F320AD9097006110C2 /* WCMoreAttractionsViewController.m */,
+				3B9ECCE320BBF021003AB7FC /* TBWithdrawalViewController.h */,
+				3B9ECCE420BBF021003AB7FC /* TBWithdrawalViewController.m */,
 			);
 			path = "景区";
 			sourceTree = "<group>";
@@ -1007,12 +1010,14 @@
 			children = (
 				3B6CBD24209FF8DC00784BBF /* WCPersonalViewController.h */,
 				3B6CBD25209FF8DC00784BBF /* WCPersonalViewController.m */,
+				3B985B0C20A153F10083E1F2 /* WCBasisInfoViewController.h */,
+				3B985B0D20A153F10083E1F2 /* WCBasisInfoViewController.m */,
+				3BDD07CD20B90B5300D605C8 /* WCAddBankViewController.h */,
+				3BDD07CE20B90B5300D605C8 /* WCAddBankViewController.m */,
 				3B1A06AC20A033EC005CC21C /* WCFeedbackViewController.h */,
 				3B1A06AD20A033EC005CC21C /* WCFeedbackViewController.m */,
 				3B1A06AF20A03688005CC21C /* WCInfoModifyViewController.h */,
 				3B1A06B020A03688005CC21C /* WCInfoModifyViewController.m */,
-				3B985B0C20A153F10083E1F2 /* WCBasisInfoViewController.h */,
-				3B985B0D20A153F10083E1F2 /* WCBasisInfoViewController.m */,
 				3B6BB83020A299D40013AE6B /* WCBillViewController.h */,
 				3B6BB83120A299D40013AE6B /* WCBillViewController.m */,
 			);
@@ -1297,13 +1302,14 @@
 				3B1A078720A05B18005CC21C /* TZPhotoPickerController.m in Sources */,
 				3B216B5F209AAF210040EE93 /* TBMoreReminderView.m in Sources */,
 				3B216B44209AAE880040EE93 /* UIImage+Strenching.m in Sources */,
+				3B9ECCE520BBF021003AB7FC /* TBWithdrawalViewController.m in Sources */,
 				3B216B3C209AAE880040EE93 /* NSDictionary+FixedParams.m in Sources */,
 				3B216B40209AAE880040EE93 /* NSString+Regex.m in Sources */,
 				3B6CBD23209FEB9900784BBF /* WCAuthenticationPopupsView.m in Sources */,
 				3B1E25D820AD713D006110C2 /* WCAddAttractionsViewController.m in Sources */,
-				3B216B3F209AAE880040EE93 /* NSString+MD5Addition.m in Sources */,
 				3B985B0E20A153F10083E1F2 /* WCBasisInfoViewController.m in Sources */,
 				3BA73E1A209C572B00B88891 /* WCMyNarratorViewController.m in Sources */,
+				3BDD07CF20B90B5300D605C8 /* WCAddBankViewController.m in Sources */,
 				3BA73E11209C54E500B88891 /* TBBaseClassTableViewController.m in Sources */,
 				3B216B69209AB2220040EE93 /* UserInfo.m in Sources */,
 				3B216B45209AAE880040EE93 /* UIImage+Thumbnail.m in Sources */,
@@ -1489,6 +1495,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YC78659G27;
@@ -1518,6 +1525,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YC78659G27;

@@ -54,15 +54,17 @@ NSString *const WCMyNarratorTableViewCellID = @"WCMyNarratorTableViewCellID";
             mode.forLabels = titeArray.copy;
         
         }
+        else
+        {
+            [titeArray addObjectsFromArray:mode.forLabels];
+        }
         
         if (mode.forLabels.count == 0) {
             
             bottomHeight.constant = 0.01;
         }
-        else
-        {
-            
-        }
+      
+
         CGFloat buttonX = 0;
         CGFloat buttonY = 0;
         CGFloat buttonLin = 4;
@@ -93,10 +95,14 @@ NSString *const WCMyNarratorTableViewCellID = @"WCMyNarratorTableViewCellID";
                 [self addLabelText:str labelRect:rect];
             }
         }
-        // 计算标签高度
-        mode.cellHeight = buttonY + 20;
-        // 如果只有一行就隐藏更多按钮
-        moreButton.hidden = mode.cellHeight > 20 ? NO:YES;
+        dispatch_sync(dispatch_get_main_queue(), ^{
+       
+            // 计算标签高度
+            mode.cellHeight = buttonY + 20;
+            // 如果只有一行就隐藏更多按钮
+            moreButton.hidden = mode.cellHeight > 20 ? NO:YES;
+        });
+
     });
     
 }
