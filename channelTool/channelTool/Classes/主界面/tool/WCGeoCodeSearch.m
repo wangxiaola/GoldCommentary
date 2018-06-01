@@ -11,11 +11,13 @@
 #import "UIView+MJAlertView.h"
 #import <BaiduMapAPI_Search/BMKGeocodeSearch.h>
 
+
 @interface WCGeoCodeSearch()<BMKGeoCodeSearchDelegate>
 
 @property (nonatomic, strong) BMKGeoCodeSearch *searcher;
 
 @property (nonatomic, strong) BMKReverseGeoCodeOption *reverseGeoCodeSearchOption;
+
 
 @property (nonatomic, copy) void(^searchResults)(WCPositioningMode *mode);
 @end
@@ -79,8 +81,7 @@
     
     if (error == BMK_SEARCH_NO_ERROR) {
         
-//        address = [NSString stringWithFormat:@"%@%@%@",result.addressDetail.city,result.addressDetail.district,[result.sematicDescription componentsSeparatedByString:@","].lastObject];
-        address = result.address;
+        address = [result.sematicDescription componentsSeparatedByString:@","].firstObject;
         cityID  = result.addressDetail.adCode;
     }
     else {
@@ -92,12 +93,14 @@
         
         mode.adderss = address;
         mode.cityID = cityID;
+        mode.cityName = result.addressDetail.city;
         mode.latitude = [NSString stringWithFormat:@"%f",result.location.latitude];
         mode.longitude = [NSString stringWithFormat:@"%f",result.location.longitude];
 
         self.searchResults(mode);
     }
 }
+
 - (void)dealloc
 {
      _searcher.delegate = nil;      

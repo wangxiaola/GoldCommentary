@@ -10,8 +10,10 @@
 
 
 NSString *const POST_URL = @"http://172.16.12.25:8085/service.csw";
+//NSString *const POST_URL = @"https://jpjs.geeker.com.cn/service.csw";
 
-NSString *const POST_IMAGE_URL = @"http://172.16.12.25:8085/service.csw";
+//NSString *const POST_IMAGE_URL = @"https://jpjs.geeker.com.cn/service.csw";
+NSString *const POST_IMAGE_URL = @"http://172.16.12.25:8085/";
 
 NSString *const Verification_phone = @"Verification_phone";
 

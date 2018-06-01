@@ -22,4 +22,8 @@
 - (void)setUpView NS_REQUIRES_SUPER;
 - (void)endDataRequest;//数据请求结束
 - (void)updataTableView;
+/**
+ *  重新加载数据
+ */
+- (void)reloadData;
 @end

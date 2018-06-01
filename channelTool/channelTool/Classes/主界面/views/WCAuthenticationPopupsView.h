@@ -11,4 +11,5 @@
 @interface WCAuthenticationPopupsView : UIView
 
 + (void)show;
++ (void)showPromptPhone;
 @end

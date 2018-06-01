@@ -31,12 +31,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *visitingTimeField;//游览时长
 @property (weak, nonatomic) IBOutlet UITextField *headNameField;//负责人姓名
 @property (weak, nonatomic) IBOutlet UITextField *headPhoneField;//负责人电话
+@property (weak, nonatomic) IBOutlet UILabel *lineTimeLabel;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 
 @property (weak, nonatomic) IBOutlet UIButton *levelButton;
-@property (weak, nonatomic) IBOutlet UIButton *startButton;
-@property (weak, nonatomic) IBOutlet UIButton *endButton;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *submButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoCollectionHeight;
@@ -49,6 +49,10 @@
 @property (assign, nonatomic) NSInteger maxRow;
 
 @property (nonatomic, copy) NSString *levelString;//等级
+
+@property (nonatomic, copy) NSString *linestime;
+
+@property (nonatomic, copy) NSString *lineetime;
 
 @property (nonatomic, strong) BMKLocationService *locService;
 
@@ -72,6 +76,9 @@
     self.navigationItem.title = @"创建景区";
     self.view.backgroundColor = RGB(241, 241, 241);
     [self setUpView];
+    
+    self.linestime = @"00:00";
+    self.lineetime = @"24:00";
     
     if (self.ID.length > 0) {
         
@@ -97,16 +104,7 @@
     [self.levelButton setButtonImageTitleStyle:(ButtonImageTitleStyleRightLeft) padding:4];
     
     self.headPhoneField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-    
-    self.startButton.layer.cornerRadius = 4;
-    self.startButton.layer.borderColor = [UIColor grayColor].CGColor;
-    self.startButton.layer.borderWidth = 0.6;
-    self.startButton.tag = 1000;
-    
-    self.endButton.layer.cornerRadius = 4;
-    self.endButton.layer.borderColor = [UIColor grayColor].CGColor;
-    self.endButton.layer.borderWidth = 0.6;
-    self.endButton.tag = 1001;
+
     
     self.tool = [[TBChoosePhotosTool alloc] init];
     self.tool.delegate = self;
@@ -189,6 +187,11 @@
     self.visitingTimeField.text = self.scenicMode.routetime;
     self.headNameField.text = self.scenicMode.boss;
     self.headPhoneField.text = self.scenicMode.phone;
+    
+    self.linestime = self.scenicMode.linestime;
+    self.lineetime = self.scenicMode.lineetime;
+    
+    self.lineTimeLabel.text = [NSString stringWithFormat:@"%@-%@",self.linestime,self.lineetime];
 }
 #pragma mark  ----数据上传----
 - (void)postScenicData
@@ -248,8 +251,8 @@
                                @"lat":self.locationMode.latitude,
                                @"lng":self.locationMode.longitude,
                                @"qcode":self.locationMode.cityID,
-                               @"linestime":self.startButton.titleLabel.text,
-                               @"lineetime":self.endButton.titleLabel.text,
+                               @"linestime":self.linestime,
+                               @"lineetime":self.lineetime,
                                @"special":self.ticketsField.text,
                                @"info":self.infoTextView.text,
                                @"routetime":self.visitingTimeField.text,
@@ -361,8 +364,8 @@
 - (IBAction)selectTime:(UIButton *)sender {
     [self.view endEditing:YES];
     
-    NSArray * star_arr = [self.startButton.titleLabel.text componentsSeparatedByString:@":"];
-    NSArray * end_arr = [self.endButton.titleLabel.text componentsSeparatedByString:@":"];
+    NSArray * star_arr = [self.linestime componentsSeparatedByString:@":"];
+    NSArray * end_arr = [self.lineetime componentsSeparatedByString:@":"];
     
     XMRTimePiker *timeView = [[XMRTimePiker alloc] init];
     timeView.delegate = self;
@@ -416,8 +419,10 @@
 #pragma mark  ----XMRTimePikerDelegate----
 -(void)XMSelectTimesViewSetOneLeft:(NSString *)oneLeft andOneRight:(NSString *)oneRight andTowLeft:(NSString *)towLeft andTowRight:(NSString *)towRight{
     
-    [self.endButton setTitle:[NSString stringWithFormat:@"%@:%@",towLeft,towRight] forState:UIControlStateNormal];
-    [self.startButton setTitle:[NSString stringWithFormat:@"%@:%@",oneLeft,oneRight] forState:UIControlStateNormal];
+    self.lineetime = [NSString stringWithFormat:@"%@:%@",towLeft,towRight];
+    self.linestime = [NSString stringWithFormat:@"%@:%@",oneLeft,oneRight];
+    
+    self.lineTimeLabel.text = [NSString stringWithFormat:@"%@-%@",self.linestime,self.lineetime];
 }
 #pragma mark  ----UITextViewDelegate----
 - (void)textViewDidChange:(UITextView *)textView

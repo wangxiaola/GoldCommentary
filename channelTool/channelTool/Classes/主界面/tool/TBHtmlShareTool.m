@@ -7,6 +7,7 @@
 //
 
 #import "TBHtmlShareTool.h"
+#import "WCAuthenticationPopupsView.h"
 #import "UIButton+ImageTitleStyle.h"
 #import "WXApi.h"
 #import "UIImage+Thumbnail.h"
@@ -106,13 +107,14 @@
             
             dataArray = @[@{@"name":@"创建景点",@"image":@"scenicTooView_1"},
                           @{@"name":@"编辑景区",@"image":@"scenicTooView_2"},
-                          @{@"name":@"分享朋友圈",@"image":@"scenicTooView_3"},
-                          @{@"name":@"分享好友",@"image":@"scenicTooView_4"},];
+                          @{@"name":@"删除景区",@"image":@"scenicTooView_3"},
+                          @{@"name":@"分享朋友圈",@"image":@"scenicTooView_4"},];
         }
         else
         {
             dataArray = @[@{@"name":@"创建景点",@"image":@"scenicTooView_1"},
-                          @{@"name":@"编辑景区",@"image":@"scenicTooView_2"}];
+                          @{@"name":@"编辑景区",@"image":@"scenicTooView_2"},
+                          @{@"name":@"删除景区",@"image":@"scenicTooView_3"}];
         }
         
         CGFloat buttonW = shareViewW/dataArray.count;
@@ -184,8 +186,10 @@
                 [self.delegate editTheScenicInfoData:_scenicMode];
             }
             break;
-        case 1002://分享朋友圈
-            [self shareType:0];
+        case 1002://删除景区
+            
+            [WCAuthenticationPopupsView showPromptPhone];
+            
             break;
         case 1003://分享好友
             [self shareType:1];
@@ -231,6 +235,5 @@
     }];
     
 }
-
 
 @end

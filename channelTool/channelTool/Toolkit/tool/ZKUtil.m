@@ -25,18 +25,18 @@
 
 + (void)downloadImage:(UIImageView *)imageView imageUrl:(NSString*)url;
 {
-//    if (![url containsString:IMAGE_URL]) {
-//        url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
-//    }
+    if (![url containsString:POST_IMAGE_URL]) {
+        url = [NSString stringWithFormat:@"%@%@",POST_IMAGE_URL,url];
+    }
 
     [imageView sd_setImageWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] placeholderImage:[UIImage imageNamed:@"popup_ts"] options:SDWebImageRetryFailed|SDWebImageHighPriority];
 }
 
 + (void)downloadImage:(UIImageView *)imageView imageUrl:(NSString *)url  duImageName:(NSString*)duImage;
 {
-//    if (![url containsString:IMAGE_URL]) {
-//        url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,url];
-//    }
+    if (![url containsString:POST_IMAGE_URL]) {
+        url = [NSString stringWithFormat:@"%@%@",POST_IMAGE_URL,url];
+    }
 
     [imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:duImage] options:SDWebImageRetryFailed|SDWebImageHighPriority];
 }

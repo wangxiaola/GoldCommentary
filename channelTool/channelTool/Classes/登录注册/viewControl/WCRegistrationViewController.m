@@ -134,7 +134,7 @@
 - (IBAction)agreement:(UIButton *)sender {
     
     TBWebViewController *webView = [[TBWebViewController alloc] init];
-    [webView loadWebURLSring:@""];
+    [webView loadWebPathURLSring:@"serviceAgreement"];
     [self.navigationController pushViewController:webView animated:YES];
 }
 // 获取验证码

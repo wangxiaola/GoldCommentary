@@ -42,6 +42,10 @@
 @property (nonatomic, copy, nullable) NSString *nickname;
 @property (nonatomic, copy, nullable) NSString *role;
 @property (nonatomic, copy, nullable) NSString *sex;
+@property (nonatomic, copy, nullable) NSString *idcard;
+@property (nonatomic, copy, nullable) NSString *idcardimgb;
+@property (nonatomic, copy, nullable) NSString *idcardimgf;
+@property (nonatomic, copy, nullable) NSString *region;
 
 @end
 

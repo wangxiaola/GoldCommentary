@@ -58,7 +58,6 @@
 #pragma mark ---初始化视图----
 - (void)setUpView
 {
-    self.infoTextView.scrollEnabled = NO;
     self.infoTextView.delegate = self;
     
     self.stepper.continuous = true;
@@ -207,9 +206,12 @@
         
         if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
             
+            NSString *spotid = [NSString stringWithFormat:@"%@",[responseObject valueForKey:@"data"]];
+            weakSelf.scenicMode = [WCAddScenicImageMode mj_objectWithKeyValues:dic];
+            weakSelf.scenicMode.ID = spotid;
+            
             [WCUploadPromptView showPromptString:self.scenicMode.ID?@"景点更新成功":@"景点创建成功" isSuccessful:NO clickButton:^{
                 
-                weakSelf.scenicMode = [WCAddScenicImageMode mj_objectWithKeyValues:dic];
                 if (weakSelf.refreshTableView) {
                     weakSelf.refreshTableView(weakSelf.scenicMode);
                 }
@@ -261,7 +263,12 @@
         return;
     }
     if (self.infoTextView.text.length == 0) {
-        [self shakeAnimationForView:self.infoTextView.superview markString:@"请填简介"];
+        [self shakeAnimationForView:self.infoTextView.superview markString:@"请填写简介"];
+        return;
+    }
+    
+    if (self.visitTimeField.text.length == 0) {
+        [self shakeAnimationForView:self.visitTimeField.superview markString:@"请填写游览时长"];
         return;
     }
     
@@ -282,6 +289,11 @@
     // 重新计算高度
     if (newSize.height > 24) {
         self.infoViewHeight.constant = newSize.height;
+    }
+    
+    if (newSize.height > 120)
+    {
+        self.infoViewHeight.constant = 120.0f;
     }
 }
 #pragma mark <UICollectionViewDataSource>

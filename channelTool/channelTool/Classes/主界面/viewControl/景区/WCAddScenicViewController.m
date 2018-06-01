@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSMutableArray <WCAddScenicMode *>*dataArray;
 
 @property (nonatomic, assign) NSInteger maxRow;// cell最大数量
+
 @end
 
 @implementation WCAddScenicViewController
@@ -31,12 +32,18 @@
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
+//视图将要消失
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"创建游览路线";
     [self setUpView];
     [self postScenicListData];
+    
 }
 #pragma mark ---初始化视图----
 - (void)setUpView
@@ -181,7 +188,8 @@
                 
                 [weakSelf.navigationController popViewControllerAnimated:YES];
             }];
-            if (weakSelf.refreshTableView) {
+      
+            if (weakSelf.refreshTableView ) {
                 weakSelf.refreshTableView();
             }
         }
@@ -338,6 +346,10 @@
         else
         {
             [data.shopspot addObject:mode];
+            //  刷新景区列表
+            if (weakSelf.refreshTableView ) {
+                weakSelf.refreshTableView();
+            }
         }
         
         if (indexPath.section == weakSelf.dataArray.count-1) {
@@ -374,7 +386,6 @@
         [mode.shopspot removeAllObjects];
         [mode.shopspot addObjectsFromArray:modeArray];
         [weakSelf.collectionView reloadSections:[NSIndexSet indexSetWithIndex:sender.tag]];
-        
     }];
     
 }

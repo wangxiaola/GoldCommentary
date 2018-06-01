@@ -7,11 +7,21 @@
 //
 
 #import "WCAuthenticationPopupsView.h"
-#import <Masonry/Masonry.h>
+#import "WCAttributeTouchLabel.h"
 #import "ZKUtil.h"
+#import <Masonry/Masonry.h>
 @implementation WCAuthenticationPopupsView
 
++ (void)showPromptPhone;
+{
+    [WCAuthenticationPopupsView createUIMsgString:@"你好，如果要删除景区，请电话联系我们客服，谢谢。\n客服电话：028-85127080" clickStrig:@"028-85127080" isPhone:YES];
+}
 + (void)show;
+{
+    
+    [WCAuthenticationPopupsView createUIMsgString:@"您现在还没通过实名认证，还不能创建景区哦，请点击“我的-实名认证”进行验证吧。" clickStrig:@"我的-实名认证" isPhone:NO];
+}
++ (void)createUIMsgString:(NSString *)msg clickStrig:(NSString *)clickStr isPhone:(BOOL)isPhone;
 {
     WCAuthenticationPopupsView *view = [[WCAuthenticationPopupsView alloc] init];
     view.frame = [UIApplication sharedApplication].delegate.window.bounds;
@@ -25,7 +35,7 @@
     
     UIImageView *headerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"popup_ts"]];
     [contentView addSubview:headerView];
-
+    
     UIView *infoView = [[UIView alloc] init];
     infoView.backgroundColor = [UIColor whiteColor];
     [contentView addSubview:infoView];
@@ -36,7 +46,6 @@
     [infoView addSubview:cancelButton];
     
     UILabel *makeLabel = [[UILabel alloc] init];
-    makeLabel.text = @"请进行实名认证";
     makeLabel.textColor = [UIColor colorWithRed:247/255.0 green:160/255.0 blue:44/255.0 alpha:1];
     //适配系统
     if (@available(iOS 9.0, *)) {
@@ -46,14 +55,30 @@
     }
     [infoView addSubview:makeLabel];
     
-    UILabel *infoLabel = [[UILabel alloc] init];
-    infoLabel.text = @"您现在还没通过实名认证，还不能创建景区哦，请点击“我的-实名认证”进行验证吧。";
-    infoLabel.font = [UIFont systemFontOfSize:14];
-    infoLabel.numberOfLines = 0;
+    WCAttributeTouchLabel *infoLabel = [[WCAttributeTouchLabel alloc] init];
     [infoView addSubview:infoLabel];
-    // 修改行间距
-    [ZKUtil changeLineSpaceForLabel:infoLabel WithSpace:6];
-    
+
+    [infoLabel setContenString:msg clickString:clickStr];
+    if (!isPhone) {
+
+        makeLabel.text = @"请进行实名认证";
+    }
+    else
+    {
+         makeLabel.text = @"温馨提示";
+        
+        [infoLabel setEventBlock:^(NSString *string) {
+            
+            [view hideView];
+            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",string];
+            UIWebView * callWebview = [[UIWebView alloc] init];
+            [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+            [[[UIApplication sharedApplication].delegate window] addSubview:callWebview];
+            
+        }];
+        
+    }
+   
     CGFloat windowWidth = CGRectGetWidth(view.frame)*0.6;
     
     [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -97,7 +122,6 @@
             
         }];
     }];
-    
 }
 -(void)hideView{
     

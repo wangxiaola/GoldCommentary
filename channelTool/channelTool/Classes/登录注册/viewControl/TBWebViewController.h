@@ -19,4 +19,11 @@
  */
 - (void)loadWebURLSring:(NSString *)string;
 
+/**
+ 加载本地链接网页
+ 
+ @param string URL地址
+ */
+- (void)loadWebPathURLSring:(NSString *)string;
+
 @end

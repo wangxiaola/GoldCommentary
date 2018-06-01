@@ -27,8 +27,20 @@
     // Do any additional setup after loading the view.
      self.view.backgroundColor = BACKLIST_COLOR;
      self.navigationItem.title = @"收款银行";
+    [self setBaseData];
 }
 #pragma mark  ----fun tool----
+- (void)setBaseData
+{
+   UserBankInfo *bankInfo = [UserInfo account].bankInfo;
+    
+    if (bankInfo.isbank == 1) {
+        
+        self.nameTextField.text = bankInfo.bankuser;
+        self.bankNameTextField.text = bankInfo.bankname;
+        self.bankIDTextField.text = bankInfo.bankno;
+    }
+}
 /**
  添加震动动画
  

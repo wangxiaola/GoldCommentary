@@ -16,6 +16,7 @@
 #import "CitiesDataTool.h"
 #import "WCMyIncomeMode.h"
 #import "TBMoreReminderView.h"
+
 @interface WCHomeViewController ()<UIScrollViewDelegate,LSBasePageTabbarDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *bannerImageView;//横幅
@@ -46,7 +47,6 @@
 //视图将要消失
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
     
 }
 //视图已经消失

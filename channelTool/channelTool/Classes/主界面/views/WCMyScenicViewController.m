@@ -63,10 +63,18 @@
 - (void)addScenicClick
 {
     UserInfo *info = [UserInfo account];
-    if (info.certification.ID.length == 0) {
+    NSInteger state = info.certification.ispass.integerValue;
+    
+    if (state == 0) {
+        
         [WCAuthenticationPopupsView show];
         return;
     }
+    if (state == 2) {
+        [UIView addMJNotifierWithText:@"认证信息正在审核中" dismissAutomatically:YES];
+        return;
+    }
+
     // 加载storboard
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
     
@@ -137,8 +145,7 @@
     [self.navigationController pushViewController:vc animated:YES];
     TBWeakSelf
     [vc setRefreshTableView:^{
-        
-        [weakSelf.tableView.mj_header beginRefreshing];
+        [weakSelf reloadData];
     }];
 }
 /**
@@ -157,7 +164,7 @@
     TBWeakSelf
     [viewController setRefreshTableView:^{
         
-        [weakSelf.tableView.mj_header beginRefreshing];
+        [weakSelf reloadData];
     }];
 }
 - (void)didReceiveMemoryWarning {

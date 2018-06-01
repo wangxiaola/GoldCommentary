@@ -12,6 +12,7 @@
 #import "TBChoosePhotosTool.h"
 #import "TBCityChooseView.h"
 #import "WCUploadPromptView.h"
+#import <SDWebImage/SDWebImageDownloader.h>
 typedef NS_ENUM(NSInteger, PhotoType) {
     PhotoTypeHeader = 0,
     PhotoTypeEmblem
@@ -55,12 +56,14 @@ typedef NS_ENUM(NSInteger, PhotoType) {
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"实名认证";
     self.view.backgroundColor = BACKLIST_COLOR;
-
+    
+    [self setBaseData];
+    
 }
 #pragma mark  ----点击事件----
 //选择地区
 - (IBAction)regionSelectClick:(UIButton *)sender {
-    
+    [self.view endEditing:YES];
     TBCityChooseView *chooseView = [[TBCityChooseView alloc] init];
     [chooseView showCity:self.cityCode];
     TBWeakSelf
@@ -72,15 +75,17 @@ typedef NS_ENUM(NSInteger, PhotoType) {
 }
 //选择头像
 - (IBAction)photoSelect:(UIButton *)sender {
+    [self.view endEditing:YES];
     [self showSelectPhotoType:PhotoTypeHeader];
 }
 //选择国徽
 - (IBAction)emblemSelect:(UIButton *)sender {
+    [self.view endEditing:YES];
     [self showSelectPhotoType:PhotoTypeEmblem];
 }
 //提交审核
 - (IBAction)submitAudit:(UIButton *)sender {
-    
+    [self.view endEditing:YES];
     if (self.nameTextField.text.length == 0) {
         [self shakeAnimationForView:self.nameTextField markString:@"请填写真实姓名"];
         return;
@@ -98,11 +103,11 @@ typedef NS_ENUM(NSInteger, PhotoType) {
         [self shakeAnimationForView:self.regionTextField markString:@"请选择地区"];
         return;
     }
-    if (self.headerImage == nil) {
+    if (self.headerImage == nil && self.headerImageURL.length == 0) {
         [self shakeAnimationForView:self.photoImageView markString:@"请添加身份证正面照"];
         return;
     }
-    if (self.emblemImage == nil) {
+    if (self.emblemImage == nil && self.emblemImageURL.length == 0) {
         [self shakeAnimationForView:self.emblemImageView markString:@"请添加身份证反面照"];
         return;
     }
@@ -135,7 +140,36 @@ typedef NS_ENUM(NSInteger, PhotoType) {
 }
 
 #pragma mark  ----数据请求----
-
+- (void)setBaseData
+{
+    UserCertification *cer = [UserInfo account].certification;
+    if (cer.ispass.integerValue != 0 ) {
+        
+        self.nameTextField.text = cer.nickname;
+        self.idCardTextField.text = cer.idcard;
+        self.regionTextField.text = cer.address;
+        self.cityCode = cer.region;
+        
+        if (![cer.idcardimgb containsString:POST_IMAGE_URL]) {
+            self.emblemImageURL = [NSString stringWithFormat:@"%@%@",POST_IMAGE_URL,cer.idcardimgb];
+        }
+        else
+        {
+            self.emblemImageURL = cer.idcardimgb;
+        }
+        
+        if (![cer.idcardimgf containsString:POST_IMAGE_URL]) {
+            self.headerImageURL = [NSString stringWithFormat:@"%@%@",POST_IMAGE_URL,cer.idcardimgf];
+        }
+        else
+        {
+            self.headerImageURL = cer.idcardimgf;
+        }
+        
+        [ZKUtil downloadImage:self.photoImageView imageUrl:self.headerImageURL duImageName:@"ID_Card_Top"];
+        [ZKUtil downloadImage:self.emblemImageView imageUrl:self.emblemImageURL duImageName:@"ID_Card_Back"];
+    }
+}
 /**
  提交信息
  */
@@ -143,25 +177,34 @@ typedef NS_ENUM(NSInteger, PhotoType) {
 {
     hudShopWUploadProgress(0.0, @"正在上传图片");
     
-   dispatch_group_t group = dispatch_group_create();
+    dispatch_group_t group = dispatch_group_create();
     
-    // 上传封面
     TBWeakSelf
-    dispatch_group_enter(group);
-    [self uploadImage:self.headerImage success:^(NSString *url) {
+    if (self.headerImageURL.length == 0 ) {
         
-        weakSelf.headerImageURL = url;
-         dispatch_group_leave(group);
-         hudShopWUploadProgress(0.3, @"正在上传图片");
-    }];
-    // 上传背面
-    dispatch_group_enter(group);
-    [self uploadImage:self.emblemImage success:^(NSString *url) {
+        // 上传封面
+        dispatch_group_enter(group);
+        [self uploadImage:self.headerImage success:^(NSString *url) {
+            
+            weakSelf.headerImageURL = url;
+            dispatch_group_leave(group);
+            hudShopWUploadProgress(0.3, @"正在上传图片");
+        }];
         
-        weakSelf.emblemImageURL = url;
-        dispatch_group_leave(group);
-         hudShopWUploadProgress(0.6, @"正在上传图片");
-    }];
+    }
+    
+    if (self.emblemImageURL.length == 0) {
+        
+        // 上传背面
+        dispatch_group_enter(group);
+        [self uploadImage:self.emblemImage success:^(NSString *url) {
+            
+            weakSelf.emblemImageURL = url;
+            dispatch_group_leave(group);
+            hudShopWUploadProgress(0.6, @"正在上传图片");
+        }];
+    }
+    
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         
@@ -193,16 +236,19 @@ typedef NS_ENUM(NSInteger, PhotoType) {
     
     TBWeakSelf
     [[ZKPostHttp shareInstance] POST:POST_URL params:dic success:^(id  _Nonnull responseObject) {
-       
+        
         if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
             
             hudDismiss();
+            UserInfo *info = [UserInfo account];
+            info.certification.ispass = @"2";
+            [UserInfo saveAccount:info];
             
             NSString *msg = @"申请提交成功\n我们会在2个工作日内给您回复";
             [WCUploadPromptView showPromptString:msg isSuccessful:YES clickButton:^{
                 [weakSelf.navigationController popViewControllerAnimated:YES];
             }];
-    
+            
         }
         else
         {
@@ -217,15 +263,15 @@ typedef NS_ENUM(NSInteger, PhotoType) {
 }
 /**
  上传图片
-
+ 
  @param image 图片
  @param urlRes 结果
  */
 - (void)uploadImage:(UIImage *)image success:(void(^)(NSString *url))urlRes
 {
-
+    
     [ZKPostHttp uploadImage:POST_IMAGE_URL Data:UIImageJPEGRepresentation(_headerImage, 0.7) success:^(id  _Nonnull responseObj) {
-       NSDictionary *data = [responseObj valueForKey:@"data"];
+        NSDictionary *data = [responseObj valueForKey:@"data"];
         if (urlRes) {
             urlRes([data valueForKey:@"url"]);
         }
@@ -244,11 +290,13 @@ typedef NS_ENUM(NSInteger, PhotoType) {
         
         self.photoImageView.image = image;
         self.headerImage = image;
+        self.headerImageURL = @"";
     }
     else if (self.photoType == PhotoTypeEmblem)
     {
         self.emblemImageView.image = image;
         self.emblemImage = image;
+        self.emblemImageURL = @"";
     }
 }
 - (void)dealloc

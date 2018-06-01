@@ -14,10 +14,10 @@
  */
 @interface WCMoreAttractionsViewController : TBBaseViewController
 
-@property (nonatomic, copy) NSString *sort;
-@property (nonatomic, copy) NSString *shopid;
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *info;
+@property (nonatomic, copy) NSString *sort;//第几列
+@property (nonatomic, copy) NSString *shopid;//景区id
+@property (nonatomic, copy) NSString *name;// 景区名
+@property (nonatomic, copy) NSString *info;//景区介绍
 /**
  刷新列表
  */

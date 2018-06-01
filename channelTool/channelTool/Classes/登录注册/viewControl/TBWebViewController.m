@@ -74,7 +74,7 @@
     //添加进度条
     [self.view addSubview:self.progressView];
     
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]]];
+
 
 }
 
@@ -86,7 +86,21 @@
 - (void)loadWebURLSring:(NSString *)string;
 {
     self.urlString = string;
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]]];
     
+}
+/**
+ 加载本地链接网页
+ 
+ @param string URL地址
+ */
+- (void)loadWebPathURLSring:(NSString *)string;
+{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:string ofType:@"html"];
+    NSString *htmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    NSURL *url = [[NSURL alloc] initWithString:filePath];
+    self.urlString = htmlString;
+   [self.webView loadHTMLString:htmlString baseURL:url];
 }
 #pragma mark ================ 自定义返回/关闭按钮 ================
 

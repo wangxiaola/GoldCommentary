@@ -209,7 +209,7 @@
             
         }else{
             
-            [button setTitle:@"设置" forState:UIControlStateNormal];
+            [button setTitle:@"确认" forState:UIControlStateNormal];
             
             [button addTarget:self action:@selector(timeClick) forControlEvents:UIControlEventTouchUpInside];
         }

@@ -71,7 +71,7 @@
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     formatter.numberStyle = kCFNumberFormatterRoundHalfDown;
-    NSString *number = [formatter stringFromNumber:[NSNumber numberWithInteger:self.sort.integerValue+1]];// 第一
+    NSString *number = [formatter stringFromNumber:[NSNumber numberWithInteger:self.sort.integerValue]];// 第一
     
     siteLabel.text = [NSString stringWithFormat:@"第%@站：%@",number,self.name];
     
@@ -114,12 +114,14 @@
     }];
     
     [siteLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(topView);
+        make.left.bottom.equalTo(topView);
+        make.right.equalTo(weakSelf.numberScenicLabel.mas_left).offset(10);
         make.height.equalTo(@40);
     }];
     [self.numberScenicLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.right.equalTo(topView);
+        make.width.equalTo(@80);
         make.centerY.equalTo(siteLabel.mas_centerY);
     }];
     [linView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -161,8 +163,8 @@
                           @"id":[UserInfo account].userID,
                           @"shopid":self.shopid,
                           @"sort":self.sort,
-                          @"page":[NSNumber numberWithInteger:self.page]
-                          };
+                          @"page":[NSNumber numberWithInteger:self.page],
+                          @"rows":@"20"};
     
     [self.viewMode postDataParameter:dic.mutableCopy];
 }
@@ -267,7 +269,6 @@
     if (self.dataArray.count > indexPath.row) {
         
         mode = self.dataArray[indexPath.row];
-        
     }
     else
     {
@@ -276,9 +277,9 @@
     mode.scenicID = self.shopid? :@"";
     mode.pname = self.name? :@"";
     mode.scenicInfo = self.info? :@"";
-    
     mode.rows = indexPath.row+1;
-    mode.psort = [NSString stringWithFormat:@"%ld",indexPath.section+1];
+    mode.psort = self.sort;
+    
     viewController.scenicMode = mode;
     [self.navigationController pushViewController:viewController animated:YES];
     

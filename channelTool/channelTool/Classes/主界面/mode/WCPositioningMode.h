@@ -18,4 +18,6 @@
 
 @property (nonatomic, copy) NSString *cityID;
 
+@property (nonatomic, copy) NSString *cityName;
+
 @end

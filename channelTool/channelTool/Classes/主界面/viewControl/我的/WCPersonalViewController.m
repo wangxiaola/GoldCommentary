@@ -182,8 +182,23 @@
     
     if ([indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:0]] ) {
         
-        NSString *cer = [UserInfo account].certification.ID;
-        cell.detailTextLabel.text = cer?@"已认证":@"未认证";
+        NSInteger isPass = [UserInfo account].certification.ispass.integerValue;
+        NSString *stateName = @"";
+        switch (isPass) {
+            case 0:
+                stateName = @"未认证";
+                break;
+            case 1:
+                stateName = @"已认证";
+                break;
+            case 2:
+                stateName = @"正在审核";
+                break;
+                
+            default:
+                break;
+        }
+        cell.detailTextLabel.text = stateName;
     }
     if ([indexPath isEqual:[NSIndexPath indexPathForRow:1 inSection:0]] ) {
         

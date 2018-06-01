@@ -31,7 +31,7 @@ NSString *const WCAddScenicCollectionViewCellID = @"WCAddScenicCollectionViewCel
     else
     {
        headerImageView.image = [UIImage imageNamed:@"addScenic"];
-       scenicNameLabel.text = @"添加景区";
+       scenicNameLabel.text = @"";
     }
 }
 @end
