@@ -14,7 +14,7 @@
 #import "SDWebImageManager.h"
 #import "WCPublic.h"
 #import "WCMyScenicMode.h"
-
+#import "WCQRCodeGenerateManager.h"
 @implementation TBHtmlShareTool
 {
     UIView *contentView;
@@ -34,33 +34,37 @@
     _delegate = delegate;
     _scenicMode = mode;
     
-    //1.获取网络资源路径(URL)
-    if (mode.logo.length > 0) {
+//    //1.获取网络资源路径(URL)
+//    if (mode.logo.length > 0) {
+//
+//        NSURL *pURL = [NSURL URLWithString:mode.logo];
+//
+//        [activityView startAnimating];
+//
+//        [[SDWebImageManager sharedManager] loadImageWithURL:pURL options:SDWebImageCacheMemoryOnly progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+//
+//        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+//
+//            [activityView stopAnimating];
+//            if (finished)
+//            {
+//                _image = [image imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
+//            }else
+//            {
+//                _image = [[UIImage imageNamed:@"popup_ts"] imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
+//            }
+//
+//        }];
+//    }
+//    else
+//    {
+//        _image = [[UIImage imageNamed:@"popup_ts"] imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
+//    }
+    // 如果可以分享 就生产一张二维码
+    if ([WXApi isWXAppInstalled]) {
         
-        NSURL *pURL = [NSURL URLWithString:mode.logo];
-        
-        [activityView startAnimating];
-        
-        [[SDWebImageManager sharedManager] loadImageWithURL:pURL options:SDWebImageCacheMemoryOnly progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-            
-        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-            
-            [activityView stopAnimating];
-            if (finished)
-            {
-                _image = [image imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
-            }else
-            {
-                _image = [[UIImage imageNamed:@"popup_ts"] imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
-            }
-            
-        }];
+        _image = [WCQRCodeGenerateManager generateWithLogoQRCodeData:@"http://www.jianshu.com/users/db6844a150fb/latest_articles" logoImageName:@"wc_share" logoScaleToSuperView:0.3];
     }
-    else
-    {
-        _image = [[UIImage imageNamed:@"popup_ts"] imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
-    }
-    
     
     self.alpha = 1;
     [[APPDELEGATE window] addSubview:self];
@@ -72,6 +76,7 @@
     }];
     
 }
+  
 - (instancetype)init;
 {
     
@@ -192,7 +197,7 @@
             
             break;
         case 1003://分享好友
-            [self shareType:1];
+            [self shareType:0];
             break;
             
         default:
@@ -200,6 +205,8 @@
     }
     [self cancelClick];
 }
+
+
 //分享到朋友圈  分享到空间
 - (void)shareType:(NSInteger)type
 {
@@ -210,20 +217,42 @@
         
         return;
     }
-    WXMediaMessage *message = [WXMediaMessage message];
-    message.title = _scenicMode.name;
-    message.description = _scenicMode.info;
-    [message setThumbImage:_image];
+//    WXMediaMessage *message = [WXMediaMessage message];
+//    message.title = _scenicMode.name;
+//    message.description = _scenicMode.info;
+//    [message setThumbImage:_image];
+//
+//    WXWebpageObject *ext = [WXWebpageObject object];
+//    ext.webpageUrl = @"";
+//    message.mediaObject = ext;
+//
+//    SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+//    req.bText = NO;
+//    req.message = message;
+//    req.scene = type == 0?WXSceneTimeline:WXSceneSession;
+//    [WXApi sendReq:req];
     
-    WXWebpageObject *ext = [WXWebpageObject object];
-    ext.webpageUrl = @"";
-    message.mediaObject = ext;
-    
+    //1.创建多媒体消息结构体
+    WXMediaMessage *mediaMsg = [WXMediaMessage message];
+    mediaMsg.title = _scenicMode.name;
+    mediaMsg.description = _scenicMode.info;
+    //2.创建多媒体消息中包含的图片数据对象
+    WXImageObject *imgObj = [WXImageObject object];
+    //图片真实数据
+    imgObj.imageData = UIImagePNGRepresentation(_image);
+    //多媒体数据对象
+    mediaMsg.mediaObject = imgObj;
+    //3.创建发送消息至微信终端程序的消息结构体
     SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+    //多媒体消息的内容
+    req.message = mediaMsg;
+    //指定为发送多媒体消息（不能同时发送文本和多媒体消息，两者只能选其一）
     req.bText = NO;
-    req.message = message;
-    req.scene = type == 0?WXSceneTimeline:WXSceneSession;
+    //指定发送到会话(聊天界面)
+    req.scene = WXSceneTimeline;
+    //发送请求到微信,等待微信返回onResp
     [WXApi sendReq:req];
+    
     
 }
 - (void)cancelClick

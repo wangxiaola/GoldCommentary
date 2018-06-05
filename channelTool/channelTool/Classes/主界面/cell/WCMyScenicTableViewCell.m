@@ -34,7 +34,7 @@ NSString *const WCMyScenicTableViewCellID = @"WCMyScenicTableViewCellID";
     _scenicMode = mode;
     [ZKUtil downloadImage:headerImageView imageUrl:mode.logo duImageName:@"popup_ts"];
     nameLabel.text = mode.name;
-    scenicNumberLabel.text = [NSString stringWithFormat:@"景点数:%@个 讲解音频:%@个",mode.scenicnum,mode.voicenum];
+    scenicNumberLabel.text = [NSString stringWithFormat:@"景点数:%@个   讲解音频:%@个",mode.scenicnum,mode.voicenum];
     NSString *earnings = [ZKUtil isBlankString:mode.earnings] == NO?mode.earnings:@"0";
     earningsLabel.text = [NSString stringWithFormat:@"收益：￥%@",earnings];
     audienceNumberLabel.text = [NSString stringWithFormat:@"%@",mode.listen];

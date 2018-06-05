@@ -850,8 +850,8 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已出账" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSk-8I-syV">
-                                <rect key="frame" x="10" y="167" width="167" height="18"/>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
+                                <rect key="frame" x="10" y="165.5" width="167" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -862,8 +862,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未出账" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixd-6b-za2">
-                                <rect key="frame" x="187" y="167" width="178" height="18"/>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
+                                <rect key="frame" x="198" y="165.5" width="167" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -889,7 +889,6 @@
                             <constraint firstItem="NUX-xY-pBz" firstAttribute="leading" secondItem="5oE-Xc-bXJ" secondAttribute="leading" id="O4H-to-drm"/>
                             <constraint firstItem="yID-Yy-pT8" firstAttribute="centerX" secondItem="NUX-xY-pBz" secondAttribute="centerX" id="Opc-Wy-Jo5"/>
                             <constraint firstItem="NUX-xY-pBz" firstAttribute="top" secondItem="5oE-Xc-bXJ" secondAttribute="top" id="Q87-VB-0RX"/>
-                            <constraint firstItem="Ixd-6b-za2" firstAttribute="leading" secondItem="lSk-8I-syV" secondAttribute="trailing" constant="10" id="QRm-I5-G5j"/>
                             <constraint firstItem="hCn-lp-xpv" firstAttribute="leading" secondItem="5oE-Xc-bXJ" secondAttribute="leading" constant="10" id="R7I-Mw-qmx"/>
                             <constraint firstItem="yID-Yy-pT8" firstAttribute="centerY" secondItem="NUX-xY-pBz" secondAttribute="centerY" id="UCM-H0-qNU"/>
                             <constraint firstItem="48A-0i-UbZ" firstAttribute="top" secondItem="I3f-V5-Ufe" secondAttribute="bottom" constant="2" id="WRr-95-Pqe"/>
@@ -903,6 +902,7 @@
                             <constraint firstAttribute="trailing" secondItem="Ixd-6b-za2" secondAttribute="trailing" constant="10" id="kqR-nW-oqs"/>
                             <constraint firstItem="I3f-V5-Ufe" firstAttribute="top" secondItem="F3c-5D-CSH" secondAttribute="bottom" constant="25" id="lqt-dP-Tny"/>
                             <constraint firstItem="hnQ-Qi-g9M" firstAttribute="bottom" secondItem="yID-Yy-pT8" secondAttribute="bottom" id="oeR-J9-LN9"/>
+                            <constraint firstItem="Ixd-6b-za2" firstAttribute="leading" secondItem="XXw-z6-ENQ" secondAttribute="trailing" constant="10" id="tQz-Gm-lWX"/>
                             <constraint firstItem="I3f-V5-Ufe" firstAttribute="top" secondItem="Ixd-6b-za2" secondAttribute="bottom" constant="1" id="xQh-r9-bTw"/>
                             <constraint firstItem="XXw-z6-ENQ" firstAttribute="leading" secondItem="lSk-8I-syV" secondAttribute="trailing" constant="10" id="xUz-J6-S1J"/>
                             <constraint firstItem="XXw-z6-ENQ" firstAttribute="bottom" secondItem="NUX-xY-pBz" secondAttribute="bottom" constant="-14" id="xYg-UR-vDG"/>

@@ -237,7 +237,6 @@
             [UIView addMJNotifierWithText:@"请先登录" dismissAutomatically:YES];
         }
         
-        
     }
     else if ([key isEqualToString:@"收款银行"]){
         
@@ -248,11 +247,11 @@
     }
     else if ([key isEqualToString:@"新手攻略"])
     {
-        
+        [self.navigationController pushViewController:[[NSClassFromString(@"WCStrategyViewController") alloc] init] animated:YES];
     }
     else if ([key isEqualToString:@"意见反馈"])
     {
-        [self.navigationController pushViewController:[NSClassFromString(@"WCFeedbackViewController") new] animated:YES];
+        [self.navigationController pushViewController:[[NSClassFromString(@"WCFeedbackViewController") alloc] init] animated:YES];
     }
     else if ([key isEqualToString:@"清理缓存"])
     {

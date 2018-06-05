@@ -116,6 +116,15 @@
 		3B7239EC209D9253006FAB15 /* WCMyNarratorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7239EA209D9253006FAB15 /* WCMyNarratorTableViewCell.m */; };
 		3B7239ED209D9253006FAB15 /* WCMyNarratorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B7239EB209D9253006FAB15 /* WCMyNarratorTableViewCell.xib */; };
 		3B7239F0209D9269006FAB15 /* WCMyNarratorMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7239EF209D9269006FAB15 /* WCMyNarratorMode.m */; };
+		3B75481320C62B1D00090D49 /* WCQRCodeGenerateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75481220C62B1D00090D49 /* WCQRCodeGenerateManager.m */; };
+		3B75481620C63B1F00090D49 /* WCStrategyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75481520C63B1F00090D49 /* WCStrategyViewController.m */; };
+		3B75482720C63BA500090D49 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75481A20C63BA500090D49 /* TAAbstractDotView.m */; };
+		3B75482820C63BA500090D49 /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75481C20C63BA500090D49 /* TAAnimatedDotView.m */; };
+		3B75482920C63BA500090D49 /* TADotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75481E20C63BA500090D49 /* TADotView.m */; };
+		3B75482A20C63BA500090D49 /* TAPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75482020C63BA500090D49 /* TAPageControl.m */; };
+		3B75482B20C63BA500090D49 /* SDCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75482220C63BA500090D49 /* SDCollectionViewCell.m */; };
+		3B75482C20C63BA500090D49 /* SDCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75482420C63BA500090D49 /* SDCycleScrollView.m */; };
+		3B75482D20C63BA500090D49 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75482620C63BA500090D49 /* UIView+SDExtension.m */; };
 		3B7C898820AA7B3E000E2F55 /* WCFMDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C898720AA7B3E000E2F55 /* WCFMDBTool.m */; };
 		3B7C898B20AA7CBE000E2F55 /* WCAttractionsMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C898A20AA7CBE000E2F55 /* WCAttractionsMode.m */; };
 		3B7C898E20AA7CDD000E2F55 /* WCSiteMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C898D20AA7CDD000E2F55 /* WCSiteMode.m */; };
@@ -377,6 +386,24 @@
 		3B7239EB209D9253006FAB15 /* WCMyNarratorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCMyNarratorTableViewCell.xib; sourceTree = "<group>"; };
 		3B7239EE209D9269006FAB15 /* WCMyNarratorMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMyNarratorMode.h; sourceTree = "<group>"; };
 		3B7239EF209D9269006FAB15 /* WCMyNarratorMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMyNarratorMode.m; sourceTree = "<group>"; };
+		3B75481120C62B1D00090D49 /* WCQRCodeGenerateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCQRCodeGenerateManager.h; sourceTree = "<group>"; };
+		3B75481220C62B1D00090D49 /* WCQRCodeGenerateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCQRCodeGenerateManager.m; sourceTree = "<group>"; };
+		3B75481420C63B1F00090D49 /* WCStrategyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStrategyViewController.h; sourceTree = "<group>"; };
+		3B75481520C63B1F00090D49 /* WCStrategyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStrategyViewController.m; sourceTree = "<group>"; };
+		3B75481920C63BA500090D49 /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
+		3B75481A20C63BA500090D49 /* TAAbstractDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAbstractDotView.m; sourceTree = "<group>"; };
+		3B75481B20C63BA500090D49 /* TAAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnimatedDotView.h; sourceTree = "<group>"; };
+		3B75481C20C63BA500090D49 /* TAAnimatedDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAnimatedDotView.m; sourceTree = "<group>"; };
+		3B75481D20C63BA500090D49 /* TADotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADotView.h; sourceTree = "<group>"; };
+		3B75481E20C63BA500090D49 /* TADotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TADotView.m; sourceTree = "<group>"; };
+		3B75481F20C63BA500090D49 /* TAPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAPageControl.h; sourceTree = "<group>"; };
+		3B75482020C63BA500090D49 /* TAPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAPageControl.m; sourceTree = "<group>"; };
+		3B75482120C63BA500090D49 /* SDCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollectionViewCell.h; sourceTree = "<group>"; };
+		3B75482220C63BA500090D49 /* SDCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollectionViewCell.m; sourceTree = "<group>"; };
+		3B75482320C63BA500090D49 /* SDCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCycleScrollView.h; sourceTree = "<group>"; };
+		3B75482420C63BA500090D49 /* SDCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCycleScrollView.m; sourceTree = "<group>"; };
+		3B75482520C63BA500090D49 /* UIView+SDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDExtension.h"; sourceTree = "<group>"; };
+		3B75482620C63BA500090D49 /* UIView+SDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDExtension.m"; sourceTree = "<group>"; };
 		3B7C898620AA7B3E000E2F55 /* WCFMDBTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCFMDBTool.h; sourceTree = "<group>"; };
 		3B7C898720AA7B3E000E2F55 /* WCFMDBTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCFMDBTool.m; sourceTree = "<group>"; };
 		3B7C898920AA7CBE000E2F55 /* WCAttractionsMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAttractionsMode.h; sourceTree = "<group>"; };
@@ -621,6 +648,8 @@
 		3B216AF4209AAD480040EE93 /* Toolkit */ = {
 			isa = PBXGroup;
 			children = (
+				3B75481720C63BA500090D49 /* SDCycleScrollView */,
+				3B75481020C62AEA00090D49 /* 二维码生产 */,
 				3B5A164920B2B44300FC79AD /* MJPhotoBrowser */,
 				3B1E25D920AD77FB006110C2 /* TQStarRating */,
 				3B7C899920AAE03B000E2F55 /* YBPopupMenu */,
@@ -976,6 +1005,44 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		3B75481020C62AEA00090D49 /* 二维码生产 */ = {
+			isa = PBXGroup;
+			children = (
+				3B75481120C62B1D00090D49 /* WCQRCodeGenerateManager.h */,
+				3B75481220C62B1D00090D49 /* WCQRCodeGenerateManager.m */,
+			);
+			path = "二维码生产";
+			sourceTree = "<group>";
+		};
+		3B75481720C63BA500090D49 /* SDCycleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				3B75481820C63BA500090D49 /* PageControl */,
+				3B75482120C63BA500090D49 /* SDCollectionViewCell.h */,
+				3B75482220C63BA500090D49 /* SDCollectionViewCell.m */,
+				3B75482320C63BA500090D49 /* SDCycleScrollView.h */,
+				3B75482420C63BA500090D49 /* SDCycleScrollView.m */,
+				3B75482520C63BA500090D49 /* UIView+SDExtension.h */,
+				3B75482620C63BA500090D49 /* UIView+SDExtension.m */,
+			);
+			path = SDCycleScrollView;
+			sourceTree = "<group>";
+		};
+		3B75481820C63BA500090D49 /* PageControl */ = {
+			isa = PBXGroup;
+			children = (
+				3B75481920C63BA500090D49 /* TAAbstractDotView.h */,
+				3B75481A20C63BA500090D49 /* TAAbstractDotView.m */,
+				3B75481B20C63BA500090D49 /* TAAnimatedDotView.h */,
+				3B75481C20C63BA500090D49 /* TAAnimatedDotView.m */,
+				3B75481D20C63BA500090D49 /* TADotView.h */,
+				3B75481E20C63BA500090D49 /* TADotView.m */,
+				3B75481F20C63BA500090D49 /* TAPageControl.h */,
+				3B75482020C63BA500090D49 /* TAPageControl.m */,
+			);
+			path = PageControl;
+			sourceTree = "<group>";
+		};
 		3B7C898520AA7B0F000E2F55 /* FMDBTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -1041,6 +1108,8 @@
 				3B1A06B020A03688005CC21C /* WCInfoModifyViewController.m */,
 				3B6BB83020A299D40013AE6B /* WCBillViewController.h */,
 				3B6BB83120A299D40013AE6B /* WCBillViewController.m */,
+				3B75481420C63B1F00090D49 /* WCStrategyViewController.h */,
+				3B75481520C63B1F00090D49 /* WCStrategyViewController.m */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
@@ -1286,7 +1355,9 @@
 				3B216B80209AF9F40040EE93 /* WCLoginMainViewController.m in Sources */,
 				3B216B58209AAED30040EE93 /* TBBaseViewController.m in Sources */,
 				3B216B42209AAE880040EE93 /* UIButton+ImageTitleStyle.m in Sources */,
+				3B75482B20C63BA500090D49 /* SDCollectionViewCell.m in Sources */,
 				3B7C899520AAB860000E2F55 /* WCCreateScenicTableViewCell.m in Sources */,
+				3B75482C20C63BA500090D49 /* SDCycleScrollView.m in Sources */,
 				3B216B86209AFA530040EE93 /* WCRetrieveViewController.m in Sources */,
 				3B1E25CB20AD5585006110C2 /* WCAddScenicMode.m in Sources */,
 				3B1A078C20A05B18005CC21C /* UIView+Layout.m in Sources */,
@@ -1294,6 +1365,7 @@
 				3B216B83209AFA2C0040EE93 /* WCRegistrationViewController.m in Sources */,
 				3B70DC6420AEB920001EDF2B /* TBHtmlShareTool.m in Sources */,
 				3B1A078620A05B18005CC21C /* TZLocationManager.m in Sources */,
+				3B75482A20C63BA500090D49 /* TAPageControl.m in Sources */,
 				3B8F563320BEC06B00EEC43C /* WCAttributeTouchLabel.m in Sources */,
 				3BA73E14209C554500B88891 /* TBBaseClassViewMode.m in Sources */,
 				3B1E25D420AD5AC1006110C2 /* WCAddScenicHeaderView.m in Sources */,
@@ -1314,6 +1386,7 @@
 				3B5A165B20B2B44300FC79AD /* MJPhotoProgressView.m in Sources */,
 				3B6BB84E20A2ECF60013AE6B /* WCUploadPromptView.m in Sources */,
 				3B216B56209AAED30040EE93 /* TBBaseTableViewController.m in Sources */,
+				3B75482920C63BA500090D49 /* TADotView.m in Sources */,
 				3B985B3020A19D990083E1F2 /* AddressTableViewCell.m in Sources */,
 				3B1E25F420AD9097006110C2 /* WCMoreAttractionsViewController.m in Sources */,
 				3B216B46209AAE880040EE93 /* UIImageView+ZKWebCache.m in Sources */,
@@ -1325,10 +1398,13 @@
 				3B985B3220A19D990083E1F2 /* AddressView.m in Sources */,
 				3B1A078720A05B18005CC21C /* TZPhotoPickerController.m in Sources */,
 				3B216B5F209AAF210040EE93 /* TBMoreReminderView.m in Sources */,
+				3B75482820C63BA500090D49 /* TAAnimatedDotView.m in Sources */,
 				3B216B44209AAE880040EE93 /* UIImage+Strenching.m in Sources */,
 				3B9ECCE520BBF021003AB7FC /* TBWithdrawalViewController.m in Sources */,
 				3B216B3C209AAE880040EE93 /* NSDictionary+FixedParams.m in Sources */,
 				3B216B40209AAE880040EE93 /* NSString+Regex.m in Sources */,
+				3B75481320C62B1D00090D49 /* WCQRCodeGenerateManager.m in Sources */,
+				3B75482D20C63BA500090D49 /* UIView+SDExtension.m in Sources */,
 				3B6CBD23209FEB9900784BBF /* WCAuthenticationPopupsView.m in Sources */,
 				3B1E25D820AD713D006110C2 /* WCAddAttractionsViewController.m in Sources */,
 				3B985B0E20A153F10083E1F2 /* WCBasisInfoViewController.m in Sources */,
@@ -1373,6 +1449,7 @@
 				3B7239E7209D7CAC006FAB15 /* WCMyScenicTableViewCell.m in Sources */,
 				3B216B57209AAED30040EE93 /* ZKNavigationController.m in Sources */,
 				3B5A165D20B2B44300FC79AD /* MJPhotoView.m in Sources */,
+				3B75481620C63B1F00090D49 /* WCStrategyViewController.m in Sources */,
 				3B1A078520A05B18005CC21C /* TZImagePickerController.m in Sources */,
 				3B5A164820B2763800FC79AD /* WCVoiceChoiceMode.m in Sources */,
 				3B6BB83220A299D40013AE6B /* WCBillViewController.m in Sources */,
@@ -1402,6 +1479,7 @@
 				3BA73DF9209C06D900B88891 /* TBCountdownSingle.m in Sources */,
 				3B985B2F20A19D990083E1F2 /* AddressItem.m in Sources */,
 				3BA73E17209C56AC00B88891 /* WCMyScenicViewController.m in Sources */,
+				3B75482720C63BA500090D49 /* TAAbstractDotView.m in Sources */,
 				3B8B1B6420B65E3B00DBF6D9 /* WCBillingDateSelectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

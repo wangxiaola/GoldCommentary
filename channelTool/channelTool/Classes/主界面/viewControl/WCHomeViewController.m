@@ -270,6 +270,14 @@
         
         [UserInfo saveAccount:info];
     });
+    
+//    [[ZKPostHttp shareInstance] POST:POST_URL params:@{@"interfaceId":@"316"} success:^(id  _Nonnull responseObject) {
+//        
+//        NSLog(@"%@",responseObject);
+//        
+//    } failure:^(NSError * _Nonnull error) {
+//        
+//    }];
 }
 
 - (void)didReceiveMemoryWarning {
