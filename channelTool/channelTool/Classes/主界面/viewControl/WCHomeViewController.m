@@ -169,32 +169,30 @@
 //我的
 - (IBAction)leftButtonClick:(UIButton *)sender {
     
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         
         WCPersonalViewController *personalVC = [[WCPersonalViewController alloc] init];
         [self.navigationController pushViewController:personalVC animated:YES];
-    }];
-    
+    });
 }
 //收入明细
 - (IBAction)rightButtonClick:(UIButton *)sender {
     
-    // 加载storboard
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
         
         WCBillViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCBillViewControllerID"];
         viewController.incomeMode = self.incomeMode;
         [self.navigationController pushViewController:viewController animated:YES];
-    }];
+    });
     
 }
 //  提现
 - (IBAction)withdrawalClick:(UIButton *)sender {
     
     if ([UserInfo account].bankInfo.isbank == 1) {
-
+        
         if (self.incomeMode.balance.doubleValue == 0) {
             
             [UIView addMJNotifierWithText:@"余额为0不能提现" dismissAutomatically:YES];
@@ -210,7 +208,7 @@
     {
         TBMoreReminderView *moreView = [[TBMoreReminderView alloc] initShowPrompt:@"亲，您暂未绑定收款账号，现在去绑定银行卡吗？"];
         [moreView showHandler:^{
-         
+            
             UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
             UIViewController *bankVC = [board instantiateViewControllerWithIdentifier:@"WCAddBankViewControllerID"];
             [self.navigationController pushViewController:bankVC animated:YES];
@@ -232,7 +230,7 @@
     dispatch_group_enter(group);
     
     NSDictionary *dicCard = @{@"interfaceId":@"295",
-                          @"id":info.userID};
+                              @"id":info.userID};
     
     [[ZKPostHttp shareInstance] POST:POST_URL params:dicCard success:^(id  _Nonnull responseObject) {
         
@@ -251,7 +249,7 @@
     dispatch_group_enter(group);
     
     NSDictionary *dicBank = @{@"interfaceId":@"312",
-                          @"id":info.userID};
+                              @"id":info.userID};
     
     [[ZKPostHttp shareInstance] POST:POST_URL params:dicBank success:^(id  _Nonnull responseObject) {
         
@@ -271,13 +269,6 @@
         [UserInfo saveAccount:info];
     });
     
-//    [[ZKPostHttp shareInstance] POST:POST_URL params:@{@"interfaceId":@"316"} success:^(id  _Nonnull responseObject) {
-//        
-//        NSLog(@"%@",responseObject);
-//        
-//    } failure:^(NSError * _Nonnull error) {
-//        
-//    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -68,14 +68,13 @@
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowlayout];
     self.collectionView.backgroundColor = [UIColor whiteColor];
-    self.collectionView.dataSource = self;
-    self.collectionView.delegate = self;
-    self.collectionView.bounces = YES;
+    self.collectionView.dataSource      = self;
+    self.collectionView.delegate        = self;
+    self.collectionView.bounces         = YES;
     
     // 表格注册
     [self.collectionView registerNib:[UINib nibWithNibName:@"WCAddScenicCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:WCAddScenicCollectionViewCellID];
-    
-    
+
     [self.collectionView registerNib:[UINib nibWithNibName:@"WCAddScenicFootorView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:WCAddScenicFootorViewID];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"WCAddScenicHeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:WCAddScenicHeaderViewID];

@@ -44,6 +44,7 @@
 @property (nonatomic, copy) NSString *sort;
 @property (nonatomic, copy) NSString *source;
 @property (nonatomic, copy) NSString *state;
+@property (nonatomic, assign) NSInteger total;
 @end
 
 @interface WCAddScenicImageMode : NSObject

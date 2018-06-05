@@ -12,6 +12,8 @@
 #import "TBChoosePhotosTool.h"
 #import "TBCityChooseView.h"
 #import "WCUploadPromptView.h"
+#import "CitiesDataTool.h"
+#import "TBMoreReminderView.h"
 #import <SDWebImage/SDWebImageDownloader.h>
 typedef NS_ENUM(NSInteger, PhotoType) {
     PhotoTypeHeader = 0,
@@ -111,7 +113,21 @@ typedef NS_ENUM(NSInteger, PhotoType) {
         [self shakeAnimationForView:self.emblemImageView markString:@"请添加身份证反面照"];
         return;
     }
-    [self postUserInfo];
+    
+    UserCertification *cer = [UserInfo account].certification;
+    if (cer.ispass.integerValue == 0 ) {
+        
+        [self postUserInfo];
+    }
+    else
+    {
+       TBMoreReminderView *moreView =  [[TBMoreReminderView alloc] initShowPrompt:@"亲，你已经提交审核过，是否重新提交审核？"];
+        [moreView showHandler:^{
+            
+            [self postUserInfo];
+        }];
+    }
+
 }
 
 #pragma mark  ----fun tool----
@@ -168,6 +184,25 @@ typedef NS_ENUM(NSInteger, PhotoType) {
         
         [ZKUtil downloadImage:self.photoImageView imageUrl:self.headerImageURL duImageName:@"ID_Card_Top"];
         [ZKUtil downloadImage:self.emblemImageView imageUrl:self.emblemImageURL duImageName:@"ID_Card_Back"];
+        
+        // 异步执行
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+          
+            NSString * code = [self.cityCode stringByReplacingCharactersInRange:(NSRange){2,4} withString:@"0000"];
+            NSString * provinceName = [[CitiesDataTool sharedManager] queryAllRecordWithAreaCode:code];
+            
+            NSString * cityName = [[CitiesDataTool sharedManager] queryAllRecordWithAreaCode:[self.cityCode stringByReplacingCharactersInRange:(NSRange){4,2} withString:@"00"]];
+            
+            NSString * districtName = [[CitiesDataTool sharedManager] queryAllRecordWithAreaCode:self.cityCode];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 更新界面
+                self.regionTextField.text = [NSString stringWithFormat:@"%@ %@ %@",provinceName,cityName,districtName];
+            });
+        });
+        
+       
+        
     }
 }
 /**

@@ -156,7 +156,8 @@ BMKMapManager* _mapManager;
 {
     if([resp isKindOfClass:[SendMessageToWXResp class]])
     {
-        if (resp.errCode == WXSuccess) {
+        if (resp.errCode == WXSuccess)
+        {
             [UIView addMJNotifierWithText:@"分享成功" dismissAutomatically:YES];
         }
         else{

@@ -41,7 +41,7 @@ NSString *const WCAddScenicHeaderViewID = @"WCAddScenicHeaderViewID";
         
     scenicNameField.text = mode.info? :@"";
     siteNameField.text = mode.name? :@"";
-    scenicNumberLabel.text = mode.shopspot.count == 0 ?@"":[NSString stringWithFormat:@"(共有%ld个景点)",mode.shopspot.count];
+    scenicNumberLabel.text = mode.total == 0 ?@"":[NSString stringWithFormat:@"(共有%ld个景点)",mode.total];
     
 }
 #pragma mark  ----UITextFieldDelegate----

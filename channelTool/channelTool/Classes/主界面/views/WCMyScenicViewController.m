@@ -125,7 +125,6 @@
     {
         [UIView addMJNotifierWithText:@"该景区暂未审核通过" dismissAutomatically:YES];
     }
-    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

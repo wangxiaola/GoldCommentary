@@ -8,6 +8,7 @@
 
 #import "WCAddBankViewController.h"
 #import "WCUploadPromptView.h"
+#import "TBMoreReminderView.h"
 @interface WCAddBankViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *bankNameTextField;
@@ -40,6 +41,7 @@
         self.bankNameTextField.text = bankInfo.bankname;
         self.bankIDTextField.text = bankInfo.bankno;
     }
+ 
 }
 /**
  添加震动动画
@@ -77,7 +79,20 @@
         return;
         
     }
-    [self bindingBankInfo];
+    // 如果已经绑定要提示用户
+    UserBankInfo *bankInfo = [UserInfo account].bankInfo;
+    if (bankInfo.isbank == 0 ) {
+        
+        [self bindingBankInfo];
+    }
+    else
+    {
+        TBMoreReminderView *moreView =  [[TBMoreReminderView alloc] initShowPrompt:@"亲，你已经绑定了银行卡，是否要重新绑定？"];
+        [moreView showHandler:^{
+            
+            [self bindingBankInfo];
+        }];
+    }
 }
 #pragma mark  ----数据请求----
 - (void)bindingBankInfo

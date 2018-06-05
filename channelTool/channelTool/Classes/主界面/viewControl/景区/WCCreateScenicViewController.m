@@ -104,7 +104,7 @@
     [self.levelButton setButtonImageTitleStyle:(ButtonImageTitleStyleRightLeft) padding:4];
     
     self.headPhoneField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-
+    
     
     self.tool = [[TBChoosePhotosTool alloc] init];
     self.tool.delegate = self;
@@ -191,7 +191,15 @@
     self.linestime = self.scenicMode.linestime;
     self.lineetime = self.scenicMode.lineetime;
     
-    self.lineTimeLabel.text = [NSString stringWithFormat:@"%@-%@",self.linestime,self.lineetime];
+    if ([self.linestime isEqualToString:@"00:00"] && [self.lineetime isEqualToString:@"24:00"]) {
+        
+        self.lineTimeLabel.text = @"全天";
+    }
+    else
+    {
+        self.lineTimeLabel.text = [NSString stringWithFormat:@"%@-%@",self.linestime,self.lineetime];
+    }
+    
 }
 #pragma mark  ----数据上传----
 - (void)postScenicData
