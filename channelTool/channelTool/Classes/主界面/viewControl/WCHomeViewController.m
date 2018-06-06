@@ -30,6 +30,7 @@
  收益数据
  */
 @property (nonatomic, strong) WCMyIncomeMode *incomeMode;
+
 @end
 
 @implementation WCHomeViewController
@@ -169,23 +170,17 @@
 //我的
 - (IBAction)leftButtonClick:(UIButton *)sender {
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        WCPersonalViewController *personalVC = [[WCPersonalViewController alloc] init];
-        [self.navigationController pushViewController:personalVC animated:YES];
-    });
+    WCPersonalViewController *personalVC = [[WCPersonalViewController alloc] init];
+    [self.navigationController pushViewController:personalVC animated:YES];
 }
 //收入明细
 - (IBAction)rightButtonClick:(UIButton *)sender {
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
-        
-        WCBillViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCBillViewControllerID"];
-        viewController.incomeMode = self.incomeMode;
-        [self.navigationController pushViewController:viewController animated:YES];
-    });
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
+    
+    WCBillViewController *viewController = [board instantiateViewControllerWithIdentifier:@"WCBillViewControllerID"];
+    viewController.incomeMode = self.incomeMode;
+    [self.navigationController pushViewController:viewController animated:YES];
     
 }
 //  提现

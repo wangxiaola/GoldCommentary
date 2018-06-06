@@ -41,7 +41,11 @@ NSString *const WCMyNarratorTableViewCellID = @"WCMyNarratorTableViewCellID";
     
     bottomHeight.constant = mode.isShowAll == YES ?mode.cellHeight:20;
     
-    [moreButton setTitle:_mode.isShowAll?@"收起>>":@"更多>>" forState:UIControlStateNormal];
+    NSString *imageName = _mode.isShowAll?@"select_level_top":@"select_level";
+    
+    [moreButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    
+    CGFloat viewWidth = CGRectGetWidth(bottomView.frame);
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
@@ -77,7 +81,7 @@ NSString *const WCMyNarratorTableViewCellID = @"WCMyNarratorTableViewCellID";
             
             CGFloat strWidth = [ZKUtil contentLabelSize:CGSizeMake(MAXFLOAT, 20) labelFont:font labelText:str].width + 10;
             
-            if (buttonX+buttonLin*2+strWidth > CGRectGetWidth(bottomView.frame)) {
+            if (buttonX+buttonLin*2+strWidth > viewWidth) {
                 
                 if (mode.isShowAll == NO) {
                     

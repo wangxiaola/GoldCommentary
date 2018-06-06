@@ -17,6 +17,10 @@
 {
     [super viewWillDisappear:animated];
     [UIView dismissMJNotifier];
+    // 开启返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }  
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -14,7 +14,7 @@
 
 + (void)showPromptPhone;
 {
-    [WCAuthenticationPopupsView createUIMsgString:@"你好，如果要删除景区，请电话联系我们客服，谢谢。\n客服电话：028-85127080" clickStrig:@"028-85127080" isPhone:YES];
+    [WCAuthenticationPopupsView createUIMsgString:@"您好，如果要删除景区，请电话联系我们客服，谢谢。\n客服电话：028-85127080" clickStrig:@"028-85127080" isPhone:YES];
 }
 + (void)show;
 {
