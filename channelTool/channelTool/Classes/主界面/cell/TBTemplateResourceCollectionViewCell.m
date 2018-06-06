@@ -24,15 +24,16 @@ NSString *const  TBTemplateResourceCollectionViewCellID = @"TBTemplateResourceCo
         self.backImageView = [[UIImageView alloc] init];
         self.backImageView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         self.backImageView.userInteractionEnabled = YES;
-        [self.contentView addSubview:self.backImageView];
         self.backImageView.layer.masksToBounds = YES;
         self.backImageView.layer.cornerRadius = 4;
         self.backImageView.contentMode = UIViewContentModeScaleAspectFill;
+        [self.contentView addSubview:self.backImageView];
         
         ritButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [ritButton setImage:[UIImage imageNamed:@"task-shanchu"] forState:UIControlStateNormal];
         [ritButton addTarget:self action:@selector(deleteClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:ritButton];
+        
         TBWeakSelf
         [ritButton mas_makeConstraints:^(MASConstraintMaker *make)
          {
@@ -43,7 +44,6 @@ NSString *const  TBTemplateResourceCollectionViewCellID = @"TBTemplateResourceCo
         
         [self.backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(weakSelf.contentView);
-            
         }];
     }
     return self;

@@ -166,21 +166,9 @@ typedef NS_ENUM(NSInteger, PhotoType) {
         self.regionTextField.text = cer.address;
         self.cityCode = cer.region;
         
-        if (![cer.idcardimgb containsString:POST_IMAGE_URL]) {
-            self.emblemImageURL = [NSString stringWithFormat:@"%@%@",POST_IMAGE_URL,cer.idcardimgb];
-        }
-        else
-        {
-            self.emblemImageURL = cer.idcardimgb;
-        }
+        self.emblemImageURL = cer.idcardimgb;
         
-        if (![cer.idcardimgf containsString:POST_IMAGE_URL]) {
-            self.headerImageURL = [NSString stringWithFormat:@"%@%@",POST_IMAGE_URL,cer.idcardimgf];
-        }
-        else
-        {
-            self.headerImageURL = cer.idcardimgf;
-        }
+        self.headerImageURL = cer.idcardimgf;
         
         [ZKUtil downloadImage:self.photoImageView imageUrl:self.headerImageURL duImageName:@"ID_Card_Top"];
         [ZKUtil downloadImage:self.emblemImageView imageUrl:self.emblemImageURL duImageName:@"ID_Card_Back"];
@@ -305,7 +293,7 @@ typedef NS_ENUM(NSInteger, PhotoType) {
 - (void)uploadImage:(UIImage *)image success:(void(^)(NSString *url))urlRes
 {
     
-    [ZKPostHttp uploadImage:POST_IMAGE_URL Data:UIImageJPEGRepresentation(_headerImage, 0.7) success:^(id  _Nonnull responseObj) {
+    [ZKPostHttp uploadImage:POST_URL Data:UIImageJPEGRepresentation(_headerImage, 0.7) success:^(id  _Nonnull responseObj) {
         NSDictionary *data = [responseObj valueForKey:@"data"];
         if (urlRes) {
             urlRes([data valueForKey:@"url"]);

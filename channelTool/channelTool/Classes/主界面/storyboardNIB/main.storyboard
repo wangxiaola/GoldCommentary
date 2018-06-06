@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zVJ-VB-HWp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zVJ-VB-HWp">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1108,7 +1108,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8S-qf-YMH">
-                                                        <rect key="frame" x="92" y="6" width="55" height="32"/>
+                                                        <rect key="frame" x="92" y="6" width="60" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全天" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="593-Zg-k7L">
                                                                 <rect key="frame" x="6" y="9" width="25" height="14.5"/>
@@ -1117,10 +1117,10 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select_level" translatesAutoresizingMaskIntoConstraints="NO" id="a0p-NS-8vf">
-                                                                <rect key="frame" x="33" y="12" width="16" height="16"/>
+                                                                <rect key="frame" x="33" y="9.5" width="21" height="21"/>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzm-Ck-IsU">
-                                                                <rect key="frame" x="0.0" y="0.0" width="55" height="32"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="32"/>
                                                                 <connections>
                                                                     <action selector="selectTime:" destination="qHA-n6-M8q" eventType="touchUpInside" id="LcE-E9-WjE"/>
                                                                 </connections>
@@ -1664,28 +1664,30 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="98g-yQ-gCY">
-                                        <rect key="frame" x="10" y="247" width="267.5" height="44"/>
+                                        <rect key="frame" x="10" y="247" width="335" height="44"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="必游景点：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MNx-4G-a5A">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐景点：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MNx-4G-a5A">
                                                 <rect key="frame" x="10" y="14" width="71.5" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytY-Cq-Df6" customClass="TQStarRatingView">
-                                                <rect key="frame" x="87.5" y="7" width="160" height="30"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yUX-gG-tvj">
+                                                <rect key="frame" x="81.5" y="11" width="24" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="F3J-U6-dC7"/>
-                                                    <constraint firstAttribute="width" constant="160" id="KHT-Ik-dPc"/>
+                                                    <constraint firstAttribute="width" constant="24" id="8jG-mI-cTf"/>
+                                                    <constraint firstAttribute="height" constant="24" id="YZv-RD-JiY"/>
                                                 </constraints>
-                                            </view>
+                                                <state key="normal" image="backgroundStar"/>
+                                                <connections>
+                                                    <action selector="recommendedClick:" destination="tbj-IH-eoy" eventType="touchUpInside" id="RuE-Fg-aCm"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="2za-Cx-LV2"/>
-                                            <constraint firstItem="ytY-Cq-Df6" firstAttribute="leading" secondItem="MNx-4G-a5A" secondAttribute="trailing" constant="6" id="4VV-C1-zek"/>
-                                            <constraint firstItem="ytY-Cq-Df6" firstAttribute="centerY" secondItem="98g-yQ-gCY" secondAttribute="centerY" id="6nL-ZP-nUf"/>
-                                            <constraint firstAttribute="trailing" secondItem="ytY-Cq-Df6" secondAttribute="trailing" constant="20" id="6pE-s9-Ouf"/>
+                                            <constraint firstItem="yUX-gG-tvj" firstAttribute="centerY" secondItem="MNx-4G-a5A" secondAttribute="centerY" id="BUJ-zh-0oE"/>
+                                            <constraint firstItem="yUX-gG-tvj" firstAttribute="leading" secondItem="MNx-4G-a5A" secondAttribute="trailing" id="mAn-Ry-XFm"/>
                                             <constraint firstItem="MNx-4G-a5A" firstAttribute="centerY" secondItem="98g-yQ-gCY" secondAttribute="centerY" id="vcl-j6-iV8"/>
                                             <constraint firstItem="MNx-4G-a5A" firstAttribute="leading" secondItem="98g-yQ-gCY" secondAttribute="leading" constant="10" id="z25-4w-4vS"/>
                                         </constraints>
@@ -1718,6 +1720,7 @@
                                     <constraint firstItem="98g-yQ-gCY" firstAttribute="top" secondItem="4iJ-s5-f7t" secondAttribute="bottom" constant="10" id="fHE-iJ-ZhY"/>
                                     <constraint firstAttribute="trailing" secondItem="ZKB-MT-Juw" secondAttribute="trailing" constant="10" id="hfC-Kd-Q5J"/>
                                     <constraint firstItem="98g-yQ-gCY" firstAttribute="leading" secondItem="8YT-eh-soB" secondAttribute="leading" constant="10" id="oH2-fU-5V2"/>
+                                    <constraint firstAttribute="trailing" secondItem="98g-yQ-gCY" secondAttribute="trailing" constant="10" id="pfh-df-Hg7"/>
                                     <constraint firstItem="p4O-u8-TrV" firstAttribute="top" secondItem="Bdw-jY-4gl" secondAttribute="bottom" constant="10" id="tje-0x-qrT"/>
                                     <constraint firstItem="mlW-36-Ahy" firstAttribute="leading" secondItem="8YT-eh-soB" secondAttribute="leading" constant="10" id="w3Z-GQ-cTo"/>
                                 </constraints>
@@ -1764,7 +1767,7 @@
                         <outlet property="numberField" destination="w8F-kE-aG3" id="qGK-bO-UF0"/>
                         <outlet property="photoCollectionHeight" destination="bhr-Dj-X1M" id="VTv-4A-PGX"/>
                         <outlet property="photoCollectionView" destination="ZKB-MT-Juw" id="2LF-eD-Pm0"/>
-                        <outlet property="ratingView" destination="ytY-Cq-Df6" id="khH-ER-j6Q"/>
+                        <outlet property="recommendedButton" destination="yUX-gG-tvj" id="efU-2w-xnc"/>
                         <outlet property="scenicNameField" destination="oXt-Wp-2ob" id="dUf-4t-5EP"/>
                         <outlet property="stepper" destination="hQc-2H-ZtG" id="2X6-ek-3Bz"/>
                         <outlet property="visitTimeField" destination="1PH-cp-aVX" id="Az8-cE-Vsy"/>
@@ -1945,6 +1948,7 @@
     <resources>
         <image name="ID_Card_Back" width="258" height="163"/>
         <image name="ID_Card_Top" width="260" height="169"/>
+        <image name="backgroundStar" width="50" height="50"/>
         <image name="bill" width="16" height="16"/>
         <image name="home_banner" width="375" height="231"/>
         <image name="nav_back" width="24" height="24"/>
@@ -1952,7 +1956,7 @@
         <image name="scenicRecording" width="24" height="24"/>
         <image name="selectAddress" width="24" height="24"/>
         <image name="selectPhoto" width="24" height="24"/>
-        <image name="select_level" width="16" height="16"/>
+        <image name="select_level" width="21" height="21"/>
         <image name="user" width="16" height="16"/>
     </resources>
 </document>

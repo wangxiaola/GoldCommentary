@@ -42,7 +42,6 @@ NSString *const WCMyNarratorTableViewCellID = @"WCMyNarratorTableViewCellID";
     bottomHeight.constant = mode.isShowAll == YES ?mode.cellHeight:20;
     
     NSString *imageName = _mode.isShowAll?@"select_level_top":@"select_level";
-    
     [moreButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     
     CGFloat viewWidth = CGRectGetWidth(bottomView.frame);
@@ -130,7 +129,9 @@ NSString *const WCMyNarratorTableViewCellID = @"WCMyNarratorTableViewCellID";
 - (IBAction)moreClick:(UIButton *)sender {
     
     _mode.isShowAll = !_mode.isShowAll;
-    [sender setTitle:_mode.isShowAll?@"收起>>":@"更多>>" forState:UIControlStateNormal];
+
+    NSString *imageName = _mode.isShowAll?@"select_level_top":@"select_level";
+    [moreButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     if (self.updataCell) {
         self.updataCell(_mode.section);
     }

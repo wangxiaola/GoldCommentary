@@ -46,17 +46,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uP5-ks-ysf">
-                        <rect key="frame" x="74" y="63" width="235" height="20"/>
+                        <rect key="frame" x="74" y="63" width="243" height="20"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="enA-OO-dak"/>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUq-4N-DSs">
-                        <rect key="frame" x="319" y="63" width="30" height="30"/>
+                        <rect key="frame" x="319" y="63" width="40" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="bdr-0S-9gs"/>
-                            <constraint firstAttribute="height" constant="30" id="rrw-8K-nUs"/>
+                            <constraint firstAttribute="width" constant="40" id="pMH-nh-n8w"/>
+                            <constraint firstAttribute="height" constant="20" id="s32-Ff-SP8"/>
                         </constraints>
                         <state key="normal" image="select_level">
                             <color key="titleColor" red="0.88152033090000004" green="0.54358607530000003" blue="0.039954878389999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -68,8 +68,6 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="uP5-ks-ysf" firstAttribute="top" secondItem="FmV-B8-wIm" secondAttribute="bottom" constant="4" id="1mz-XB-PVD"/>
-                    <constraint firstItem="oUq-4N-DSs" firstAttribute="leading" secondItem="uP5-ks-ysf" secondAttribute="trailing" constant="10" id="39o-Mn-qcT"/>
-                    <constraint firstAttribute="trailing" secondItem="oUq-4N-DSs" secondAttribute="trailing" constant="10" id="4EQ-Su-cA1"/>
                     <constraint firstItem="rgZ-3b-67K" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="5kU-V6-Iuf"/>
                     <constraint firstAttribute="bottom" secondItem="uP5-ks-ysf" secondAttribute="bottom" constant="8" id="ER5-8L-e9M"/>
                     <constraint firstItem="Jle-bJ-cgl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="HlO-lB-ffC"/>
@@ -77,10 +75,12 @@
                     <constraint firstItem="psm-j5-Fqb" firstAttribute="leading" secondItem="Jle-bJ-cgl" secondAttribute="trailing" constant="10" id="WF9-ES-xPg"/>
                     <constraint firstItem="rgZ-3b-67K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="Zbe-Mw-wKl"/>
                     <constraint firstItem="FmV-B8-wIm" firstAttribute="top" secondItem="psm-j5-Fqb" secondAttribute="bottom" constant="4" id="fDT-Tw-F1n"/>
-                    <constraint firstItem="oUq-4N-DSs" firstAttribute="top" secondItem="uP5-ks-ysf" secondAttribute="top" id="jWS-f5-niT"/>
+                    <constraint firstItem="oUq-4N-DSs" firstAttribute="leading" secondItem="uP5-ks-ysf" secondAttribute="trailing" constant="2" id="fxG-T4-std"/>
                     <constraint firstItem="Jle-bJ-cgl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="mWB-4f-Drq"/>
+                    <constraint firstAttribute="trailing" secondItem="oUq-4N-DSs" secondAttribute="trailing" id="sxG-Ag-hFD"/>
                     <constraint firstItem="FmV-B8-wIm" firstAttribute="leading" secondItem="Jle-bJ-cgl" secondAttribute="trailing" constant="10" id="tGk-Mf-hOM"/>
                     <constraint firstItem="psm-j5-Fqb" firstAttribute="top" secondItem="rgZ-3b-67K" secondAttribute="top" id="xe2-Xo-1xw"/>
+                    <constraint firstItem="oUq-4N-DSs" firstAttribute="bottom" secondItem="uP5-ks-ysf" secondAttribute="bottom" id="zdV-Zm-QHx"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -97,6 +97,6 @@
     <resources>
         <image name="header_cover" width="160" height="160"/>
         <image name="home_banner" width="375" height="231"/>
-        <image name="select_level" width="16" height="16"/>
+        <image name="select_level" width="21" height="21"/>
     </resources>
 </document>

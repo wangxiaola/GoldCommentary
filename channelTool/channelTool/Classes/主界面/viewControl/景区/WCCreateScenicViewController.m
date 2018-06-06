@@ -213,7 +213,7 @@
         id data = self.imageArray[i];
         if ([data isKindOfClass:[UIImage class]]) {
             
-            [ZKPostHttp uploadImage:POST_IMAGE_URL Data:UIImageJPEGRepresentation(data, 0.6) success:^(id  _Nonnull responseObj) {
+            [ZKPostHttp uploadImage:POST_URL Data:UIImageJPEGRepresentation(data, 0.6) success:^(id  _Nonnull responseObj) {
                 
                 if ([[responseObj valueForKey:@"errcode"] isEqualToString:@"00000"]) {
                     

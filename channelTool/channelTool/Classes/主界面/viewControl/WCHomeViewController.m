@@ -64,7 +64,6 @@
 #pragma mark  ----视图设置----
 - (void)setUIviews
 {
-    
     CGFloat topHeight = CGRectGetHeight(self.bannerImageView.frame);
     // 添加选择块
     LSTitlePageTabbar *titlePageTabBar = [[LSTitlePageTabbar alloc] initWithTitleArray:@[@"我的景区",@"我的解说员"]];

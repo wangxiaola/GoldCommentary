@@ -34,11 +34,6 @@
 		3B1E25D420AD5AC1006110C2 /* WCAddScenicHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1E25D220AD5AC1006110C2 /* WCAddScenicHeaderView.m */; };
 		3B1E25D520AD5AC1006110C2 /* WCAddScenicHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1E25D320AD5AC1006110C2 /* WCAddScenicHeaderView.xib */; };
 		3B1E25D820AD713D006110C2 /* WCAddAttractionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1E25D720AD713D006110C2 /* WCAddAttractionsViewController.m */; };
-		3B1E25E120AD77FC006110C2 /* backgroundStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1E25DB20AD77FB006110C2 /* backgroundStar.png */; };
-		3B1E25E220AD77FC006110C2 /* backgroundStar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1E25DC20AD77FB006110C2 /* backgroundStar@2x.png */; };
-		3B1E25E320AD77FC006110C2 /* foregroundStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1E25DD20AD77FB006110C2 /* foregroundStar.png */; };
-		3B1E25E420AD77FC006110C2 /* foregroundStar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1E25DE20AD77FB006110C2 /* foregroundStar@2x.png */; };
-		3B1E25E520AD77FC006110C2 /* TQStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1E25E020AD77FB006110C2 /* TQStarRatingView.m */; };
 		3B1E25E920AD8650006110C2 /* WCAddScenicFootorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1E25E720AD8650006110C2 /* WCAddScenicFootorView.m */; };
 		3B1E25F120AD8EAB006110C2 /* WCAddScenicFootorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1E25F020AD8EAB006110C2 /* WCAddScenicFootorView.xib */; };
 		3B1E25F420AD9097006110C2 /* WCMoreAttractionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1E25F320AD9097006110C2 /* WCMoreAttractionsViewController.m */; };
@@ -235,12 +230,6 @@
 		3B1E25D320AD5AC1006110C2 /* WCAddScenicHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCAddScenicHeaderView.xib; sourceTree = "<group>"; };
 		3B1E25D620AD713D006110C2 /* WCAddAttractionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAddAttractionsViewController.h; sourceTree = "<group>"; };
 		3B1E25D720AD713D006110C2 /* WCAddAttractionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAddAttractionsViewController.m; sourceTree = "<group>"; };
-		3B1E25DB20AD77FB006110C2 /* backgroundStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundStar.png; sourceTree = "<group>"; };
-		3B1E25DC20AD77FB006110C2 /* backgroundStar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundStar@2x.png"; sourceTree = "<group>"; };
-		3B1E25DD20AD77FB006110C2 /* foregroundStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foregroundStar.png; sourceTree = "<group>"; };
-		3B1E25DE20AD77FB006110C2 /* foregroundStar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "foregroundStar@2x.png"; sourceTree = "<group>"; };
-		3B1E25DF20AD77FB006110C2 /* TQStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQStarRatingView.h; sourceTree = "<group>"; };
-		3B1E25E020AD77FB006110C2 /* TQStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQStarRatingView.m; sourceTree = "<group>"; };
 		3B1E25E620AD8650006110C2 /* WCAddScenicFootorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAddScenicFootorView.h; sourceTree = "<group>"; };
 		3B1E25E720AD8650006110C2 /* WCAddScenicFootorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAddScenicFootorView.m; sourceTree = "<group>"; };
 		3B1E25F020AD8EAB006110C2 /* WCAddScenicFootorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WCAddScenicFootorView.xib; sourceTree = "<group>"; };
@@ -587,27 +576,6 @@
 			path = TZImagePickerController;
 			sourceTree = "<group>";
 		};
-		3B1E25D920AD77FB006110C2 /* TQStarRating */ = {
-			isa = PBXGroup;
-			children = (
-				3B1E25DA20AD77FB006110C2 /* Image */,
-				3B1E25DF20AD77FB006110C2 /* TQStarRatingView.h */,
-				3B1E25E020AD77FB006110C2 /* TQStarRatingView.m */,
-			);
-			path = TQStarRating;
-			sourceTree = "<group>";
-		};
-		3B1E25DA20AD77FB006110C2 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				3B1E25DB20AD77FB006110C2 /* backgroundStar.png */,
-				3B1E25DC20AD77FB006110C2 /* backgroundStar@2x.png */,
-				3B1E25DD20AD77FB006110C2 /* foregroundStar.png */,
-				3B1E25DE20AD77FB006110C2 /* foregroundStar@2x.png */,
-			);
-			path = Image;
-			sourceTree = "<group>";
-		};
 		3B216AD2209AA66C0040EE93 = {
 			isa = PBXGroup;
 			children = (
@@ -651,7 +619,6 @@
 				3B75481720C63BA500090D49 /* SDCycleScrollView */,
 				3B75481020C62AEA00090D49 /* 二维码生产 */,
 				3B5A164920B2B44300FC79AD /* MJPhotoBrowser */,
-				3B1E25D920AD77FB006110C2 /* TQStarRating */,
 				3B7C899920AAE03B000E2F55 /* YBPopupMenu */,
 				3B7C898520AA7B0F000E2F55 /* FMDBTool */,
 				3B1A076020A05B18005CC21C /* TZImagePickerController */,
@@ -1242,14 +1209,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B6BB84620A2D6BD0013AE6B /* WCWRecordTableViewCell.xib in Resources */,
-				3B1E25E420AD77FC006110C2 /* foregroundStar@2x.png in Resources */,
-				3B1E25E320AD77FC006110C2 /* foregroundStar.png in Resources */,
 				3B216AE8209AA66D0040EE93 /* Assets.xcassets in Resources */,
 				3B5A165820B2B44300FC79AD /* MJPhotoBrowser.bundle in Resources */,
 				3B216B6F209ADC050040EE93 /* login.storyboard in Resources */,
 				3B1E25D020AD57C2006110C2 /* WCAddScenicCollectionViewCell.xib in Resources */,
 				3B216B8C209B01DB0040EE93 /* main.storyboard in Resources */,
-				3B1E25E120AD77FC006110C2 /* backgroundStar.png in Resources */,
 				3B313C9720C0F4000022F34D /* serviceAgreement.html in Resources */,
 				3BA73E0E209C511B00B88891 /* sun_burst_weather_icon.json in Resources */,
 				3B6CBD2B209FF90A00784BBF /* WCPersonalHeaderView.xib in Resources */,
@@ -1260,7 +1224,6 @@
 				3B985B2E20A19D990083E1F2 /* Cities.json in Resources */,
 				3B7239ED209D9253006FAB15 /* WCMyNarratorTableViewCell.xib in Resources */,
 				3B1E25D520AD5AC1006110C2 /* WCAddScenicHeaderView.xib in Resources */,
-				3B1E25E220AD77FC006110C2 /* backgroundStar@2x.png in Resources */,
 				3B941EC320AC33E80021B320 /* mapapi.bundle in Resources */,
 				3B985B3120A19D990083E1F2 /* AddressTableViewCell.xib in Resources */,
 				3B7239E8209D7CAC006FAB15 /* WCMyScenicTableViewCell.xib in Resources */,
@@ -1425,7 +1388,6 @@
 				3B1E25CF20AD57C2006110C2 /* WCAddScenicCollectionViewCell.m in Sources */,
 				3B1A078120A05B18005CC21C /* TZGifPhotoPreviewController.m in Sources */,
 				3B7C898B20AA7CBE000E2F55 /* WCAttractionsMode.m in Sources */,
-				3B1E25E520AD77FC006110C2 /* TQStarRatingView.m in Sources */,
 				3B7C898E20AA7CDD000E2F55 /* WCSiteMode.m in Sources */,
 				3B8B1B6920B6AD4700DBF6D9 /* WCDataTimeTool.m in Sources */,
 				3B7239E2209D7C7B006FAB15 /* WCMyScenicMode.m in Sources */,

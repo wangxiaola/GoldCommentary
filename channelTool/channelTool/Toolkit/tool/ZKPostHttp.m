@@ -219,7 +219,7 @@
     
     [sessionManager.requestSerializer setValue:@"image/jpg" forHTTPHeaderField:@"Content-Type"];
     
-    NSString *httpStr = POST_IMAGE_URL;
+    NSString *httpStr = POST_URL;
     
     NSDictionary *params = @{@"TimeStamp":[ZKUtil timeStamp],
                              @"AppId":@"2zPhtu3ittzt",

@@ -63,7 +63,7 @@
     // 如果可以分享 就生产一张二维码
     if ([WXApi isWXAppInstalled]) {
         
-        NSString *url = [NSString stringWithFormat:@"https://jpjs.geeker.com.cn/shop?id=%@",@"18"];
+        NSString *url = [NSString stringWithFormat:@"https://jpjs.geeker.com.cn/shop?id=%@",mode.ID];
         _image = [WCQRCodeGenerateManager generateWithLogoQRCodeData:url logoImageName:@"wc_share" logoScaleToSuperView:0.2];
     }
     

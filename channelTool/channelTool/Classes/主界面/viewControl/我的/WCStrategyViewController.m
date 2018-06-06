@@ -22,14 +22,15 @@
 {
     if (!_cycleScrollView)
     {
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:self.view.bounds shouldInfiniteLoop:YES imageNamesGroup:@[@"strategy_1",@"strategy_2",@"strategy_3"]];
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, _SCREEN_WIDTH, _SCREEN_HEIGHT) shouldInfiniteLoop:YES imageNamesGroup:@[@"strategy_1",@"strategy_2",@"strategy_3"]];
         _cycleScrollView.showPageControl = YES;
         _cycleScrollView.pageControlStyle =SDCycleScrollViewPageContolStyleAnimated;
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
         _cycleScrollView.currentPageDotColor = [UIColor whiteColor];
         _cycleScrollView.pageDotColor = [UIColor whiteColor];
-        _cycleScrollView.autoScrollTimeInterval = 6;
         _cycleScrollView.pageControlBottomOffset = 40;
+        _cycleScrollView.pageControlBottomOffset = 10;
+        _cycleScrollView.autoScroll = NO;
         _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
     }
     return _cycleScrollView;
@@ -43,12 +44,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-        [self setUpView];
+    [self setUpView];
 }
 #pragma mark ---initView---
 - (void)setUpView
 {
     [self.view addSubview:self.cycleScrollView];
+    
+    if (NSFoundationVersionNumber>=NSFoundationVersionNumber_iOS_8_0) {
+        
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        self.extendedLayoutIncludesOpaqueBars = NO;
+        
+        self.modalPresentationCapturesStatusBarAppearance = NO;
+        
+        self.automaticallyAdjustsScrollViewInsets = NO;
+        
+    }
+    
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setImage:[UIImage imageNamed:@"tutorialReturn"] forState:UIControlStateNormal];
@@ -74,13 +88,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

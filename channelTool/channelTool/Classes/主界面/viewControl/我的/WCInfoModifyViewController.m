@@ -122,7 +122,7 @@
     if (_headerImage) {
         
         TBWeakSelf
-        [ZKPostHttp uploadImage:POST_IMAGE_URL Data:UIImageJPEGRepresentation(_headerImage, 0.7) success:^(id  _Nonnull responseObj) {
+        [ZKPostHttp uploadImage:POST_URL Data:UIImageJPEGRepresentation(_headerImage, 0.7) success:^(id  _Nonnull responseObj) {
             
             NSString *errcode = [responseObj valueForKey:@"errcode"];
             if ([errcode isEqualToString:@"00000"]) {

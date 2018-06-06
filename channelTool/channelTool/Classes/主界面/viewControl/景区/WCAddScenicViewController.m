@@ -313,7 +313,7 @@
         
         if (data.name.length == 0 || data.info.length == 0) {
             
-            [UIView addMJNotifierWithText:@"请先完善站点介绍" dismissAutomatically:YES];
+            [UIView addMJNotifierWithText:@"请先完善站点信息" dismissAutomatically:YES];
             return;
         }
         if (data.shopspot.count > indexPath.row) {
@@ -345,6 +345,7 @@
         else
         {
             [data.shopspot addObject:mode];
+            data.total = data.total+1;
             //  刷新景区列表
             if (weakSelf.refreshTableView ) {
                 weakSelf.refreshTableView();

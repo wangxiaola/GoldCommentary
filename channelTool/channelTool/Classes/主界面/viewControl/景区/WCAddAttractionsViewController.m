@@ -11,10 +11,9 @@
 #import "TBTemplateResourceCollectionViewCell.h"
 #import "TBChoosePhotosTool.h"
 #import "WCAddScenicMode.h"
-#import "TQStarRatingView.h"
 #import "WCUploadPromptView.h"
 #import <IQKeyboardManager/IQTextView.h>
-@interface WCAddAttractionsViewController ()<UITextViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,TBChoosePhotosToolDelegate,StarRatingViewDelegate>
+@interface WCAddAttractionsViewController ()<UITextViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,TBChoosePhotosToolDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *scenicNameField;
 
@@ -24,9 +23,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *numberField;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
-@property (weak, nonatomic) IBOutlet TQStarRatingView *ratingView;
 
 @property (weak, nonatomic) IBOutlet UIStepper* stepper;
+
+@property (weak, nonatomic) IBOutlet UIButton *recommendedButton;
 
 @property (nonatomic, strong) TBChoosePhotosTool * tool;
 
@@ -38,7 +38,7 @@
 @property (assign, nonatomic) NSInteger maxRow;
 @property (assign, nonatomic) CGFloat  cellWidth;
 
-@property (assign, nonatomic) CGFloat ratingNumber;//分数
+@property (assign, nonatomic) NSInteger recommendedNumber;//推荐
 @end
 
 @implementation WCAddAttractionsViewController
@@ -67,14 +67,12 @@
     [self.stepper setValue:self.scenicMode.rows];
     self.numberField.text = [NSString stringWithFormat:@"%g",self.stepper.value];
     
-    self.ratingView.delegate = self;
-    
     self.tool = [[TBChoosePhotosTool alloc] init];
     self.tool.delegate = self;
     self.cellWidth = (_SCREEN_WIDTH- 10*8)/3;
     
     self.maxRow = 3;
-    self.ratingNumber = 1;
+    self.recommendedNumber = 1;
     
     UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc] init];
     [flowlayout setItemSize:CGSizeMake(self.cellWidth, self.cellWidth)];
@@ -107,6 +105,18 @@
         [UIView addMJNotifierWithText:mark dismissAutomatically:YES];
     }
 }
+
+/**
+ 更新推荐按钮的状态
+
+ @param state 1推荐
+ */
+- (void)updateRecommendedButtonState:(NSInteger)state
+{
+    NSString *image = state == 0?@"foregroundStar":@"backgroundStar";
+    [self.recommendedButton setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+    self.recommendedNumber = state;
+}
 #pragma mark  ----数据上传----
 // 更新景点数据
 - (void)updateScenicData
@@ -121,8 +131,7 @@
     self.visitTimeField.text = self.scenicMode.routetime;
     self.numberField.text = self.scenicMode.sort;
     [self.stepper setValue:self.scenicMode.sort.doubleValue];
-    [self.ratingView setScore:self.scenicMode.hotLevel.floatValue/5 withAnimation:YES];
-    self.ratingNumber = self.scenicMode.hotLevel.floatValue/5;
+    [self updateRecommendedButtonState:self.scenicMode.hotLevel.integerValue];
 }
 // 上传图片
 - (void)uploadPictures
@@ -137,7 +146,7 @@
         id data = self.imageArray[i];
         if ([data isKindOfClass:[UIImage class]]) {
             
-            [ZKPostHttp uploadImage:POST_IMAGE_URL Data:UIImageJPEGRepresentation(data, 0.5) success:^(id  _Nonnull responseObj) {
+            [ZKPostHttp uploadImage:POST_URL Data:UIImageJPEGRepresentation(data, 0.5) success:^(id  _Nonnull responseObj) {
                 
                 if ([[responseObj valueForKey:@"errcode"] isEqualToString:@"00000"]) {
                     
@@ -180,7 +189,7 @@
 {
     NSString *shopid = self.scenicMode.scenicID?self.scenicMode.scenicID:@"";
     NSString *spotid = self.scenicMode.ID?self.scenicMode.ID:@"";
-    NSString *hotLevel = [NSString stringWithFormat:@"%.1f",(float)self.ratingNumber*5];
+    NSString *hotLevel = [NSString stringWithFormat:@"%ld",self.recommendedNumber];
     
     NSString *routetime = self.visitTimeField.text? :@"";
     
@@ -279,6 +288,11 @@
     }
     [self uploadPictures];
 }
+- (IBAction)recommendedClick:(UIButton *)sender {
+    
+    sender.selected = !sender.selected;
+    [self updateRecommendedButtonState:sender.selected];
+}
 #pragma mark  ----UITextViewDelegate----
 - (void)textViewDidChange:(UITextView *)textView
 {
@@ -370,11 +384,7 @@
     self.photoCollectionHeight.constant = constant;
     
 }
-#pragma mark  ----StarRatingViewDelegate----
--(void)starRatingView:(TQStarRatingView *)view score:(float)score;
-{
-    self.ratingNumber = score;
-}
+
 #pragma mark  ----懒加载----
 - (NSMutableArray *)imageArray
 {
@@ -399,4 +409,6 @@
 }
 */
 
+- (IBAction)recommendedButton:(UIButton *)sender {
+}
 @end
