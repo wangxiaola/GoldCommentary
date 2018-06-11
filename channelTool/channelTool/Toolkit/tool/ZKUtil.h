@@ -207,10 +207,10 @@
 /**
  判断银行卡号
 
- @param cardNo 卡号
+ @param cardNumber 卡号
  @return yes
  */
-+ (BOOL)checkCardNo:(NSString*)cardNo;
++ (BOOL)isValidCardNumber:(NSString *)cardNumber;
 
 
 /**

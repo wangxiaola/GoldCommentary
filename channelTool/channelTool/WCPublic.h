@@ -28,6 +28,8 @@ FOUNDATION_EXPORT NSString *const Verification_code;// 验证码保存
 FOUNDATION_EXPORT NSString *const Verification_phone;// 验证手机号保存
 
 FOUNDATION_EXPORT NSString *const MAP_KEY;
+//app商店id
+FOUNDATION_EXPORT NSString *const TELECOM_ID;
 
 /**
  *  微信

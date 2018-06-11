@@ -106,8 +106,6 @@
     self.headPhoneField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     
     
-    self.tool = [[TBChoosePhotosTool alloc] init];
-    self.tool.delegate = self;
     self.cellWidth = (_SCREEN_WIDTH- 10*8)/3;
     
     self.maxRow = 9;
@@ -435,6 +433,9 @@
 #pragma mark  ----UITextViewDelegate----
 - (void)textViewDidChange:(UITextView *)textView
 {
+    [textView setContentInset:UIEdgeInsetsZero];
+    [textView setTextAlignment:NSTextAlignmentLeft];
+    
     CGRect bounds = textView.bounds;
     // 计算 text view 的高度
     CGSize maxSize = CGSizeMake(bounds.size.width, CGFLOAT_MAX);
@@ -566,6 +567,14 @@
         _imageArray = [NSMutableArray arrayWithCapacity:1];
     }
     return _imageArray;
+}
+- (TBChoosePhotosTool *)tool
+{
+    if (!_tool) {
+        _tool = [[TBChoosePhotosTool alloc] init];
+        _tool.delegate = self;
+    }
+    return _tool;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

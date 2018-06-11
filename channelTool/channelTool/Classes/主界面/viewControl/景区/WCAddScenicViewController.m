@@ -90,6 +90,8 @@
     [saveButton addTarget:self action:@selector(saveClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:saveButton];
     
+    
+    
     TBWeakSelf
     [saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.view.mas_left).offset(10);
@@ -104,6 +106,9 @@
         make.right.equalTo(weakSelf.view.mas_right).offset(-10);
         make.bottom.equalTo(saveButton.mas_top).offset(-4);
     }];
+    
+    
+    
     
 }
 #pragma mark  ----基本信息请求----
@@ -385,6 +390,7 @@
         // 更新区
         [mode.shopspot removeAllObjects];
         [mode.shopspot addObjectsFromArray:modeArray];
+        mode.total = modeArray.count;
         [weakSelf.collectionView reloadSections:[NSIndexSet indexSetWithIndex:sender.tag]];
     }];
     

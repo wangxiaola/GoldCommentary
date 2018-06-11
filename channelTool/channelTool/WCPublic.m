@@ -16,3 +16,4 @@ NSString *const Verification_code = @"Verification_code";
 
 NSString *const MAP_KEY = @"DLsl8WMFTr0ZpOOBg0AGzNTyZQU1RU4c";
 
+NSString *const TELECOM_ID = @"1387415855";

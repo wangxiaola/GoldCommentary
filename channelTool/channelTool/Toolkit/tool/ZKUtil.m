@@ -359,77 +359,33 @@
 }
 //判断是否银行卡
 
-+ (BOOL) checkCardNo:(NSString*) cardNo{
++ (BOOL)isValidCardNumber:(NSString *)cardNumber
+{
+    //剔除卡号里的非法字符
+    NSString *digitsOnly = [cardNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    int oddsum = 0;    //奇数求和
-    
-    int evensum = 0;    //偶数求和
-    
-    int allsum = 0;
-    
-    int cardNoLength = (int)[cardNo length];
-    
-    int lastNum = [[cardNo substringFromIndex:cardNoLength-1] intValue];
-
-    cardNo = [cardNo substringToIndex:cardNoLength -1];
-    
-    for (int i = cardNoLength -1 ; i>=1;i--) {
-        
-        NSString *tmpString = [cardNo substringWithRange:NSMakeRange(i-1,1)];
-        
-        int tmpVal = [tmpString intValue];
-        
-        if (cardNoLength % 2 ==1 ) {
-            
-            if((i % 2) == 0){
-                
-                tmpVal *= 2;
-                
-                if(tmpVal>=10)
-                    
-                    tmpVal -= 9;
-                
-                evensum += tmpVal;
-                
-            }else{
-                
-                oddsum += tmpVal;
-                
+    int sum = 0;
+    int digit = 0;
+    int addend = 0;
+    BOOL timesTwo = false;
+    for (int i = (int)(digitsOnly.length - 1); i >= 0; i--)
+    {
+        digit = [digitsOnly characterAtIndex:i] - '0';
+        if (timesTwo)
+        {
+            addend = digit * 2;
+            if (addend > 9) {
+                addend -= 9;
             }
-            
-        }else{
-            
-            if((i % 2) == 1){
-                
-                tmpVal *= 2;
-                
-                if(tmpVal>=10)
-                    
-                    tmpVal -= 9;
-                
-                evensum += tmpVal;
-                
-            }else{
-                
-                oddsum += tmpVal;
-                
-            }
-            
         }
-        
+        else {
+            addend = digit;
+        }
+        sum += addend;
+        timesTwo = !timesTwo;
     }
-
-    allsum = oddsum + evensum;
-    
-    allsum += lastNum;
-    
-    if((allsum % 10) ==0)
-        
-        return YES;
-    
-    else
-        
-        return NO;
+    int modulus = sum % 10;
+    return modulus == 0;
     
 }
 /**

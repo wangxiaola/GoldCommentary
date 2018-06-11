@@ -296,6 +296,10 @@
 #pragma mark  ----UITextViewDelegate----
 - (void)textViewDidChange:(UITextView *)textView
 {
+    
+    [textView setContentInset:UIEdgeInsetsZero];
+    [textView setTextAlignment:NSTextAlignmentLeft];
+    
     CGRect bounds = textView.bounds;
     // 计算 text view 的高度
     CGSize maxSize = CGSizeMake(bounds.size.width, CGFLOAT_MAX);
@@ -310,6 +314,7 @@
         self.infoViewHeight.constant = 120.0f;
     }
 }
+
 #pragma mark <UICollectionViewDataSource>
 - (void)updataCollectionView;
 {

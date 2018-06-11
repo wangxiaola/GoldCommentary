@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B08134A20C8C9E100884B8C /* TBUpdateTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B08134920C8C9E100884B8C /* TBUpdateTooltipView.m */; };
+		3B08134C20C8E00400884B8C /* mute.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B08134B20C8E00400884B8C /* mute.mp3 */; };
 		3B1A06AB20A02D19005CC21C /* ClearCacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A06A920A02D19005CC21C /* ClearCacheTool.m */; };
 		3B1A06AE20A033EC005CC21C /* WCFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A06AD20A033EC005CC21C /* WCFeedbackViewController.m */; };
 		3B1A06B120A03688005CC21C /* WCInfoModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A06B020A03688005CC21C /* WCInfoModifyViewController.m */; };
@@ -179,6 +181,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B08134820C8C9E100884B8C /* TBUpdateTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBUpdateTooltipView.h; sourceTree = "<group>"; };
+		3B08134920C8C9E100884B8C /* TBUpdateTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBUpdateTooltipView.m; sourceTree = "<group>"; };
+		3B08134B20C8E00400884B8C /* mute.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mute.mp3; sourceTree = "<group>"; };
 		3B1A06A920A02D19005CC21C /* ClearCacheTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearCacheTool.m; sourceTree = "<group>"; };
 		3B1A06AA20A02D19005CC21C /* ClearCacheTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearCacheTool.h; sourceTree = "<group>"; };
 		3B1A06AC20A033EC005CC21C /* WCFeedbackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCFeedbackViewController.h; sourceTree = "<group>"; };
@@ -579,6 +584,7 @@
 		3B216AD2209AA66C0040EE93 = {
 			isa = PBXGroup;
 			children = (
+				3B08134B20C8E00400884B8C /* mute.mp3 */,
 				3B941EC220AC33E80021B320 /* mapapi.bundle */,
 				3B216ADD209AA66D0040EE93 /* channelTool */,
 				3B216ADC209AA66D0040EE93 /* Products */,
@@ -739,6 +745,8 @@
 		3B216B5A209AAF210040EE93 /* 输入提示框 */ = {
 			isa = PBXGroup;
 			children = (
+				3B08134820C8C9E100884B8C /* TBUpdateTooltipView.h */,
+				3B08134920C8C9E100884B8C /* TBUpdateTooltipView.m */,
 				3B216B5B209AAF210040EE93 /* TBMoreReminderView.h */,
 				3B216B5C209AAF210040EE93 /* TBMoreReminderView.m */,
 				3B216B5D209AAF210040EE93 /* TBSaveSuccessTipsView.h */,
@@ -1209,6 +1217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B6BB84620A2D6BD0013AE6B /* WCWRecordTableViewCell.xib in Resources */,
+				3B08134C20C8E00400884B8C /* mute.mp3 in Resources */,
 				3B216AE8209AA66D0040EE93 /* Assets.xcassets in Resources */,
 				3B5A165820B2B44300FC79AD /* MJPhotoBrowser.bundle in Resources */,
 				3B216B6F209ADC050040EE93 /* login.storyboard in Resources */,
@@ -1427,6 +1436,7 @@
 				3B7C898820AA7B3E000E2F55 /* WCFMDBTool.m in Sources */,
 				3BA73E09209C451100B88891 /* LSBasePageTabbar.m in Sources */,
 				3B1A06AB20A02D19005CC21C /* ClearCacheTool.m in Sources */,
+				3B08134A20C8C9E100884B8C /* TBUpdateTooltipView.m in Sources */,
 				3B5A165920B2B44300FC79AD /* MJPhotoBrowser.m in Sources */,
 				3BAC85C820B11E0000792A26 /* WCCreateScenicMode.m in Sources */,
 				3B216B89209AFA940040EE93 /* WCResetPasswordViewController.m in Sources */,

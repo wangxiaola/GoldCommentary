@@ -85,10 +85,10 @@
     switch (state) {
             
         case MJRefreshStateIdle:
-            self.label.text = @"下拉即可刷新";
+            self.label.text = @"下拉刷新";
             break;
         case MJRefreshStatePulling:
-            self.label.text = @"松开立即刷新";
+            self.label.text = @"释放更新";
             break;
         case MJRefreshStateRefreshing:
             self.label.text = @"加载中...";

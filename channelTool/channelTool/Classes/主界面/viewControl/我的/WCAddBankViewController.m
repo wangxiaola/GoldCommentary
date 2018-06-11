@@ -9,7 +9,7 @@
 #import "WCAddBankViewController.h"
 #import "WCUploadPromptView.h"
 #import "TBMoreReminderView.h"
-@interface WCAddBankViewController ()
+@interface WCAddBankViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *bankNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *bankIDTextField;
@@ -28,9 +28,11 @@
     // Do any additional setup after loading the view.
      self.view.backgroundColor = BACKLIST_COLOR;
      self.navigationItem.title = @"收款银行";
+    self.bankIDTextField.delegate = self;
     [self setBaseData];
 }
 #pragma mark  ----fun tool----
+// 赋值
 - (void)setBaseData
 {
    UserBankInfo *bankInfo = [UserInfo account].bankInfo;
@@ -41,7 +43,6 @@
         self.bankNameTextField.text = bankInfo.bankname;
         self.bankIDTextField.text = bankInfo.bankno;
     }
- 
 }
 /**
  添加震动动画
@@ -74,7 +75,7 @@
         [self shakeAnimationForView:self.bankIDTextField.superview markString:self.bankIDTextField.placeholder];
         return;
     }
-    if ([self isBankCard:self.bankIDTextField.text]) {
+    if (![ZKUtil isValidCardNumber:self.bankIDTextField.text]) {
         [self shakeAnimationForView:self.bankIDTextField.superview markString:@"银行卡号填写有误，请查看。"];
         return;
         
@@ -97,9 +98,10 @@
 #pragma mark  ----数据请求----
 - (void)bindingBankInfo
 {
+    NSString *bankno = self.bankIDTextField.text;
     NSDictionary *bankDic = @{@"interfaceId":@"313",
                               @"id":[UserInfo account].userID,
-                              @"bankno":self.bankIDTextField.text,
+                              @"bankno":bankno,
                               @"bankname":self.bankNameTextField.text,
                               @"bankuser":self.nameTextField.text};
     
@@ -132,39 +134,39 @@
         hudShowError(@"网络异常");
     }];
 }
-#pragma mark 判断银行卡号是否合法
--(BOOL)isBankCard:(NSString *)cardNumber{
-    if(cardNumber.length==0){
+
+#pragma mark  ----UITextFieldDelegate----
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (textField == self.bankIDTextField) {
+        // 4位分隔银行卡卡号
+        NSString *text = [textField text];
+        NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789\b"];
+        string = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
+        if ([string rangeOfCharacterFromSet:[characterSet invertedSet]].location != NSNotFound) {
+            return NO;
+        }
+        text = [text stringByReplacingCharactersInRange:range withString:string];
+        text = [text stringByReplacingOccurrencesOfString:@" " withString:@""];
+        NSLog(@"%@",text);
+        //    text为输入框内的文本，没有“ ”的内容
+        NSString *newString = @"";
+        while (text.length > 0) {
+            NSString *subString = [text substringToIndex:MIN(text.length, 4)];
+            newString = [newString stringByAppendingString:subString];
+            if (subString.length == 4) {
+                newString = [newString stringByAppendingString:@" "];
+            }
+            text = [text substringFromIndex:MIN(text.length, 4)];
+        }
+        newString = [newString stringByTrimmingCharactersInSet:[characterSet invertedSet]];
+        if ([newString stringByReplacingOccurrencesOfString:@" " withString:@""].length >= 21) {
+            return NO;
+        }
+        [textField setText:newString];
         return NO;
     }
-    NSString *digitsOnly = @"";
-    char c;
-    for (int i = 0; i < cardNumber.length; i++){
-        c = [cardNumber characterAtIndex:i];
-        if (isdigit(c)){
-            digitsOnly =[digitsOnly stringByAppendingFormat:@"%c",c];
-        }
-    }
-    int sum = 0;
-    int digit = 0;
-    int addend = 0;
-    BOOL timesTwo = false;
-    for (NSInteger i = digitsOnly.length - 1; i >= 0; i--){
-        digit = [digitsOnly characterAtIndex:i] - '0';
-        if (timesTwo){
-            addend = digit * 2;
-            if (addend > 9) {
-                addend -= 9;
-            }
-        }
-        else {
-            addend = digit;
-        }
-        sum += addend;
-        timesTwo = !timesTwo;
-    }
-    int modulus = sum % 10;
-    return modulus == 0;
+    return YES;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

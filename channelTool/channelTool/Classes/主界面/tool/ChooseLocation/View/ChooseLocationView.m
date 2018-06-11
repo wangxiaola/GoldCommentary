@@ -107,6 +107,7 @@ static  CGFloat  const  kHYTopTabbarHeight = 30; //地址标签栏的高度
     [topBarItem setTitle:@"请选择" forState:UIControlStateNormal];
     [topBarItem setTitleColor:[UIColor colorWithRed:43/255.0 green:43/255.0 blue:43/255.0 alpha:1] forState:UIControlStateNormal];
     [topBarItem setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
+    topBarItem.titleLabel.font = [UIFont systemFontOfSize:13];
     [topBarItem sizeToFit];
      topBarItem.centerY = _topTabbar.height * 0.5;
     [self.topTabbarItems addObject:topBarItem];

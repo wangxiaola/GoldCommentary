@@ -293,7 +293,7 @@ typedef NS_ENUM(NSInteger, PhotoType) {
 - (void)uploadImage:(UIImage *)image success:(void(^)(NSString *url))urlRes
 {
     
-    [ZKPostHttp uploadImage:POST_URL Data:UIImageJPEGRepresentation(_headerImage, 0.7) success:^(id  _Nonnull responseObj) {
+    [ZKPostHttp uploadImage:POST_URL Data:UIImageJPEGRepresentation(image, 0.7) success:^(id  _Nonnull responseObj) {
         NSDictionary *data = [responseObj valueForKey:@"data"];
         if (urlRes) {
             urlRes([data valueForKey:@"url"]);
