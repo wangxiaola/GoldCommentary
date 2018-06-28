@@ -23,7 +23,7 @@
 - (void)postDataParameter:(NSMutableDictionary *)parameter;
 {
     __weak typeof(self) weakSelf = self;
-    
+    parameter[@"rows"] = @"20";
     [[ZKPostHttp shareInstance] POST:POST_URL params:parameter success:^(id  _Nonnull responseObject) {
         
         MMLog(@"%@",responseObject);

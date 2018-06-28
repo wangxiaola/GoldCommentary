@@ -10,7 +10,7 @@
 #import "WCPositioningMode.h"
 #import "UIView+MJAlertView.h"
 #import <BaiduMapAPI_Search/BMKGeocodeSearch.h>
-
+#import <BaiduMapAPI_Search/BMKPoiSearchType.h>
 
 @interface WCGeoCodeSearch()<BMKGeoCodeSearchDelegate>
 
@@ -81,11 +81,21 @@
     
     if (error == BMK_SEARCH_NO_ERROR) {
         
-        address = [result.sematicDescription componentsSeparatedByString:@","].firstObject;
+        if (result.poiList.count > 0) {
+            
+            BMKPoiInfo *info = result.poiList.firstObject;
+            address = [NSString stringWithFormat:@"%@%@",info.city,info.name];
+        }
+        else
+        {
+            address = result.address;
+        }
         cityID  = result.addressDetail.adCode;
     }
-    else {
-        [UIView  addMJNotifierWithText:@"抱歉，未找到结果" dismissAutomatically:YES];
+    else
+    {
+        [UIView  addMJNotifierWithText:@"抱歉，未定位到您的位置!" dismissAutomatically:YES];
+        return;
     }
     if (self.searchResults) {
 

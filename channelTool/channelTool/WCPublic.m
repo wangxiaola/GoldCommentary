@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 NSString *const POST_URL = @"https://jpjs.geeker.com.cn/service.csw";
+//NSString *const POST_URL = @"https://jpjs.geeker.com.cn/service.csw";
 
 NSString *const Verification_phone = @"Verification_phone";
 

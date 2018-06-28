@@ -33,6 +33,12 @@
 
 @property (nonatomic, weak) id<TBHtmlShareToolDelegate>delegate;
 
+- (instancetype)initIsRelease:(BOOL)isRelease;
+
+/**
+ 是否已经发布成功
+ */
+@property (nonatomic, assign) BOOL isRelease;
 /**
  弹出景区工具
 

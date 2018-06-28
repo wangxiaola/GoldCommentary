@@ -32,8 +32,7 @@
 
 + (void)downloadImage:(UIImageView *)imageView imageUrl:(NSString *)url  duImageName:(NSString*)duImage;
 {
-
-
+    
     [imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:duImage] options:SDWebImageRetryFailed|SDWebImageHighPriority];
 }
 

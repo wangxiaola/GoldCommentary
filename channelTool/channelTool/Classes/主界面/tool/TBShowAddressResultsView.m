@@ -106,7 +106,7 @@
     cell.backgroundColor = [UIColor whiteColor];
     
     BMKPoiInfo *poi = self.dataArray[indexPath.row];
-    cell.textLabel.text = poi.name;
+    cell.textLabel.text = [NSString stringWithFormat:@"%@%@",poi.city,poi.name];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

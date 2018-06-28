@@ -11,6 +11,7 @@
 #import "WCBasisInfoViewController.h"
 #import "WCInfoModifyViewController.h"
 #import "WCAddBankViewController.h"
+#import "TBWebViewController.h"
 #import "WCPersonalHeaderView.h"
 #import "TBMoreReminderView.h"
 #import "ClearCacheTool.h"
@@ -66,9 +67,10 @@
                     @[@{@"name":@"实名认证",@"image":@"user_personal"},
                       @{@"name":@"收款银行",@"image":@"user_bank"},
                       @{@"name":@"新手攻略",@"image":@"user_ strategy"},
+                      @{@"name":@"用户协议",@"image":@"user_xieyi"},
                       @{@"name":@"意见反馈",@"image":@"user_opinion"},
                       @{@"name":@"清理缓存",@"image":@"user_ cache"},],
-                    @[@{@"name":@"设置密码",@"image":@"user_password"},
+                    @[@{@"name":@"重置密码",@"image":@"user_password"},
                       @{@"name":@"退出账号",@"image":@"user_ account"},],nil];
     
     self.imageTool = [[TBChoosePhotosTool alloc] init];
@@ -172,7 +174,7 @@
     cell.textLabel.text = [dic valueForKey:@"name"];
     cell.detailTextLabel.text = @"";
     
-    if ([indexPath isEqual:[NSIndexPath indexPathForRow:4 inSection:0]]) {
+    if ([indexPath isEqual:[NSIndexPath indexPathForRow:5 inSection:0]]) {
         // 缓存大小
         [ClearCacheTool obtainCacheSize:^(CGFloat cacheSize) {
             
@@ -249,6 +251,12 @@
     {
         [self.navigationController pushViewController:[[NSClassFromString(@"WCStrategyViewController") alloc] init] animated:YES];
     }
+    else if ([key isEqualToString:@"用户协议"])
+    {
+        TBWebViewController *webView = [[TBWebViewController alloc] init];
+        [webView loadWebPathURLSring:@"serviceAgreement"];
+        [self.navigationController pushViewController:webView animated:YES];
+    }
     else if ([key isEqualToString:@"意见反馈"])
     {
         [self.navigationController pushViewController:[[NSClassFromString(@"WCFeedbackViewController") alloc] init] animated:YES];
@@ -260,7 +268,7 @@
             [self updateClearSize];
         }];
     }
-    else if ([key isEqualToString:@"设置密码"])
+    else if ([key isEqualToString:@"重置密码"])
     {
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"login" bundle:nil];
         
@@ -278,7 +286,7 @@
  */
 - (void)updateClearSize
 {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:0]];
     if (cell) {
         [ClearCacheTool obtainCacheSize:^(CGFloat cacheSize) {
             

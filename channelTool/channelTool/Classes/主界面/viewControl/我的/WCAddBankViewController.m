@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *bankNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *bankIDTextField;
+@property (weak, nonatomic) IBOutlet UIButton *bindingButton;
 
 @end
 
@@ -42,6 +43,8 @@
         self.nameTextField.text = bankInfo.bankuser;
         self.bankNameTextField.text = bankInfo.bankname;
         self.bankIDTextField.text = bankInfo.bankno;
+
+        [self.bindingButton setTitle:@"更 新 卡 号" forState:UIControlStateNormal];
     }
 }
 /**

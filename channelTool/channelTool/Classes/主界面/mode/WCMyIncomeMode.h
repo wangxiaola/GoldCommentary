@@ -13,11 +13,11 @@
  */
 @interface WCMyIncomeMode : NSObject
 //未提现余额
-@property (nonatomic, copy) NSString *balance;
+@property (nonatomic, assign) double balance;
 //总收益
-@property (nonatomic, copy) NSString *earnings;
+@property (nonatomic, assign) double earnings;
 //昨日收益
-@property (nonatomic, copy) NSString *last;
+@property (nonatomic, assign) double last;
 //已提现金额
-@property (nonatomic, copy) NSString *record;
+@property (nonatomic, assign) double record;
 @end

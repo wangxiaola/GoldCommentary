@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3B08134A20C8C9E100884B8C /* TBUpdateTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B08134920C8C9E100884B8C /* TBUpdateTooltipView.m */; };
-		3B08134C20C8E00400884B8C /* mute.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B08134B20C8E00400884B8C /* mute.mp3 */; };
 		3B1A06AB20A02D19005CC21C /* ClearCacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A06A920A02D19005CC21C /* ClearCacheTool.m */; };
 		3B1A06AE20A033EC005CC21C /* WCFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A06AD20A033EC005CC21C /* WCFeedbackViewController.m */; };
 		3B1A06B120A03688005CC21C /* WCInfoModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A06B020A03688005CC21C /* WCInfoModifyViewController.m */; };
@@ -122,6 +121,8 @@
 		3B75482B20C63BA500090D49 /* SDCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75482220C63BA500090D49 /* SDCollectionViewCell.m */; };
 		3B75482C20C63BA500090D49 /* SDCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75482420C63BA500090D49 /* SDCycleScrollView.m */; };
 		3B75482D20C63BA500090D49 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75482620C63BA500090D49 /* UIView+SDExtension.m */; };
+		3B770E1220DA4BDB00779941 /* WCBusinessDateSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B770E1120DA4BDB00779941 /* WCBusinessDateSelectionView.m */; };
+		3B770E1420DA4BF200779941 /* WCBusinessDateSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B770E1320DA4BF200779941 /* WCBusinessDateSelectionView.xib */; };
 		3B7C898820AA7B3E000E2F55 /* WCFMDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C898720AA7B3E000E2F55 /* WCFMDBTool.m */; };
 		3B7C898B20AA7CBE000E2F55 /* WCAttractionsMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C898A20AA7CBE000E2F55 /* WCAttractionsMode.m */; };
 		3B7C898E20AA7CDD000E2F55 /* WCSiteMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C898D20AA7CDD000E2F55 /* WCSiteMode.m */; };
@@ -177,13 +178,14 @@
 		3BAC85C820B11E0000792A26 /* WCCreateScenicMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAC85C720B11E0000792A26 /* WCCreateScenicMode.m */; };
 		3BC6855220C02012001976AA /* TBShowAddressResultsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6855120C02011001976AA /* TBShowAddressResultsView.m */; };
 		3BDD07CF20B90B5300D605C8 /* WCAddBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDD07CE20B90B5300D605C8 /* WCAddBankViewController.m */; };
+		3BFF527320CE587E00520834 /* WCScenicLabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF527220CE587E00520834 /* WCScenicLabelsView.m */; };
+		3BFF527720CE665D00520834 /* FMTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF527620CE665D00520834 /* FMTagsView.m */; };
 		56B6C53E4D091EA293C517A5 /* Pods_channelTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF32DF5B5674C73EA5E12B20 /* Pods_channelTool.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3B08134820C8C9E100884B8C /* TBUpdateTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBUpdateTooltipView.h; sourceTree = "<group>"; };
 		3B08134920C8C9E100884B8C /* TBUpdateTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBUpdateTooltipView.m; sourceTree = "<group>"; };
-		3B08134B20C8E00400884B8C /* mute.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mute.mp3; sourceTree = "<group>"; };
 		3B1A06A920A02D19005CC21C /* ClearCacheTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearCacheTool.m; sourceTree = "<group>"; };
 		3B1A06AA20A02D19005CC21C /* ClearCacheTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearCacheTool.h; sourceTree = "<group>"; };
 		3B1A06AC20A033EC005CC21C /* WCFeedbackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCFeedbackViewController.h; sourceTree = "<group>"; };
@@ -398,6 +400,9 @@
 		3B75482420C63BA500090D49 /* SDCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCycleScrollView.m; sourceTree = "<group>"; };
 		3B75482520C63BA500090D49 /* UIView+SDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDExtension.h"; sourceTree = "<group>"; };
 		3B75482620C63BA500090D49 /* UIView+SDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDExtension.m"; sourceTree = "<group>"; };
+		3B770E1020DA4BDB00779941 /* WCBusinessDateSelectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCBusinessDateSelectionView.h; sourceTree = "<group>"; };
+		3B770E1120DA4BDB00779941 /* WCBusinessDateSelectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCBusinessDateSelectionView.m; sourceTree = "<group>"; };
+		3B770E1320DA4BF200779941 /* WCBusinessDateSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCBusinessDateSelectionView.xib; sourceTree = "<group>"; };
 		3B7C898620AA7B3E000E2F55 /* WCFMDBTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCFMDBTool.h; sourceTree = "<group>"; };
 		3B7C898720AA7B3E000E2F55 /* WCFMDBTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCFMDBTool.m; sourceTree = "<group>"; };
 		3B7C898920AA7CBE000E2F55 /* WCAttractionsMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAttractionsMode.h; sourceTree = "<group>"; };
@@ -489,6 +494,10 @@
 		3BC6855120C02011001976AA /* TBShowAddressResultsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBShowAddressResultsView.m; sourceTree = "<group>"; };
 		3BDD07CD20B90B5300D605C8 /* WCAddBankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAddBankViewController.h; sourceTree = "<group>"; };
 		3BDD07CE20B90B5300D605C8 /* WCAddBankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAddBankViewController.m; sourceTree = "<group>"; };
+		3BFF527120CE587E00520834 /* WCScenicLabelsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCScenicLabelsView.h; sourceTree = "<group>"; };
+		3BFF527220CE587E00520834 /* WCScenicLabelsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCScenicLabelsView.m; sourceTree = "<group>"; };
+		3BFF527520CE665D00520834 /* FMTagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMTagsView.h; sourceTree = "<group>"; };
+		3BFF527620CE665D00520834 /* FMTagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMTagsView.m; sourceTree = "<group>"; };
 		538CB4AF673C51FA46D9D600 /* Pods-channelTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-channelTool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-channelTool/Pods-channelTool.debug.xcconfig"; sourceTree = "<group>"; };
 		AAA397FC239E040063511990 /* Pods-channelTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-channelTool.release.xcconfig"; path = "Pods/Target Support Files/Pods-channelTool/Pods-channelTool.release.xcconfig"; sourceTree = "<group>"; };
 		AF32DF5B5674C73EA5E12B20 /* Pods_channelTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_channelTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -584,7 +593,6 @@
 		3B216AD2209AA66C0040EE93 = {
 			isa = PBXGroup;
 			children = (
-				3B08134B20C8E00400884B8C /* mute.mp3 */,
 				3B941EC220AC33E80021B320 /* mapapi.bundle */,
 				3B216ADD209AA66D0040EE93 /* channelTool */,
 				3B216ADC209AA66D0040EE93 /* Products */,
@@ -622,6 +630,7 @@
 		3B216AF4209AAD480040EE93 /* Toolkit */ = {
 			isa = PBXGroup;
 			children = (
+				3BFF527420CE665D00520834 /* TagsView */,
 				3B75481720C63BA500090D49 /* SDCycleScrollView */,
 				3B75481020C62AEA00090D49 /* 二维码生产 */,
 				3B5A164920B2B44300FC79AD /* MJPhotoBrowser */,
@@ -868,10 +877,15 @@
 				3B8B1B6220B65E3B00DBF6D9 /* WCBillingDateSelectionView.h */,
 				3B8B1B6320B65E3B00DBF6D9 /* WCBillingDateSelectionView.m */,
 				3B8B1B6520B65E5A00DBF6D9 /* WCBillingDateSelectionView.xib */,
+				3B770E1020DA4BDB00779941 /* WCBusinessDateSelectionView.h */,
+				3B770E1120DA4BDB00779941 /* WCBusinessDateSelectionView.m */,
+				3B770E1320DA4BF200779941 /* WCBusinessDateSelectionView.xib */,
 				3B8B1B6720B6AD4700DBF6D9 /* WCDataTimeTool.h */,
 				3B8B1B6820B6AD4700DBF6D9 /* WCDataTimeTool.m */,
 				3B8F563120BEC06B00EEC43C /* WCAttributeTouchLabel.h */,
 				3B8F563220BEC06B00EEC43C /* WCAttributeTouchLabel.m */,
+				3BFF527120CE587E00520834 /* WCScenicLabelsView.h */,
+				3BFF527220CE587E00520834 /* WCScenicLabelsView.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1141,6 +1155,15 @@
 			path = LSSlidePageScrollView;
 			sourceTree = "<group>";
 		};
+		3BFF527420CE665D00520834 /* TagsView */ = {
+			isa = PBXGroup;
+			children = (
+				3BFF527520CE665D00520834 /* FMTagsView.h */,
+				3BFF527620CE665D00520834 /* FMTagsView.m */,
+			);
+			path = TagsView;
+			sourceTree = "<group>";
+		};
 		9A7FAA8E17DD60B691851BA0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1186,6 +1209,9 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
 							com.apple.Maps.iOS = {
 								enabled = 0;
 							};
@@ -1217,7 +1243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B6BB84620A2D6BD0013AE6B /* WCWRecordTableViewCell.xib in Resources */,
-				3B08134C20C8E00400884B8C /* mute.mp3 in Resources */,
+				3B770E1420DA4BF200779941 /* WCBusinessDateSelectionView.xib in Resources */,
 				3B216AE8209AA66D0040EE93 /* Assets.xcassets in Resources */,
 				3B5A165820B2B44300FC79AD /* MJPhotoBrowser.bundle in Resources */,
 				3B216B6F209ADC050040EE93 /* login.storyboard in Resources */,
@@ -1320,6 +1346,7 @@
 			files = (
 				3B941EA120AC1B050021B320 /* XMRTimePiker.m in Sources */,
 				3B1A077E20A05B18005CC21C /* NSBundle+TZImagePicker.m in Sources */,
+				3BFF527720CE665D00520834 /* FMTagsView.m in Sources */,
 				3B216B47209AAE880040EE93 /* UIStoryboard+Initialize.m in Sources */,
 				3B70DC5E20AEA40B001EDF2B /* LoginNavigationController.m in Sources */,
 				3B6BB83E20A2C8240013AE6B /* WCWRecordMode.m in Sources */,
@@ -1378,6 +1405,7 @@
 				3B75481320C62B1D00090D49 /* WCQRCodeGenerateManager.m in Sources */,
 				3B75482D20C63BA500090D49 /* UIView+SDExtension.m in Sources */,
 				3B6CBD23209FEB9900784BBF /* WCAuthenticationPopupsView.m in Sources */,
+				3BFF527320CE587E00520834 /* WCScenicLabelsView.m in Sources */,
 				3B1E25D820AD713D006110C2 /* WCAddAttractionsViewController.m in Sources */,
 				3B985B0E20A153F10083E1F2 /* WCBasisInfoViewController.m in Sources */,
 				3BA73E1A209C572B00B88891 /* WCMyNarratorViewController.m in Sources */,
@@ -1387,6 +1415,7 @@
 				3B216B45209AAE880040EE93 /* UIImage+Thumbnail.m in Sources */,
 				3B1E25C520AD27B7006110C2 /* WCPositioningMode.m in Sources */,
 				3B3D48D720A97BDA00E6CC2C /* WCWRecordViewController.m in Sources */,
+				3B770E1220DA4BDB00779941 /* WCBusinessDateSelectionView.m in Sources */,
 				3B216B4C209AAE880040EE93 /* UIWebView+TS_JavaScriptContext.m in Sources */,
 				3B216AFD209AAE220040EE93 /* ZKPostHttp.m in Sources */,
 				3B216B48209AAE880040EE93 /* UITextField+banEdit.m in Sources */,

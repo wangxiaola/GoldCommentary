@@ -93,7 +93,7 @@
     [self.resultsView setAdderssPoi:^(BMKPoiInfo *poi) {
         // 发起poi详情搜索
         [weakSelf.activityView startAnimating];
-        weakSelf.searchBar.text = poi.name;
+        weakSelf.searchBar.text = [NSString stringWithFormat:@"%@%@",poi.city,poi.name];;
         //在此处理正常结果
         [weakSelf searchAddressCoordinate:poi.pt];
         weakSelf.isSearch = YES;
@@ -159,7 +159,7 @@
     self.activityView.color = NAVIGATION_COLOR;
     [self.mapView insertSubview:self.activityView atIndex:1001];
     
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem setRitWithTitel:@"返回" itemWithIcon:@"nav_back" target:self action:@selector(goBack)];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem setRitWithTitel:@"" itemWithIcon:@"nav_back" target:self action:@selector(goBack)];
     
     [self.resultsView mas_makeConstraints:^(MASConstraintMaker *make) {
         

@@ -62,4 +62,5 @@
 @property (nonatomic, copy) NSString *simplename;
 @property (nonatomic, copy) NSString *source;
 @property (nonatomic, copy) NSString *state;
+@property (nonatomic, copy) NSString *labels;
 @end

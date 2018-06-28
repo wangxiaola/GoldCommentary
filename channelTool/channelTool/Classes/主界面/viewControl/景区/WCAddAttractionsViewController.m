@@ -13,7 +13,7 @@
 #import "WCAddScenicMode.h"
 #import "WCUploadPromptView.h"
 #import <IQKeyboardManager/IQTextView.h>
-@interface WCAddAttractionsViewController ()<UITextViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,TBChoosePhotosToolDelegate>
+@interface WCAddAttractionsViewController ()<UITextViewDelegate,UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,TBChoosePhotosToolDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *scenicNameField;
 
@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 
 @property (weak, nonatomic) IBOutlet UIStepper* stepper;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segControl;
 
 @property (weak, nonatomic) IBOutlet UIButton *recommendedButton;
 
@@ -59,6 +60,8 @@
 - (void)setUpView
 {
     self.infoTextView.delegate = self;
+    self.scenicNameField.delegate = self;
+    self.visitTimeField.delegate = self;
     
     self.stepper.continuous = true;
     self.stepper.autorepeat = true;
@@ -108,7 +111,7 @@
 
 /**
  更新推荐按钮的状态
-
+ 
  @param state 1推荐
  */
 - (void)updateRecommendedButtonState:(NSInteger)state
@@ -128,7 +131,14 @@
     self.infoTextView.text = self.scenicMode.info;
     [self textViewDidChange:self.infoTextView];
     
-    self.visitTimeField.text = self.scenicMode.routetime;
+    // 游览时长单位
+    NSInteger unit = [self.scenicMode.routetime containsString:@"分钟"]?1:0;
+    self.segControl.selectedSegmentIndex = unit;
+
+    NSString *visitingTime = [self.scenicMode.routetime stringByReplacingOccurrencesOfString:@"分钟" withString:@""];
+    visitingTime = [visitingTime stringByReplacingOccurrencesOfString:@"小时" withString:@""];
+    self.visitTimeField.text = visitingTime;
+    
     self.numberField.text = self.scenicMode.sort;
     [self.stepper setValue:self.scenicMode.sort.doubleValue];
     [self updateRecommendedButtonState:self.scenicMode.hotLevel.integerValue];
@@ -191,7 +201,8 @@
     NSString *spotid = self.scenicMode.ID?self.scenicMode.ID:@"";
     NSString *hotLevel = [NSString stringWithFormat:@"%ld",self.recommendedNumber];
     
-    NSString *routetime = self.visitTimeField.text? :@"";
+    NSString *unit = self.segControl.selectedSegmentIndex == 1?@"分钟":@"小时";
+    NSString *routetime = [NSString stringWithFormat:@"%@%@",self.visitTimeField.text,unit];
     
     NSDictionary *dic = @{@"interfaceId":@"308",
                           @"id":[UserInfo account].userID,
@@ -206,7 +217,7 @@
                           @"psort":self.scenicMode.psort,
                           @"pname":self.scenicMode.pname,
                           @"pinfo":self.scenicMode.scenicInfo,
-                           @"allimg":[self.imageArray componentsJoinedByString:@","],
+                          @"allimg":[self.imageArray componentsJoinedByString:@","],
                           };
     
     hudShopWUploadProgress(0.8, @"正在上传图片");
@@ -253,7 +264,7 @@
 }
 - (IBAction)scenicRecording:(UIButton *)sender {
     
-
+    
 }
 - (IBAction)valueChanged:(UIStepper *)sender {
     
@@ -314,7 +325,25 @@
         self.infoViewHeight.constant = 120.0f;
     }
 }
+#pragma mark  ----UITextFieldDelegate----
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if ([string isEqualToString:@"\n"])
+    { //按下return
+        [textField resignFirstResponder];
+        return YES;
+    }
 
+    if ([textField isEqual:self.visitTimeField])
+    {
+         NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        if (![ZKUtil ismoney:toBeString] && toBeString.length>0)
+        {
+            return NO;
+        }
+    }
+    return YES;
+}
 #pragma mark <UICollectionViewDataSource>
 - (void)updataCollectionView;
 {
@@ -405,14 +434,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (IBAction)recommendedButton:(UIButton *)sender {
 }

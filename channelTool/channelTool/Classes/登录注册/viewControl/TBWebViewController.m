@@ -52,16 +52,23 @@
 -(UIBarButtonItem*)customBackBarItem{
     if (!_customBackBarItem) {
         
-        _customBackBarItem = [UIBarButtonItem setRitWithTitel:@"返回" itemWithIcon:@"nav_back" target:self action:@selector(customBackItemClicked) ];
+        _customBackBarItem = [UIBarButtonItem setRitWithTitel:@"" itemWithIcon:@"nav_back" target:self action:@selector(customBackItemClicked) ];
     }
     return _customBackBarItem;
 }
 -(UIBarButtonItem*)closeButtonItem{
     if (!_closeButtonItem) {
-        _closeButtonItem = [UIBarButtonItem setRitWithTitel:@"关闭" itemWithIcon:nil target:self action:@selector(closeItemClicked)];
+        _closeButtonItem = [UIBarButtonItem setRitWithTitel:@"" itemWithIcon:nil target:self action:@selector(closeItemClicked)];
     }
     return _closeButtonItem;
 }
+//视图将要出现
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

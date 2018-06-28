@@ -134,7 +134,10 @@
 - (void)updataClick
 {
     [self hideView];
-    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@",TELECOM_ID]]];
+    NSString *url = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/金牌解说/id%@?mt=8&v0=WWW-GCCN-ITSTOP100-FREEAPPS&l=&ign-mpt=1",TELECOM_ID];
+    // 汉子转化一下
+    NSURL *urlPath = [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:(NSUTF8StringEncoding)]];
+    [[UIApplication sharedApplication] openURL:urlPath];
 }
 #pragma mark ---view--
 -(void)show;

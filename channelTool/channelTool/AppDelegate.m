@@ -11,12 +11,10 @@
 #import "TBUpdateTooltipView.h"
 #import "IQKeyboardManager.h"
 #import <WXApi.h>
-#import <AVFoundation/AVFAudio.h>
 
 @interface AppDelegate ()<WXApiDelegate>
 
-@property (nonatomic, strong) AVAudioSession *session;
-@property (nonatomic, strong) AVAudioPlayer *player;
+
 @end
 BMKMapManager* _mapManager;
 @implementation AppDelegate
@@ -28,7 +26,6 @@ BMKMapManager* _mapManager;
     [self initSDK];
     // 版本更新
     [self versionInformationQuery];
-    [self playbackgroud];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     // 提取用户信息
@@ -75,7 +72,7 @@ BMKMapManager* _mapManager;
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];
 
-    if ([BMKMapManager setCoordinateTypeUsedInBaiduMapSDK:BMK_COORDTYPE_BD09LL]) {
+    if ([BMKMapManager setCoordinateTypeUsedInBaiduMapSDK:BMK_COORDTYPE_COMMON]) {
         NSLog(@"经纬度类型设置成功");
     } else {
         NSLog(@"经纬度类型设置失败");
@@ -90,22 +87,6 @@ BMKMapManager* _mapManager;
 
 }
 
-/**
- 创建后台无声音乐播放 房子app后台死掉
- */
-- (void)playbackgroud
-{
-    self.session = [AVAudioSession sharedInstance];
-    /*打开应用不影响别的播放器音乐*/
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];
-    [self.session setActive:YES error:nil];
-    NSString *musicPath = [[NSBundle mainBundle] pathForResource:@"mute" ofType:@"mp3"];
-    NSURL *URLPath = [[NSURL alloc] initFileURLWithPath:musicPath];
-    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:URLPath error:nil];
-    [_player prepareToPlay];
-    _player.numberOfLoops = -1;
-    
-}
 - (void)onGetNetworkState:(int)iError
 {
     if (0 == iError) {
@@ -136,13 +117,11 @@ BMKMapManager* _mapManager;
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     NSLog(@"进入后台");
-    [self.player play];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     NSLog(@"进入前台");
-    [self.player pause];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -208,8 +187,7 @@ BMKMapManager* _mapManager;
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:Nil];
             
             NSArray *results = [dic objectForKey:@"results"];
-            
-            
+
             if (results.count >0)
             {
                 //appStore 版本

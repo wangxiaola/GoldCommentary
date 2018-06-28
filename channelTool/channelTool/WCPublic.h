@@ -1,9 +1,9 @@
 //
-//  JKPublic.h
+//  WCPublic.h
 //  GeekIsland
 //
-//  Created by 汤亮 on 16/4/27.
-//  Copyright © 2016年 LiDinggui. All rights reserved.
+//  Created by 王小腊 on 18/5/04.
+//  Copyright © 2016年 王小腊. All rights reserved.
 //
 
 #ifndef _WCPUBLIC_H_

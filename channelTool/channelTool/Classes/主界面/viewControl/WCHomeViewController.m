@@ -134,8 +134,8 @@
         if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
             
             weakSelf.incomeMode = [WCMyIncomeMode mj_objectWithKeyValues:[responseObject valueForKey:@"data"]];
-            weakSelf.earningsLabel.text = weakSelf.incomeMode.last? :@"0.00";
-            NSString *txString = [NSString stringWithFormat:@"可提现：%@元",weakSelf.incomeMode.balance? :@"0.00"];
+            weakSelf.earningsLabel.text = [NSString stringWithFormat:@"%.2f",weakSelf.incomeMode.last]? :@"0.00";
+            NSString *txString = [NSString stringWithFormat:@"可提现：%.2f元",weakSelf.incomeMode.balance? :0.00];
             weakSelf.withdrawalAmountLabel.text = txString;
             
         }
@@ -164,7 +164,6 @@
     [self.titlePageTabBar switchToPageAtIndex:pageNo];
 }
 
-
 #pragma mark  ----点击事件----
 //我的
 - (IBAction)leftButtonClick:(UIButton *)sender {
@@ -187,7 +186,7 @@
     
     if ([UserInfo account].bankInfo.isbank == 1) {
         
-        if (self.incomeMode.balance.doubleValue == 0) {
+        if (self.incomeMode.balance == 0) {
             
             [UIView addMJNotifierWithText:@"余额为0不能提现" dismissAutomatically:YES];
             return;
@@ -195,7 +194,7 @@
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"main" bundle:nil];
         
         TBWithdrawalViewController *viewController = [board instantiateViewControllerWithIdentifier:@"TBWithdrawalViewControllerID"];
-        viewController.money = self.incomeMode.balance;
+        viewController.money = [NSString stringWithFormat:@"%.2f",self.incomeMode.balance];
         [self.navigationController pushViewController:viewController animated:YES];
     }
     else

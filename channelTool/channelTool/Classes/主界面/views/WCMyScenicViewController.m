@@ -116,15 +116,9 @@
     //    0审核中 1成功 2未通过
     WCMyScenicMode *mode = self.roots[indexPath.section];
     
-    if (mode.state.integerValue == 1) {
-        
-        TBHtmlShareTool *toolView = [[TBHtmlShareTool alloc] init];
-        [toolView showScenicToolViewData:mode delegate:self];
-    }
-    else
-    {
-        [UIView addMJNotifierWithText:@"该景区暂未审核通过" dismissAutomatically:YES];
-    }
+    BOOL isRelease = (mode.state.integerValue == 1);
+    TBHtmlShareTool *toolView = [[TBHtmlShareTool alloc] initIsRelease:isRelease];
+    [toolView showScenicToolViewData:mode delegate:self];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

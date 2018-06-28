@@ -16,43 +16,51 @@
 #import "WCGeoCodeSearch.h"
 #import "WCPositioningMode.h"
 #import "WCPositioningViewController.h"
-#import "XMRTimePiker.h"
 #import "WCUploadPromptView.h"
+#import "WCBusinessDateSelectionView.h"
 #import "YBPopupMenu.h"
+#import "FMTagsView.h"
 #import <BaiduMapAPI_Location/BMKLocationService.h>
 #import <IQKeyboardManager/IQTextView.h>
 
-@interface WCCreateScenicViewController ()<UITextViewDelegate,YBPopupMenuDelegate,UICollectionViewDataSource,UICollectionViewDelegate,TBChoosePhotosToolDelegate,XMRTimePikerDelegate,BMKLocationServiceDelegate>
+@interface WCCreateScenicViewController ()<UITextViewDelegate,UITextFieldDelegate,YBPopupMenuDelegate,UICollectionViewDataSource,UICollectionViewDelegate,TBChoosePhotosToolDelegate,BMKLocationServiceDelegate,FMTagsViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *scenicNameField;
+@property (weak, nonatomic) IBOutlet UITextField *labelField;
 @property (weak, nonatomic) IBOutlet UITextField *adderssField;
 @property (weak, nonatomic) IBOutlet UITextField *ticketsField;//门票
+@property (weak, nonatomic) IBOutlet IQTextView *ticketsInfoTextView;// 门票详情
 @property (weak, nonatomic) IBOutlet IQTextView *infoTextView;//简介
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segControl;
 @property (weak, nonatomic) IBOutlet UITextField *visitingTimeField;//游览时长
 @property (weak, nonatomic) IBOutlet UITextField *headNameField;//负责人姓名
 @property (weak, nonatomic) IBOutlet UITextField *headPhoneField;//负责人电话
-@property (weak, nonatomic) IBOutlet UILabel *lineTimeLabel;
+@property (weak, nonatomic) IBOutlet UITextField *kfTimeTextField;// 开发时间
+
+@property (weak, nonatomic) IBOutlet FMTagsView *tagsView;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 
 @property (weak, nonatomic) IBOutlet UIButton *levelButton;
-
-
 @property (weak, nonatomic) IBOutlet UIButton *submButton;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoCollectionHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *infoViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ticketsInfoViewHeight;
 
 @property (nonatomic, strong) TBChoosePhotosTool * tool;
 @property (assign, nonatomic) CGFloat  cellWidth;
 @property (strong, nonatomic) NSMutableArray *imageArray;
+@property (strong, nonatomic) NSArray *levelArray;// 等级数组
 // 最大选择数
 @property (assign, nonatomic) NSInteger maxRow;
-
-@property (nonatomic, copy) NSString *levelString;//等级
-
-@property (nonatomic, copy) NSString *linestime;
-
-@property (nonatomic, copy) NSString *lineetime;
+// 最大标签字数量
+@property (assign, nonatomic) NSInteger maxLabelNumber;
+// 最大标签数量
+@property (assign, nonatomic) NSInteger maxlabelRow;
+// 修改第几个标签 -1
+@property (assign, nonatomic) NSInteger modifyIndex;
 
 @property (nonatomic, strong) BMKLocationService *locService;
 
@@ -76,10 +84,7 @@
     self.navigationItem.title = @"创建景区";
     self.view.backgroundColor = RGB(241, 241, 241);
     [self setUpView];
-    
-    self.linestime = @"00:00";
-    self.lineetime = @"24:00";
-    
+
     if (self.ID.length > 0) {
         
         [self postEditorSecnicInfo];
@@ -94,21 +99,59 @@
 {
     self.godeSearch = [[WCGeoCodeSearch alloc] init];
     self.locationMode = [[WCPositioningMode alloc] init];
+    self.levelArray = @[@"AAAAA",@"AAAA",@"AAA",@"AA",@"其它"];
+    //  标签设置
+    NSArray *labelArray = @[@"自然景观",@"古镇",@"宗教寺庙",@"历史古迹",@"博物馆",@"名人故居",@"特色街区",@"最美乡村"];
+    self.labelViewHeight.constant = 0.0f;
+    self.tagsView.delegate = self;
+    self.tagsView.tagsArray = labelArray;
+    self.tagsView.allowsMultipleSelection = YES;
+    self.tagsView.tagcornerRadius = 4;
+    self.tagsView.tagBorderWidth = 0.5;
+    self.tagsView.lineSpacing = 6;
+    self.tagsView.interitemSpacing = 6;
+    self.tagsView.tagInsets = UIEdgeInsetsMake(0, 4, 0, 4);
+    self.tagsView.tagBorderColor = NAVIGATION_COLOR;
+    self.tagsView.tagBackgroundColor = [UIColor whiteColor];
+    self.tagsView.tagTextColor = NAVIGATION_COLOR;
+    self.tagsView.tagSelectedBorderColor = [UIColor redColor];
+    self.tagsView.tagSelectedBackgroundColor = [UIColor whiteColor];
+    self.tagsView.tagSelectedTextColor = [UIColor redColor];
+    self.tagsView.tagFont = [UIFont systemFontOfSize:12];
+    self.tagsView.tagSelectedFont = [UIFont systemFontOfSize:12];
+    self.tagsView.tagHeight = 20;
+    
+    self.scenicNameField.delegate = self;
+    
+    
+    self.adderssField.delegate = self;
+    
+    self.ticketsField.delegate = self;
+    
+    self.visitingTimeField.delegate = self;
     
     self.infoTextView.scrollEnabled = NO;
     self.infoTextView.delegate = self;
     
+    self.headNameField.delegate = self;
+    self.headPhoneField.delegate = self;
+    
+    self.ticketsInfoTextView.scrollEnabled = NO;
+    self.ticketsInfoTextView.delegate = self;
+    
     self.levelButton.layer.cornerRadius = 4;
     self.levelButton.layer.borderColor = [UIColor grayColor].CGColor;
-    self.levelButton.layer.borderWidth = 0.6;
-    [self.levelButton setButtonImageTitleStyle:(ButtonImageTitleStyleRightLeft) padding:4];
+    self.levelButton.layer.borderWidth = 0.5;
+    [self.levelButton setButtonImageTitleStyle:(ButtonImageTitleStyleRight) padding:4];
     
     self.headPhoneField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-    
     
     self.cellWidth = (_SCREEN_WIDTH- 10*8)/3;
     
     self.maxRow = 9;
+    self.maxlabelRow = 10;
+    self.maxLabelNumber = 8;
+    self.modifyIndex = -1;
     
     UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc] init];
     [flowlayout setItemSize:CGSizeMake(self.cellWidth, self.cellWidth)];
@@ -125,6 +168,8 @@
     self.photoCollectionView.collectionViewLayout = flowlayout;
     
     [self.submButton setTitle:self.ID?@"更 新 上 传":@"上 传 创 建" forState:(UIControlStateNormal)];
+    // 更新标签高度
+    [self reloadLabelViewHeight];
 }
 - (void)setLocService
 {
@@ -172,31 +217,62 @@
     [self.imageArray addObjectsFromArray:[self.scenicMode.allimg componentsSeparatedByString:@","]];
     [self updataCollectionView];
     
+    self.labelField.text = self.scenicMode.labels;
+    if (self.scenicMode.labels.length > 0) {
+        
+        NSArray *labelArrar = [self.scenicMode.labels componentsSeparatedByString:@","];
+        // 循环标签
+        [labelArrar enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+          NSUInteger index = [self.tagsView.tagsArray indexOfObject:obj];
+          [self.tagsView selectTagAtIndex:index animate:NO];
+        }];
+    }
+
     [self.levelButton setTitle:self.scenicMode.label forState:UIControlStateNormal];
-    [self.levelButton setButtonImageTitleStyle:(ButtonImageTitleStyleRightLeft) padding:4];
+    [self.levelButton setButtonImageTitleStyle:(ButtonImageTitleStyleRight) padding:4];
+    
     self.adderssField.text = self.scenicMode.address;
     self.locationMode.adderss = self.scenicMode.address;
     self.locationMode.cityID = self.scenicMode.qcode;
     self.locationMode.latitude = self.scenicMode.lat;
     self.locationMode.longitude = self.scenicMode.lng;
-    self.ticketsField.text = self.scenicMode.special;
+    self.ticketsField.text = [self.scenicMode.special stringByReplacingOccurrencesOfString:@"元" withString:@""];
     self.infoTextView.text = self.scenicMode.info;
     [self textViewDidChange:self.infoTextView];
-    self.visitingTimeField.text = self.scenicMode.routetime;
+    // 游览时长单位
+    NSInteger unit = [self.scenicMode.routetime containsString:@"分钟"]?1:0;
+    NSString *visitingTime = [self.scenicMode.routetime stringByReplacingOccurrencesOfString:@"分钟" withString:@""];
+    visitingTime = [visitingTime stringByReplacingOccurrencesOfString:@"小时" withString:@""];
+    
+    self.visitingTimeField.text = visitingTime;
+    
+    self.segControl.selectedSegmentIndex = unit;
+    
     self.headNameField.text = self.scenicMode.boss;
     self.headPhoneField.text = self.scenicMode.phone;
     
-    self.linestime = self.scenicMode.linestime;
-    self.lineetime = self.scenicMode.lineetime;
-    
-    if ([self.linestime isEqualToString:@"00:00"] && [self.lineetime isEqualToString:@"24:00"]) {
-        
-        self.lineTimeLabel.text = @"全天";
-    }
-    else
-    {
-        self.lineTimeLabel.text = [NSString stringWithFormat:@"%@-%@",self.linestime,self.lineetime];
-    }
+    self.kfTimeTextField.text = self.scenicMode.linestime;
+}
+
+/**
+ 更新标签
+ */
+- (void)updataLabels
+{
+    self.labelField.text = [self.tagsView.selecedTags componentsJoinedByString:@","];
+}
+/**
+ 更新标签高度
+ */
+- (void)reloadLabelViewHeight
+{
+    int64_t delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+
+        self.labelViewHeight.constant = self.tagsView.contenSizeHeight;
+    });
     
 }
 #pragma mark  ----数据上传----
@@ -250,6 +326,10 @@
 // 景区信息提交
 - (void)submitInformation
 {
+    NSString *labels = self.labelField.text;
+    NSString *unit = self.segControl.selectedSegmentIndex == 1?@"分钟":@"小时";
+    NSString *routetime = [NSString stringWithFormat:@"%@%@",self.visitingTimeField.text,unit];
+ 
     NSDictionary *jsonData = @{@"name":self.scenicNameField.text,
                                @"allimg":[self.imageArray componentsJoinedByString:@","],
                                @"label":self.levelButton.titleLabel.text,
@@ -257,14 +337,15 @@
                                @"lat":self.locationMode.latitude,
                                @"lng":self.locationMode.longitude,
                                @"qcode":self.locationMode.cityID,
-                               @"linestime":self.linestime,
-                               @"lineetime":self.lineetime,
+                               @"linestime":self.kfTimeTextField.text,
                                @"special":self.ticketsField.text,
                                @"info":self.infoTextView.text,
-                               @"routetime":self.visitingTimeField.text,
+                               @"routetime":routetime,
                                @"boss":self.headNameField.text,
                                @"consulttel":self.headPhoneField.text,
-                               @"phone":self.headPhoneField.text};
+                               @"phone":self.headPhoneField.text,
+                               @"labels":labels,
+                               @"specialInfo":self.ticketsInfoTextView.text};
     
     NSString *shopid = self.ID?self.ID:@"";
     NSDictionary *dic = @{@"interfaceId":@"302",
@@ -348,7 +429,7 @@
     
     [self.view endEditing:YES];
     
-    YBPopupMenu *popupMenu = [YBPopupMenu showRelyOnView:sender titles:@[@"5A",@"4A",@"3A",@"其它星级"] icons:nil menuWidth:100 delegate:self];
+    YBPopupMenu *popupMenu = [YBPopupMenu showRelyOnView:sender titles:self.levelArray icons:nil menuWidth:100 delegate:self];
     popupMenu.offset = 5;
     popupMenu.fontSize = 13;
     popupMenu.type = YBPopupMenuTypeDefault;
@@ -368,16 +449,17 @@
     }];
 }
 - (IBAction)selectTime:(UIButton *)sender {
-    [self.view endEditing:YES];
     
-    NSArray * star_arr = [self.linestime componentsSeparatedByString:@":"];
-    NSArray * end_arr = [self.lineetime componentsSeparatedByString:@":"];
-    
-    XMRTimePiker *timeView = [[XMRTimePiker alloc] init];
-    timeView.delegate = self;
-    [timeView SetOldShowTimeOneLeft:star_arr[0] andOneRight:star_arr[1] andTowLeft:end_arr[0] andTowRight:end_arr[1]];
-    [timeView showTime];
+    WCBusinessDateSelectionView *timeView = [[WCBusinessDateSelectionView alloc] init];
+    [timeView showDateView];
+    TBWeakSelf
+    [timeView setBusinessTime:^(NSString *time) {
+        
+        weakSelf.kfTimeTextField.text = time;
+    }];
 }
+
+
 // 上传创建
 - (IBAction)updataData:(UIButton *)sender {
     
@@ -390,12 +472,22 @@
         [self shakeAnimationForView:self.scenicNameField.superview markString:@"请至少上传一张图片"];
         return;
     }
+    if (self.labelField.text.length == 0) {
+        
+        [self shakeAnimationForView:self.labelField.superview markString:@"请至少选择一个标签"];
+        return;
+    }
     if (self.adderssField.text.length == 0 ||self.locationMode.latitude.length == 0 || self.locationMode.longitude.length == 0) {
         [self shakeAnimationForView:self.adderssField.superview markString:@"请先获取准确的位置信息"];
         [_locService startUserLocationService];
         return;
     }
     
+    if (self.kfTimeTextField.text.length == 0) {
+        
+        [self shakeAnimationForView:self.kfTimeTextField.superview markString:@"请选择开发时间"];
+        return;
+    }
     if (self.ticketsField.text.length == 0) {
         [self shakeAnimationForView:self.ticketsField.superview markString:@"请填写门票价格"];
         return;
@@ -422,13 +514,22 @@
     }
     [self postScenicData];
 }
-#pragma mark  ----XMRTimePikerDelegate----
--(void)XMSelectTimesViewSetOneLeft:(NSString *)oneLeft andOneRight:(NSString *)oneRight andTowLeft:(NSString *)towLeft andTowRight:(NSString *)towRight{
-    
-    self.lineetime = [NSString stringWithFormat:@"%@:%@",towLeft,towRight];
-    self.linestime = [NSString stringWithFormat:@"%@:%@",oneLeft,oneRight];
-    
-    self.lineTimeLabel.text = [NSString stringWithFormat:@"%@-%@",self.linestime,self.lineetime];
+#pragma mark  ----FMTagsViewDelegate----
+- (void)tagsView:(FMTagsView *)tagsView didSelectTagAtIndex:(NSUInteger)index;
+{
+    [self updataLabels];
+}
+- (void)tagsView:(FMTagsView *)tagsView didDeSelectTagAtIndex:(NSUInteger)index;
+{
+    [self updataLabels];
+}
+- (BOOL)tagsView:(FMTagsView *)tagsView shouldSelectTagAtIndex:(NSUInteger)index;
+{
+    return YES;
+}
+- (BOOL)tagsView:(FMTagsView *)tagsView shouldDeselectItemAtIndex:(NSUInteger)index;
+{
+    return YES;
 }
 #pragma mark  ----UITextViewDelegate----
 - (void)textViewDidChange:(UITextView *)textView
@@ -442,8 +543,48 @@
     CGSize newSize = [textView sizeThatFits:maxSize];
     // 重新计算高度
     if (newSize.height > 24) {
-        self.infoViewHeight.constant = newSize.height;
+        
+        if ([textView isEqual:self.infoTextView]) {
+            
+            self.infoViewHeight.constant = newSize.height;
+        }
+        else if ([textView isEqual:self.ticketsInfoTextView])
+        {
+            self.ticketsInfoViewHeight.constant = newSize.height;
+        }
+
     }
+}
+#pragma mark  ----UITextFieldDelegate----
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if ([string isEqualToString:@"\n"])
+    { //按下return
+        [textField resignFirstResponder];
+        return YES;
+    }
+
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    if ([textField isEqual:self.infoTextView]) {
+    
+        if (toBeString.length > self.maxLabelNumber) {
+            [textField resignFirstResponder];
+            textField.text = [toBeString substringToIndex:self.maxLabelNumber];
+            NSString *msg = [NSString stringWithFormat:@"标签字数不能超过%ld个",self.maxLabelNumber];
+            [UIView addMJNotifierWithText:msg dismissAutomatically:YES];
+            return NO;
+        }
+    }
+    else if ([textField isEqual:self.ticketsField] || [textField isEqual:self.visitingTimeField])
+    {
+        if (![ZKUtil ismoney:toBeString] && toBeString.length>0)
+        {
+            return NO;
+        }
+    }
+
+    return YES;
 }
 #pragma mark  ----YBPopupMenuDelegate----
 /**
@@ -453,14 +594,9 @@
 {
     /*** 字段赋值 ***/
     
-    NSString *levelName = @"其它星级   ";
-    if (index < 3) {
-        
-        levelName = [NSString stringWithFormat:@"%ldA",5-index];
-    }
-    self.levelString = levelName;
-    [self.levelButton setTitle:levelName forState:UIControlStateNormal];
-    [self.levelButton setButtonImageTitleStyle:(ButtonImageTitleStyleRightLeft) padding:4];
+    NSString *levelString = self.levelArray[index];
+    [self.levelButton setTitle:levelString forState:UIControlStateNormal];
+    [self.levelButton setButtonImageTitleStyle:(ButtonImageTitleStyleRight) padding:4];
 }
 #pragma mark <UICollectionViewDataSource>
 - (void)updataCollectionView;

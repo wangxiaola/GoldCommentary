@@ -14,8 +14,8 @@
 #import "WCAddScenicFootorView.h"
 #import "WCUploadPromptView.h"
 #import "WCAddScenicMode.h"
-
-@interface WCAddScenicViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+#import "TBBaseClassViewMode.h"
+@interface WCAddScenicViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,TBBaseClassViewModeDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
@@ -23,9 +23,29 @@
 
 @property (nonatomic, assign) NSInteger maxRow;// cell最大数量
 
+@property (nonatomic, strong) TBBaseClassViewMode *viewMode;
+
+@property (nonatomic, assign) NSInteger page;
 @end
 
 @implementation WCAddScenicViewController
+
+- (TBBaseClassViewMode *)viewMode
+{
+    if (!_viewMode)
+    {
+        _viewMode = [[TBBaseClassViewMode alloc] init];
+        _viewMode.delegate = self;
+    }
+    return _viewMode;
+}
+- (NSMutableArray<WCAddScenicMode *> *)dataArray
+{
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray arrayWithCapacity:1];
+    }
+    return _dataArray;
+}
 //视图将要出现
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -42,8 +62,6 @@
     
     self.navigationItem.title = @"创建游览路线";
     [self setUpView];
-    [self postScenicListData];
-    
 }
 #pragma mark ---初始化视图----
 - (void)setUpView
@@ -91,6 +109,9 @@
     [self.view addSubview:saveButton];
     
     
+    self.collectionView.mj_header = [MJDIYHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadData)];
+    self.collectionView.mj_footer = [MJDIYBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(pullLoadingData)];
+    [self.collectionView.mj_header beginRefreshing];
     
     TBWeakSelf
     [saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -106,40 +127,93 @@
         make.right.equalTo(weakSelf.view.mas_right).offset(-10);
         make.bottom.equalTo(saveButton.mas_top).offset(-4);
     }];
-    
-    
-    
-    
+
 }
 #pragma mark  ----基本信息请求----
+/**
+ *  重新加载数据
+ */
+- (void)reloadData
+{
+    self.page = 1;
+    [self postScenicListData];
+}
+/**
+ *  上拉加载数据
+ */
+- (void)pullLoadingData
+{
+    self.page++;
+    [self postScenicListData];
+}
+
 - (void)postScenicListData
 {
+
+    hudShowLoading(@"请稍等...");
     NSDictionary *dic = @{@"interfaceId":@"307",
                           @"id":[UserInfo account].userID,
                           @"shopid":self.scenicID};
-    hudShowLoading(@"请稍等...");
-    TBWeakSelf
-    [[ZKPostHttp shareInstance] POST:POST_URL params:dic success:^(id  _Nonnull responseObject) {
-        
-        if ([[responseObject valueForKey:@"errcode"] isEqualToString:@"00000"]) {
-            
-            NSDictionary *data = [responseObject valueForKey:@"data"];
-            weakSelf.dataArray = [WCAddScenicMode mj_objectArrayWithKeyValuesArray:[data valueForKey:@"root"]];
-            [weakSelf.dataArray addObject:[[WCAddScenicMode alloc] init]];
-            [weakSelf.collectionView reloadData];
-            hudDismiss();
-        }
-        else
-        {
-            hudShowError([responseObject valueForKey:@"errmsg"]);
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-        }
-        
-    } failure:^(NSError * _Nonnull error) {
-        
-        hudShowError(@"网络异常，请查看网络连接");
-        [weakSelf.navigationController popViewControllerAnimated:YES];
-    }];
+    [self.viewMode postDataParameter:dic.mutableCopy];
+}
+#pragma mark  ----TBBaseClassViewModeDelegate----
+/**
+ 原生数据
+ 
+ @param dictionary 数据
+ */
+- (void)originalData:(NSDictionary *)dictionary
+{
+    
+}
+/**
+ 请求结束
+ 
+ @param dataArray 数据源
+ */
+- (void)postDataEnd:(NSArray *)dataArray
+{
+     NSArray *data = [WCAddScenicMode mj_objectArrayWithKeyValuesArray:dataArray];
+    
+    if (self.page == 1)
+    {
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer resetNoMoreData];
+        self.collectionView.mj_footer.hidden = NO;
+        [self.dataArray removeAllObjects];
+        [self.dataArray addObjectsFromArray:data];
+    }
+    else
+    {
+        [self.collectionView.mj_footer endRefreshing];
+        [self.dataArray removeLastObject];
+        [self.dataArray addObjectsFromArray:data];
+    }
+    [self.dataArray addObject:[[WCAddScenicMode alloc] init]];
+    [self.collectionView reloadData];
+    hudDismiss();
+}
+/**
+ 请求出错了
+ 
+ @param error 错误信息
+ */
+- (void)postError:(NSString *)error
+{
+    hudShowError(@"网络异常，请查看网络连接");
+    [self.collectionView.mj_header endRefreshing];
+    [self.collectionView.mj_footer endRefreshing];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+/**
+ 没有更多数据了
+ */
+- (void)noMoreData
+{
+    [self.collectionView.mj_header endRefreshing];
+    [self.collectionView.mj_footer endRefreshing];
+    [self.collectionView.mj_footer endRefreshingWithNoMoreData];
 }
 #pragma mark  ----上传信息----
 - (void)saveClick
@@ -173,7 +247,8 @@
         hudDismiss();
         [data removeAllObjects];
         data = nil;
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathWithIndex:tag] atScrollPosition:(UICollectionViewScrollPositionNone) animated:YES];
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:tag] atScrollPosition:(UICollectionViewScrollPositionBottom) animated:YES];
+        
         [UIView addMJNotifierWithText:@"信息填写不完整" dismissAutomatically:YES];
         return;
     }

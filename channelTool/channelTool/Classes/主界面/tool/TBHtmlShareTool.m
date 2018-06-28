@@ -61,7 +61,7 @@
 //        _image = [[UIImage imageNamed:@"popup_ts"] imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
 //    }
     // 如果可以分享 就生产一张二维码
-    if ([WXApi isWXAppInstalled]) {
+    if ([WXApi isWXAppInstalled] && self.isRelease == YES) {
         
         NSString *url = [NSString stringWithFormat:@"https://jpjs.geeker.com.cn/shop?id=%@",mode.ID];
         _image = [WCQRCodeGenerateManager generateWithLogoQRCodeData:url logoImageName:@"wc_share" logoScaleToSuperView:0.2];
@@ -78,15 +78,16 @@
     
 }
   
-- (instancetype)init;
+- (instancetype)initIsRelease:(BOOL)isRelease
 {
-    
+
     self =[super initWithFrame:APPDELEGATE.window.bounds];
     if (self) {
         
         contentHeight = 164;
         self.clipsToBounds = YES;
         self.backgroundColor = [UIColor clearColor];;
+        self.isRelease = isRelease;
         
         UIButton *hideButton = [[UIButton alloc] initWithFrame:self.bounds];
         hideButton.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
@@ -109,18 +110,29 @@
         
         
         NSArray *dataArray;
-        if ([WXApi isWXAppInstalled]) {
-            
-            dataArray = @[@{@"name":@"创建景点",@"image":@"scenicTooView_1"},
-                          @{@"name":@"编辑景区",@"image":@"scenicTooView_2"},
-                          @{@"name":@"删除景区",@"image":@"scenicTooView_3"},
-                          @{@"name":@"分享朋友圈",@"image":@"scenicTooView_4"},];
+        NSInteger numberIndex = 1000;
+        if (self.isRelease == NO) {
+            numberIndex = 1001;
+            dataArray = @[@{@"name":@"编辑景区",@"image":@"scenicTooView_2"},
+                          @{@"name":@"删除景区",@"image":@"scenicTooView_3"}];
         }
         else
         {
-            dataArray = @[@{@"name":@"创建景点",@"image":@"scenicTooView_1"},
-                          @{@"name":@"编辑景区",@"image":@"scenicTooView_2"},
-                          @{@"name":@"删除景区",@"image":@"scenicTooView_3"}];
+            numberIndex = 1000;
+            
+            if ([WXApi isWXAppInstalled]) {
+                
+                dataArray = @[@{@"name":@"创建景点",@"image":@"scenicTooView_1"},
+                              @{@"name":@"编辑景区",@"image":@"scenicTooView_2"},
+                              @{@"name":@"删除景区",@"image":@"scenicTooView_3"},
+                              @{@"name":@"分享朋友圈",@"image":@"scenicTooView_4"},];
+            }
+            else
+            {
+                dataArray = @[@{@"name":@"创建景点",@"image":@"scenicTooView_1"},
+                              @{@"name":@"编辑景区",@"image":@"scenicTooView_2"},
+                              @{@"name":@"删除景区",@"image":@"scenicTooView_3"}];
+            }
         }
         
         CGFloat buttonW = shareViewW/dataArray.count;
@@ -133,7 +145,7 @@
             spaceButton.titleLabel.font = [UIFont systemFontOfSize:13];
             [spaceButton setTitle:dic[@"name"] forState:UIControlStateNormal];
             [spaceButton setImage:[UIImage imageNamed:dic[@"image"]] forState:UIControlStateNormal];
-            spaceButton.tag = 1000+idx;
+            spaceButton.tag = numberIndex+idx;
             [spaceButton addTarget:self action:@selector(scanicButtonClick:) forControlEvents:UIControlEventTouchUpInside];
             [shareView addSubview:spaceButton];
             
