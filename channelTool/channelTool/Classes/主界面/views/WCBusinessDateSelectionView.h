@@ -10,6 +10,6 @@
 
 @interface WCBusinessDateSelectionView : UIView
 
-@property (nonatomic, copy) void(^businessTime)(NSString * time);
+@property (nonatomic, copy) void(^businessTime)(NSString * stime,NSString * etime);
 - (void)showDateView;
 @end

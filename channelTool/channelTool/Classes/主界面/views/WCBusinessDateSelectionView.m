@@ -155,9 +155,9 @@
 - (IBAction)allTime:(UIButton *)sender {
     
     if (self.businessTime) {
-        self.businessTime(@"全天开放");
+        self.businessTime(@"00:00",@"23:59");
     }
-     [self hideDateView];
+    [self hideDateView];
 }
 - (IBAction)senderClick:(UIButton *)sender {
     
@@ -176,17 +176,15 @@
         CGFloat hours = [self.stateTimeField.text stringByReplacingOccurrencesOfString:@":" withString:@""].floatValue;
         CGFloat minutes = [self.endTimeField.text stringByReplacingOccurrencesOfString:@":" withString:@""].floatValue;
         BOOL isMax = hours < minutes;
-        NSString *time;
+        // 比较大小
         if (isMax) {
         
-            time = [NSString stringWithFormat:@"%@-%@",self.stateTimeField.text,self.endTimeField.text];
+           self.businessTime(self.stateTimeField.text,self.endTimeField.text);
         }
         else
         {
-            time = [NSString stringWithFormat:@"%@-%@",self.endTimeField.text,self.stateTimeField.text];
+           self.businessTime(self.endTimeField.text,self.stateTimeField.text);
         }
-
-        self.businessTime(time);
     }
     
     [self hideDateView];

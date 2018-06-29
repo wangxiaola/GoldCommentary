@@ -34,7 +34,7 @@
  @param value 值
  @param key 键
  */
-+ (void)cacheUserValue:(NSString *)value key:(NSString *)key;
++ (void)cacheUserValue:(id)value key:(NSString *)key;
 
 /**
  取出NSUserDefaults的值
@@ -42,7 +42,7 @@
  @param key 键
  @return 值
  */
-+ (NSString *)getUserDataForKey:(NSString *)key;
++ (id )getUserDataForKey:(NSString *)key;
 
 /**
  *  缓存数据

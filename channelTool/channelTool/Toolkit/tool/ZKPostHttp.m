@@ -120,8 +120,8 @@
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:params];
     dic[@"TimeStamp"] = [ZKUtil timeStamp];
-    dic[@"AppId"] = @"2zPhtu3ittzt";
-    dic[@"AppKey"] = @"e22eb607c64b4df5a676ffc1274300a3";
+    dic[@"AppId"] = APPPOST_ID;
+    dic[@"AppKey"] = APPPOST_KEY;
     
     MMLog(@"\n请求地址: %@\n请求参数 = \n%@\n",urlString,dic);
     [self.manager POST:urlString parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -178,8 +178,8 @@
     [sessionManager.requestSerializer setValue:@"image/jpg" forHTTPHeaderField:@"Content-Type"];
     
     NSDictionary *params = @{@"TimeStamp":[ZKUtil timeStamp],
-                             @"AppId":@"2zPhtu3ittzt",
-                             @"AppKey":@"e22eb607c64b4df5a676ffc1274300a3",
+                             @"AppId":APPPOST_ID,
+                             @"AppKey":APPPOST_KEY,
                              @"interfaceId":@"293"};
     
     MMLog(@"\n请求地址: %@\n请求参数 = \n%@\n",url,params);
@@ -222,8 +222,8 @@
     NSString *httpStr = POST_URL;
     
     NSDictionary *params = @{@"TimeStamp":[ZKUtil timeStamp],
-                             @"AppId":@"2zPhtu3ittzt",
-                             @"AppKey":@"e22eb607c64b4df5a676ffc1274300a3",
+                             @"AppId":APPPOST_ID,
+                             @"AppKey":APPPOST_KEY,
                              @"interfaceId":@"293"};
     MMLog(@"\n请求地址: %@\n请求参数 = \n%@\n",httpStr,params);
     
@@ -265,8 +265,8 @@
     }
     
     NSDictionary *params = @{@"TimeStamp":[ZKUtil timeStamp],
-                             @"AppId":@"2zPhtu3ittzt",
-                             @"AppKey":@"e22eb607c64b4df5a676ffc1274300a3",
+                             @"AppId":APPPOST_ID,
+                             @"AppKey":APPPOST_KEY,
                              @"interfaceId":@"293"};
     
     MMLog(@"\n请求地址: %@\n请求参数 = \n%@\n",url,params);

@@ -176,6 +176,7 @@
 		3BA73E17209C56AC00B88891 /* WCMyScenicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73E16209C56AC00B88891 /* WCMyScenicViewController.m */; };
 		3BA73E1A209C572B00B88891 /* WCMyNarratorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73E19209C572B00B88891 /* WCMyNarratorViewController.m */; };
 		3BAC85C820B11E0000792A26 /* WCCreateScenicMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAC85C720B11E0000792A26 /* WCCreateScenicMode.m */; };
+		3BC024C320E6134E00776919 /* WCChooseDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC024C220E6134E00776919 /* WCChooseDataTool.m */; };
 		3BC6855220C02012001976AA /* TBShowAddressResultsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6855120C02011001976AA /* TBShowAddressResultsView.m */; };
 		3BDD07CF20B90B5300D605C8 /* WCAddBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDD07CE20B90B5300D605C8 /* WCAddBankViewController.m */; };
 		3BFF527320CE587E00520834 /* WCScenicLabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF527220CE587E00520834 /* WCScenicLabelsView.m */; };
@@ -490,6 +491,8 @@
 		3BA73E19209C572B00B88891 /* WCMyNarratorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMyNarratorViewController.m; sourceTree = "<group>"; };
 		3BAC85C620B11E0000792A26 /* WCCreateScenicMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCreateScenicMode.h; sourceTree = "<group>"; };
 		3BAC85C720B11E0000792A26 /* WCCreateScenicMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCreateScenicMode.m; sourceTree = "<group>"; };
+		3BC024C120E6134E00776919 /* WCChooseDataTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCChooseDataTool.h; sourceTree = "<group>"; };
+		3BC024C220E6134E00776919 /* WCChooseDataTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCChooseDataTool.m; sourceTree = "<group>"; };
 		3BC6855020C02011001976AA /* TBShowAddressResultsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBShowAddressResultsView.h; sourceTree = "<group>"; };
 		3BC6855120C02011001976AA /* TBShowAddressResultsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBShowAddressResultsView.m; sourceTree = "<group>"; };
 		3BDD07CD20B90B5300D605C8 /* WCAddBankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAddBankViewController.h; sourceTree = "<group>"; };
@@ -850,6 +853,8 @@
 				3B941EC720AC38F40021B320 /* WCGeoCodeSearch.m */,
 				3B70DC6320AEB920001EDF2B /* TBHtmlShareTool.h */,
 				3B70DC6220AEB920001EDF2B /* TBHtmlShareTool.m */,
+				3BC024C120E6134E00776919 /* WCChooseDataTool.h */,
+				3BC024C220E6134E00776919 /* WCChooseDataTool.m */,
 				3BC6855020C02011001976AA /* TBShowAddressResultsView.h */,
 				3BC6855120C02011001976AA /* TBShowAddressResultsView.m */,
 			);
@@ -1385,6 +1390,7 @@
 				3B5A165B20B2B44300FC79AD /* MJPhotoProgressView.m in Sources */,
 				3B6BB84E20A2ECF60013AE6B /* WCUploadPromptView.m in Sources */,
 				3B216B56209AAED30040EE93 /* TBBaseTableViewController.m in Sources */,
+				3BC024C320E6134E00776919 /* WCChooseDataTool.m in Sources */,
 				3B75482920C63BA500090D49 /* TADotView.m in Sources */,
 				3B985B3020A19D990083E1F2 /* AddressTableViewCell.m in Sources */,
 				3B1E25F420AD9097006110C2 /* WCMoreAttractionsViewController.m in Sources */,

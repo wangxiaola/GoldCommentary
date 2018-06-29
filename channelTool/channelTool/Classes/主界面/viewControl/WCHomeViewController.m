@@ -60,6 +60,7 @@
     [self setUIviews];
     [self setBaseData];
     [self requestUserData];
+    
 }
 #pragma mark  ----视图设置----
 - (void)setUIviews
@@ -261,6 +262,8 @@
         
         [UserInfo saveAccount:info];
     });
+    
+    
     
 }
 

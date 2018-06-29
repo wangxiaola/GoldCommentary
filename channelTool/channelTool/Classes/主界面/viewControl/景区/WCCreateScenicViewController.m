@@ -18,6 +18,7 @@
 #import "WCPositioningViewController.h"
 #import "WCUploadPromptView.h"
 #import "WCBusinessDateSelectionView.h"
+#import "WCChooseDataTool.h"
 #import "YBPopupMenu.h"
 #import "FMTagsView.h"
 #import <BaiduMapAPI_Location/BMKLocationService.h>
@@ -52,7 +53,16 @@
 @property (nonatomic, strong) TBChoosePhotosTool * tool;
 @property (assign, nonatomic) CGFloat  cellWidth;
 @property (strong, nonatomic) NSMutableArray *imageArray;
+
 @property (strong, nonatomic) NSArray *levelArray;// 等级数组
+@property (strong, nonatomic) NSArray *tagArray;// 标签数组
+@property (strong, nonatomic) NSArray *tagIDArray;// 标签ID数组
+
+@property (copy, nonatomic) NSString *levelKeyString;
+@property (strong, nonatomic) NSMutableArray *tagKeyArray;
+// 开放时间
+@property (nonatomic, copy) NSString *lineetime;
+@property (nonatomic, copy) NSString *linestime;
 // 最大选择数
 @property (assign, nonatomic) NSInteger maxRow;
 // 最大标签字数量
@@ -92,19 +102,19 @@
     else
     {
         [self setLocService];
+        [self setObtainBaseData];
     }
+    
 }
 #pragma mark ---初始化视图----
 - (void)setUpView
 {
     self.godeSearch = [[WCGeoCodeSearch alloc] init];
     self.locationMode = [[WCPositioningMode alloc] init];
-    self.levelArray = @[@"AAAAA",@"AAAA",@"AAA",@"AA",@"其它"];
+
     //  标签设置
-    NSArray *labelArray = @[@"自然景观",@"古镇",@"宗教寺庙",@"历史古迹",@"博物馆",@"名人故居",@"特色街区",@"最美乡村"];
     self.labelViewHeight.constant = 0.0f;
     self.tagsView.delegate = self;
-    self.tagsView.tagsArray = labelArray;
     self.tagsView.allowsMultipleSelection = YES;
     self.tagsView.tagcornerRadius = 4;
     self.tagsView.tagBorderWidth = 0.5;
@@ -142,7 +152,6 @@
     self.levelButton.layer.cornerRadius = 4;
     self.levelButton.layer.borderColor = [UIColor grayColor].CGColor;
     self.levelButton.layer.borderWidth = 0.5;
-    [self.levelButton setButtonImageTitleStyle:(ButtonImageTitleStyleRight) padding:4];
     
     self.headPhoneField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     
@@ -168,8 +177,64 @@
     self.photoCollectionView.collectionViewLayout = flowlayout;
     
     [self.submButton setTitle:self.ID?@"更 新 上 传":@"上 传 创 建" forState:(UIControlStateNormal)];
-    // 更新标签高度
-    [self reloadLabelViewHeight];
+}
+// 获取级别数据 并更新UI
+- (void)setObtainBaseData
+{
+    TBWeakSelf
+    [WCChooseDataTool obtainScenicTagArray:^(NSArray *tagArray) {
+        
+        weakSelf.tagArray = tagArray;
+        weakSelf.tagsView.tagsArray = [tagArray valueForKey:@"name"];
+        weakSelf.tagIDArray = [tagArray valueForKey:@"id"];
+        // 更新标签高度
+        [weakSelf reloadLabelViewHeight];
+        
+        if (self.scenicMode.labels.length > 0) {
+            
+            NSArray *labelArrar = [self.scenicMode.labels componentsSeparatedByString:@","];
+            // 循环标签
+            [weakSelf.tagArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                for (NSString *ID in labelArrar) {
+                    
+                    if (ID.integerValue == [obj[@"id"] integerValue]) {
+                        
+                        
+                    }
+                }
+                
+            }];
+
+        }
+        
+    }];
+    [WCChooseDataTool obtainScenicLevelArray:^(NSArray *levelArray) {
+        
+        weakSelf.levelArray = levelArray;
+
+        if (weakSelf.scenicMode.label.length > 0) {
+            
+            weakSelf.levelKeyString = self.scenicMode.label;
+            [levelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ([[obj valueForKey:@"code"] isEqualToString:self.scenicMode.label]) {
+
+                    [weakSelf.levelButton setTitle:[obj valueForKey:@"name"] forState:UIControlStateNormal];
+
+                }
+            }];
+        }
+        else
+        {
+            NSDictionary *dic = weakSelf.levelArray.firstObject;
+            weakSelf.levelKeyString = dic[@"code"];
+            [weakSelf.levelButton setTitle:[dic valueForKey:@"name"] forState:UIControlStateNormal];
+        }
+        
+        [weakSelf.levelButton setButtonImageTitleStyle:(ButtonImageTitleStyleRight) padding:4];
+
+    }];
 }
 - (void)setLocService
 {
@@ -217,21 +282,7 @@
     [self.imageArray addObjectsFromArray:[self.scenicMode.allimg componentsSeparatedByString:@","]];
     [self updataCollectionView];
     
-    self.labelField.text = self.scenicMode.labels;
-    if (self.scenicMode.labels.length > 0) {
-        
-        NSArray *labelArrar = [self.scenicMode.labels componentsSeparatedByString:@","];
-        // 循环标签
-        [labelArrar enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-          NSUInteger index = [self.tagsView.tagsArray indexOfObject:obj];
-          [self.tagsView selectTagAtIndex:index animate:NO];
-        }];
-    }
 
-    [self.levelButton setTitle:self.scenicMode.label forState:UIControlStateNormal];
-    [self.levelButton setButtonImageTitleStyle:(ButtonImageTitleStyleRight) padding:4];
-    
     self.adderssField.text = self.scenicMode.address;
     self.locationMode.adderss = self.scenicMode.address;
     self.locationMode.cityID = self.scenicMode.qcode;
@@ -252,7 +303,9 @@
     self.headNameField.text = self.scenicMode.boss;
     self.headPhoneField.text = self.scenicMode.phone;
     
-    self.kfTimeTextField.text = self.scenicMode.linestime;
+    [self updataKfTimeStateTime:self.scenicMode.linestime endTime:self.scenicMode.lineetime];
+    
+    [self setObtainBaseData];
 }
 
 /**
@@ -274,6 +327,29 @@
         self.labelViewHeight.constant = self.tagsView.contenSizeHeight;
     });
     
+}
+/**
+ 更新开放时间
+ 
+ @param stime 开始
+ @param etime 结束
+ */
+- (void)updataKfTimeStateTime:(NSString *)stime endTime:(NSString *)etime
+{
+    if (etime.length == 0 || stime.length == 0) {
+        return;
+    }
+    if ([stime isEqualToString:@"00:00"] && [etime isEqualToString:@"23:59"]) {
+        
+        self.kfTimeTextField.text = @"全天";
+    }
+    else
+    {
+        self.kfTimeTextField.text = [NSString stringWithFormat:@"%@-%@",stime,etime];
+    }
+    
+    self.linestime = stime;
+    self.lineetime = etime;
 }
 #pragma mark  ----数据上传----
 - (void)postScenicData
@@ -337,7 +413,8 @@
                                @"lat":self.locationMode.latitude,
                                @"lng":self.locationMode.longitude,
                                @"qcode":self.locationMode.cityID,
-                               @"linestime":self.kfTimeTextField.text,
+                               @"linestime":self.linestime,
+                               @"lineetime":self.lineetime,
                                @"special":self.ticketsField.text,
                                @"info":self.infoTextView.text,
                                @"routetime":routetime,
@@ -429,10 +506,17 @@
     
     [self.view endEditing:YES];
     
-    YBPopupMenu *popupMenu = [YBPopupMenu showRelyOnView:sender titles:self.levelArray icons:nil menuWidth:100 delegate:self];
-    popupMenu.offset = 5;
-    popupMenu.fontSize = 13;
-    popupMenu.type = YBPopupMenuTypeDefault;
+    if (self.levelArray.count > 0) {
+        
+        YBPopupMenu *popupMenu = [YBPopupMenu showRelyOnView:sender titles:self.levelArray icons:nil menuWidth:100 delegate:self];
+        popupMenu.offset = 5;
+        popupMenu.fontSize = 13;
+        popupMenu.type = YBPopupMenuTypeDefault;
+    }
+    else
+    {
+        [UIView addMJNotifierWithText:@"数据还未加载" dismissAutomatically:YES];
+    }
     
 }
 - (IBAction)goMapView:(UIButton *)sender {
@@ -453,9 +537,9 @@
     WCBusinessDateSelectionView *timeView = [[WCBusinessDateSelectionView alloc] init];
     [timeView showDateView];
     TBWeakSelf
-    [timeView setBusinessTime:^(NSString *time) {
+    [timeView setBusinessTime:^(NSString *stime, NSString *etime) {
         
-        weakSelf.kfTimeTextField.text = time;
+        [weakSelf updataKfTimeStateTime:stime endTime:etime];
     }];
 }
 
@@ -483,7 +567,7 @@
         return;
     }
     
-    if (self.kfTimeTextField.text.length == 0) {
+    if (self.lineetime.length == 0 || self.linestime.length == 0) {
         
         [self shakeAnimationForView:self.kfTimeTextField.superview markString:@"请选择开发时间"];
         return;
@@ -593,9 +677,9 @@
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu;
 {
     /*** 字段赋值 ***/
-    
-    NSString *levelString = self.levelArray[index];
-    [self.levelButton setTitle:levelString forState:UIControlStateNormal];
+    NSDictionary *dic = self.levelArray[index];
+    self.levelKeyString = dic[@"code"];
+    [self.levelButton setTitle:dic[@"name"] forState:UIControlStateNormal];
     [self.levelButton setButtonImageTitleStyle:(ButtonImageTitleStyleRight) padding:4];
 }
 #pragma mark <UICollectionViewDataSource>
@@ -703,6 +787,13 @@
         _imageArray = [NSMutableArray arrayWithCapacity:1];
     }
     return _imageArray;
+}
+- (NSMutableArray *)tagKeyArray
+{
+    if (!_tagKeyArray) {
+        _tagKeyArray = [NSMutableArray arrayWithCapacity:1];
+    }
+    return _tagKeyArray;
 }
 - (TBChoosePhotosTool *)tool
 {

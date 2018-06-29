@@ -335,10 +335,11 @@ UITableViewDataSource
     if (!cell) {
         cell = [[YBPopupMenuCell alloc] initWithStyle:style reuseIdentifier:identifier];
     }
+    NSDictionary *dic = _titles[indexPath.row];
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.textColor = _textColor;
     cell.textLabel.font = [UIFont systemFontOfSize:_fontSize];
-    cell.textLabel.text = _titles[indexPath.row];
+    cell.textLabel.text = dic[@"name"];
     [cell.textLabel sizeToFit];
     cell.separatorColor = _separatorColor;
     

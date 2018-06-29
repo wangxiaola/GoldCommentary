@@ -18,3 +18,7 @@ NSString *const Verification_code = @"Verification_code";
 NSString *const MAP_KEY = @"DLsl8WMFTr0ZpOOBg0AGzNTyZQU1RU4c";
 
 NSString *const TELECOM_ID = @"1387415855";
+
+NSString *const APPPOST_ID = @"758120306327";
+
+NSString *const APPPOST_KEY = @"faf4fa88935d4d2bbadd9dbe10f9d5f2";

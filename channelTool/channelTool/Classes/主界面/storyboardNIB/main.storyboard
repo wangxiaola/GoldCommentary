@@ -1022,7 +1022,7 @@
                                                             <constraint firstAttribute="height" constant="30" id="Kb6-x5-jrH"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <state key="normal" title="AAAAA" image="select_level">
+                                                        <state key="normal" image="select_level">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
