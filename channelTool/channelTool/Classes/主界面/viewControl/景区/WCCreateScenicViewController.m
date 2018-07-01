@@ -56,7 +56,6 @@
 
 @property (strong, nonatomic) NSArray *levelArray;// 等级数组
 @property (strong, nonatomic) NSArray *tagArray;// 标签数组
-@property (strong, nonatomic) NSArray *tagIDArray;// 标签ID数组
 
 @property (copy, nonatomic) NSString *levelKeyString;
 @property (strong, nonatomic) NSMutableArray *tagKeyArray;
@@ -94,7 +93,7 @@
     self.navigationItem.title = @"创建景区";
     self.view.backgroundColor = RGB(241, 241, 241);
     [self setUpView];
-
+    
     if (self.ID.length > 0) {
         
         [self postEditorSecnicInfo];
@@ -111,7 +110,7 @@
 {
     self.godeSearch = [[WCGeoCodeSearch alloc] init];
     self.locationMode = [[WCPositioningMode alloc] init];
-
+    
     //  标签设置
     self.labelViewHeight.constant = 0.0f;
     self.tagsView.delegate = self;
@@ -186,42 +185,51 @@
         
         weakSelf.tagArray = tagArray;
         weakSelf.tagsView.tagsArray = [tagArray valueForKey:@"name"];
-        weakSelf.tagIDArray = [tagArray valueForKey:@"id"];
         // 更新标签高度
         [weakSelf reloadLabelViewHeight];
         
         if (self.scenicMode.labels.length > 0) {
-            
+            // 选中到ID
             NSArray *labelArrar = [self.scenicMode.labels componentsSeparatedByString:@","];
+            // 要拼接的字符串
+            __block NSString *textName = @"";
             // 循环标签
-            [weakSelf.tagArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            for (int i = 0; i<weakSelf.tagArray.count; i++) {
+                
+                NSDictionary *obj = weakSelf.tagArray[i];
                 
                 for (NSString *ID in labelArrar) {
                     
                     if (ID.integerValue == [obj[@"id"] integerValue]) {
                         
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            
+                            [weakSelf.tagKeyArray addObject:obj];
+                            textName = [NSString stringWithFormat:@"%@%@,",textName,obj[@"name"]];
+                            [weakSelf.tagsView  selectTagAtIndex:i animate:NO];
+                        }];
+                        
                         
                     }
                 }
-                
-            }];
-
+            }
+            
+            weakSelf.labelField.text = textName;
         }
-        
     }];
     [WCChooseDataTool obtainScenicLevelArray:^(NSArray *levelArray) {
         
         weakSelf.levelArray = levelArray;
-
+        
         if (weakSelf.scenicMode.label.length > 0) {
             
             weakSelf.levelKeyString = self.scenicMode.label;
             [levelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([[obj valueForKey:@"code"] isEqualToString:self.scenicMode.label]) {
-
+                    
                     [weakSelf.levelButton setTitle:[obj valueForKey:@"name"] forState:UIControlStateNormal];
-
+                    
                 }
             }];
         }
@@ -233,7 +241,7 @@
         }
         
         [weakSelf.levelButton setButtonImageTitleStyle:(ButtonImageTitleStyleRight) padding:4];
-
+        
     }];
 }
 - (void)setLocService
@@ -282,7 +290,7 @@
     [self.imageArray addObjectsFromArray:[self.scenicMode.allimg componentsSeparatedByString:@","]];
     [self updataCollectionView];
     
-
+    
     self.adderssField.text = self.scenicMode.address;
     self.locationMode.adderss = self.scenicMode.address;
     self.locationMode.cityID = self.scenicMode.qcode;
@@ -309,13 +317,6 @@
 }
 
 /**
- 更新标签
- */
-- (void)updataLabels
-{
-    self.labelField.text = [self.tagsView.selecedTags componentsJoinedByString:@","];
-}
-/**
  更新标签高度
  */
 - (void)reloadLabelViewHeight
@@ -323,7 +324,7 @@
     int64_t delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-
+        
         self.labelViewHeight.constant = self.tagsView.contenSizeHeight;
     });
     
@@ -402,13 +403,14 @@
 // 景区信息提交
 - (void)submitInformation
 {
-    NSString *labels = self.labelField.text;
+    NSArray *IDArray = [self.tagKeyArray valueForKey:@"id"];
+    NSString *labels = [IDArray componentsJoinedByString:@","];
     NSString *unit = self.segControl.selectedSegmentIndex == 1?@"分钟":@"小时";
     NSString *routetime = [NSString stringWithFormat:@"%@%@",self.visitingTimeField.text,unit];
- 
+    
     NSDictionary *jsonData = @{@"name":self.scenicNameField.text,
                                @"allimg":[self.imageArray componentsJoinedByString:@","],
-                               @"label":self.levelButton.titleLabel.text,
+                               @"label":self.levelKeyString,
                                @"address":self.adderssField.text,
                                @"lat":self.locationMode.latitude,
                                @"lng":self.locationMode.longitude,
@@ -429,7 +431,7 @@
                           @"id":[UserInfo account].userID,
                           @"shopid":shopid,
                           @"model":jsonData.mj_JSONString};
-    
+  
     
     hudShopWUploadProgress(0.8, @"正在上传图片");
     TBWeakSelf
@@ -556,7 +558,13 @@
         [self shakeAnimationForView:self.scenicNameField.superview markString:@"请至少上传一张图片"];
         return;
     }
-    if (self.labelField.text.length == 0) {
+    
+    if (self.levelKeyString.length == 0) {
+        
+        [self shakeAnimationForView:self.levelButton.superview markString:@"请选择景区级别"];
+        return;
+    }
+    if (self.labelField.text.length == 0 || self.tagKeyArray.count == 0) {
         
         [self shakeAnimationForView:self.labelField.superview markString:@"请至少选择一个标签"];
         return;
@@ -601,11 +609,15 @@
 #pragma mark  ----FMTagsViewDelegate----
 - (void)tagsView:(FMTagsView *)tagsView didSelectTagAtIndex:(NSUInteger)index;
 {
-    [self updataLabels];
+    self.labelField.text = [self.tagsView.selecedTags componentsJoinedByString:@","];
+    NSDictionary *dic = self.tagArray[index];
+    [self.tagKeyArray removeObject:dic];
+    [self.tagKeyArray addObject:dic];
 }
 - (void)tagsView:(FMTagsView *)tagsView didDeSelectTagAtIndex:(NSUInteger)index;
 {
-    [self updataLabels];
+    self.labelField.text = [self.tagsView.selecedTags componentsJoinedByString:@","];
+    [self.tagKeyArray removeObject:self.tagArray[index]];
 }
 - (BOOL)tagsView:(FMTagsView *)tagsView shouldSelectTagAtIndex:(NSUInteger)index;
 {
@@ -636,7 +648,7 @@
         {
             self.ticketsInfoViewHeight.constant = newSize.height;
         }
-
+        
     }
 }
 #pragma mark  ----UITextFieldDelegate----
@@ -647,11 +659,11 @@
         [textField resignFirstResponder];
         return YES;
     }
-
+    
     NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     
     if ([textField isEqual:self.infoTextView]) {
-    
+        
         if (toBeString.length > self.maxLabelNumber) {
             [textField resignFirstResponder];
             textField.text = [toBeString substringToIndex:self.maxLabelNumber];
@@ -667,7 +679,7 @@
             return NO;
         }
     }
-
+    
     return YES;
 }
 #pragma mark  ----YBPopupMenuDelegate----
