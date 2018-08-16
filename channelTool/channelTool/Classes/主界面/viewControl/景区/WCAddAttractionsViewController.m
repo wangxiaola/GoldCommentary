@@ -8,6 +8,8 @@
 
 #import "WCAddAttractionsViewController.h"
 #import "TBMoreReminderView.h"
+#import "WCPositioningViewController.h"
+#import "LoginNavigationController.h"
 #import "TBTemplateResourceCollectionViewCell.h"
 #import "TBChoosePhotosTool.h"
 #import "WCAddScenicMode.h"
@@ -18,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *scenicNameField;
 
 @property (weak, nonatomic) IBOutlet IQTextView *infoTextView;//简介
+@property (weak, nonatomic) IBOutlet UITextField *coordinatesTextField;
 
 @property (weak, nonatomic) IBOutlet UITextField *visitTimeField;
 @property (weak, nonatomic) IBOutlet UITextField *numberField;
@@ -38,6 +41,9 @@
 // 最大选择数
 @property (assign, nonatomic) NSInteger maxRow;
 @property (assign, nonatomic) CGFloat  cellWidth;
+
+@property (nonatomic, copy) NSString *latitude;
+@property (nonatomic, copy) NSString *longitude;
 
 @property (assign, nonatomic) NSInteger recommendedNumber;//推荐
 @end
@@ -120,6 +126,25 @@
     [self.recommendedButton setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
     self.recommendedNumber = state;
 }
+
+/**
+ 更新经纬度
+
+ @param lat 纬度
+ @param lng 经度
+ */
+- (void)updateCoordinatesLatitude:(NSString *)lat longitude:(NSString *)lng
+{
+    if (lat.length == 0 || lng.length == 0) {
+        self.coordinatesTextField.text = @"";
+        self.latitude = @"";
+        self.longitude = @"";
+        return;
+    }
+    self.latitude = lat;
+    self.longitude = lng;
+    self.coordinatesTextField.text = [NSString stringWithFormat:@"经度:%.3f , 纬度:%.3f",self.longitude.doubleValue,self.latitude.doubleValue];
+}
 #pragma mark  ----数据上传----
 // 更新景点数据
 - (void)updateScenicData
@@ -142,6 +167,8 @@
     self.numberField.text = self.scenicMode.sort;
     [self.stepper setValue:self.scenicMode.sort.doubleValue];
     [self updateRecommendedButtonState:self.scenicMode.hotLevel.integerValue];
+    
+    [self updateCoordinatesLatitude:self.scenicMode.lat longitude:self.scenicMode.lng];
 }
 // 上传图片
 - (void)uploadPictures
@@ -204,6 +231,9 @@
     NSString *unit = self.segControl.selectedSegmentIndex == 1?@"分钟":@"小时";
     NSString *routetime = [NSString stringWithFormat:@"%@%@",self.visitTimeField.text,unit];
     
+    NSString *lat = self.latitude.length > 0?self.latitude:@"";
+    NSString *lng = self.longitude.length > 0?self.longitude:@"";
+    
     NSDictionary *dic = @{@"interfaceId":@"308",
                           @"id":[UserInfo account].userID,
                           @"shopid":shopid,
@@ -218,6 +248,8 @@
                           @"pname":self.scenicMode.pname,
                           @"pinfo":self.scenicMode.scenicInfo,
                           @"allimg":[self.imageArray componentsJoinedByString:@","],
+                          @"lat":lat,
+                          @"lng":lng
                           };
     
     hudShopWUploadProgress(0.8, @"正在上传图片");
@@ -265,6 +297,19 @@
 - (IBAction)scenicRecording:(UIButton *)sender {
     
     
+}
+- (IBAction)pushMapCoordinates:(UIButton *)sender {
+    
+    WCPositioningViewController *mapView = [[WCPositioningViewController alloc] init];
+    LoginNavigationController *nav = [[LoginNavigationController alloc] initWithRootViewController:mapView];
+    
+    [self presentViewController:nav animated:NO completion:nil];
+    
+    TBWeakSelf
+    [mapView setSearchResults:^(WCPositioningMode *mode) {
+        
+        [weakSelf updateCoordinatesLatitude:mode.latitude longitude:mode.longitude];
+    }];
 }
 - (IBAction)valueChanged:(UIStepper *)sender {
     

@@ -10,10 +10,10 @@
 #import "WCPublic.h"
 #import "TBUpdateTooltipView.h"
 #import "IQKeyboardManager.h"
+#import "WCNetWorkAccessibity.h"
 #import <WXApi.h>
 
 @interface AppDelegate ()<WXApiDelegate>
-
 
 @end
 BMKMapManager* _mapManager;
@@ -24,6 +24,7 @@ BMKMapManager* _mapManager;
     // Override point for customization after application launch.
     // 设置键盘
     [self initSDK];
+    [WCNetWorkAccessibity openNetworkMonitoring];
     // 版本更新
     [self versionInformationQuery];
     
@@ -68,7 +69,7 @@ BMKMapManager* _mapManager;
     [keyboardManager setToolbarDoneBarButtonItemText:@"完成"];
     // 设置hud
     hudConfig();
-    
+
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];
 
@@ -81,10 +82,8 @@ BMKMapManager* _mapManager;
     if (!ret) {
         NSLog(@"manager start failed!");
     }
-    
     // 微信注册
     [WXApi registerApp:weixinID enableMTA:NO];
-
 }
 
 - (void)onGetNetworkState:(int)iError
@@ -106,7 +105,6 @@ BMKMapManager* _mapManager;
         NSLog(@"onGetPermissionState %d",iError);
     }
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -146,7 +144,7 @@ BMKMapManager* _mapManager;
  * 收到一个来自微信的请求，异步处理完成后必须调用sendResp发送处理结果给微信。
  * 可能收到的请求有GetMessageFromWXReq、ShowMessageFromWXReq等。
  */
--(void) onReq:(BaseReq*)req;
+- (void) onReq:(BaseReq*)req;
 
 {
     
@@ -157,7 +155,7 @@ BMKMapManager* _mapManager;
  * 收到一个来自微信的处理结果。调用一次sendReq后会收到onResp。
  * 可能收到的处理结果有SendMessageToWXResp、SendAuthResp等。
  */
--(void) onResp:(BaseResp*)resp;
+- (void) onResp:(BaseResp*)resp;
 {
     if([resp isKindOfClass:[SendMessageToWXResp class]])
     {

@@ -179,6 +179,7 @@
 		3BC024C320E6134E00776919 /* WCChooseDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC024C220E6134E00776919 /* WCChooseDataTool.m */; };
 		3BC6855220C02012001976AA /* TBShowAddressResultsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6855120C02011001976AA /* TBShowAddressResultsView.m */; };
 		3BDD07CF20B90B5300D605C8 /* WCAddBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDD07CE20B90B5300D605C8 /* WCAddBankViewController.m */; };
+		3BFE651B210B06890048B279 /* WCNetWorkAccessibity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE651A210B06890048B279 /* WCNetWorkAccessibity.m */; };
 		3BFF527320CE587E00520834 /* WCScenicLabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF527220CE587E00520834 /* WCScenicLabelsView.m */; };
 		3BFF527720CE665D00520834 /* FMTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF527620CE665D00520834 /* FMTagsView.m */; };
 		56B6C53E4D091EA293C517A5 /* Pods_channelTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF32DF5B5674C73EA5E12B20 /* Pods_channelTool.framework */; };
@@ -497,6 +498,8 @@
 		3BC6855120C02011001976AA /* TBShowAddressResultsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBShowAddressResultsView.m; sourceTree = "<group>"; };
 		3BDD07CD20B90B5300D605C8 /* WCAddBankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAddBankViewController.h; sourceTree = "<group>"; };
 		3BDD07CE20B90B5300D605C8 /* WCAddBankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAddBankViewController.m; sourceTree = "<group>"; };
+		3BFE6519210B06890048B279 /* WCNetWorkAccessibity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCNetWorkAccessibity.h; sourceTree = "<group>"; };
+		3BFE651A210B06890048B279 /* WCNetWorkAccessibity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCNetWorkAccessibity.m; sourceTree = "<group>"; };
 		3BFF527120CE587E00520834 /* WCScenicLabelsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCScenicLabelsView.h; sourceTree = "<group>"; };
 		3BFF527220CE587E00520834 /* WCScenicLabelsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCScenicLabelsView.m; sourceTree = "<group>"; };
 		3BFF527520CE665D00520834 /* FMTagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMTagsView.h; sourceTree = "<group>"; };
@@ -633,6 +636,7 @@
 		3B216AF4209AAD480040EE93 /* Toolkit */ = {
 			isa = PBXGroup;
 			children = (
+				3BFE6515210B00450048B279 /* ZYNetworkAccessibity */,
 				3BFF527420CE665D00520834 /* TagsView */,
 				3B75481720C63BA500090D49 /* SDCycleScrollView */,
 				3B75481020C62AEA00090D49 /* 二维码生产 */,
@@ -1160,6 +1164,15 @@
 			path = LSSlidePageScrollView;
 			sourceTree = "<group>";
 		};
+		3BFE6515210B00450048B279 /* ZYNetworkAccessibity */ = {
+			isa = PBXGroup;
+			children = (
+				3BFE6519210B06890048B279 /* WCNetWorkAccessibity.h */,
+				3BFE651A210B06890048B279 /* WCNetWorkAccessibity.m */,
+			);
+			path = ZYNetworkAccessibity;
+			sourceTree = "<group>";
+		};
 		3BFF527420CE665D00520834 /* TagsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1473,6 +1486,7 @@
 				3B1A06AB20A02D19005CC21C /* ClearCacheTool.m in Sources */,
 				3B08134A20C8C9E100884B8C /* TBUpdateTooltipView.m in Sources */,
 				3B5A165920B2B44300FC79AD /* MJPhotoBrowser.m in Sources */,
+				3BFE651B210B06890048B279 /* WCNetWorkAccessibity.m in Sources */,
 				3BAC85C820B11E0000792A26 /* WCCreateScenicMode.m in Sources */,
 				3B216B89209AFA940040EE93 /* WCResetPasswordViewController.m in Sources */,
 				3B216B09209AAE4C0040EE93 /* MJDIYBackFooter.m in Sources */,

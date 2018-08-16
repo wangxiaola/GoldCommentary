@@ -7,7 +7,7 @@
 //
 
 #import "TBBaseViewController.h"
-@class WCPositioningMode;
+#import "WCPositioningMode.h"
 
 /**
  定位

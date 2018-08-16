@@ -49,6 +49,8 @@
 
 @interface WCAddScenicImageMode : NSObject
 
+@property (nonatomic, copy) NSString *lat;
+@property (nonatomic, copy) NSString *lng;
 @property (nonatomic, copy) NSString *addtime;
 @property (nonatomic, copy) NSString *allimg;
 @property (nonatomic, copy) NSString *basicVoc;

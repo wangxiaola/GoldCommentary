@@ -50,7 +50,6 @@
 {
     return self.roots.count;
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WCMyNarratorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:WCMyNarratorTableViewCellID];

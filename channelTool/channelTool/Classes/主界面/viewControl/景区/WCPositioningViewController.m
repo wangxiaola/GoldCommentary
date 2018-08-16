@@ -9,7 +9,6 @@
 #import "WCPositioningViewController.h"
 #import "UIBarButtonItem+Custom.h"
 #import "WCGeoCodeSearch.h"
-#import "WCPositioningMode.h"
 #import "TBShowAddressResultsView.h"
 #import "UIButton+ImageTitleStyle.h"
 #import <BaiduMapAPI_Map/BMKMapView.h>
