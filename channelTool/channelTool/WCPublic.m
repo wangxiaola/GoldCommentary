@@ -7,9 +7,14 @@
 
 
 #import <Foundation/Foundation.h>
-
-NSString *const POST_URL = @"https://jpjs.geeker.com.cn/service.csw";
+// 正式地址
 //NSString *const POST_URL = @"https://jpjs.geeker.com.cn/service.csw";
+// 测试地址
+NSString *const POST_URL = @"http://jpjstest.geeker.com.cn/service.csw";
+// 游欢
+//NSString *const POST_URL = @"http://172.16.12.34/scenic/service.csw";
+// 张彪
+//NSString *const POST_URL = @"http://172.16.12.25:8091/service.csw";
 
 NSString *const Verification_phone = @"Verification_phone";
 

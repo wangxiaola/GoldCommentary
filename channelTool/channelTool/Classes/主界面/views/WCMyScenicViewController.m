@@ -10,6 +10,7 @@
 #import "WCAuthenticationPopupsView.h"
 #import "WCCreateScenicViewController.h"
 #import "WCAddScenicViewController.h"
+#import "WCInformationViewController.h"
 #import "TBHtmlShareTool.h"
 #import "WCMyScenicTableViewCell.h"
 #import "WCMyScenicMode.h"
@@ -159,6 +160,17 @@
         
         [weakSelf reloadData];
     }];
+}
+/**
+ 导航到信息采集vc
+ 
+ @param mode 数据
+ */
+- (void)navInformationCollectionVC:(WCMyScenicMode *)mode;
+{
+    WCInformationViewController *vc = [[WCInformationViewController alloc] init];
+    vc.scenicID = mode.ID;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

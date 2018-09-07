@@ -114,11 +114,11 @@
     if (self.adderssPoi)
     {
         self.adderssPoi(self.dataArray[indexPath.row]);
-        
     }
     [self showAdderssPois:@[]];
 
 }
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

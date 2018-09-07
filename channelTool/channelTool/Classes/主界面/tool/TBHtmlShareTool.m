@@ -9,9 +9,9 @@
 #import "TBHtmlShareTool.h"
 #import "WCAuthenticationPopupsView.h"
 #import "UIButton+ImageTitleStyle.h"
-#import "WXApi.h"
-#import "UIImage+Thumbnail.h"
-#import "SDWebImageManager.h"
+//#import "WXApi.h"
+//#import "UIImage+Thumbnail.h"
+//#import "SDWebImageManager.h"
 #import "WCPublic.h"
 #import "WCMyScenicMode.h"
 #import "WCQRCodeGenerateManager.h"
@@ -34,38 +34,38 @@
     _delegate = delegate;
     _scenicMode = mode;
     
-//    //1.获取网络资源路径(URL)
-//    if (mode.logo.length > 0) {
-//
-//        NSURL *pURL = [NSURL URLWithString:mode.logo];
-//
-//        [activityView startAnimating];
-//
-//        [[SDWebImageManager sharedManager] loadImageWithURL:pURL options:SDWebImageCacheMemoryOnly progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-//
-//        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-//
-//            [activityView stopAnimating];
-//            if (finished)
-//            {
-//                _image = [image imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
-//            }else
-//            {
-//                _image = [[UIImage imageNamed:@"popup_ts"] imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
-//            }
-//
-//        }];
-//    }
-//    else
-//    {
-//        _image = [[UIImage imageNamed:@"popup_ts"] imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
-//    }
+    //    //1.获取网络资源路径(URL)
+    //    if (mode.logo.length > 0) {
+    //
+    //        NSURL *pURL = [NSURL URLWithString:mode.logo];
+    //
+    //        [activityView startAnimating];
+    //
+    //        [[SDWebImageManager sharedManager] loadImageWithURL:pURL options:SDWebImageCacheMemoryOnly progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+    //
+    //        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+    //
+    //            [activityView stopAnimating];
+    //            if (finished)
+    //            {
+    //                _image = [image imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
+    //            }else
+    //            {
+    //                _image = [[UIImage imageNamed:@"popup_ts"] imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
+    //            }
+    //
+    //        }];
+    //    }
+    //    else
+    //    {
+    //        _image = [[UIImage imageNamed:@"popup_ts"] imageByScalingAndCroppingForSize:CGSizeMake(80, 80)];
+    //    }
     // 如果可以分享 就生产一张二维码
-    if ([WXApi isWXAppInstalled] && self.isRelease == YES) {
-        
-        NSString *url = [NSString stringWithFormat:@"https://jpjs.geeker.com.cn/shop?id=%@",mode.ID];
-        _image = [WCQRCodeGenerateManager generateWithLogoQRCodeData:url logoImageName:@"wc_share" logoScaleToSuperView:0.2];
-    }
+    //    if ([WXApi isWXAppInstalled] && self.isRelease == YES) {
+    //
+    //        NSString *url = [NSString stringWithFormat:@"https://jpjs.geeker.com.cn/shop?id=%@",mode.ID];
+    //        _image = [WCQRCodeGenerateManager generateWithLogoQRCodeData:url logoImageName:@"wc_share" logoScaleToSuperView:0.2];
+    //    }
     
     self.alpha = 1;
     [[APPDELEGATE window] addSubview:self];
@@ -77,10 +77,10 @@
     }];
     
 }
-  
+
 - (instancetype)initIsRelease:(BOOL)isRelease
 {
-
+    
     self =[super initWithFrame:APPDELEGATE.window.bounds];
     if (self) {
         
@@ -108,31 +108,17 @@
         shareView.backgroundColor = [UIColor whiteColor];
         [contentView addSubview:shareView];
         
-        
         NSArray *dataArray;
-        NSInteger numberIndex = 1000;
         if (self.isRelease == NO) {
-            numberIndex = 1001;
             dataArray = @[@{@"name":@"编辑景区",@"image":@"scenicTooView_2"},
-                          @{@"name":@"删除景区",@"image":@"scenicTooView_3"}];
+                          @{@"name":@"删除景区",@"image":@"scenicTooView_4"}];
         }
         else
         {
-            numberIndex = 1000;
-            
-            if ([WXApi isWXAppInstalled]) {
-                
-                dataArray = @[@{@"name":@"创建景点",@"image":@"scenicTooView_1"},
-                              @{@"name":@"编辑景区",@"image":@"scenicTooView_2"},
-                              @{@"name":@"删除景区",@"image":@"scenicTooView_3"},
-                              @{@"name":@"分享朋友圈",@"image":@"scenicTooView_4"},];
-            }
-            else
-            {
-                dataArray = @[@{@"name":@"创建景点",@"image":@"scenicTooView_1"},
-                              @{@"name":@"编辑景区",@"image":@"scenicTooView_2"},
-                              @{@"name":@"删除景区",@"image":@"scenicTooView_3"}];
-            }
+            dataArray = @[@{@"name":@"创建景点",@"image":@"scenicTooView_1"},
+                          @{@"name":@"编辑景区",@"image":@"scenicTooView_2"},
+                          @{@"name":@"信息采集",@"image":@"scenicTooView_3"},
+                          @{@"name":@"删除景区",@"image":@"scenicTooView_4"},];
         }
         
         CGFloat buttonW = shareViewW/dataArray.count;
@@ -145,7 +131,7 @@
             spaceButton.titleLabel.font = [UIFont systemFontOfSize:13];
             [spaceButton setTitle:dic[@"name"] forState:UIControlStateNormal];
             [spaceButton setImage:[UIImage imageNamed:dic[@"image"]] forState:UIControlStateNormal];
-            spaceButton.tag = numberIndex+idx;
+            spaceButton.tag = idx;
             [spaceButton addTarget:self action:@selector(scanicButtonClick:) forControlEvents:UIControlEventTouchUpInside];
             [shareView addSubview:spaceButton];
             
@@ -191,31 +177,32 @@
 #pragma mark  点击事件啊
 - (void)scanicButtonClick:(UIButton *)sender
 {
-    switch (sender.tag) {
-        case 1000://创建站点
-            
-            if ([self.delegate respondsToSelector:@selector(createTheSiteData:)]) {
-                [self.delegate createTheSiteData:_scenicMode];
-            }
-            break;
-        case 1001://编辑景区
-            
-            if ([self.delegate respondsToSelector:@selector(editTheScenicInfoData:)]) {
-                [self.delegate editTheScenicInfoData:_scenicMode];
-            }
-            break;
-        case 1002://删除景区
-            
-            [WCAuthenticationPopupsView showPromptPhone];
-            
-            break;
-        case 1003://分享好友
-            [self shareType:0];
-            break;
-            
-        default:
-            break;
+    
+    NSString *title = sender.titleLabel.text;
+    
+    if ([title isEqualToString:@"创建景点"]) {
+        
+        if ([self.delegate respondsToSelector:@selector(createTheSiteData:)]) {
+            [self.delegate createTheSiteData:_scenicMode];
+        }
     }
+    else if ([title isEqualToString:@"编辑景区"]){
+        
+        if ([self.delegate respondsToSelector:@selector(editTheScenicInfoData:)]) {
+            [self.delegate editTheScenicInfoData:_scenicMode];
+        }
+    }
+    else if ([title isEqualToString:@"信息采集"]){
+        
+        if ([self.delegate respondsToSelector:@selector(navInformationCollectionVC:)]) {
+            [self.delegate navInformationCollectionVC:_scenicMode];
+        }
+    }
+    else if ([title isEqualToString:@"删除景区"]){
+        
+        [WCAuthenticationPopupsView showPromptPhone];
+    }
+    
     [self cancelClick];
 }
 
@@ -230,42 +217,43 @@
         
         return;
     }
-//    WXMediaMessage *message = [WXMediaMessage message];
-//    message.title = _scenicMode.name;
-//    message.description = _scenicMode.info;
-//    [message setThumbImage:_image];
-//
-//    WXWebpageObject *ext = [WXWebpageObject object];
-//    ext.webpageUrl = @"";
-//    message.mediaObject = ext;
-//
-//    SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
-//    req.bText = NO;
-//    req.message = message;
-//    req.scene = type == 0?WXSceneTimeline:WXSceneSession;
-//    [WXApi sendReq:req];
+    //    WXMediaMessage *message = [WXMediaMessage message];
+    //    message.title = _scenicMode.name;
+    //    message.description = _scenicMode.info;
+    //    [message setThumbImage:_image];
+    //
+    //    WXWebpageObject *ext = [WXWebpageObject object];
+    //    ext.webpageUrl = @"";
+    //    message.mediaObject = ext;
+    //
+    //    SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+    //    req.bText = NO;
+    //    req.message = message;
+    //    req.scene = type == 0?WXSceneTimeline:WXSceneSession;
+    //    [WXApi sendReq:req];
     
     //1.创建多媒体消息结构体
-    WXMediaMessage *mediaMsg = [WXMediaMessage message];
-    mediaMsg.title = _scenicMode.name;
-    mediaMsg.description = _scenicMode.info;
-    //2.创建多媒体消息中包含的图片数据对象
-    WXImageObject *imgObj = [WXImageObject object];
-    //图片真实数据
-    imgObj.imageData = UIImagePNGRepresentation(_image);
-    //多媒体数据对象
-    mediaMsg.mediaObject = imgObj;
-    //3.创建发送消息至微信终端程序的消息结构体
-    SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
-    //多媒体消息的内容
-    req.message = mediaMsg;
-    //指定为发送多媒体消息（不能同时发送文本和多媒体消息，两者只能选其一）
-    req.bText = NO;
-    //指定发送到会话(聊天界面)
-    req.scene = WXSceneTimeline;
-    //发送请求到微信,等待微信返回onResp
-    [WXApi sendReq:req];
-    
+    /*
+     WXMediaMessage *mediaMsg = [WXMediaMessage message];
+     mediaMsg.title = _scenicMode.name;
+     mediaMsg.description = _scenicMode.info;
+     //2.创建多媒体消息中包含的图片数据对象
+     WXImageObject *imgObj = [WXImageObject object];
+     //图片真实数据
+     imgObj.imageData = UIImagePNGRepresentation(_image);
+     //多媒体数据对象
+     mediaMsg.mediaObject = imgObj;
+     //3.创建发送消息至微信终端程序的消息结构体
+     SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+     //多媒体消息的内容
+     req.message = mediaMsg;
+     //指定为发送多媒体消息（不能同时发送文本和多媒体消息，两者只能选其一）
+     req.bText = NO;
+     //指定发送到会话(聊天界面)
+     req.scene = WXSceneTimeline;
+     //发送请求到微信,等待微信返回onResp
+     [WXApi sendReq:req];
+     */
     
 }
 - (void)cancelClick

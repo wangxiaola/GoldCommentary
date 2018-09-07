@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B0284002136948400D6E15F /* WCInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0283FF2136948400D6E15F /* WCInformationViewController.m */; };
 		3B08134A20C8C9E100884B8C /* TBUpdateTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B08134920C8C9E100884B8C /* TBUpdateTooltipView.m */; };
 		3B1A06AB20A02D19005CC21C /* ClearCacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A06A920A02D19005CC21C /* ClearCacheTool.m */; };
 		3B1A06AE20A033EC005CC21C /* WCFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A06AD20A033EC005CC21C /* WCFeedbackViewController.m */; };
@@ -176,6 +177,11 @@
 		3BA73E17209C56AC00B88891 /* WCMyScenicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73E16209C56AC00B88891 /* WCMyScenicViewController.m */; };
 		3BA73E1A209C572B00B88891 /* WCMyNarratorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA73E19209C572B00B88891 /* WCMyNarratorViewController.m */; };
 		3BAC85C820B11E0000792A26 /* WCCreateScenicMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAC85C720B11E0000792A26 /* WCCreateScenicMode.m */; };
+		3BB2B4AF2139115700ECC3E9 /* WCInformationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB2B4AE2139115700ECC3E9 /* WCInformationListViewController.m */; };
+		3BB2B4B32139198F00ECC3E9 /* WCInformationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB2B4B12139198F00ECC3E9 /* WCInformationTableViewCell.m */; };
+		3BB2B4B42139198F00ECC3E9 /* WCInformationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BB2B4B22139198F00ECC3E9 /* WCInformationTableViewCell.xib */; };
+		3BB2B4B7213919A900ECC3E9 /* WCInformationListMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB2B4B6213919A900ECC3E9 /* WCInformationListMode.m */; };
+		3BB2B4BA213925F700ECC3E9 /* WCInformationAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB2B4B9213925F700ECC3E9 /* WCInformationAddViewController.m */; };
 		3BC024C320E6134E00776919 /* WCChooseDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC024C220E6134E00776919 /* WCChooseDataTool.m */; };
 		3BC6855220C02012001976AA /* TBShowAddressResultsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6855120C02011001976AA /* TBShowAddressResultsView.m */; };
 		3BDD07CF20B90B5300D605C8 /* WCAddBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDD07CE20B90B5300D605C8 /* WCAddBankViewController.m */; };
@@ -186,6 +192,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B0283FE2136948400D6E15F /* WCInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCInformationViewController.h; sourceTree = "<group>"; };
+		3B0283FF2136948400D6E15F /* WCInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCInformationViewController.m; sourceTree = "<group>"; };
 		3B08134820C8C9E100884B8C /* TBUpdateTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBUpdateTooltipView.h; sourceTree = "<group>"; };
 		3B08134920C8C9E100884B8C /* TBUpdateTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBUpdateTooltipView.m; sourceTree = "<group>"; };
 		3B1A06A920A02D19005CC21C /* ClearCacheTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearCacheTool.m; sourceTree = "<group>"; };
@@ -492,6 +500,15 @@
 		3BA73E19209C572B00B88891 /* WCMyNarratorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMyNarratorViewController.m; sourceTree = "<group>"; };
 		3BAC85C620B11E0000792A26 /* WCCreateScenicMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCreateScenicMode.h; sourceTree = "<group>"; };
 		3BAC85C720B11E0000792A26 /* WCCreateScenicMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCreateScenicMode.m; sourceTree = "<group>"; };
+		3BB2B4AD2139115700ECC3E9 /* WCInformationListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCInformationListViewController.h; sourceTree = "<group>"; };
+		3BB2B4AE2139115700ECC3E9 /* WCInformationListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCInformationListViewController.m; sourceTree = "<group>"; };
+		3BB2B4B02139198F00ECC3E9 /* WCInformationTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCInformationTableViewCell.h; sourceTree = "<group>"; };
+		3BB2B4B12139198F00ECC3E9 /* WCInformationTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCInformationTableViewCell.m; sourceTree = "<group>"; };
+		3BB2B4B22139198F00ECC3E9 /* WCInformationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCInformationTableViewCell.xib; sourceTree = "<group>"; };
+		3BB2B4B5213919A900ECC3E9 /* WCInformationListMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCInformationListMode.h; sourceTree = "<group>"; };
+		3BB2B4B6213919A900ECC3E9 /* WCInformationListMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCInformationListMode.m; sourceTree = "<group>"; };
+		3BB2B4B8213925F700ECC3E9 /* WCInformationAddViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCInformationAddViewController.h; sourceTree = "<group>"; };
+		3BB2B4B9213925F700ECC3E9 /* WCInformationAddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCInformationAddViewController.m; sourceTree = "<group>"; };
 		3BC024C120E6134E00776919 /* WCChooseDataTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCChooseDataTool.h; sourceTree = "<group>"; };
 		3BC024C220E6134E00776919 /* WCChooseDataTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCChooseDataTool.m; sourceTree = "<group>"; };
 		3BC6855020C02011001976AA /* TBShowAddressResultsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBShowAddressResultsView.h; sourceTree = "<group>"; };
@@ -895,6 +912,8 @@
 				3B8F563220BEC06B00EEC43C /* WCAttributeTouchLabel.m */,
 				3BFF527120CE587E00520834 /* WCScenicLabelsView.h */,
 				3BFF527220CE587E00520834 /* WCScenicLabelsView.m */,
+				3BB2B4AD2139115700ECC3E9 /* WCInformationListViewController.h */,
+				3BB2B4AE2139115700ECC3E9 /* WCInformationListViewController.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -920,6 +939,8 @@
 				3BAC85C720B11E0000792A26 /* WCCreateScenicMode.m */,
 				3B5A164620B2763800FC79AD /* WCVoiceChoiceMode.h */,
 				3B5A164720B2763800FC79AD /* WCVoiceChoiceMode.m */,
+				3BB2B4B5213919A900ECC3E9 /* WCInformationListMode.h */,
+				3BB2B4B6213919A900ECC3E9 /* WCInformationListMode.m */,
 			);
 			path = mode;
 			sourceTree = "<group>";
@@ -999,6 +1020,9 @@
 				3B1E25E620AD8650006110C2 /* WCAddScenicFootorView.h */,
 				3B1E25E720AD8650006110C2 /* WCAddScenicFootorView.m */,
 				3B1E25F020AD8EAB006110C2 /* WCAddScenicFootorView.xib */,
+				3BB2B4B02139198F00ECC3E9 /* WCInformationTableViewCell.h */,
+				3BB2B4B12139198F00ECC3E9 /* WCInformationTableViewCell.m */,
+				3BB2B4B22139198F00ECC3E9 /* WCInformationTableViewCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1069,6 +1093,10 @@
 				3B1E25F320AD9097006110C2 /* WCMoreAttractionsViewController.m */,
 				3B9ECCE320BBF021003AB7FC /* TBWithdrawalViewController.h */,
 				3B9ECCE420BBF021003AB7FC /* TBWithdrawalViewController.m */,
+				3B0283FE2136948400D6E15F /* WCInformationViewController.h */,
+				3B0283FF2136948400D6E15F /* WCInformationViewController.m */,
+				3BB2B4B8213925F700ECC3E9 /* WCInformationAddViewController.h */,
+				3BB2B4B9213925F700ECC3E9 /* WCInformationAddViewController.m */,
 			);
 			path = "景区";
 			sourceTree = "<group>";
@@ -1225,6 +1253,7 @@
 				TargetAttributes = {
 					3B216ADA209AA66D0040EE93 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1266,6 +1295,7 @@
 				3B5A165820B2B44300FC79AD /* MJPhotoBrowser.bundle in Resources */,
 				3B216B6F209ADC050040EE93 /* login.storyboard in Resources */,
 				3B1E25D020AD57C2006110C2 /* WCAddScenicCollectionViewCell.xib in Resources */,
+				3BB2B4B42139198F00ECC3E9 /* WCInformationTableViewCell.xib in Resources */,
 				3B216B8C209B01DB0040EE93 /* main.storyboard in Resources */,
 				3B313C9720C0F4000022F34D /* serviceAgreement.html in Resources */,
 				3BA73E0E209C511B00B88891 /* sun_burst_weather_icon.json in Resources */,
@@ -1363,6 +1393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B941EA120AC1B050021B320 /* XMRTimePiker.m in Sources */,
+				3BB2B4B32139198F00ECC3E9 /* WCInformationTableViewCell.m in Sources */,
 				3B1A077E20A05B18005CC21C /* NSBundle+TZImagePicker.m in Sources */,
 				3BFF527720CE665D00520834 /* FMTagsView.m in Sources */,
 				3B216B47209AAE880040EE93 /* UIStoryboard+Initialize.m in Sources */,
@@ -1389,6 +1420,7 @@
 				3B1A078920A05B18005CC21C /* TZPhotoPreviewController.m in Sources */,
 				3B6BB83820A2A62B0013AE6B /* WCWRecordTableViewCell.m in Sources */,
 				3B216B59209AAED30040EE93 /* ZKTextField.m in Sources */,
+				3BB2B4BA213925F700ECC3E9 /* WCInformationAddViewController.m in Sources */,
 				3B941E9620ABD6290021B320 /* WCPositioningViewController.m in Sources */,
 				3B6CBD26209FF8DC00784BBF /* WCPersonalViewController.m in Sources */,
 				3B216AFE209AAE220040EE93 /* HUD.m in Sources */,
@@ -1396,6 +1428,7 @@
 				3B1A06AE20A033EC005CC21C /* WCFeedbackViewController.m in Sources */,
 				3B1A077F20A05B18005CC21C /* TZAssetCell.m in Sources */,
 				3B216B3D209AAE880040EE93 /* NSObject+MJExtension.m in Sources */,
+				3BB2B4B7213919A900ECC3E9 /* WCInformationListMode.m in Sources */,
 				3B985B3320A19D990083E1F2 /* ChooseLocationView.m in Sources */,
 				3B6CBD29209FF8FB00784BBF /* WCPersonalHeaderView.m in Sources */,
 				3B3D48DA20A9810600E6CC2C /* WCRecordTimeSelectView.m in Sources */,
@@ -1419,6 +1452,7 @@
 				3B75482820C63BA500090D49 /* TAAnimatedDotView.m in Sources */,
 				3B216B44209AAE880040EE93 /* UIImage+Strenching.m in Sources */,
 				3B9ECCE520BBF021003AB7FC /* TBWithdrawalViewController.m in Sources */,
+				3BB2B4AF2139115700ECC3E9 /* WCInformationListViewController.m in Sources */,
 				3B216B3C209AAE880040EE93 /* NSDictionary+FixedParams.m in Sources */,
 				3B216B40209AAE880040EE93 /* NSString+Regex.m in Sources */,
 				3B75481320C62B1D00090D49 /* WCQRCodeGenerateManager.m in Sources */,
@@ -1499,6 +1533,7 @@
 				3B1A06B420A03E61005CC21C /* TBChoosePhotosTool.m in Sources */,
 				3BA73DF9209C06D900B88891 /* TBCountdownSingle.m in Sources */,
 				3B985B2F20A19D990083E1F2 /* AddressItem.m in Sources */,
+				3B0284002136948400D6E15F /* WCInformationViewController.m in Sources */,
 				3BA73E17209C56AC00B88891 /* WCMyScenicViewController.m in Sources */,
 				3B75482720C63BA500090D49 /* TAAbstractDotView.m in Sources */,
 				3B8B1B6420B65E3B00DBF6D9 /* WCBillingDateSelectionView.m in Sources */,
@@ -1618,6 +1653,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1639,6 +1675,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1649,6 +1687,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1670,6 +1709,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

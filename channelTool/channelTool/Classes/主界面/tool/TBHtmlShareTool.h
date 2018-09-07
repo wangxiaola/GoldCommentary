@@ -26,6 +26,14 @@
  */
 - (void)editTheScenicInfoData:(WCMyScenicMode *)mode;
 
+
+/**
+ 导航到信息采集vc
+
+ @param mode 数据
+ */
+- (void)navInformationCollectionVC:(WCMyScenicMode *)mode;
+
 @end
 
 

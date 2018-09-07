@@ -39,6 +39,7 @@
 @property (nonatomic, strong) UISearchBar *searchBar;
 
 @property (nonatomic, assign) BOOL isSearch;// 是否正在搜索
+
 @end
 
 @implementation WCPositioningViewController
@@ -59,8 +60,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self createMapView];
-    [self setLocService];
     [self createGeoCodeSearch];
+    [self setLocService];
+    
 }
 #pragma mark  ----创建地图----
 - (void)createMapView
@@ -245,11 +247,14 @@
 {
     TBWeakSelf
     [self.resultsView showAdderssPois:@[]];
+    MMLog(@"开始编码了");
     [_godeSearch searchAddressLatitude:coordinate.latitude longitude:coordinate.longitude searchResults:^(WCPositioningMode *mode) {
+        
         weakSelf.addressLabel.text = mode.adderss;
         weakSelf.mode = mode;
         _citySearchOption.city = mode.cityName;
         [weakSelf.activityView stopAnimating];
+        MMLog(@"成功了");
     }];
 }
 #pragma mark  ----BMKPoiSearchDelegate----
