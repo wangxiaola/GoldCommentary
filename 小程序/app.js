@@ -37,3 +37,6 @@ App({
     userInfo: null
   }
 })
+
+// AppID(小程序ID) wxde89dd40908a756a
+// AppSecret(小程序密钥) b112b803b0e7755fbb68e2ef9e612dd0 复制
