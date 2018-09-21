@@ -1,0 +1,160 @@
+/**index.wxss**/
+button::after,view::after  {
+  border: none;
+}
+.conten {
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  overflow-y: hidden;
+}
+
+
+.tab {
+  position: relative;
+  display: inline-block;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  width: 50%;
+  text-align: center;
+}
+
+.tableft {
+  position: absolute;
+  top: 20rpx;
+  left: 50%;
+  bottom: 20rpx;
+  width: 4rpx;
+  margin-left: -1rpx;
+  background: #ccc;
+  z-index: 9;
+}
+
+.topTabSwiper {
+  position: absolute;
+  top: 36vh;
+  left: 0;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  zoom: 1;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.topTabSwiper .tab:after {
+  content: "";
+  position: absolute;
+  height: 3rpx;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ccc;
+}
+
+.topTabSwiper .tabBorer:after {
+  content: "";
+  position: absolute;
+  height: 3rpx;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: orange;
+}
+
+.tabBorer {
+  position: relative;
+  color: orange;
+}
+
+.swiper {
+  width: 100%;
+  height: calc(100vh - 36vh - 60rpx);
+  margin-top: 80rpx;
+}
+
+.swiper_con {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 80rpx 0;
+  box-sizing: border-box;
+}
+
+.header-box{
+  width: 100%;
+  height: 36vh;
+}
+
+.head-img {
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 36vh;
+}
+
+.header-point {
+  width: 160rpx;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: white;
+  background: none;
+}
+
+.header-user {
+  position: absolute;
+  top: 20rpx;
+  left: 16rpx;
+}
+
+.header-bill {
+  position: absolute;
+  top: 20rpx;
+  right: 16rpx;
+}
+.header-image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.header-textView{
+  position: absolute;
+  width: 80vw;
+  top: 80rpx;
+  left: 10vw;
+  height: calc(100vh - 64vh - 80rpx);
+}
+.header-text{
+  position: static;
+  display: flex;
+  color: white;
+  background: none;
+  font-size: 30rpx;
+  height: 25%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+.header-center{
+  position: static;
+  display: flex;
+  color: white;
+  background: none;
+  font-size: 30rpx;
+  justify-content: center;
+  align-items: flex-end;
+  height: 25%;
+}
+.header-price{
+font-size: 60rpx;
+font-weight: bolder;
+}
+.header-unit{
+font-size: 24rpx;
+}

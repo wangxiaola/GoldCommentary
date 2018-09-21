@@ -1,15 +1,17 @@
 {
-  "pages":[
-    "pages/index/index",
+  "pages": [
+    "pages/home/home",
     "pages/logs/logs"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
-  }
+    "navigationBarTitleText": "金牌解说渠道端",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#eaeaea"
+  },
+  "networkTimeout": {
+    "request": 10000
+  },
+  "debug": true
 }
-
-
-
