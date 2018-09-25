@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const util = require("../../utils/util.js");
 
 Page({
 
@@ -10,7 +11,21 @@ Page({
   data: {
     currentData: 0, // 当前选中
     earnings: '0.00', //收益
-    balance: '0.00', //余额
+    balance: '0.00', //余额 
+    scenicArray: [], // 我的景区数组
+    scenicPage: 0
+  },
+
+  onLoad: function(e) {
+
+    this.requestPostData();
+  },
+
+  upper: function(e) {
+    console.log("上")
+  },
+  lower: function(e) {
+    console.log("下")
   },
 
   /***点击事件***/
@@ -40,6 +55,20 @@ Page({
       })
     }
   },
+  // 我的点击
+  myClick: function(sender) {
+
+    wx.showActionSheet({
+      itemList: ["稍等"],
+    })
+  },
+  // 收入明细点击
+  billClick: function(sender) {
+
+    wx.showActionSheet({
+      itemList: ["稍等"],
+    })
+  },
   // 提现操作
   withdrawalClick: function(sender) {
 
@@ -53,5 +82,36 @@ Page({
   onShareAppMessage: function() {
 
 
-  }
+  },
+  // 数据加载
+  requestPostData: function() {
+
+    //加载提示框
+    util.showLoading();    
+    var parameters = {
+      "id": "25689",
+      "interfaceId": "296",
+      "page": that.data.scenicPage += 1,
+      "rows": "20"
+    };
+
+    util.requestPost(parameters, function(res) {
+      var that = this;
+      // 数组
+      var root = res.root;
+
+      if (that.data.scenicPage == 1) {
+
+        that.setData({
+  
+          scenicArray: root
+        })
+
+      } else {
+
+      }
+
+    });
+  },
+
 })

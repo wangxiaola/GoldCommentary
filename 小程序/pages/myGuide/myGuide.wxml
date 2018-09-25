@@ -1,6 +1,8 @@
 
 <template name="myGuide">
 
-<view> 我的解说员</view>
+
+<view wx:for="{{guideArray}}" wx:key="guideID"></view>
+
 
 </template>

@@ -15,43 +15,72 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-
-
 //网络请求
-function request(parameters = "", success, method = "GET", header = {}) {
+function requestPost(parameters = {}, success) {
+
+  var timestamp = Date.parse(new Date());
+
+  parameters["AppId"] = "758120306327";
+  parameters["AppKey"] = "faf4fa88935d4d2bbadd9dbe10f9d5f2";
+  parameters["TimeStamp"] = timestamp;
+  console.log(parameters);
+
   wx.request({
-    url: config.BaseURL + (method == "GET" ? "?" : "") + parameters,
-    data: {},
-    method: method, // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-    header: header ? header : "application/json", // 设置请求的 header
+    url: config.Release,
+    data: parameters,
+    method: "POST", // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+    header: {
+      'content-type': 'application/x-www-form-urlencoded' // 默认值
+    },
     success: function(res) {
+      // 接口调用成功的回调函数
       console.log(res);
-      success(res);
+      let data = res.data;
+      let errcode = data.errcode;
+
+      if (errcode == "00000") {
+        success(res.data);
+        showSuccess();
+
+      } else {
+        showError(data.errmsg);
+      }
     },
     fail: function() {
-      // fail
+      // fail 接口调用失败的回调函数
+      showError("网络异常");
     },
     complete: function() {
-      // complete
+      // complete 接口调用结束的回调函数
     }
   })
 }
 
 //HUD 
 //成功提示
-function showSuccess(title = "成功啦", duration = 5000) {
+function showSuccess(title = "请求成功", duration = 2000) {
   wx.showToast({
     title: title,
     icon: 'success',
-    duration: (duration <= 0) ? 5000 : duration
+    duration: (duration <= 0) ? 2000 : duration
   });
 }
+
+function showError(title = "请求失败") {
+
+  wx.showToast({
+    title: title,
+    icon: 'none'
+  })
+
+}
+
 //loading提示
-function showLoading(title = "请稍后", duration = 5000) {
+function showLoading(title = "请稍后", duration = 2000) {
   wx.showToast({
     title: title,
     icon: 'loading',
-    duration: (duration <= 0) ? 5000 : duration
+    duration: (duration <= 0) ? 2000 : duration
   });
 }
 //隐藏提示框
@@ -81,8 +110,7 @@ function alertView(title = "提示", content = "消息提示", confirm) {
 
 module.exports = {
   formatTime: formatTime,
-
-  request: request,
+  requestPost: requestPost,
   showSuccess: showSuccess,
   showLoading: showLoading,
   hideToast: hideToast,

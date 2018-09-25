@@ -1,38 +1,41 @@
+<import src="../../pages/myScenic/myScenic.wxml" />
+<import src="../../pages/myGuide/myGuide.wxml" />
+
 <!--index.wxml-->
 <view class='conten'>
 
   <!-- 头部视图 -->
   <view class="header-box">
     <image class="head-img" src='../../pages/images/home_banner.png' mode="aspectFill">
-  </image>
+    </image>
 
- <button class='header-user header-point' open-type='contact'>
-    <image class='header-image' src='../../pages/images/user.png'></image>
-    <view>我的</view>
- </button>
+    <view class='header-user header-point' open-type='contact' bindtap='myClick'>
+      <image class='header-image' src='../../pages/images/user.png'></image>
+      <view>我的</view>
+    </view>
 
-  <button class='header-bill header-point' open-type='contact'>
-    <image class='header-image' src='../../pages/images/bill.png'></image>
-    <view>收入明细</view>
- </button>
- 
- <view class='header-textView'>
-  <text class='header-text'>昨日收益</text>
+    <view class='header-bill header-point' open-type='contact' bindtap='billClick'>
+      <image class='header-image' src='../../pages/images/bill.png'></image>
+      <view>收入明细</view>
+    </view>
 
-  <view class='header-center'>
-   <text class='header-price'>{{earnings}}</text>
- <text class='header-unit'>元</text>
+    <view class='header-textView'>
+      <text class='header-text'>昨日收益</text>
+
+      <view class='header-center'>
+        <text class='header-price'>{{earnings}}</text>
+        <text class='header-unit'>元</text>
+      </view>
+
+      <text class='header-text'>可提现：{{balance}}元</text>
+      <view class='header-text' bindtap='withdrawalClick'>每月5-10　　提现>></view>
+    </view>
+
+
   </view>
 
- <text class='header-text'>可提现：{{balance}}元</text>
- <button class='header-text' bindtap='withdrawalClick'>每月5-10　　提现>></button>
- </view>
 
-
-  </view>
-
-
-<!-- 选项卡 -->
+  <!-- 选项卡 -->
   <view class='topTabSwiper'>
 
     <view class='tab  {{currentData == 0 ? "tabBorer" : ""}}' data-current="0" bindtap='checkCurrent'>我的景区</view>
@@ -40,17 +43,23 @@
     <view class='tab {{currentData == 1 ? "tabBorer" : ""}}' data-current="1" bindtap='checkCurrent'>我的解说员</view>
 
   </view>
-<!-- 内容 -->
+  <!-- 内容 -->
   <swiper current="{{currentData}}" class='swiper' duration="300" bindchange="bindchange">
-
+<!-- 我的景区 -->
     <swiper-item>
-      <import src="../../pages/myScenic/myScenic.wxml" />
-      <template is="myScenic"/>
+      <scroll-view scroll-y style="height: 100%;padding-bottom:20rpx;background-color:#eaeaea;box-sizing:border-box;" bindscrolltoupper="upper" bindscrolltolower="lower">
+
+        <template is="myScenic" data="{{scenicArray}}" />
+
+      </scroll-view>
     </swiper-item>
-
+<!-- 我的解说员 -->
     <swiper-item>
-      <import src="../../pages/myGuide/myGuide.wxml" />
-      <template is="myGuide"/>
+      <scroll-view scroll-y style="height: 100%;background-color:#eaeaea;" bindscrolltoupper="upper" bindscrolltolower="lower">
+
+        <template is="myGuide" data="{{myGuideArray}}" />
+
+      </scroll-view>
     </swiper-item>
 
   </swiper>

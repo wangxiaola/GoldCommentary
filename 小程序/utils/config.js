@@ -1,3 +1,4 @@
 module.exports = {
-  BaseURL: "http://api.budejie.com/api/api_open.php"
+  DebugURL: "http://jpjstest.geeker.com.cn/service.csw",
+  Release: "https://jpjs.geeker.com.cn/service.csw"
 };

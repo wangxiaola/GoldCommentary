@@ -1,4 +1,6 @@
 /**index.wxss**/
+@import "../../pages/myScenic/myScenic.wxss";
+
 button::after,view::after  {
   border: none;
 }
@@ -157,4 +159,9 @@ font-weight: bolder;
 }
 .header-unit{
 font-size: 24rpx;
+}
+::-webkit-scrollbar{
+width: 0;
+height: 0;
+color: transparent;
 }

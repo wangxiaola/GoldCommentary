@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/myScenic/myScenic",
+    "pages/myGuide/myGuide",
     "pages/logs/logs"
   ],
   "window": {
