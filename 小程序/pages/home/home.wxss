@@ -1,5 +1,5 @@
 /**index.wxss**/
-@import "../../pages/myScenic/myScenic.wxss";
+@import "../../pages/template/homeTemplate.wxss";
 
 button::after,view::after  {
   border: none;
@@ -164,4 +164,19 @@ font-size: 24rpx;
 width: 0;
 height: 0;
 color: transparent;
+}
+
+text{
+overflow:hidden; /* 超出一行文字自动隐藏  */
+text-overflow:ellipsis;/*文字隐藏后添加省略号*/
+white-space:nowrap; /*强制不换行*/
+
+}
+.addscenicImgae{
+  position: absolute;
+  width: 100rpx;
+  height: 100rpx;
+  left: 50%;
+  margin-left: -50rpx;
+  bottom: 60rpx;
 }

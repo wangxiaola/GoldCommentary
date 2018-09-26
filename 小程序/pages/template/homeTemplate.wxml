@@ -1,0 +1,41 @@
+<template name="myScenic" >
+
+<view wx:for="{{scenicArray}}" wx:key="scenicID"> 
+<!-- cell -->
+<view class='scenic-contenView'>
+<view class='scenic-backView' bindtap='scenicCellClick' data-item='{{item}}'>
+
+<image style='background:url(../../pages/images/popup_ts.png) no-repeat center/cover' src="{{item.logo?item.logo:'../../pages/images/popup_ts.png'}}"  class='scenic-cellHeaderImage' mode="aspectFill" lazy-load="true"> </image>
+
+<view class='scenic-bottomView'>
+<image src='../../pages/images/headset_wt.png' class='scenic-bottomImage'></image>
+<text class='scenic-bottomText'>{{item.listen}}</text>
+</view>
+
+<text class='scenic-cellName'>{{item.name}}</text>
+<!-- 0审核中 1成功 2未通过 3已下架-->
+<text class='scenic-cellState' style="color:{{item.state == '1'?'green':'red'}}">{{item.state == '3'?'已下架':item.state == '1'?item.buynum == '0'?"已通过":item.buynum+"人购买":item.state == '0'?"审核中":"未通过"}}</text>
+<text class='scenic-cellInfo'>景点数{{item.scenicnum}}个   讲解音频{{item.voicenum}}个</text>
+<text class='scenic-cellEarnings'>收益：￥{{item.earnings?item.earnings:0}}</text>
+
+</view>
+</view>
+</view>
+</template>
+
+<template name="myGuide">
+<view wx:for="{{guideArray}}" wx:key="guideID"> 
+<!-- cell -->
+<view class='guide-contenView' style='height:{{guideCellHieght}}rpx'>
+<view class='guide-backView' bindtap='guideCellClick' data-item='{{item}}'>
+
+<image class='guide-cellHeaderImage' style='background:url(../../pages/images/header_default.png) no-repeat center/cover' mode="aspectFill" lazy-load="true" src="{{item.headimg?item.headimg:'../../pages/images/header_default.png'}}"></image>
+<text class='guide-name'>{{item.name?item.name:"-"}}</text>
+<text class='guide-info'>购买人数：{{item.buynum?item.buynum:"0"}}   讲解音频：{{item.voicenum?item.voicenum:"0"}}</text>
+<image class='guide-select' src='../../pages/images/select_top.png' mode="aspectFill"></image>
+<view class='guide-listView'></view>
+
+</view>
+</view>
+</view>
+</template>

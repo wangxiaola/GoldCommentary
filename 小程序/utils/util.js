@@ -16,13 +16,14 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 //网络请求
-function requestPost(parameters = {}, success) {
+function requestPost(parameters = {}, success, showHUD = true) {
 
   var timestamp = Date.parse(new Date());
 
   parameters["AppId"] = "758120306327";
   parameters["AppKey"] = "faf4fa88935d4d2bbadd9dbe10f9d5f2";
   parameters["TimeStamp"] = timestamp;
+
   console.log(parameters);
 
   wx.request({
@@ -39,16 +40,22 @@ function requestPost(parameters = {}, success) {
       let errcode = data.errcode;
 
       if (errcode == "00000") {
-        success(res.data);
-        showSuccess();
+        success(res.data.data);
 
+        if (showHUD) {
+          hideToast();
+        }
       } else {
-        showError(data.errmsg);
+        if (showHUD) {
+          showError(data.errmsg);
+        }
       }
     },
     fail: function() {
       // fail 接口调用失败的回调函数
-      showError("网络异常");
+      if (showHUD) {
+        showError("网络异常");
+      }
     },
     complete: function() {
       // complete 接口调用结束的回调函数
@@ -72,7 +79,13 @@ function showError(title = "请求失败") {
     title: title,
     icon: 'none'
   })
+}
 
+function showToos(title = "异常提示") {
+  wx.showToast({
+    title: title,
+    icon: 'none'
+  })
 }
 
 //loading提示
@@ -80,6 +93,7 @@ function showLoading(title = "请稍后", duration = 2000) {
   wx.showToast({
     title: title,
     icon: 'loading',
+    mask: true,
     duration: (duration <= 0) ? 2000 : duration
   });
 }
@@ -115,5 +129,6 @@ module.exports = {
   showLoading: showLoading,
   hideToast: hideToast,
   alertViewWithCancel: alertViewWithCancel,
-  alertView: alertView
+  alertView: alertView,
+  showToos: showToos
 }

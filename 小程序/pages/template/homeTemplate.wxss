@@ -1,0 +1,126 @@
+.scenic-contenView {
+  position: relative;
+  width: 100%;
+  height: 200rpx;
+  background-color: #eaeaea;
+}
+
+.scenic-backView {
+  position: absolute;
+  top: 10rpx;
+  left: 0rpx;
+  right: 0rpx;
+  bottom: 0rpx;
+  background-color: white;
+}
+.scenic-cellHeaderImage {
+  position: absolute;
+  top: 8rpx;
+  left: 8rpx;
+  bottom: 8rpx;
+  width: 327rpx;
+  height: auto;
+}
+.scenic-bottomView {
+  position: absolute;
+  left: 8rpx;
+  bottom: 8rpx;
+  width: 327rpx;
+  height: 40rpx;
+  background-color: rgba(0,0,0,.6);
+}
+
+.scenic-bottomImage {
+  float:left;
+  width: 30rpx;
+  height: 30rpx;
+  margin:5rpx 5rpx 0 15rpx;
+}
+
+.scenic-bottomText {
+  float:left;
+  line-height: 40rpx;
+  font-size: 24rpx;
+  color: #eaeaea;
+}
+
+.scenic-cellName {
+  position: absolute;
+  right: 100rpx;
+  left: 347rpx;
+  top: 10rpx;
+  font-size: 30rpx;
+}
+.scenic-cellState {
+  position: absolute;
+  right: 16rpx;
+  top: 10rpx;
+  font-size: 30rpx;
+}
+.scenic-cellInfo {
+  position: absolute;
+  top: 80rpx;
+  left: 347rpx;
+  font-size: 26rpx;
+  color: gray;
+}
+.scenic-cellEarnings {
+  position: absolute;
+  left: 347rpx;
+  bottom: 10rpx;
+  color: gray;
+  font-size: 26rpx;
+}
+/*****/
+.guide-contenView{
+  position: relative;
+  width: 100%;
+  background-color: #eaeaea;
+}
+.guide-backView{
+position: absolute;
+top: 10rpx;
+left: 10rpx;
+right: 10rpx;
+bottom: 0rpx;
+background-color: white;
+}
+.guide-cellHeaderImage{
+position: absolute;
+width: 120rpx;
+height: 120rpx;
+border-radius: 60rpx;
+left: 20rpx;
+top: 20rpx;
+}
+.guide-name{
+position: absolute;
+font-size: 30rpx;
+left: 160rpx;
+top: 20rpx;
+right: 40rpx;
+}
+.guide-info{
+position: absolute;
+font-size: 26rpx;
+color: gray;
+top: 70rpx;
+left: 160rpx;
+right: 40rpx;
+}
+.guide-select{
+  position: absolute;
+  right: 10rpx;
+  bottom: 10rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+.guide-listView{
+position: absolute;
+left: 160rpx;
+top: 110rpx;
+right: 100rpx;
+bottom: 10rpx;
+background-color: red;
+}
+  

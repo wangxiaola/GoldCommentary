@@ -1,5 +1,4 @@
-<import src="../../pages/myScenic/myScenic.wxml" />
-<import src="../../pages/myGuide/myGuide.wxml" />
+<import src="../../pages/template/homeTemplate.wxml" />
 
 <!--index.wxml-->
 <view class='conten'>
@@ -29,9 +28,8 @@
 
       <text class='header-text'>可提现：{{balance}}元</text>
       <view class='header-text' bindtap='withdrawalClick'>每月5-10　　提现>></view>
+
     </view>
-
-
   </view>
 
 
@@ -45,19 +43,21 @@
   </view>
   <!-- 内容 -->
   <swiper current="{{currentData}}" class='swiper' duration="300" bindchange="bindchange">
-<!-- 我的景区 -->
+    <!-- 我的景区 -->
     <swiper-item>
-      <scroll-view scroll-y style="height: 100%;padding-bottom:20rpx;background-color:#eaeaea;box-sizing:border-box;" bindscrolltoupper="upper" bindscrolltolower="lower">
+      <scroll-view scroll-y style="height: 100%;padding-bottom:20rpx;background-color:#eaeaea;box-sizing:border-box;" bindscrolltolower="lower">
 
         <template is="myScenic" data="{{scenicArray}}" />
 
       </scroll-view>
+      <image src='../../pages/images/addJq.png' class='addscenicImgae' bindtap='addScenicClick'></image>
     </swiper-item>
-<!-- 我的解说员 -->
-    <swiper-item>
-      <scroll-view scroll-y style="height: 100%;background-color:#eaeaea;" bindscrolltoupper="upper" bindscrolltolower="lower">
 
-        <template is="myGuide" data="{{myGuideArray}}" />
+    <!-- 我的解说员 -->
+    <swiper-item>
+      <scroll-view scroll-y style="height: 100%;background-color:#eaeaea;padding-bottom:20rpx;box-sizing:border-box;" bindscrolltolower="lower">
+
+        <template is="myGuide" data="{{guideArray,guideCellHieght}}" />
 
       </scroll-view>
     </swiper-item>

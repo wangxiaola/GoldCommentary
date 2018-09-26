@@ -1,8 +1,0 @@
-
-<template name="myGuide">
-
-
-<view wx:for="{{guideArray}}" wx:key="guideID"></view>
-
-
-</template>
