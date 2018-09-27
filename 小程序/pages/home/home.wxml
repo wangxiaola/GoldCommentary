@@ -45,23 +45,43 @@
   <swiper current="{{currentData}}" class='swiper' duration="300" bindchange="bindchange">
     <!-- 我的景区 -->
     <swiper-item>
-      <scroll-view scroll-y style="height: 100%;padding-bottom:20rpx;background-color:#eaeaea;box-sizing:border-box;" bindscrolltolower="lower">
+      <scroll-view scroll-y="{{scrollY}}" style="height: 100%;padding-bottom:20rpx;background-color:#eaeaea;box-sizing:border-box;" bindscrolltolower="lower">
 
         <template is="myScenic" data="{{scenicArray}}" />
 
       </scroll-view>
-      <image src='../../pages/images/addJq.png' class='addscenicImgae' bindtap='addScenicClick'></image>
+      <template is="default" wx:if='{{scenicArray.length==0}}' />
     </swiper-item>
 
     <!-- 我的解说员 -->
     <swiper-item>
       <scroll-view scroll-y style="height: 100%;background-color:#eaeaea;padding-bottom:20rpx;box-sizing:border-box;" bindscrolltolower="lower">
 
-        <template is="myGuide" data="{{guideArray,guideCellHieght}}" />
+        <template is="myGuide" data="{{guideArray,guideCellHieght,guideCellIndex}}" />
 
       </scroll-view>
+      <template is="default" wx:if='{{guideArray.length==0}}' />
     </swiper-item>
 
   </swiper>
+  <!-- 景区添加按钮 -->
+  <image src='../../pages/images/addJq.png' class='addscenicImgae' bindtap='addScenicClick'></image>
+
+  <!-- cell点击弹出框 -->
+  <view class='maskLayer' wx:if="{{chooseSize}}" catchtouchmove="myCatchTouch"></view>
+  <view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
+
+    <view class='choose-conten'>
+
+      <view wx:for="{{chooseArray}}" wx:key="choose" class='chooseTable' style='width:{{chooseArray.length==4?"25%":"50%"}}' bindtap='scenicOperationClick' data-item='{{item}}'>
+        <image src='{{item.image}}' class='choose-image'></image>
+        <text class='choose-text'>{{item.name}}</text>
+
+      </view>
+    </view>
+
+    <view class='choose-cancel' bindtap='hideModal'>取 消</view>
+
+  </view>
 
 </view>

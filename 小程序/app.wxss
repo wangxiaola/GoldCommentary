@@ -1,5 +1,7 @@
 /**app.wxss**/
-
+.none{
+  display:none;
+}
 .container {
   height: 100%;
   display: flex;

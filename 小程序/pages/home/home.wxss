@@ -1,16 +1,16 @@
 /**index.wxss**/
 @import "../../pages/template/homeTemplate.wxss";
 
-button::after,view::after  {
+button::after, view::after {
   border: none;
 }
+
 .conten {
   width: 100%;
   height: 100vh;
   background-color: white;
   overflow-y: hidden;
 }
-
 
 .tab {
   position: relative;
@@ -74,6 +74,7 @@ button::after,view::after  {
   width: 100%;
   height: calc(100vh - 36vh - 60rpx);
   margin-top: 80rpx;
+  background-color: #eaeaea;
 }
 
 .swiper_con {
@@ -84,15 +85,15 @@ button::after,view::after  {
   box-sizing: border-box;
 }
 
-.header-box{
+.header-box {
   width: 100%;
   height: 36vh;
 }
 
 .head-img {
-  position:absolute;
-  top:0;
-  left:0;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 36vh;
 }
@@ -120,18 +121,21 @@ button::after,view::after  {
   top: 20rpx;
   right: 16rpx;
 }
+
 .header-image {
   width: 40rpx;
   height: 40rpx;
 }
-.header-textView{
+
+.header-textView {
   position: absolute;
   width: 80vw;
   top: 80rpx;
   left: 10vw;
   height: calc(100vh - 64vh - 80rpx);
 }
-.header-text{
+
+.header-text {
   position: static;
   display: flex;
   color: white;
@@ -141,9 +145,9 @@ button::after,view::after  {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
-.header-center{
+
+.header-center {
   position: static;
   display: flex;
   color: white;
@@ -153,30 +157,100 @@ button::after,view::after  {
   align-items: flex-end;
   height: 25%;
 }
-.header-price{
-font-size: 60rpx;
-font-weight: bolder;
-}
-.header-unit{
-font-size: 24rpx;
-}
-::-webkit-scrollbar{
-width: 0;
-height: 0;
-color: transparent;
+
+.header-price {
+  font-size: 60rpx;
+  font-weight: bolder;
 }
 
-text{
-overflow:hidden; /* 超出一行文字自动隐藏  */
-text-overflow:ellipsis;/*文字隐藏后添加省略号*/
-white-space:nowrap; /*强制不换行*/
-
+.header-unit {
+  font-size: 24rpx;
 }
-.addscenicImgae{
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+text {
+  overflow: hidden; /* 超出一行文字自动隐藏  */
+  text-overflow: ellipsis; /*文字隐藏后添加省略号*/
+  white-space: nowrap; /*强制不换行*/
+}
+
+.addscenicImgae {
   position: absolute;
   width: 100rpx;
   height: 100rpx;
   left: 50%;
   margin-left: -50rpx;
   bottom: 60rpx;
+  z-index: 9;
+}
+
+.maskLayer {
+  position:fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+
+}
+
+.choose {
+  position: absolute;
+  left: 20rpx;
+  right: 20rpx;
+  bottom: 20rpx;
+  height: 270rpx;
+  z-index: 102;
+}
+
+.choose-conten {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  left: 20rpx;
+  right: 20rpx;
+  bottom: 100rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+  background-color: white;
+  z-index: 102;
+}
+
+.choose-cancel {
+  position: absolute;
+  text-align: center;
+  left: 20rpx;
+  right: 20rpx;
+  bottom: 0rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+  background-color: white;
+  z-index: 102;
+  font-size: 36rpx;
+  line-height: 80rpx;
+  
+}
+.chooseTable {
+  position: static;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.choose-image {
+  width: 60rpx;
+  height: 60rpx;
+  padding-bottom: 10rpx;
+}
+
+.choose-text {
+  font-size: 26rpx;
+  color: gray;
 }
